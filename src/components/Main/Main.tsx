@@ -1,9 +1,10 @@
+import { useEffect } from 'react';
+
 import { useAppSelector, useAppDispatch } from './../../app/hooks';
 
 import { deactiveteLoading } from '../../app/slices/productListSlice';
 
-import './Main.css';
-import { useEffect } from 'react';
+import './Main.scss';
 
 export default function Main() {
     const dispatch = useAppDispatch();
