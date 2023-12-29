@@ -2,10 +2,36 @@ import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
+import {
+  createBrowserRouter,
+  RouterProvider
+} from 'react-router-dom';
 
 import store from './app/store';
 
-import App from './App';
+// pages
+import ErrorPage from './pages/error';
+import RootPage from './pages';
+import AboutPage from './pages/about';
+import ContactsPage from './pages/contacts';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <RootPage />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: '/about',
+        element: <AboutPage />
+      },
+      {
+        path: '/contacts',
+        element: <ContactsPage />
+      }
+    ]
+  }
+])
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -13,7 +39,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <StrictMode>
     <Provider store={store}>
-      <App />
+      <RouterProvider router={router} />
     </Provider>
   </StrictMode>
 );

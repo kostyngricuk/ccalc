@@ -16,18 +16,19 @@
             padding: 0;
             margin: 0;
             li {
-                font-weight: 700;
-                border-bottom: 1px solid transparent;
                 a {
                     text-decoration: none;
                     color: inherit;
-                }
-                &:hover,
-                &:focus {
-                    color: $colorPrimary;
-                }
-                &.active {
-                    border-bottom-color: $colorPrimary;
+                    border-bottom: 3px solid transparent;
+                    font-weight: 700;
+                    display: inline-block;
+                    &:hover,
+                    &:focus {
+                        color: $colorPrimary;
+                    }
+                    &.active {
+                        border-bottom-color: $colorPrimary;
+                    }
                 }
             }
             & > li + li {

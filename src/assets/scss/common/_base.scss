@@ -21,3 +21,8 @@ html {
 .container {
  @include container;
 }
+
+.main {
+  padding: 60px 0;
+  min-height: calc(100vh - 85px - 60px);
+}

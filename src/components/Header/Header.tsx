@@ -1,3 +1,5 @@
+import { NavLink } from 'react-router-dom';
+
 import { LogoSVG } from '../../assets/icons';
 
 import './Header.scss';
@@ -9,11 +11,13 @@ export default function Header() {
                 <a href='/' aria-label='Go to home page' className='header__logo'>
                     <img src={LogoSVG} alt="Logo" />
                 </a>
-                <div className="header__menu">
+                <nav className="header__menu">
                     <ul>
-                        <li><a href='/'>Home Page</a></li>
+                        <li><NavLink to={`/`}>Home</NavLink></li>
+                        <li><NavLink to={`/about`}>About</NavLink></li>
+                        <li><NavLink to={`/contacts`}>Contacts</NavLink></li>
                     </ul>
-                </div>
+                </nav>
             </div>
         </header>
     );
