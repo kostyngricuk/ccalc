@@ -1,8 +1,8 @@
 import { ReactNode } from 'react';
 
-import { NavLink } from 'react-router-dom';
-
-import { LogoSVG } from '../../assets/icons';
+import NavMenu from '../NavMenu/NavMenu';
+import Copyright from '../Copyright/Copyright';
+import Logo from '../Logo/Logo';
 
 import './PageLayout.scss';
 
@@ -21,16 +21,8 @@ export default function PageLayout({
                 !isOnlyContent &&
                 <header className='header'>
                     <div className='container header-wrapper'>
-                        <NavLink to='/' aria-label='Go home' className='header__logo'>
-                            <img src={LogoSVG} alt="Logo" />
-                        </NavLink>
-                        <nav className="header__menu">
-                            <ul>
-                                <li><NavLink to={`/`}>Home</NavLink></li>
-                                <li><NavLink to={`/about`}>About</NavLink></li>
-                                <li><NavLink to={`/contacts`}>Contacts</NavLink></li>
-                            </ul>
-                        </nav>
+                        <Logo />
+                        <NavMenu />
                     </div>
                 </header>
             }
@@ -43,12 +35,10 @@ export default function PageLayout({
                 !isOnlyContent &&
                 <footer className="footer">
                     <div className="container footer-wrapper">
-                        <p className="footer__copyright">
-                            Kanstantsin Hrytsuk © {new Date().getFullYear()}
-                        </p>
+                        <Copyright />
                     </div>
                 </footer>
             }
         </>
     );
-}
+  }
