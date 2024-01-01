@@ -7,27 +7,27 @@ import {
   RouterProvider
 } from 'react-router-dom';
 
-import store from './app/store';
+import store from './services/store';
 
 // pages
-import ErrorPage from './pages/error';
-import RootPage from './pages';
-import AboutPage from './pages/about';
-import ContactsPage from './pages/contacts';
+import ErrorScreen from './pages/ErrorScreen';
+import Root from './pages';
+import AboutScreen from './pages/AboutScreen';
+import ContactsScreen from './pages/ContactsScreen';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <RootPage />,
-    errorElement: <ErrorPage />,
+    element: <Root />,
+    errorElement: <ErrorScreen />,
     children: [
       {
         path: '/about',
-        element: <AboutPage />
+        element: <AboutScreen />
       },
       {
         path: '/contacts',
-        element: <ContactsPage />
+        element: <ContactsScreen />
       }
     ]
   }

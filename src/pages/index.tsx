@@ -1,15 +1,15 @@
 import { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import { useAppSelector, useAppDispatch } from '../app/hooks';
+import { useAppSelector, useAppDispatch } from '../services/hooks';
 
-import { deactiveteLoading } from '../app/slices/productListSlice';
+import { deactiveteLoading } from '../services/slices/productListSlice';
 
-import Header from '../components/Header/Header';
-import Main from '../components/Main/Main';
-import Footer from '../components/Footer/Footer';
+import PageLayout from '../components/PageLayout/PageLayout';
 
-export default function RootPage() {
+import { Loader } from '../components/UI/Loader/Loader';
+
+export default function Index() {
     const dispatch = useAppDispatch();
     const productList = useAppSelector((state) => state.productList);
 
@@ -20,20 +20,14 @@ export default function RootPage() {
         return () => clearTimeout(timeout);
     }, [dispatch])
 
-    if (productList.isLoading) {
-        return (
-            <Main>
-                <p>Loading ...</p>
-            </Main>
-        );
-    }
     return (
-        <>
-            <Header />
-            <Main>
-                <Outlet />
-            </Main>
-            <Footer />
-        </>
+        <PageLayout isOnlyContent={productList.isLoading}>
+            {
+                productList.isLoading ?
+                    <Loader />
+                :
+                    <Outlet />
+            }
+        </PageLayout>
     );
 }

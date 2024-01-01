@@ -1,4 +1,4 @@
-export default function ContactsPage() {
+export default function ContactsScreen() {
     return (
         <h1>Contacts</h1>
     )
