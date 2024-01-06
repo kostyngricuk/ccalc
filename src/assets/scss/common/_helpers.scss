@@ -1,0 +1,18 @@
+// Flex
+.is-flex {
+    display: flex;
+    justify-content: center;
+}
+
+// Text Align
+.is-text-align {
+    &_center {
+        text-align: center;
+    }
+}
+
+.is-height {
+    &_full {
+        height: 100%;
+    }
+}

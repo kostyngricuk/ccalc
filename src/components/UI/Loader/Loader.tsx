@@ -1,3 +1,10 @@
+import './Loader.scss';
+
 export function Loader() {
-  return <p>Loading ...</p>;
+  return (
+    <div className="Loader">
+      <span className="Loader__cup"></span>
+      <span className="Loader__wave"></span>
+    </div>
+  );
 }

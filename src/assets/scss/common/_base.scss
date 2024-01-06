@@ -10,19 +10,15 @@ html {
   body, h1, h2, h3, h4, h5, h6, p, ul, ol {
     padding: 0;
     margin: 0;
+    line-height: 1.43em;
   }
 
   body {
-    font-family: sans-serif;
+    font-family: 'Exo', sans-serif;
     font-size: 16px;
   }
 }
 
 .container {
  @include container;
-}
-
-.main {
-  padding: 60px 0;
-  min-height: calc(100vh - 85px - 60px);
 }

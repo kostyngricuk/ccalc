@@ -5,6 +5,7 @@ export default function NavMenu() {
         <nav className="menu">
             <ul>
                 <li><NavLink to={`/`}>Home</NavLink></li>
+                <li><NavLink to={`/calculator`}>Calculator</NavLink></li>
                 <li><NavLink to={`/about`}>About</NavLink></li>
                 <li><NavLink to={`/contacts`}>Contacts</NavLink></li>
             </ul>

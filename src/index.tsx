@@ -12,6 +12,7 @@ import store from './services/store';
 // pages
 import ErrorScreen from './pages/ErrorScreen';
 import Root from './pages';
+import CalculatorScreen from './pages/CalculatorScreen';
 import AboutScreen from './pages/AboutScreen';
 import ContactsScreen from './pages/ContactsScreen';
 
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
     element: <Root />,
     errorElement: <ErrorScreen />,
     children: [
+      {
+        path: '/calculator',
+        element: <CalculatorScreen />
+      },
       {
         path: '/about',
         element: <AboutScreen />

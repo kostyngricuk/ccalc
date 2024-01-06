@@ -27,9 +27,7 @@ export default function PageLayout({
                 </header>
             }
             <main className='main'>
-                <div className="container main-wrapper">
-                    { children }
-                </div>
+                { children }
             </main>
             {
                 !isOnlyContent &&
