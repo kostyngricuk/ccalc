@@ -1,0 +1,33 @@
+@import '../../../assets/scss/common/mixins';
+@import '../../../assets/scss/common/variables';
+
+.Button {
+    height: $inputHeight;
+    border-radius: $borderRadiusInput;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 0 1em;
+    min-width: 150px;
+    cursor: pointer;
+    outline: none;
+    &_primary {
+        background-color: $colorWhite;
+        border: 1px solid $colorPrimary;
+        color: $colorPrimary;
+        &:hover,
+        &:focus {
+            background-color: $colorPrimary;
+            color: $colorWhite;
+        }
+    }
+    &_red {
+        background-color: $colorWhite;
+        border: 1px solid $colorRed;
+        color: $colorRed;
+        &:hover,
+        &:focus {
+            background-color: $colorRed;
+            color: $colorWhite;
+        }
+    }
+}

@@ -16,3 +16,10 @@
         height: 100%;
     }
 }
+
+.is-spaced {
+    margin-bottom: 0.45em;
+    &_large {
+        margin-bottom: 3em;
+    }
+}

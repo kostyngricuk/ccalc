@@ -23,7 +23,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorScreen />,
     children: [
       {
-        path: '/calculator',
+        path: '/',
         element: <CalculatorScreen />
       },
       {
