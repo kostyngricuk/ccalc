@@ -4,9 +4,11 @@ import ScreenColumn from "../components/ScreenColumn/ScreenColumn";
 import FormWrapper from "../components/UI/FormWrapper/FormWrapper";
 import Input from "../components/UI/Input/Input";
 import Button from "../components/UI/Button/Button";
+import { FormEvent } from "react";
 
 export default function ContactsScreen() {
-    const handleSubmitForm = () => {
+    const handleSubmitForm = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
         console.log('Submited');
     }
     return (
@@ -17,11 +19,11 @@ export default function ContactsScreen() {
             </ScreenColumn>
             <ScreenColumn>
                 <h2 className="h1 is-spaced">Contact me</h2>
-                <FormWrapper>
+                <FormWrapper onSubmit={handleSubmitForm}>
                     <Input name="subject" label="Subject"/>
                     <Input name="name" label="Your name"/>
                     <Input name="email" label="Your email" type="email" required/>
-                    <Button onClick={handleSubmitForm}>Send</Button>
+                    <Button type="submit">Send</Button>
                 </FormWrapper>
             </ScreenColumn>
         </Screen>

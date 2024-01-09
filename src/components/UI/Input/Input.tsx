@@ -3,16 +3,11 @@ import classNames from "classnames";
 
 import "./Input.scss";
 
-type InputProps = {
-  name: string;
-  id?: string,
-  type?: string;
-  value?: string;
-  placeholder?: string;
+type InputProps = Omit<JSX.IntrinsicElements['input'], 'value'> & {
+  value?: string,
   label?: string;
   hasError?: boolean;
   errorMessage?: string;
-  required?: boolean;
 };
 
 const Input = ({
@@ -20,11 +15,12 @@ const Input = ({
   id = name,
   type = "text",
   value = "",
-  placeholder = "",
+  placeholder,
+  required,
   label,
   hasError = false,
   errorMessage = "",
-  required = false
+  ...allProps
 }: InputProps) => {
   const [inputValue, setInputValue] = useState<string>(value);
 
@@ -38,7 +34,7 @@ const Input = ({
     })}>
         {label && <span className="Input__label">{label} {required && <span className="Input__required">*</span>}</span>}
         <input
-            className={classNames("InputField")}
+            className="InputField"
             name={name}
             id={id}
             type={type}
@@ -47,6 +43,7 @@ const Input = ({
             onChange={handleChange}
             autoComplete="off"
             required={required}
+            {...allProps}
         />
         {hasError && <p className="Input__error">{errorMessage}</p>}
     </label>

@@ -1,30 +1,29 @@
 import { ReactNode } from "react";
-import classNames from "classnames";
 
 import "./Button.scss";
 
-type ButtonProps = {
-    children: ReactNode,
-    onClick: () => void,
-    color?: string
-}
+type buttonCollors = "primary" | "red";
 
-interface IColorClasses {
-    [key: string]: string
-}
-const colorClasses = {
-    'default': 'Button_primary',
-    'red': 'Button_red',
-} as IColorClasses;
+type ButtonProps = JSX.IntrinsicElements["button"] & {
+  color?: buttonCollors;
+  children: ReactNode;
+};
 
 const Button = ({
-    children,
-    onClick,
-    color = 'default'
-}:ButtonProps) => {
-    return (
-        <button className={classNames('Button', colorClasses[color])} onClick={onClick}>{children}</button>
-    )
-}
+  children,
+  onClick,
+  color = "primary",
+  ...allProps
+}: ButtonProps) => {
+  return (
+    <button
+      className={`Button Button_${color}`}
+      onClick={onClick}
+      {...allProps}
+    >
+      {children}
+    </button>
+  );
+};
 
 export default Button;
