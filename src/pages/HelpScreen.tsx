@@ -1,10 +1,9 @@
-
 import Section from "../components/UI/Section/Section";
 
-export default function ContactsScreen() {
+export default function HelpScreen() {
     return (
         <Section>
-            <h2 className="h1">Contact me</h2>
+            <h1 className="h1">Help</h1>
         </Section>
     )
 }

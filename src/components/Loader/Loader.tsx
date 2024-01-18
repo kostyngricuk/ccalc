@@ -1,6 +1,6 @@
 import './Loader.scss';
 
-export function Loader() {
+export default function Loader() {
   return (
     <div className="Loader">
       <span className="Loader__cup"></span>

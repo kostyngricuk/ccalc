@@ -7,14 +7,13 @@ import {
   RouterProvider
 } from 'react-router-dom';
 
-import store from './services/store';
-
 // pages
 import ErrorScreen from './pages/ErrorScreen';
 import Root from './pages';
 import CalculatorScreen from './pages/CalculatorScreen';
-import AboutScreen from './pages/AboutScreen';
+import HelpScreen from './pages/HelpScreen';
 import ContactsScreen from './pages/ContactsScreen';
+import SettingsScreen from './pages/SettingsScreen';
 
 const router = createBrowserRouter([
   {
@@ -27,8 +26,12 @@ const router = createBrowserRouter([
         element: <CalculatorScreen />
       },
       {
-        path: '/about',
-        element: <AboutScreen />
+        path: '/settings',
+        element: <SettingsScreen />
+      },
+      {
+        path: '/help',
+        element: <HelpScreen />
       },
       {
         path: '/contacts',
@@ -43,9 +46,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <StrictMode>
-    <Provider store={store}>
-      <RouterProvider router={router} />
-    </Provider>
+    <RouterProvider router={router} />
   </StrictMode>
 );
 

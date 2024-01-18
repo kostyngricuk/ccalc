@@ -1,6 +1,8 @@
+import './Copyright.scss';
+
 export default function Copyright() {
   return (
-    <p className="copyright">
+    <p className="Copyright">
         Kanstantsin Hrytsuk © {new Date().getFullYear()}
     </p>
   );

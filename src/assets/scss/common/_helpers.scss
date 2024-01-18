@@ -1,25 +1,6 @@
-// Flex
-.is-flex {
-    display: flex;
-    justify-content: center;
-}
-
 // Text Align
-.is-text-align {
+.is-text {
     &_center {
         text-align: center;
-    }
-}
-
-.is-height {
-    &_full {
-        height: 100%;
-    }
-}
-
-.is-spaced {
-    margin-bottom: 0.45em;
-    &_large {
-        margin-bottom: 3em;
     }
 }

@@ -1,13 +1,17 @@
-import { NavLink } from "react-router-dom";
+import { NavMenuItem, TypeNavMenuItem } from "../NavMenuItem/NavMenuItem";
 
-export default function NavMenu() {
-    return (
-        <nav className="menu">
-            <ul>
-                <li><NavLink to={`/`}>Calculator</NavLink></li>
-                <li><NavLink to={`/about`}>About</NavLink></li>
-                <li><NavLink to={`/contacts`}>Contacts</NavLink></li>
-            </ul>
-        </nav>
-    );
+import './NavMenu.scss';
+
+type NavMenuProps = {
+    items: Array<TypeNavMenuItem>
 }
+
+export const NavMenu = ({
+    items
+}: NavMenuProps) => (
+    <nav className="NavMenu">
+        <ul className="NavMenu__wrapper">
+            { items.map(item => <NavMenuItem {...item} />) }
+        </ul>
+    </nav>
+);
