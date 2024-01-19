@@ -14,6 +14,7 @@ import CalculatorScreen from './pages/CalculatorScreen';
 import HelpScreen from './pages/HelpScreen';
 import ContactsScreen from './pages/ContactsScreen';
 import SettingsScreen from './pages/SettingsScreen';
+import FaqScreen from './pages/FaqScreen';
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: '/help',
         element: <HelpScreen />
+      },
+      {
+        path: '/faq',
+        element: <FaqScreen />
       },
       {
         path: '/contacts',
