@@ -23,7 +23,10 @@
     opacity: 0;
     visibility: hidden;
     transition: $transition;
-    display: none
+    display: none;
+    .NavItem + .NavItem {
+        margin: 12px 0 0;
+    }
 }
 .DropdownTrigger {
     @include resetButton;

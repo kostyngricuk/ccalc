@@ -21,15 +21,22 @@
         &.active {
             color: $colorPrimary;
         }
+        @include mobile {
+            font-size: 32px;
+        }
     }
     & + & {
         margin-left: 3rem;
         @include mobile {
-            margin: 1rem 0 0;
+            margin: 32px 0 0;
+            .DropdownTrigger .Icon {
+                width: 28px;
+                height: 28px;
+            }
         }
     }
     @include mobile {
         width: 100%;
-        max-width: 200px;
+        max-width: 300px;
     }
 }

@@ -9,6 +9,7 @@ import { Dropdown, DropdownTrigger, DropdownContent } from '../UI/Dropdown/Dropd
 import { Button } from '../UI/Button/Button';
 import Icon from '../UI/Icon/Icon';
 import { ProfileSVG } from '../../assets/icons';
+import { ProfileMenu } from '../ProfileMenu/ProfileMenu';
 
 const menuItems: Array<NavItemProps> = [
     {
@@ -31,8 +32,7 @@ const menuItems: Array<NavItemProps> = [
     }
 ]
 
-const menuItemsMobile: Array<NavItemProps> = [
-    ...menuItems,
+const menuProfileItems: Array<NavItemProps> = [
     {
         link: '/settings',
         title: 'Settings'
@@ -48,21 +48,8 @@ export default function Header() {
         <header className='Header'>
             <Container className='Header__wrapper'>
                 <Logo />
-                <Nav items={menuItems} itemsMobile={menuItemsMobile}/>
-                <Dropdown className="ProfileMenu" position="right">
-                    <DropdownTrigger showArrow={false}>
-                        <Button
-                            isIcon={true}
-                            isOutLine={true}
-                            ariaLabel="Profile menu"
-                        >
-                            <Icon Sprite={ProfileSVG} />
-                        </Button>
-                    </DropdownTrigger>
-                    <DropdownContent>
-                        Profile
-                    </DropdownContent>
-                </Dropdown>
+                <Nav items={menuItems} itemsMobile={[...menuItems, ...menuProfileItems]}/>
+                <ProfileMenu items={menuProfileItems} />
             </Container>
         </header>
     );

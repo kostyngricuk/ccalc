@@ -1,0 +1,12 @@
+@import '../../assets/scss/global';
+
+.ProfileMenu {
+    &__wrapper {
+        text-align: center;
+        list-style: none;
+        padding: 0;
+    }
+    @include mobile {
+        display: none;
+    }
+}
