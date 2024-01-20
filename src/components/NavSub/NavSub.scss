@@ -8,4 +8,18 @@
         margin: 0;
         width: 100%;
     }
+    @include mobile {
+        position: relative;
+        top: 0;
+        left: 0;
+        .DropdownContent {
+            transform: none;
+            position: relative;
+            top: 0;
+            left: 0;
+            box-shadow: none;
+            padding: 15px 0;
+            background: rgba($colorPrimary, .15);
+        }
+    }
 }

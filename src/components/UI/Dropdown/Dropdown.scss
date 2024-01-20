@@ -1,34 +1,43 @@
 @import '../../../assets/scss/global';
 
 .Dropdown {
-    position: absolute;
-    z-index: 1;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    &__wrapper {
-        margin-top: 12px;
-        left: -20px;
-        min-width: 194px;
-        width: auto;
-        padding: 20px;
-        background-color: $colorWhite;
-        box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.15);
-        opacity: 0;
-        visibility: hidden;
-        transition: $transition;
-    }
-    &_right &__wrapper {
+    position: relative;
+    &_right .DropdownContent {
         left: initial;
         right: -20px;
     }
-    &_center &__wrapper {
+    &_center .DropdownContent {
         left: 50%;
         transform: translateX(-50%);
     }
-    &:hover &__wrapper,
-    &:focus &__wrapper {
+}
+.DropdownContent {
+    position: absolute;
+    margin-top: 12px;
+    left: -20px;
+    min-width: 194px;
+    width: auto;
+    padding: 20px;
+    background-color: $colorWhite;
+    box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    visibility: hidden;
+    transition: $transition;
+    display: none
+}
+.DropdownTrigger {
+    @include resetButton;
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    cursor: pointer;
+    &.is-active ~ .DropdownContent {
         opacity: 1;
         visibility: visible;
+        display: block;
+    }
+    .Icon {
+        margin-left: 6px;
     }
 }

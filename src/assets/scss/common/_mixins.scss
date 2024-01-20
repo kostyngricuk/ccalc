@@ -90,6 +90,16 @@
   }
 }
 
+@mixin resetButton {
+  background-color: transparent;
+  color: inherit;
+  border: none;
+  user-select: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+}
+
 //Container width
 @mixin container {
   width: 100%;
@@ -100,7 +110,7 @@
 
 // MEDIA
 @mixin mobile {
-    @media only screen and (width <= 576px) {
+    @media only screen and (width <= 768px) {
       @content;
     }
 }

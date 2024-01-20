@@ -25,7 +25,7 @@ export default function Icon(props: IconProps) {
     Sprite
   } = props;
   return (
-    <StyledIconWrapper { ...props }>
+    <StyledIconWrapper { ...props } className="Icon">
       <Sprite />
     </StyledIconWrapper>
   );

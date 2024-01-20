@@ -24,5 +24,12 @@
     }
     & + & {
         margin-left: 3rem;
+        @include mobile {
+            margin: 1rem 0 0;
+        }
+    }
+    @include mobile {
+        width: 100%;
+        max-width: 200px;
     }
 }
