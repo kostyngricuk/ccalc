@@ -1,4 +1,5 @@
 import Container from '../UI/Container/Container';
+import { Tooltip } from '../UI/Tooltip/Tooltip';
 import Logo from '../Logo/Logo';
 import { Nav } from '../Nav/Nav';
 import { NavItemProps } from "../NavItem/NavItem";
@@ -46,7 +47,9 @@ export default function Header() {
                 <Logo />
                 <div className='Header__content'>
                     <Nav items={menuItems} itemsMobile={[...menuItems, ...menuProfileItems]}/>
-                    <CalorieWidget value={765} limit={1980}/>
+                    <Tooltip text="Today calories limit">
+                        <CalorieWidget value={765} limit={1980}/>
+                    </Tooltip>
                     <ProfileMenu items={menuProfileItems} />
                 </div>
             </Container>
