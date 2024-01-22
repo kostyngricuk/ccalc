@@ -1,7 +1,7 @@
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
-import { Provider } from 'react-redux';
+import { ThemeProvider } from 'styled-components';
 import {
   createBrowserRouter,
   RouterProvider
@@ -46,12 +46,26 @@ const router = createBrowserRouter([
   }
 ])
 
+const lightTheme = {
+  color: {
+    white: '#fff',
+    black: '#000',
+    primary: '#57b945',
+    secondary: '#FFCF00',
+    gray: 'rgba(0, 0, 0, 0.25)',
+    red: '#C00',
+    error: 'rgb(231, 24, 24)',
+  }
+}
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <ThemeProvider theme={lightTheme}>
+      <RouterProvider router={router} />
+    </ThemeProvider>
   </StrictMode>
 );
 

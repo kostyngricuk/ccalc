@@ -2,14 +2,10 @@ import Container from '../UI/Container/Container';
 import Logo from '../Logo/Logo';
 import { Nav } from '../Nav/Nav';
 import { NavItemProps } from "../NavItem/NavItem";
-
+import { ProfileMenu } from '../ProfileMenu/ProfileMenu';
+import { CalorieWidget } from '../CalorieWidget/CalorieWidget';
 
 import './Header.scss';
-import { Dropdown, DropdownTrigger, DropdownContent } from '../UI/Dropdown/Dropdown';
-import { Button } from '../UI/Button/Button';
-import Icon from '../UI/Icon/Icon';
-import { ProfileSVG } from '../../assets/icons';
-import { ProfileMenu } from '../ProfileMenu/ProfileMenu';
 
 const menuItems: Array<NavItemProps> = [
     {
@@ -48,8 +44,11 @@ export default function Header() {
         <header className='Header'>
             <Container className='Header__wrapper'>
                 <Logo />
-                <Nav items={menuItems} itemsMobile={[...menuItems, ...menuProfileItems]}/>
-                <ProfileMenu items={menuProfileItems} />
+                <div className='Header__content'>
+                    <Nav items={menuItems} itemsMobile={[...menuItems, ...menuProfileItems]}/>
+                    <CalorieWidget value={765} limit={1980}/>
+                    <ProfileMenu items={menuProfileItems} />
+                </div>
             </Container>
         </header>
     );

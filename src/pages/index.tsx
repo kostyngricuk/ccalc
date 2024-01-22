@@ -20,7 +20,6 @@ export default function Index() {
     if (!isLoaded) {
         return <Loader />;
     }
-
     return (
         <>
             <Header />

@@ -21,13 +21,13 @@
         &.active {
             color: $colorPrimary;
         }
-        @include mobile {
+        @include tablet {
             font-size: 32px;
         }
     }
     & + & {
         margin-left: 3rem;
-        @include mobile {
+        @include tablet {
             margin: 32px 0 0;
             .DropdownTrigger .Icon {
                 width: 28px;
@@ -35,7 +35,7 @@
             }
         }
     }
-    @include mobile {
+    @include tablet {
         width: 100%;
         max-width: 300px;
     }
