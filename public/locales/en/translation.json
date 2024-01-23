@@ -1,0 +1,16 @@
+{
+    "nav": {
+        "calculator": "Calculator",
+        "help": "Help",
+        "faq": "Faq",
+        "contacts": "Contacts",
+        "settings": "Settings",
+        "exit": "Exit"
+    },
+    "calorieWidget": {
+        "cal": "cal"
+    },
+    "settings": {
+        "title": "Settings"
+    }
+}

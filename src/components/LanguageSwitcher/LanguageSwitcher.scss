@@ -1,0 +1,30 @@
+@import '../../assets/scss/global';
+
+.LanguageSwitcher {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    button {
+        @include resetButton;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 1em;
+        margin: 0 5px;
+        cursor: pointer;
+        &:hover,
+        &:focus {
+            color: $colorPrimary;
+        }
+        &.is-active {
+            color: $colorPrimary;
+            pointer-events: none;
+        }
+        @include mobile {
+            margin: 0;
+            line-height: 1.5em;
+        }
+    }
+    @include mobile {
+        flex-direction: column;
+    }
+}

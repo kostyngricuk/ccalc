@@ -3,4 +3,11 @@
 .Logo {
     display: inline-block;
     width: 180px;
+    @include mobile {
+        width: 160px;
+        & .Icon,
+        & svg {
+            width: 125px!important;
+        }
+    }
 }

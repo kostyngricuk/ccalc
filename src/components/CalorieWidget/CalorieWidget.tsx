@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { StyleCalorieWidget, Color } from "./StyledCalorieWidget";
+import { useTranslation } from "react-i18next";
 
 export const CalorieWidget = ({
     value,
@@ -8,6 +9,8 @@ export const CalorieWidget = ({
     value:number,
     limit: number
 }) => {
+    const { t } = useTranslation();
+
     const color = useMemo(() => {
         if (value < 0) {
             return Color.red;
@@ -22,9 +25,9 @@ export const CalorieWidget = ({
     }, [value, limit])
 
     return (
-        <StyleCalorieWidget $color={color}>
+        <StyleCalorieWidget $color={color} className="CalorieWidget">
             { value }
-            <span>cal</span>
+            <span>{t('calorieWidget.cal')}</span>
         </StyleCalorieWidget>
     );
 }

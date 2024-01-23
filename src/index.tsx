@@ -16,6 +16,8 @@ import ContactsScreen from './pages/ContactsScreen';
 import SettingsScreen from './pages/SettingsScreen';
 import FaqScreen from './pages/FaqScreen';
 
+import './services/i18n';
+
 const router = createBrowserRouter([
   {
     path: '/',

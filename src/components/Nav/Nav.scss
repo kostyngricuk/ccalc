@@ -43,5 +43,6 @@
     }
     @include tablet {
         width: auto;
+        margin-left: 0!important;
     }
 }

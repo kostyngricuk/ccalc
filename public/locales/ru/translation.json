@@ -1,0 +1,16 @@
+{
+    "nav": {
+        "calculator": "Калькулятор",
+        "help": "Помощь",
+        "faq": "Вопрос - Ответ",
+        "contacts": "Контакты",
+        "settings": "Настройки",
+        "exit": "Выйти"
+    },
+    "calorieWidget": {
+        "cal": "ккал"
+    },
+    "settings": {
+        "title": "Настройки"
+    }
+}
