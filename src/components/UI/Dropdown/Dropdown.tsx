@@ -1,4 +1,4 @@
-import { MouseEvent, ReactNode, useEffect, useRef, useState } from "react"
+import { ReactNode, useEffect, useRef, useState } from "react"
 import classNames from "classnames"
 
 import Icon from '../Icon/Icon';
@@ -44,9 +44,7 @@ export const DropdownTrigger = ({
     const refTrigger = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        if (isActive) {
-            setIsActive(false);
-        }
+        setIsActive(false);
     }, [location]);
 
     useEffect(() => {

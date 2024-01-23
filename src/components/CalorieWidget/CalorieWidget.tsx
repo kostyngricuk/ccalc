@@ -3,30 +3,31 @@ import { StyleCalorieWidget, Color } from "./StyledCalorieWidget";
 import { useTranslation } from "react-i18next";
 
 export const CalorieWidget = ({
-    value,
+    eaten,
     limit
 }: {
-    value:number,
+    eaten:number,
     limit: number
 }) => {
     const { t } = useTranslation();
 
     const color = useMemo(() => {
-        if (value < 0) {
+        const remain:number = limit - eaten;
+        if (remain < 0) {
             return Color.red;
         }
-        if (value <= limit * 0.25) {
+        if (remain <= limit * 0.25) {
             return Color.gray;
         }
-        if (value <= limit * 0.5) {
+        if (remain <= limit * 0.5) {
             return Color.secondary;
         }
         return Color.primary;
-    }, [value, limit])
+    }, [eaten, limit])
 
     return (
         <StyleCalorieWidget $color={color} className="CalorieWidget">
-            { value }
+            { limit - eaten }
             <span>{t('calorieWidget.cal')}</span>
         </StyleCalorieWidget>
     );

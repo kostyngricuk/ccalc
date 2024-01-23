@@ -8,6 +8,7 @@
         "exit": "Exit"
     },
     "calorieWidget": {
+        "tooltip": "Today calories limit",
         "cal": "cal"
     },
     "settings": {

@@ -27,7 +27,7 @@ export const ProfileMenu = ({
             </DropdownTrigger>
             <DropdownContent>
                 <ul className="ProfileMenu__wrapper">
-                    { items.map(item => <NavItem {...item} key={item.title}/>) }
+                    { items.map(item => <NavItem {...item} key={item.id}/>) }
                 </ul>
             </DropdownContent>
         </Dropdown>

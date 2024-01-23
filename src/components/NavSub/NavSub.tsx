@@ -11,7 +11,7 @@ export const NavSub = ({
 }: NavSubProps) => {
     return (
         <ul className="NavSub__wrapper">
-            { items.map(item => <NavItem {...item} key={item.title}/>) }
+            { items.map(item => <NavItem {...item} key={item.id}/>) }
         </ul>
     )
 };

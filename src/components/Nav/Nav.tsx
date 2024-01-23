@@ -19,22 +19,20 @@ export const Nav = ({ items, itemsMobile }: NavProps) => {
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
-    if (isActive) {
-      setIsActive(false);
-    }
+    setIsActive(false);
   }, [location]);
 
   return (
     <nav className="Nav">
       <ul className="Nav__wrapper Nav__wrapper_desktop">
         {items.map((item) => (
-          <NavItem {...item} key={item.title} />
+          <NavItem {...item} key={item.id} />
         ))}
       </ul>
       {isActive && (
         <ul className="Nav__wrapper Nav__wrapper_mobile">
           {itemsMobile.map((item) => (
-            <NavItem {...item} key={item.title} />
+            <NavItem {...item} key={item.id} />
           ))}
         </ul>
       )}

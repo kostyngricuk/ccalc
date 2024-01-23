@@ -5,6 +5,7 @@ import { Dropdown, DropdownTrigger, DropdownContent } from "../UI/Dropdown/Dropd
 import { NavSub } from "../NavSub/NavSub";
 
 type TypeNavItem = {
+    id: number,
     link: string,
     title: string,
 }
@@ -16,6 +17,7 @@ type TypeSubMenu = {
 export type NavItemProps = TypeNavItem & TypeSubMenu;
 
 export const NavItem = ({
+    id,
     link,
     title,
     submenu = []

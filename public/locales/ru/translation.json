@@ -8,6 +8,7 @@
         "exit": "Выйти"
     },
     "calorieWidget": {
+        "tooltip": "Лимит калорий на сегодня",
         "cal": "ккал"
     },
     "settings": {
