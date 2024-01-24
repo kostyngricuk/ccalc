@@ -6,11 +6,11 @@ interface IButton {
   children: ReactNode;
   type?: "button" | "submit";
   className?: string;
-  isIcon?: boolean;
-  isOutline?: boolean;
+  $isIcon?: boolean;
+  $isOutline?: boolean;
   color?: "primary" | "secondry" | "red" | "black";
   ariaLabel?: string;
-  isDisabled?: boolean;
+  $isDisabled?: boolean;
   onClick?: MouseEventHandler;
 }
 
@@ -18,19 +18,19 @@ export const Button = ({
   children,
   type = "button",
   className = "",
-  isIcon = false,
-  isOutline = false,
+  $isIcon = false,
+  $isOutline = false,
   color = "primary",
   ariaLabel = "",
-  isDisabled = false,
+  $isDisabled = false,
   onClick,
 }: IButton) => {
   return (
     <StyledButton
       color={color}
-      isIcon={isIcon}
-      isOutline={isOutline}
-      isDisabled={isDisabled}
+      $isIcon={$isIcon}
+      $isOutline={$isOutline}
+      $isDisabled={$isDisabled}
       type={type}
       aria-label={ariaLabel}
       onClick={onClick}

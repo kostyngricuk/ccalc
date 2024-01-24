@@ -15,14 +15,14 @@ interface INav {
 export const Nav = ({ items, itemsMobile }: INav) => {
   let location = useLocation();
 
-  const [isActive, setIsActive] = useState(false);
+  const [$isActive, setIsActive] = useState(false);
 
   useEffect(() => {
     setIsActive(false);
   }, [location]);
 
   const handleOnClick = () => {
-    setIsActive(!isActive);
+    setIsActive(!$isActive);
   };
 
   return (
@@ -32,7 +32,7 @@ export const Nav = ({ items, itemsMobile }: INav) => {
           <NavItem {...item} key={item.id} />
         ))}
       </StyledNavWrap>
-      {isActive && (
+      {$isActive && (
         <StyledNavWrap className="is-mobile">
           {itemsMobile.map((item) => (
             <NavItem {...item} key={item.id} />
@@ -42,12 +42,12 @@ export const Nav = ({ items, itemsMobile }: INav) => {
       <StyledNavBurger
         className="Nav__burger"
         color="black"
-        isIcon={true}
-        isOutline={true}
+        $isIcon={true}
+        $isOutline={true}
         ariaLabel="Menu"
         onClick={handleOnClick}
       >
-        {isActive ? <Icon Sprite={CloseSVG} /> : <Icon Sprite={BurgerSVG} />}
+        {$isActive ? <Icon Sprite={CloseSVG} /> : <Icon Sprite={BurgerSVG} />}
       </StyledNavBurger>
     </StyledNav>
   );

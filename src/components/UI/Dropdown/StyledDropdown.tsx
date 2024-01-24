@@ -1,15 +1,15 @@
 import styled, { css } from "styled-components";
 import { resetButton } from "../../../services/styled/mixins";
 
-export const StyledDropdown = styled.div<{position: string}>`
+export const StyledDropdown = styled.div<{$position: string}>`
     position: relative;
-    ${props => props.position === 'right' && css`
+    ${props => props.$position === 'right' && css`
         & .DropdownContent {
             left: initial;
             right: -20px;
         }
     `}
-    ${props => props.position === 'center' && css`
+    ${props => props.$position === 'center' && css`
         & .DropdownContent {
             left: 50%;
             transform: translateX(-50%);
@@ -35,21 +35,21 @@ export const StyledDropdownContent = styled.div`
     }
 `;
 
-export const StyledDropdownTrigger = styled.div<{isActive:boolean, showArrow: boolean}>`
+export const StyledDropdownTrigger = styled.div<{$isActive:boolean, $showArrow: boolean}>`
     ${resetButton}
     display: inline-flex;
     align-items: center;
     width: 100%;
     justify-content: space-between;
     cursor: pointer;
-    ${props => props.isActive && css`
+    ${props => props.$isActive && css`
         & ~ .DropdownContent {
             opacity: 1;
             visibility: visible;
             display: block;
         }
     `}
-    ${props => props.showArrow && css`
+    ${props => props.$showArrow && css`
         .Icon {
             margin-left: 6px;
         }

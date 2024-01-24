@@ -8,15 +8,15 @@ import { StyledDropdown, StyledDropdownContent, StyledDropdownTrigger } from "./
 
 export const Dropdown = ({
     className = "",
-    position = "",
+    $position = "",
     children
 }: {
     className?: string,
-    position?: string,
+    $position?: string,
     children: ReactNode
 }) => {
     return (
-        <StyledDropdown position={position} className={className}>
+        <StyledDropdown $position={$position} className={className}>
             { children }
         </StyledDropdown>
     );
@@ -24,14 +24,14 @@ export const Dropdown = ({
 
 export const DropdownTrigger = ({
     children,
-    showArrow = true
+    $showArrow = true
 }: {
     children: ReactNode,
-    showArrow?: boolean
+    $showArrow?: boolean
 }) => {
     let location = useLocation();
 
-    const [isActive, setIsActive] = useState(false);
+    const [$isActive, setIsActive] = useState(false);
     const refTrigger = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -53,19 +53,19 @@ export const DropdownTrigger = ({
     }, [])
 
     const handleOnClick = () => {
-        setIsActive(!isActive)
+        setIsActive(!$isActive)
     }
 
     return (
-        <StyledDropdownTrigger isActive={isActive} showArrow={showArrow} ref={refTrigger} onClick={handleOnClick}>
+        <StyledDropdownTrigger $isActive={$isActive} $showArrow={$showArrow} ref={refTrigger} onClick={handleOnClick}>
             { children }
             {
-                showArrow && isActive && (
+                $showArrow && $isActive && (
                     <Icon Sprite={ArrowUpSVG} />
                 )
             }
             {
-                showArrow && !isActive && (
+                $showArrow && !$isActive && (
                     <Icon Sprite={ArrowDownSVG} />
                 )
             }

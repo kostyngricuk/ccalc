@@ -13,11 +13,11 @@ export const ProfileMenu = ({
     items: Array<INavItem>
 }) => {
     return (
-        <StyledProfileMenu position="right">
-            <DropdownTrigger showArrow={false}>
+        <StyledProfileMenu $position="right">
+            <DropdownTrigger $showArrow={false}>
                 <Button
-                    isIcon={true}
-                    isOutline={true}
+                    $isIcon={true}
+                    $isOutline={true}
                     ariaLabel="Profile menu"
                 >
                     <Icon Sprite={ProfileSVG} />

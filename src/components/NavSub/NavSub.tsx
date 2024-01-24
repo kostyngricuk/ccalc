@@ -14,7 +14,7 @@ export const NavSub = ({
     items
 }: INavSub) => {
     return (
-        <StyledNavSub position="center">
+        <StyledNavSub $position="center">
             <DropdownTrigger>
                 <NavLink to={link}>{ title }</NavLink>
             </DropdownTrigger>
