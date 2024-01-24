@@ -7,7 +7,7 @@ import { LANGUAGES } from "../../services/constants/global";
 export const LanguageSwitcher = () => {
   const { i18n } = useTranslation();
 
-  const handleChangeLanguage = (lang: string) => {
+  const handleChangeLanguage = (lang: string) => () => {
     i18n.changeLanguage(lang);
   }
   return (
@@ -18,7 +18,7 @@ export const LanguageSwitcher = () => {
         return (
           <button className={classNames(
             langCode === i18n.language && 'is-active'
-          )} key={langCode} aria-label={langLabel} onClick={() => handleChangeLanguage(langCode)}>
+          )} key={langCode} aria-label={langLabel} onClick={handleChangeLanguage(langCode)}>
             {langCode.toUpperCase()}
           </button>
         );

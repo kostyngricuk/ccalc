@@ -61,11 +61,15 @@ export const DropdownTrigger = ({
         }
     }, [])
 
+    const handleOnClick = () => {
+        setIsActive(!isActive)
+    }
+
     return (
         <div ref={refTrigger} className={classNames(
             'DropdownTrigger',
             isActive && `is-active`
-        )} onClick={() => setIsActive(!isActive)}>
+        )} onClick={handleOnClick}>
             { children }
             {
                 showArrow && isActive && (

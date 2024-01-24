@@ -22,6 +22,10 @@ export const Nav = ({ items, itemsMobile }: NavProps) => {
     setIsActive(false);
   }, [location]);
 
+  const handleOnClick = () => {
+    setIsActive(!isActive);
+  };
+
   return (
     <nav className="Nav">
       <ul className="Nav__wrapper Nav__wrapper_desktop">
@@ -42,7 +46,7 @@ export const Nav = ({ items, itemsMobile }: NavProps) => {
         isIcon={true}
         isOutLine={true}
         ariaLabel="Menu"
-        onClick={() => setIsActive(!isActive)}
+        onClick={handleOnClick}
       >
         {isActive ? <Icon Sprite={CloseSVG} /> : <Icon Sprite={BurgerSVG} />}
       </Button>
