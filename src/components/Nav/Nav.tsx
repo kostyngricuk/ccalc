@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
-import { BurgerSVG, CloseSVG } from "../../assets/icons";
+import { BurgerSVG, CloseSVG } from "../../icons";
 import { NavItem, INavItem } from "../NavItem/NavItem";
-import { Button } from "../UI/Button/Button";
 import Icon from "../UI/Icon/Icon";
 
-import "./Nav.scss";
+import { StyledNav, StyledNavBurger, StyledNavWrap } from "./StyledNav";
 
 interface INav {
   items: Array<INavItem>;
@@ -27,29 +26,29 @@ export const Nav = ({ items, itemsMobile }: INav) => {
   };
 
   return (
-    <nav className="Nav">
-      <ul className="Nav__wrapper Nav__wrapper_desktop">
+    <StyledNav>
+      <StyledNavWrap className="is-desktop">
         {items.map((item) => (
           <NavItem {...item} key={item.id} />
         ))}
-      </ul>
+      </StyledNavWrap>
       {isActive && (
-        <ul className="Nav__wrapper Nav__wrapper_mobile">
+        <StyledNavWrap className="is-mobile">
           {itemsMobile.map((item) => (
             <NavItem {...item} key={item.id} />
           ))}
-        </ul>
+        </StyledNavWrap>
       )}
-      <Button
+      <StyledNavBurger
         className="Nav__burger"
         color="black"
         isIcon={true}
-        isOutLine={true}
+        isOutline={true}
         ariaLabel="Menu"
         onClick={handleOnClick}
       >
         {isActive ? <Icon Sprite={CloseSVG} /> : <Icon Sprite={BurgerSVG} />}
-      </Button>
-    </nav>
+      </StyledNavBurger>
+    </StyledNav>
   );
 };

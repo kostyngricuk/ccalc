@@ -1,10 +1,10 @@
-import './Loader.scss';
+import { StyledLoader } from './StyledLoader';
 
 export default function Loader() {
   return (
-    <div className="Loader">
-      <span className="Loader__cup"></span>
-      <span className="Loader__wave"></span>
-    </div>
+    <StyledLoader>
+      <span className="cup"></span>
+      <span className="wave"></span>
+    </StyledLoader>
   );
 }

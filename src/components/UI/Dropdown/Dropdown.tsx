@@ -1,11 +1,10 @@
 import { ReactNode, useEffect, useRef, useState } from "react"
-import classNames from "classnames"
 
 import Icon from '../Icon/Icon';
-import { ArrowUpSVG, ArrowDownSVG } from "../../../assets/icons";
+import { ArrowUpSVG, ArrowDownSVG } from "../../../icons";
 
-import './Dropdown.scss'
 import { useLocation } from "react-router-dom";
+import { StyledDropdown, StyledDropdownContent, StyledDropdownTrigger } from "./StyledDropdown";
 
 export const Dropdown = ({
     className = "",
@@ -17,15 +16,9 @@ export const Dropdown = ({
     children: ReactNode
 }) => {
     return (
-        <div className={classNames([
-            "Dropdown",
-            className,
-            Boolean(position) && `Dropdown_${position}`
-        ])}>
-            <div className="Dropdown__wrapper">
-                { children }
-            </div>
-        </div>
+        <StyledDropdown position={position} className={className}>
+            { children }
+        </StyledDropdown>
     );
 }
 
@@ -64,10 +57,7 @@ export const DropdownTrigger = ({
     }
 
     return (
-        <div ref={refTrigger} className={classNames(
-            'DropdownTrigger',
-            isActive && `is-active`
-        )} onClick={handleOnClick}>
+        <StyledDropdownTrigger isActive={isActive} showArrow={showArrow} ref={refTrigger} onClick={handleOnClick}>
             { children }
             {
                 showArrow && isActive && (
@@ -79,7 +69,7 @@ export const DropdownTrigger = ({
                     <Icon Sprite={ArrowDownSVG} />
                 )
             }
-        </div>
+        </StyledDropdownTrigger>
     )
 }
 
@@ -89,8 +79,8 @@ export const DropdownContent = ({
     children: ReactNode
 }) => {
     return (
-        <div className="DropdownContent">
+        <StyledDropdownContent className="DropdownContent">
             { children }
-        </div>
+        </StyledDropdownContent>
     )
 }

@@ -3,7 +3,7 @@ import { Button } from "../UI/Button/Button";
 import { DropdownTrigger, DropdownContent } from "../UI/Dropdown/Dropdown";
 
 import Icon from "../UI/Icon/Icon";
-import { ProfileSVG } from "../../assets/icons";
+import { ProfileSVG } from "../../icons";
 
 import { StyledProfileMenu, StyledProfileMenuWrap } from "./StyledProfileMenu";
 
@@ -17,7 +17,7 @@ export const ProfileMenu = ({
             <DropdownTrigger showArrow={false}>
                 <Button
                     isIcon={true}
-                    isOutLine={true}
+                    isOutline={true}
                     ariaLabel="Profile menu"
                 >
                     <Icon Sprite={ProfileSVG} />

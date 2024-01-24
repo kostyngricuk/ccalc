@@ -18,6 +18,7 @@ import FaqScreen from './pages/FaqScreen';
 
 import './services/i18n';
 import { lightTheme } from './services/styled/themes';
+import { StyledGlobal } from './services/styled/StyledGlobal';
 
 const router = createBrowserRouter([
   {
@@ -56,6 +57,7 @@ root.render(
   <StrictMode>
     <ThemeProvider theme={lightTheme}>
       <RouterProvider router={router} />
+      <StyledGlobal />
     </ThemeProvider>
   </StrictMode>
 );

@@ -1,5 +1,5 @@
 import Icon from '../UI/Icon/Icon';
-import { LogoSVG } from '../../assets/icons';
+import { LogoSVG } from '../../icons';
 import { StyledLogo } from './StyledLogo';
 
 export default function Logo() {
