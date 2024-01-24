@@ -1,6 +1,5 @@
 import { ReactNode } from 'react';
-
-import './Container.scss';
+import { StyledContainer } from './StyledContainer';
 
 export default function Container({
     className = '',
@@ -10,8 +9,8 @@ export default function Container({
     children: ReactNode
 }) {
     return (
-        <div className={`Container ${className}`}>
+        <StyledContainer className={className}>
             { children }
-        </div>
+        </StyledContainer>
     );
   }

@@ -1,11 +1,12 @@
-@import '../../assets/scss/global';
+import styled from "styled-components";
+import { resetButton } from "../../services/styled/mixins";
 
-.LanguageSwitcher {
+export const StyledLanguageSwitcher = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
     button {
-        @include resetButton;
+        ${resetButton}
         font-weight: 700;
         font-size: 14px;
         line-height: 1em;
@@ -13,18 +14,18 @@
         cursor: pointer;
         &:hover,
         &:focus {
-            color: $colorPrimary;
+            color: ${props => props.theme.color.primary};
         }
         &.is-active {
-            color: $colorPrimary;
+            color: ${props => props.theme.color.primary};
             pointer-events: none;
         }
-        @include mobile {
+        @media ${props => props.theme.device.mobile} {
             margin: 0;
             line-height: 1.5em;
         }
     }
-    @include mobile {
+    @media ${props => props.theme.device.mobile} {
         flex-direction: column;
     }
-}
+`

@@ -1,14 +1,9 @@
-@import '../../assets/scss/global';
+import styled from "styled-components";
+import { Dropdown } from "../UI/Dropdown/Dropdown";
 
-.NavSub {
+export const StyledNavSub = styled(Dropdown)`
     text-align: center;
-    &__wrapper {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        width: 100%;
-    }
-    @include mobile {
+   @media ${props => props.theme.device.mobile} {
         position: relative;
         top: 0;
         left: 0;
@@ -23,4 +18,10 @@
             text-align: center;
         }
     }
-}
+`
+export const StyledNavSubWrap = styled.ul`
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+`

@@ -30,4 +30,7 @@ export const StyleCalorieWidget = styled.div<ICalorieWidget>`
         display: inline-block;
         margin-left: 0.25em;
     }
+    @media ${props => props.theme.device.mobile} {
+        width: 100px;
+    }
 `

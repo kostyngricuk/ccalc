@@ -1,7 +1,0 @@
-@import '../../assets/scss/global';
-
-.Main {
-    height: calc(100vh - 85px - 60px);
-    @include scrollbar();
-    overflow: hidden;
-}

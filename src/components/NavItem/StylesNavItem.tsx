@@ -1,6 +1,6 @@
-@import '../../assets/scss/global';
+import styled from "styled-components";
 
-.NavItem {
+export const StyledNavItem = styled.li`
     position: relative;
     a {
         text-decoration: none;
@@ -12,22 +12,22 @@
         z-index: 2;
         &:hover,
         &:focus {
-            color: $colorPrimary;
+            color: ${props => props.theme.color.primary};
             & + .Dropdown .Dropdown__wrapper {
                 opacity: 1;
                 visibility: visible;
             }
         }
         &.active {
-            color: $colorPrimary;
+            color: ${props => props.theme.color.primary};
         }
-        @include tablet {
+        @media ${props => props.theme.device.tablet} {
             font-size: 32px;
         }
     }
     & + & {
         margin-left: 3rem;
-        @include tablet {
+        @media ${props => props.theme.device.tablet} {
             margin: 32px 0 0;
             .DropdownTrigger .Icon {
                 width: 28px;
@@ -35,8 +35,8 @@
             }
         }
     }
-    @include tablet {
+    @media ${props => props.theme.device.tablet} {
         width: 100%;
         max-width: 300px;
     }
-}
+`

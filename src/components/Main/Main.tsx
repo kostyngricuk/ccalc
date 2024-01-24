@@ -1,8 +1,7 @@
 import { ReactNode } from 'react';
 
 import Container from '../UI/Container/Container';
-
-import './Main.scss';
+import { StyledMain } from './StyledMain';
 
 export default function Main({
     children
@@ -10,10 +9,10 @@ export default function Main({
     children: ReactNode
 }) {
     return (
-        <main className="Main">
-            <Container className='Main__wrapper'>
+        <StyledMain>
+            <Container>
                 { children }
             </Container>
-        </main>
+        </StyledMain>
     );
 }

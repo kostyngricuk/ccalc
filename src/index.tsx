@@ -17,6 +17,7 @@ import SettingsScreen from './pages/SettingsScreen';
 import FaqScreen from './pages/FaqScreen';
 
 import './services/i18n';
+import { lightTheme } from './services/styled/themes';
 
 const router = createBrowserRouter([
   {
@@ -47,18 +48,6 @@ const router = createBrowserRouter([
     ]
   }
 ])
-
-const lightTheme = {
-  color: {
-    white: '#fff',
-    black: '#000',
-    primary: '#57b945',
-    secondary: '#FFCF00',
-    gray: 'rgba(0, 0, 0, 0.25)',
-    red: '#C00',
-    error: 'rgb(231, 24, 24)',
-  }
-}
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

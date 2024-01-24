@@ -1,8 +1,8 @@
-@import '../../assets/scss/global';
+import styled from "styled-components";
 
-.Copyright {
+export const StyledCopyright = styled.p`
     font-size: 1rem;
     font-weight: 700;
     text-align: center;
     width: 100%;
-}
+`

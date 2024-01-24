@@ -1,8 +1,8 @@
 import classNames from "classnames";
-import "./LanguageSwitcher.scss";
 import { useTranslation } from "react-i18next";
 
 import { LANGUAGES } from "../../services/constants/global";
+import { StyledLanguageSwitcher } from "./StyledLanguageSwitcher";
 
 export const LanguageSwitcher = () => {
   const { i18n } = useTranslation();
@@ -11,7 +11,7 @@ export const LanguageSwitcher = () => {
     i18n.changeLanguage(lang);
   }
   return (
-    <div className="LanguageSwitcher">
+    <StyledLanguageSwitcher>
       {LANGUAGES.map((item) => {
         const langCode = item.code;
         const langLabel = item.label;
@@ -23,6 +23,6 @@ export const LanguageSwitcher = () => {
           </button>
         );
       })}
-    </div>
+    </StyledLanguageSwitcher>
   );
 };

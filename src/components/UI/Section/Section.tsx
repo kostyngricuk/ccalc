@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-import './Section.scss';
+import { StyledSection } from './StyledSection';
 
 export default function Section({
     children
@@ -8,8 +8,8 @@ export default function Section({
     children: ReactNode
 }) {
     return (
-        <section className="Section">
+        <StyledSection>
             { children }
-        </section>
+        </StyledSection>
     );
   }

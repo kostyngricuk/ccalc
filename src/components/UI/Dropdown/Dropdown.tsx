@@ -8,11 +8,11 @@ import './Dropdown.scss'
 import { useLocation } from "react-router-dom";
 
 export const Dropdown = ({
-    className,
+    className = "",
     position = "",
     children
 }: {
-    className: string,
+    className?: string,
     position?: string,
     children: ReactNode
 }) => {

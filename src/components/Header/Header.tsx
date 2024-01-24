@@ -7,8 +7,8 @@ import { ProfileMenu } from '../ProfileMenu/ProfileMenu';
 import { CalorieWidget } from '../CalorieWidget/CalorieWidget';
 import { LanguageSwitcher } from '../LanguageSwitcher/LanguageSwitcher';
 
-import './Header.scss';
 import { useTranslation } from 'react-i18next';
+import { StyledHeader, StyledHeaderContent } from './StyleHeader';
 
 export default function Header() {
     const { t } = useTranslation();
@@ -52,18 +52,18 @@ export default function Header() {
     ]
 
     return (
-        <header className='Header'>
-            <Container className='Header__wrapper'>
+        <StyledHeader>
+            <Container>
                 <Logo />
-                <div className='Header__content'>
+                <StyledHeaderContent>
                     <Nav items={menuItems} itemsMobile={[...menuItems, ...menuProfileItems]}/>
                     <LanguageSwitcher />
                     <Tooltip text={t('calorieWidget.tooltip')}>
                         <CalorieWidget eaten={765} limit={1980}/>
                     </Tooltip>
                     <ProfileMenu items={menuProfileItems} />
-                </div>
+                </StyledHeaderContent>
             </Container>
-        </header>
+        </StyledHeader>
     );
 }

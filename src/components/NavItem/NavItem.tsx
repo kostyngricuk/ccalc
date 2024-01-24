@@ -1,8 +1,7 @@
 import { NavLink } from "react-router-dom";
 
-import './NavItem.scss';
-import { Dropdown, DropdownTrigger, DropdownContent } from "../UI/Dropdown/Dropdown";
 import { NavSub } from "../NavSub/NavSub";
+import { StyledNavItem } from "./StylesNavItem";
 
 export interface INavItem {
     id: number,
@@ -17,20 +16,13 @@ export const NavItem = ({
     title,
     submenu = []
 }: INavItem) => (
-    <li className="NavItem">
+    <StyledNavItem>
         {
             submenu.length ? (
-                <Dropdown className="NavSub" position="center">
-                    <DropdownTrigger>
-                        <NavLink to={link}>{ title }</NavLink>
-                    </DropdownTrigger>
-                    <DropdownContent>
-                        <NavSub items={submenu}/>
-                    </DropdownContent>
-                </Dropdown>
+                <NavSub id={id} items={submenu} link={link} title={title}/>
             ) : (
                 <NavLink to={link}>{ title }</NavLink>
             )
         }
-    </li>
+    </StyledNavItem>
 );

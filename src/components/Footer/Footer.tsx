@@ -1,14 +1,14 @@
 import Container from '../UI/Container/Container';
 import Copyright from '../Copyright/Copyright';
 
-import './Footer.scss';
+import { StyledFooter } from './StyledFooter';
 
 export default function Footer() {
     return (
-        <footer className="Footer">
-            <Container className='Footer__wrapper'>
+        <StyledFooter>
+            <Container>
                 <Copyright />
             </Container>
-        </footer>
+        </StyledFooter>
     );
 }

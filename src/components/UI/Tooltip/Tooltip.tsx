@@ -1,5 +1,4 @@
 import { ReactNode } from 'react';
-import './Tooltip.scss';
 import { StyledTooltip } from './StyledTooltip';
 
 export const Tooltip = ({
