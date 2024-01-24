@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 
-type IconProps = {
+interface IIcon {
   width?: string;
   height?: string;
   color?: string;
   Sprite: React.FC<React.SVGProps<SVGSVGElement>>;
 };
 
-const StyledIconWrapper = styled.span<IconProps>`
+const StyledIconWrapper = styled.span<IIcon>`
   display: inline-block;
   height: ${props => (props.height || "24px")};
   width: ${props => (props.width || "24px")};
@@ -20,7 +20,7 @@ const StyledIconWrapper = styled.span<IconProps>`
   }
 `
 
-export default function Icon(props: IconProps) {
+export default function Icon(props: IIcon) {
   const {
     Sprite
   } = props;

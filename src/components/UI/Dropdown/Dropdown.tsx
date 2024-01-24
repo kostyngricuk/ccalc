@@ -7,17 +7,15 @@ import { ArrowUpSVG, ArrowDownSVG } from "../../../assets/icons";
 import './Dropdown.scss'
 import { useLocation } from "react-router-dom";
 
-type DropdownProps = {
-    className: string,
-    position?: string,
-    children: ReactNode
-}
-
 export const Dropdown = ({
     className,
     position = "",
     children
-}: DropdownProps) => {
+}: {
+    className: string,
+    position?: string,
+    children: ReactNode
+}) => {
     return (
         <div className={classNames([
             "Dropdown",

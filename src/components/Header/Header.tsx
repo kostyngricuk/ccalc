@@ -2,7 +2,7 @@ import Container from '../UI/Container/Container';
 import { Tooltip } from '../UI/Tooltip/Tooltip';
 import Logo from '../Logo/Logo';
 import { Nav } from '../Nav/Nav';
-import { NavItemProps } from "../NavItem/NavItem";
+import { INavItem } from "../NavItem/NavItem";
 import { ProfileMenu } from '../ProfileMenu/ProfileMenu';
 import { CalorieWidget } from '../CalorieWidget/CalorieWidget';
 import { LanguageSwitcher } from '../LanguageSwitcher/LanguageSwitcher';
@@ -13,7 +13,7 @@ import { useTranslation } from 'react-i18next';
 export default function Header() {
     const { t } = useTranslation();
 
-    const menuItems: Array<NavItemProps> = [
+    const menuItems: Array<INavItem> = [
         {
             id: 0,
             link: '/',
@@ -38,7 +38,7 @@ export default function Header() {
         }
     ]
 
-    const menuProfileItems: Array<NavItemProps> = [
+    const menuProfileItems: Array<INavItem> = [
         {
             id: 4,
             link: '/settings',

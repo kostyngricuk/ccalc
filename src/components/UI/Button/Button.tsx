@@ -3,7 +3,7 @@ import { MouseEventHandler, ReactNode } from "react"
 
 import './Button.scss';
 
-type ButtonProps = {
+interface IButton {
     children: ReactNode,
     type?: 'button' | 'submit',
     className?: string,
@@ -25,7 +25,7 @@ export const Button = ({
     ariaLabel = '',
     isDisabled = false,
     onClick
-}: ButtonProps) => {
+}: IButton) => {
     return (
         <button className={classNames(
             'Button',

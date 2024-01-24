@@ -1,4 +1,4 @@
-type Language = {
+interface ILanguage {
     code: string,
     label: string
 }
@@ -12,4 +12,4 @@ export const LANGUAGES = [
         code: 'ru',
         label: 'Russian'
     },
-] as Language[];
+] as ILanguage[];

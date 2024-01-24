@@ -2,18 +2,18 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 import { BurgerSVG, CloseSVG } from "../../assets/icons";
-import { NavItem, NavItemProps } from "../NavItem/NavItem";
+import { NavItem, INavItem } from "../NavItem/NavItem";
 import { Button } from "../UI/Button/Button";
 import Icon from "../UI/Icon/Icon";
 
 import "./Nav.scss";
 
-type NavProps = {
-  items: Array<NavItemProps>;
-  itemsMobile: Array<NavItemProps>;
+interface INav {
+  items: Array<INavItem>;
+  itemsMobile: Array<INavItem>;
 };
 
-export const Nav = ({ items, itemsMobile }: NavProps) => {
+export const Nav = ({ items, itemsMobile }: INav) => {
   let location = useLocation();
 
   const [isActive, setIsActive] = useState(false);

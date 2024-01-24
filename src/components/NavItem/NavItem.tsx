@@ -4,24 +4,19 @@ import './NavItem.scss';
 import { Dropdown, DropdownTrigger, DropdownContent } from "../UI/Dropdown/Dropdown";
 import { NavSub } from "../NavSub/NavSub";
 
-type TypeNavItem = {
+export interface INavItem {
     id: number,
     link: string,
     title: string,
+    submenu?: Array<INavItem>
 }
-
-type TypeSubMenu = {
-    submenu?: Array<TypeNavItem>
-};
-
-export type NavItemProps = TypeNavItem & TypeSubMenu;
 
 export const NavItem = ({
     id,
     link,
     title,
     submenu = []
-}: NavItemProps) => (
+}: INavItem) => (
     <li className="NavItem">
         {
             submenu.length ? (

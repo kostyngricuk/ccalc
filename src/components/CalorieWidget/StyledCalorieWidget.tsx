@@ -8,11 +8,11 @@ export enum Color {
     red = 'red'
 }
 
-type CalorieWidget = {
+interface ICalorieWidget {
     $color: keyof typeof Color
 }
 
-export const StyleCalorieWidget = styled.div<CalorieWidget>`
+export const StyleCalorieWidget = styled.div<ICalorieWidget>`
     width: 120px;
     height: 40px;
     border-width: 2px;

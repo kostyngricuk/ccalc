@@ -1,4 +1,4 @@
-import { NavItem, NavItemProps } from "../NavItem/NavItem";
+import { NavItem, INavItem } from "../NavItem/NavItem";
 import { Button } from "../UI/Button/Button";
 import { Dropdown, DropdownTrigger, DropdownContent } from "../UI/Dropdown/Dropdown";
 
@@ -7,13 +7,11 @@ import { ProfileSVG } from "../../assets/icons";
 
 import './ProfileMenu.scss';
 
-type ProfileMenuProps = {
-    items: Array<NavItemProps>
-}
-
 export const ProfileMenu = ({
     items
-}: ProfileMenuProps) => {
+}: {
+    items: Array<INavItem>
+}) => {
     return (
         <Dropdown className="ProfileMenu" position="right">
             <DropdownTrigger showArrow={false}>
