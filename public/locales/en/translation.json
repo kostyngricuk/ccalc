@@ -11,6 +11,18 @@
         "tooltip": "Today calories limit",
         "cal": "cal"
     },
+    "calculator": {
+        "title": "Calculator"
+    },
+    "help": {
+        "title": "Help"
+    },
+    "faq": {
+        "title": "FAQ"
+    },
+    "contacts": {
+        "title": "Contacts"
+    },
     "settings": {
         "title": "Settings"
     }

@@ -11,11 +11,10 @@ i18n
     .use(initReactI18next)
     .init({
         fallbackLng: LANGUAGES[0].code,
-        lng: LANGUAGES[0].code,
-        debug: true,
+        debug: process.env.NODE_ENV !== "production",
         interpolation: {
             escapeValue: false,
-        }
+        },
     });
 
 export default i18n;
