@@ -1,4 +1,5 @@
 import Section from "../components/UI/Section/Section";
+import { Title } from "../components/UI/Title/Title";
 
 import { useTranslation } from 'react-i18next';
 
@@ -6,7 +7,7 @@ export default function SettingsScreen() {
     const { t } = useTranslation();
     return (
         <Section>
-            <h1 className="h1">{t('settings.title')}</h1>
+            <Title>{t('settings.title')}</Title>
         </Section>
     )
 }
