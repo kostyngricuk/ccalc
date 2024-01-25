@@ -1,20 +1,9 @@
 import styled, { css } from "styled-components";
 import { resetButton } from "../../../services/styled/mixins";
 
-export const StyledDropdown = styled.div<{$position: string}>`
+export const StyledDropdown = styled.div`
     position: relative;
-    ${props => props.$position === 'right' && css`
-        & .DropdownContent {
-            left: initial;
-            right: -20px;
-        }
-    `}
-    ${props => props.$position === 'center' && css`
-        & .DropdownContent {
-            left: 50%;
-            transform: translateX(-50%);
-        }
-    `}
+    text-align: center;
 `;
 
 export const StyledDropdownContent = styled.div`
@@ -30,6 +19,8 @@ export const StyledDropdownContent = styled.div`
     visibility: hidden;
     transition: .2s;
     display: none;
+    left: 50%;
+    transform: translateX(-50%);
     .NavItem + .NavItem {
         margin: 12px 0 0;
     }

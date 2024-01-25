@@ -3,52 +3,13 @@ import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import { ThemeProvider } from 'styled-components';
 import {
-  createBrowserRouter,
   RouterProvider
 } from 'react-router-dom';
 
-// pages
-import ErrorScreen from './pages/ErrorScreen';
-import Root from './pages';
-import CalculatorScreen from './pages/CalculatorScreen';
-import HelpScreen from './pages/HelpScreen';
-import ContactsScreen from './pages/ContactsScreen';
-import SettingsScreen from './pages/SettingsScreen';
-import FaqScreen from './pages/FaqScreen';
-
+import { router } from './services/router';
 import './services/i18n';
 import { lightTheme } from './services/styled/themes';
 import { StyledGlobal } from './services/styled/StyledGlobal';
-
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Root />,
-    errorElement: <ErrorScreen />,
-    children: [
-      {
-        path: '/',
-        element: <CalculatorScreen />
-      },
-      {
-        path: '/settings',
-        element: <SettingsScreen />
-      },
-      {
-        path: '/help',
-        element: <HelpScreen />
-      },
-      {
-        path: '/faq',
-        element: <FaqScreen />
-      },
-      {
-        path: '/contacts',
-        element: <ContactsScreen />
-      }
-    ]
-  }
-])
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

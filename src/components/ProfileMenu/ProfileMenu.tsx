@@ -13,7 +13,7 @@ export const ProfileMenu = ({
     items: Array<INavItem>
 }) => {
     return (
-        <StyledProfileMenu $position="right">
+        <StyledProfileMenu>
             <DropdownTrigger $showArrow={false}>
                 <Button
                     $isIcon={true}

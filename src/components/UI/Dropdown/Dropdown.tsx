@@ -8,15 +8,13 @@ import { StyledDropdown, StyledDropdownContent, StyledDropdownTrigger } from "./
 
 export const Dropdown = ({
     className = "",
-    $position = "",
     children
 }: {
     className?: string,
-    $position?: string,
     children: ReactNode
 }) => {
     return (
-        <StyledDropdown $position={$position} className={className}>
+        <StyledDropdown className={className}>
             { children }
         </StyledDropdown>
     );
