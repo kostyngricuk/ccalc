@@ -2,7 +2,7 @@
     "nav": {
         "calculator": "Калькулятор",
         "help": "Помощь",
-        "faq": "Вопрос - Ответ",
+        "faq": "FAQ",
         "contacts": "Контакты",
         "settings": "Настройки",
         "exit": "Выйти"
@@ -10,6 +10,18 @@
     "calorieWidget": {
         "tooltip": "Лимит калорий на сегодня",
         "cal": "ккал"
+    },
+    "calculator": {
+        "title": "Калькулятор"
+    },
+    "help": {
+        "title": "Помощь"
+    },
+    "faq": {
+        "title": "Вопрос - Ответ"
+    },
+    "contacts": {
+        "title": "Контакты"
     },
     "settings": {
         "title": "Настройки",

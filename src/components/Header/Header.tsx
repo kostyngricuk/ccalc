@@ -10,43 +10,45 @@ import { LanguageSwitcher } from '../LanguageSwitcher/LanguageSwitcher';
 import { useTranslation } from 'react-i18next';
 import { StyledHeader, StyledHeaderContent } from './StyleHeader';
 
+import { paths } from '../../services/router/paths';
+
 export default function Header() {
     const { t } = useTranslation();
 
     const menuItems: Array<INavItem> = [
         {
-            id: 0,
-            link: '/',
+            id: paths.calculator.id,
+            link: paths.calculator.url,
             title: t('nav.calculator'),
         },
         {
-            id: 1,
-            link: '/help',
+            id: paths.help.id,
+            link: paths.help.url,
             title: t('nav.help'),
             submenu: [
                 {
-                    id: 2,
-                    link: '/faq',
+                    id: paths.faq.id,
+                    link: paths.faq.url,
                     title: t('nav.faq'),
                 }
             ]
         },
         {
-            id: 4,
-            link: '/contacts',
+            id: paths.contacts.id,
+            link: paths.contacts.url,
             title: t('nav.contacts')
         }
     ]
 
     const menuProfileItems: Array<INavItem> = [
         {
-            id: 4,
-            link: '/settings',
+            id: paths.settings.id,
+            link: paths.settings.url,
             title: t('nav.settings')
         },
         {
-            id: 5,
-            link: '/',
+            id: paths.exit.id,
+            link: paths.exit.url,
             title: t('nav.exit')
         }
     ]

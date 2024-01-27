@@ -1,9 +1,12 @@
+import { useTranslation } from "react-i18next";
 import Section from "../components/UI/Section/Section";
+import { Title } from "../components/UI/Title/Title";
 
 export default function CalculatorScreen() {
+    const { t } = useTranslation();
     return (
         <Section>
-            <h1 className="h1">Food Calculator</h1>
+            <Title>{t('calculator.title')}</Title>
         </Section>
     )
 }

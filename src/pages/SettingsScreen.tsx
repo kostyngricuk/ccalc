@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Section from "../components/UI/Section/Section";
+import { Title } from "../components/UI/Title/Title";
 
 import { useTranslation } from 'react-i18next';
 import { useForm } from "react-hook-form";
@@ -32,7 +33,7 @@ export default function SettingsScreen() {
 
     return (
         <Section>
-            <h1 className="h1">{t('settings.title')}</h1>
+            <Title>{t('settings.title')}</Title>
             <FormWrapper>
                 <Form onSubmit={onSubmit}>
                     <FormField name="height" label={t('settings.form.field.height')} control={control} />
