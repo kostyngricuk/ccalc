@@ -12,7 +12,7 @@ export const StyledGlobal = createGlobalStyle`
   *,
   *::before,
   *::after {
-    box-sizing: inherit;
+    box-sizing: border-box;
   }
 
   body, h1, h2, h3, h4, h5, h6, p, ul, ol {

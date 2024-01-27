@@ -12,6 +12,25 @@
         "cal": "cal"
     },
     "settings": {
-        "title": "Settings"
+        "title": "Settings",
+        "form": {
+            "field": {
+                "height": "Height",
+                "weight": "Weight",
+                "weightGoal": "Weight (goal)",
+                "email": "Email",
+                "oldPassword": "Old password",
+                "newPassword": "New password",
+                "confirmNewPassword": "Confirm new password"
+            },
+            "btnSave": "Save changes"
+        }
+    },
+    "form": {
+        "field": {
+            "error": {
+                "required": "This field is required"
+            }
+        }
     }
 }

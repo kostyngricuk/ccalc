@@ -12,6 +12,25 @@
         "cal": "ккал"
     },
     "settings": {
-        "title": "Настройки"
+        "title": "Настройки",
+        "form": {
+            "field": {
+                "height": "Рост",
+                "weight": "Вес",
+                "weightGoal": "Вес (цель)",
+                "email": "Email",
+                "oldPassword": "Старый пароль",
+                "newPassword": "Новый пароль",
+                "confirmNewPassword": "Новый пароль (подтверждение)"
+            },
+            "btnSave": "Сохранить изменения"
+        }
+    },
+    "form": {
+        "field": {
+            "error": {
+                "required": "Это обязательное поле"
+            }
+        }
     }
 }
