@@ -47,8 +47,9 @@ const getFontSizeMobile = (variant: string) => {
     }
 }
 
-export const StyledTitle = styled(Tag)<{variant: string}>`
+export const StyledTitle = styled(Tag)<{variant: string, position: string}>`
     font-size: ${props => getFontSize(props.variant)};
+    text-align: ${props => props.position};
     margin-bottom: 1.25em;
     @media ${props => props.theme.device.mobile} {
         font-size: ${props => getFontSizeMobile(props.variant)};

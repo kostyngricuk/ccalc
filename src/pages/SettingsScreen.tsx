@@ -33,7 +33,7 @@ export default function SettingsScreen() {
 
     return (
         <Section>
-            <Title>{t('settings.title')}</Title>
+            <Title position="center">{t('settings.title')}</Title>
             <FormWrapper>
                 <Form onSubmit={onSubmit}>
                     <FormField name="height" label={t('settings.form.field.height')} control={control} />
