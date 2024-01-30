@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
-export const StyledField = styled.div`
+export const StyledInput = styled.div`
     display: inline-block;
     margin-bottom: 1rem;
 `
 
-export const StyledFieldLabel = styled.label`
+export const StyledInputLabel = styled.label`
     display: block;
     span {
         display: block;
@@ -15,6 +15,6 @@ export const StyledFieldLabel = styled.label`
     }
 `
 
-export const StyledFieldError = styled.span`
+export const StyledInputError = styled.span`
     color: ${props => props.theme.color.red};
 `

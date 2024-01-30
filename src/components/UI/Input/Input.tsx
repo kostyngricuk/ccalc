@@ -1,18 +1,20 @@
 import { Control, FieldPath, useController } from "react-hook-form";
-import { StyledField, StyledFieldError, StyledFieldLabel } from "./StyledFormField";
+import { StyledInput, StyledInputError, StyledInputLabel } from "./StyledInput";
 import { TSettingsFormValues } from "../../../pages/SettingsScreen";
 import { useTranslation } from "react-i18next";
 
-export const FormField = ({
+export const Input = ({
     name,
     type = 'text',
     label,
+    value = '',
     required = false,
     control,
 }: {
     name: FieldPath<TSettingsFormValues>,
-    type?: string,
+    type?: 'text' | 'email' | 'password' | 'number' | 'tel',
     label?: string,
+    value?: string | number,
     required?: boolean,
     control: Control<TSettingsFormValues>,
 }) => {
@@ -28,12 +30,12 @@ export const FormField = ({
     });
 
     return (
-        <StyledField>
-            <StyledFieldLabel>
+        <StyledInput>
+            <StyledInputLabel>
                 <span>{label}</span>
-                <input {...field} type={type}/>
-            </StyledFieldLabel>
-            {fieldState?.error && <StyledFieldError>{ t('form.field.error.required') }</StyledFieldError>}
-        </StyledField>
+                <input {...field} type={type} value={value}/>
+            </StyledInputLabel>
+            {fieldState?.error && <StyledInputError>{ t('form.field.error.required') }</StyledInputError>}
+        </StyledInput>
     )
 }

@@ -11,9 +11,15 @@ import { useTranslation } from 'react-i18next';
 import { StyledHeader, StyledHeaderContent } from './StyleHeader';
 
 import { paths } from '../../services/router/paths';
+import { useContext } from 'react';
+import { AuthContext } from '../../services/contexts';
+import { IAuthContext } from '../../types/user';
 
 export default function Header() {
     const { t } = useTranslation();
+    const {
+        currentUser
+    } = useContext<IAuthContext>(AuthContext);
 
     const menuItems: Array<INavItem> = [
         {
@@ -58,12 +64,22 @@ export default function Header() {
             <Container>
                 <Logo />
                 <StyledHeaderContent>
-                    <Nav items={menuItems} itemsMobile={[...menuItems, ...menuProfileItems]}/>
+                    {
+                        Boolean(currentUser) && (
+                            <Nav items={menuItems} itemsMobile={[...menuItems, ...menuProfileItems]}/>
+                        )
+                    }
                     <LanguageSwitcher />
-                    <Tooltip text={t('calorieWidget.tooltip')}>
-                        <CalorieWidget eaten={765} limit={1980}/>
-                    </Tooltip>
-                    <ProfileMenu items={menuProfileItems} />
+                    {
+                        Boolean(currentUser) && (
+                            <>
+                                <Tooltip text={t('calorieWidget.tooltip')}>
+                                    <CalorieWidget eaten={currentUser?.calorieWidget?.eaten} limit={currentUser?.calorieWidget?.limit}/>
+                                </Tooltip>
+                                <ProfileMenu items={menuProfileItems} />
+                            </>
+                        )
+                    }
                 </StyledHeaderContent>
             </Container>
         </StyledHeader>

@@ -1,25 +1,14 @@
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
-import { ThemeProvider } from 'styled-components';
-import {
-  RouterProvider
-} from 'react-router-dom';
-
-import { router } from './services/router';
-import './services/i18n';
-import { lightTheme } from './services/styled/themes';
-import { StyledGlobal } from './services/styled/StyledGlobal';
+import { App } from './App';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <StrictMode>
-    <ThemeProvider theme={lightTheme}>
-      <RouterProvider router={router} />
-      <StyledGlobal />
-    </ThemeProvider>
+    <App/>
   </StrictMode>
 );
 

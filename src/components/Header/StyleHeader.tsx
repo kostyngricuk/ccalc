@@ -12,6 +12,7 @@ export const StyledHeader = styled.header`
 `
 export const StyledHeaderContent = styled.div`
     display: flex;
+    justify-content: flex-end;
     margin: 0 -0.5em;
     width: 100%;
     & > * {

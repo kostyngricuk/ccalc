@@ -3,11 +3,11 @@ import { StyleCalorieWidget, Color } from "./StyledCalorieWidget";
 import { useTranslation } from "react-i18next";
 
 export const CalorieWidget = ({
-    eaten,
-    limit
+    eaten = 0,
+    limit = 0
 }: {
-    eaten:number,
-    limit: number
+    eaten?:number,
+    limit?: number
 }) => {
     const { t } = useTranslation();
 
