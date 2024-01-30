@@ -14,7 +14,7 @@ import {
 } from "../components/UI/Form/Form";
 import { Input } from "../components/UI/Input/Input";
 import { AuthContext } from "../services/contexts";
-import { IAuthContext } from "../types/user";
+import { Genders, IAuthContext } from "../types/user";
 import { calcDailyLimit } from "../services/utils/calculations";
 
 export default function SettingsScreen() {
@@ -85,16 +85,16 @@ export default function SettingsScreen() {
           <FormField>
             <Input
               type="radio"
-              checked={currentUser?.gender === "man"}
-              value="man"
+              checked={currentUser?.gender === Genders.man}
+              value={Genders.man}
               name="gender"
               label={t("form.field.gender.man")}
               control={control}
             />
             <Input
               type="radio"
-              checked={currentUser?.gender === "man"}
-              value="woman"
+              checked={currentUser?.gender === Genders.woman}
+              value={Genders.woman}
               name="gender"
               label={t("form.field.gender.woman")}
               control={control}

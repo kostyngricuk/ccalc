@@ -2,6 +2,9 @@ import { Control, FieldElement, FieldPath, FieldValues, useController } from "re
 import { StyledInput, StyledInputError, StyledInputLabel } from "./StyledInput";
 import { useTranslation } from "react-i18next";
 
+type TInputType = 'text' | 'email' | 'password' | 'number' | 'tel' | 'radio';
+type TInputName = FieldPath<FieldValues>;
+
 export const Input = ({
     name,
     type = 'text',
@@ -11,8 +14,8 @@ export const Input = ({
     checked = false,
     control,
 }: {
-    name: FieldPath<FieldValues>,
-    type?: 'text' | 'email' | 'password' | 'number' | 'tel' | 'radio',
+    name: TInputName,
+    type?: TInputType,
     label?: string,
     value?: string | number,
     required?: boolean,
@@ -21,7 +24,7 @@ export const Input = ({
 }) => {
     const { t } = useTranslation();
     const hanldeChange = (field: FieldElement) => {
-        console.log(field);
+
     }
 
     const {

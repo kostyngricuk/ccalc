@@ -1,4 +1,4 @@
-import { TUser } from "../../types/user";
+import { Genders, TUser } from "../../types/user";
 
 const users = [
     {
@@ -7,7 +7,7 @@ const users = [
         weight: 85,
         weightGoal: 80,
         age: 25,
-        gender: 'man',
+        gender: Genders.man,
         email: 'testuser@gmail.com',
         calorieWidget: {
             limit: 1805,
