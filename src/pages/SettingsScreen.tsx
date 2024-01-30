@@ -3,7 +3,7 @@ import Section from "../components/UI/Section/Section";
 import { Title } from "../components/UI/Title/Title";
 
 import { useTranslation } from "react-i18next";
-import { FieldValues, useForm } from "react-hook-form";
+import { FieldValues, useForm, Controller } from "react-hook-form";
 import { Button } from "../components/UI/Button/Button";
 import {
   Form,
@@ -12,7 +12,7 @@ import {
   FormResult,
   FormWrapper,
 } from "../components/UI/Form/Form";
-import { Input } from "../components/UI/Input/Input";
+import { Input, InputControlled } from "../components/UI/Input/Input";
 import { AuthContext } from "../services/contexts";
 import { Genders, IAuthContext } from "../types/user";
 import { calcDailyLimit } from "../services/utils/calculations";
@@ -29,9 +29,8 @@ export default function SettingsScreen() {
     if (!data) {
       return;
     }
-
     setData(data);
-    setResMessage(t('settings.form.res.success'));
+    setResMessage(t("settings.form.res.success"));
   });
 
   useEffect(() => {
@@ -45,6 +44,8 @@ export default function SettingsScreen() {
       weight,
       weightGoal,
       email,
+      age: parseInt(age),
+      gender,
       calorieWidget: {
         limit: calcDailyLimit({
           height: parseInt(height),
@@ -60,22 +61,22 @@ export default function SettingsScreen() {
   useEffect(() => {
     if (resMessage.length) {
       const timeout = setTimeout(() => {
-        setResMessage('');
+        setResMessage("");
       }, 3000);
       return () => clearTimeout(timeout);
     }
-  }, [resMessage])
+  }, [resMessage]);
 
   const resetLimit = () => {
     setCurrentUser({
       ...currentUser,
       calorieWidget: {
         ...currentUser?.calorieWidget,
-        eaten: 0
-      }
+        eaten: 0,
+      },
     });
-    setResMessage(t('settings.form.res.successReset'));
-  }
+    setResMessage(t("settings.form.res.successReset"));
+  };
 
   return (
     <Section>
@@ -83,23 +84,37 @@ export default function SettingsScreen() {
       <FormWrapper>
         <Form onSubmit={onSubmit}>
           <FormField>
-            <Input
-              type="radio"
-              checked={currentUser?.gender === Genders.man}
-              value={Genders.man}
+            <Controller
               name="gender"
-              label={t("form.field.gender.man")}
               control={control}
+              defaultValue={currentUser?.gender}
+              rules={{
+                required: true
+              }}
+              render={({ field, fieldState }) => (
+                <>
+                  <Input
+                    name={field.name}
+                    type="radio"
+                    value={Genders.man}
+                    label={t("form.field.gender.man")}
+                    error={fieldState?.error}
+                    onChange={field.onChange}
+                    checked={field.value === Genders.man}
+                  />
+                  <Input
+                    name={field.name}
+                    type="radio"
+                    value={Genders.woman}
+                    label={t("form.field.gender.woman")}
+                    error={fieldState?.error}
+                    onChange={field.onChange}
+                    checked={field.value === Genders.woman}
+                  />
+                </>
+              )}
             />
-            <Input
-              type="radio"
-              checked={currentUser?.gender === Genders.woman}
-              value={Genders.woman}
-              name="gender"
-              label={t("form.field.gender.woman")}
-              control={control}
-            />
-            <Input
+            <InputControlled
               type="number"
               value={currentUser?.age}
               name="age"
@@ -108,45 +123,45 @@ export default function SettingsScreen() {
             />
           </FormField>
           <FormField>
-            <Input
+            <InputControlled
               value={currentUser?.height}
               name="height"
               label={t("settings.form.field.height")}
               control={control}
             />
-            <Input
+            <InputControlled
               value={currentUser?.weight}
               name="weight"
               label={t("settings.form.field.weight")}
               control={control}
             />
-            <Input
+            <InputControlled
               value={currentUser?.weightGoal}
               name="weightGoal"
               label={t("settings.form.field.weightGoal")}
               control={control}
             />
           </FormField>
-          <Input
+          <InputControlled
             value={currentUser?.email}
             name="email"
             label={t("settings.form.field.email")}
             required={true}
             control={control}
           />
-          <Input
+          <InputControlled
             type="password"
             name="oldPassword"
             label={t("settings.form.field.oldPassword")}
             control={control}
           />
-          <Input
+          <InputControlled
             type="password"
             name="newPassword"
             label={t("settings.form.field.newPassword")}
             control={control}
           />
-          <Input
+          <InputControlled
             type="password"
             name="confirmNewPassword"
             label={t("settings.form.field.confirmNewPassword")}
@@ -154,10 +169,17 @@ export default function SettingsScreen() {
           />
           <FormActions>
             <Button type="submit">{t("settings.form.btnSave")}</Button>
-            <Button type="button" onClick={resetLimit} color="red" $isOutline={true}>{t("settings.form.btnResetWidget")}</Button>
+            <Button
+              type="button"
+              onClick={resetLimit}
+              color="red"
+              $isOutline={true}
+            >
+              {t("settings.form.btnResetWidget")}
+            </Button>
           </FormActions>
         </Form>
-        <FormResult>{ resMessage }</FormResult>
+        <FormResult>{resMessage}</FormResult>
       </FormWrapper>
     </Section>
   );
