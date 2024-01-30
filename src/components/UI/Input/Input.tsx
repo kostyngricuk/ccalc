@@ -1,6 +1,5 @@
-import { Control, FieldPath, useController } from "react-hook-form";
+import { Control, FieldElement, FieldPath, FieldValues, useController } from "react-hook-form";
 import { StyledInput, StyledInputError, StyledInputLabel } from "./StyledInput";
-import { TSettingsFormValues } from "../../../pages/SettingsScreen";
 import { useTranslation } from "react-i18next";
 
 export const Input = ({
@@ -9,16 +8,21 @@ export const Input = ({
     label,
     value = '',
     required = false,
+    checked = false,
     control,
 }: {
-    name: FieldPath<TSettingsFormValues>,
-    type?: 'text' | 'email' | 'password' | 'number' | 'tel',
+    name: FieldPath<FieldValues>,
+    type?: 'text' | 'email' | 'password' | 'number' | 'tel' | 'radio',
     label?: string,
     value?: string | number,
     required?: boolean,
-    control: Control<TSettingsFormValues>,
+    checked?: boolean,
+    control: Control<FieldValues>,
 }) => {
     const { t } = useTranslation();
+    const hanldeChange = (field: FieldElement) => {
+        console.log(field);
+    }
 
     const {
         field,
@@ -26,6 +30,7 @@ export const Input = ({
     } = useController({
         name,
         control,
+        defaultValue: value.toString(),
         rules: { required }
     });
 
@@ -33,7 +38,10 @@ export const Input = ({
         <StyledInput>
             <StyledInputLabel>
                 <span>{label}</span>
-                <input {...field} type={type} value={value}/>
+                <input {...field} checked={checked} type={type} onChange={(e) => {
+                    field.onChange(e);
+                    hanldeChange(field);
+                }}/>
             </StyledInputLabel>
             {fieldState?.error && <StyledInputError>{ t('form.field.error.required') }</StyledInputError>}
         </StyledInput>

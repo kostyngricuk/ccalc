@@ -6,10 +6,12 @@ const users = [
         height: 180,
         weight: 85,
         weightGoal: 80,
+        age: 25,
+        gender: 'man',
         email: 'testuser@gmail.com',
         calorieWidget: {
-            limit: 1890,
-            eaten: 900
+            limit: 1805,
+            eaten: 200
         }
     }
 ] as TUser[];

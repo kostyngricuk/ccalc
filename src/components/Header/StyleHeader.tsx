@@ -20,5 +20,6 @@ export const StyledHeaderContent = styled.div`
     }
     @media ${props => props.theme.device.mobile} {
         flex-direction: row-reverse;
+        justify-content: flex-start;
     }
 `

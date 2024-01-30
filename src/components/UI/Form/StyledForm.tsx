@@ -5,6 +5,14 @@ export const StyledFormWrapper = styled.div`
     margin: 0 auto;
 `;
 
+export const StyledFormField = styled.div`
+    display: flex;
+    justify-content: space-between;
+    & > * + * {
+        margin-left: 1em;
+    }
+`;
+
 export const StyledForm = styled.form`
     display: flex;
     flex-direction: column;
@@ -12,4 +20,15 @@ export const StyledForm = styled.form`
 
 export const StyledFormResult = styled.p`
     margin-top: 1rem;
+    color: ${props => props.theme.color.primary};
+`;
+
+export const StyledFormActions = styled.p`
+    display: flex;
+    justify-content: space-between;
+    margin: 0 -1em -1em;
+    & > * {
+        margin: 1em;
+        width: 100%;
+    }
 `;

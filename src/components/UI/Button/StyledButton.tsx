@@ -30,7 +30,6 @@ export const StyledButton = styled.button<{
         $isOutline: boolean,
         $isDisabled: boolean
     }>`
-    // @include resetButton;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -38,6 +37,7 @@ export const StyledButton = styled.button<{
     border-radius: 0;
     background-color: transparent;
     cursor: pointer;
+    border-style: solid;
     ${props => props.$isIcon && css`
         width: 40px;
         .Icon {

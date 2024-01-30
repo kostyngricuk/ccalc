@@ -30,16 +30,27 @@
                 "height": "Height",
                 "weight": "Weight",
                 "weightGoal": "Weight (goal)",
+                "age": "Age",
+                "gender": "Gender",
                 "email": "Email",
                 "oldPassword": "Old password",
                 "newPassword": "New password",
                 "confirmNewPassword": "Confirm new password"
             },
-            "btnSave": "Save changes"
+            "res": {
+                "success": "Changes have been applied!",
+                "successReset": "Limit reset successfully!"
+            },
+            "btnSave": "Save changes",
+            "btnResetWidget": "Reset today limit"
         }
     },
     "form": {
         "field": {
+            "gender": {
+                "man": "Man",
+                "woman": "Woman"
+            },
             "error": {
                 "required": "This field is required"
             }

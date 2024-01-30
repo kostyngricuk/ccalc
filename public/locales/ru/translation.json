@@ -30,16 +30,27 @@
                 "height": "Рост",
                 "weight": "Вес",
                 "weightGoal": "Вес (цель)",
+                "age": "Возраст",
+                "gender": "Пол",
                 "email": "Email",
                 "oldPassword": "Старый пароль",
                 "newPassword": "Новый пароль",
                 "confirmNewPassword": "Новый пароль (подтверждение)"
             },
-            "btnSave": "Сохранить изменения"
+            "res": {
+                "success": "Изменения применены!",
+                "successReset": "Лимит успешно сброшен!"
+            },
+            "btnSave": "Сохранить изменения",
+            "btnResetWidget": "Сбросить лимит каллорий"
         }
     },
     "form": {
         "field": {
+            "gender": {
+                "man": "Man",
+                "woman": "Woman"
+            },
             "error": {
                 "required": "Это обязательное поле"
             }

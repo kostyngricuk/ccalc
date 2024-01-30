@@ -3,6 +3,8 @@ interface IUser {
     height?: number,
     weight?: number,
     weightGoal?: number,
+    age?: number,
+    gender?: 'man' | 'woman',
     email?: string,
     calorieWidget?: {
         limit: number,

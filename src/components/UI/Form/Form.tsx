@@ -1,5 +1,5 @@
 import { FormEventHandler, ReactNode } from "react"
-import { StyledFormWrapper, StyledFormResult, StyledForm } from "./StyledForm"
+import { StyledFormWrapper, StyledFormResult, StyledForm, StyledFormField, StyledFormActions } from "./StyledForm"
 
 export const Form = ({
     children,
@@ -27,6 +27,18 @@ export const FormWrapper = ({
     )
 }
 
+export const FormField = ({
+    children,
+}: {
+    children: ReactNode,
+}) => {
+    return (
+        <StyledFormField>
+            { children }
+        </StyledFormField>
+    )
+}
+
 export const FormResult = ({
     children,
 }: {
@@ -36,5 +48,17 @@ export const FormResult = ({
         <StyledFormResult>
             { children }
         </StyledFormResult>
+    )
+}
+
+export const FormActions = ({
+    children,
+}: {
+    children: ReactNode,
+}) => {
+    return (
+        <StyledFormActions>
+            { children }
+        </StyledFormActions>
     )
 }
