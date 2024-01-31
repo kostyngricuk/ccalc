@@ -12,10 +12,11 @@ import {
   FormResult,
   FormWrapper,
 } from "../components/UI/Form/Form";
-import { Input, InputControlled } from "../components/UI/Input/Input";
+import { EnumInputType, Input, InputControlled } from "../components/UI/Input/Input";
 import { AuthContext } from "../services/contexts";
 import { Genders, IAuthContext } from "../types/user";
 import { calcDailyLimit } from "../services/utils/calculations";
+import { UNITS } from "../services/constants/global";
 
 export default function SettingsScreen() {
   const [data, setData] = useState<FieldValues | null>(null);
@@ -95,7 +96,7 @@ export default function SettingsScreen() {
                 <div className="row">
                   <Input
                     name={field.name}
-                    type="radio"
+                    type={EnumInputType.radio}
                     value={Genders.man}
                     label={t("form.field.gender.man")}
                     error={fieldState?.error}
@@ -104,7 +105,7 @@ export default function SettingsScreen() {
                   />
                   <Input
                     name={field.name}
-                    type="radio"
+                    type={EnumInputType.radio}
                     value={Genders.woman}
                     label={t("form.field.gender.woman")}
                     error={fieldState?.error}
@@ -118,33 +119,40 @@ export default function SettingsScreen() {
           <FormField>
             <div className="row">
               <InputControlled
-                type="number"
+                type={EnumInputType.number}
                 value={currentUser?.age}
                 name="age"
                 label={t("settings.form.field.age")}
                 control={control}
               />
               <InputControlled
+                type={EnumInputType.number}
                 value={currentUser?.height}
                 name="height"
                 label={t("settings.form.field.height")}
                 control={control}
+                units={t(`units.${UNITS.sm}`)}
               />
               <InputControlled
+                type={EnumInputType.number}
                 value={currentUser?.weight}
                 name="weight"
                 label={t("settings.form.field.weight")}
                 control={control}
+                units={t(`units.${UNITS.kg}`)}
               />
             </div>
             <InputControlled
+              type={EnumInputType.number}
               value={currentUser?.weightGoal}
               name="weightGoal"
               label={t("settings.form.field.weightGoal")}
               control={control}
+              units={t(`units.${UNITS.kg}`)}
             />
           </FormField>
           <InputControlled
+            type={EnumInputType.email}
             value={currentUser?.email}
             name="email"
             label={t("settings.form.field.email")}
@@ -152,19 +160,19 @@ export default function SettingsScreen() {
             control={control}
           />
           <InputControlled
-            type="password"
+            type={EnumInputType.password}
             name="oldPassword"
             label={t("settings.form.field.oldPassword")}
             control={control}
           />
           <InputControlled
-            type="password"
+            type={EnumInputType.password}
             name="newPassword"
             label={t("settings.form.field.newPassword")}
             control={control}
           />
           <InputControlled
-            type="password"
+            type={EnumInputType.password}
             name="confirmNewPassword"
             label={t("settings.form.field.confirmNewPassword")}
             control={control}

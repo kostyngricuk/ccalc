@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const StyledInput = styled.div`
     display: inline-block;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     position: relative;
 `
 export type TPosition = 'left' | 'center' | 'right';
@@ -18,6 +18,9 @@ export const StyledInputLabel = styled.label<{$position: TPosition}>`
         align-items: center;
         position: relative;
     }
+    &.has-units input {
+        padding-right: 1.5em;
+    }
     .label {
         display: block;
         font-size: 14px;
@@ -31,6 +34,14 @@ export const StyledInputLabel = styled.label<{$position: TPosition}>`
         z-index: 1;
         width: 100%;
         padding-top: 0.5em;
+    }
+    .units {
+        color: var(--color-gray);
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: auto;
     }
     input {
         width: 100%;
@@ -101,12 +112,6 @@ export const StyledInputLabel = styled.label<{$position: TPosition}>`
                 font-size: 12px;
                 color: var(--color-black);
                 padding-top: .25em;
-            }
-        }
-        &[value=""]:not(:focus) {
-            margin-top: -20px;
-            & ~ .label {
-                bottom: calc(50% + 10px);
             }
         }
     }

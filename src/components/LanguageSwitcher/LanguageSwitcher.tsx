@@ -12,9 +12,8 @@ export const LanguageSwitcher = () => {
   }
   return (
     <StyledLanguageSwitcher>
-      {LANGUAGES.map((item) => {
-        const langCode = item.code;
-        const langLabel = item.label;
+      {(Object.keys(LANGUAGES) as Array<keyof typeof LANGUAGES>).map((langCode) => {
+        const langLabel = LANGUAGES[langCode];
         return (
           <button className={classNames(
             langCode === i18n.language && 'is-active'

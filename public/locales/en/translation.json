@@ -55,5 +55,9 @@
                 "required": "This field is required"
             }
         }
+    },
+    "units": {
+        "kg": "kg",
+        "sm": "sm"
     }
 }
