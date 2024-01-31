@@ -5,9 +5,9 @@ import {
   FieldValues,
   useController,
 } from "react-hook-form";
-import { StyledInput, StyledInputError, StyledInputLabel } from "./StyledInput";
-import { useTranslation } from "react-i18next";
+import { StyledInput, StyledInputLabel, TPosition } from "./StyledInput";
 import { ChangeEventHandler } from "react";
+import classNames from "classnames";
 
 type TInputType = "text" | "email" | "password" | "number" | "tel" | "radio";
 
@@ -20,6 +20,7 @@ interface IInput {
     error?: FieldError | string;
     onChange?: ChangeEventHandler<HTMLInputElement>;
     checked?: boolean;
+    $position?: TPosition;
 }
 interface IInputControlled extends IInput {
     control?: Control<FieldValues>;
@@ -32,6 +33,7 @@ export const InputControlled = ({
   required = false,
   label = "",
   control,
+  $position = "left"
 }: IInputControlled) => {
   const { field, fieldState } = useController({
     name,
@@ -41,28 +43,32 @@ export const InputControlled = ({
   });
 
   return (
-    <Input name={field.name} value={field.value} label={label} type={type} error={fieldState?.error} onChange={field.onChange} />
+    <Input $position={$position} name={field.name} value={field.value} label={label} type={type} error={fieldState?.error} onChange={field.onChange} />
   );
 };
 
 export const Input = (props: IInput) => {
     const {
         label,
-        error
+        error,
+        $position = "left",
+        type
     } = props;
-  const { t } = useTranslation();
 
   return (
     <StyledInput>
-      <StyledInputLabel>
-        <span>{label}</span>
+      <StyledInputLabel $position={$position} className={classNames(
+        error && 'has-error',
+        type === 'radio' && 'is-radio'
+      )}>
         <input
           {...props}
         />
+        {
+          type === 'radio' && <span className="radio-button"></span>
+        }
+        <span className="label">{label}</span>
       </StyledInputLabel>
-      {error && (
-        <StyledInputError>{t("form.field.error.required")}</StyledInputError>
-      )}
     </StyledInput>
   );
 };

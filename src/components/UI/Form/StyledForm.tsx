@@ -7,9 +7,23 @@ export const StyledFormWrapper = styled.div`
 
 export const StyledFormField = styled.div`
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     & > * + * {
-        margin-left: 1em;
+        margin-left: 20px;
+    }
+    & > .row {
+        display: flex;
+        justify-content: center;
+        & > * + * {
+            margin-left: 20px;
+        }
+    }
+    @media ${props => props.theme.device.mobile} {
+        display: initial;
+        & > * {
+            margin-left: 0;
+            width: 100%;
+        }
     }
 `;
 

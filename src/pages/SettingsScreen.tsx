@@ -92,7 +92,7 @@ export default function SettingsScreen() {
                 required: true
               }}
               render={({ field, fieldState }) => (
-                <>
+                <div className="row">
                   <Input
                     name={field.name}
                     type="radio"
@@ -111,30 +111,32 @@ export default function SettingsScreen() {
                     onChange={field.onChange}
                     checked={field.value === Genders.woman}
                   />
-                </>
+                </div>
               )}
-            />
-            <InputControlled
-              type="number"
-              value={currentUser?.age}
-              name="age"
-              label={t("settings.form.field.age")}
-              control={control}
             />
           </FormField>
           <FormField>
-            <InputControlled
-              value={currentUser?.height}
-              name="height"
-              label={t("settings.form.field.height")}
-              control={control}
-            />
-            <InputControlled
-              value={currentUser?.weight}
-              name="weight"
-              label={t("settings.form.field.weight")}
-              control={control}
-            />
+            <div className="row">
+              <InputControlled
+                type="number"
+                value={currentUser?.age}
+                name="age"
+                label={t("settings.form.field.age")}
+                control={control}
+              />
+              <InputControlled
+                value={currentUser?.height}
+                name="height"
+                label={t("settings.form.field.height")}
+                control={control}
+              />
+              <InputControlled
+                value={currentUser?.weight}
+                name="weight"
+                label={t("settings.form.field.weight")}
+                control={control}
+              />
+            </div>
             <InputControlled
               value={currentUser?.weightGoal}
               name="weightGoal"
