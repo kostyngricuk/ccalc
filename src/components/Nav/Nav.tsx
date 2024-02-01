@@ -1,19 +1,19 @@
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
-import { BurgerSVG, CloseSVG } from "../../icons";
-import { NavItem, INavItem } from "../NavItem/NavItem";
-import Icon from "../UI/Icon/Icon";
+import { BurgerSVG, CloseSVG } from '../../icons';
+import NavItem, { INavItem } from '../NavItem/NavItem';
+import Icon from '../UI/Icon/Icon';
 
-import { StyledNav, StyledNavBurger, StyledNavWrap } from "./StyledNav";
+import { StyledNav, StyledNavBurger, StyledNavWrap } from './StyledNav';
 
 interface INav {
   items: Array<INavItem>;
   itemsMobile: Array<INavItem>;
-};
+}
 
-export const Nav = ({ items, itemsMobile }: INav) => {
-  let location = useLocation();
+export default function Nav({ items, itemsMobile }: INav) {
+  const location = useLocation();
 
   const [$isActive, setIsActive] = useState(false);
 
@@ -29,21 +29,27 @@ export const Nav = ({ items, itemsMobile }: INav) => {
     <StyledNav>
       <StyledNavWrap className="is-desktop">
         {items.map((item) => (
-          <NavItem {...item} key={item.id} />
+          <NavItem
+            key={item.id}
+            item={item}
+          />
         ))}
       </StyledNavWrap>
       {$isActive && (
         <StyledNavWrap className="is-mobile">
           {itemsMobile.map((item) => (
-            <NavItem {...item} key={item.id} />
+            <NavItem
+              key={item.id}
+              item={item}
+            />
           ))}
         </StyledNavWrap>
       )}
       <StyledNavBurger
         className="Nav__burger"
         color="black"
-        $isIcon={true}
-        $isOutline={true}
+        $isIcon
+        $isOutline
         ariaLabel="Menu"
         onClick={handleOnClick}
       >
@@ -51,4 +57,4 @@ export const Nav = ({ items, itemsMobile }: INav) => {
       </StyledNavBurger>
     </StyledNav>
   );
-};
+}

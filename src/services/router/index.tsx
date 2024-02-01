@@ -1,5 +1,6 @@
+import React from 'react';
 import {
-    createBrowserRouter
+  createBrowserRouter,
 } from 'react-router-dom';
 
 // pages
@@ -11,34 +12,35 @@ import ContactsScreen from '../../pages/ContactsScreen';
 import SettingsScreen from '../../pages/SettingsScreen';
 import FaqScreen from '../../pages/FaqScreen';
 
-import { paths } from './paths';
+import paths from './paths';
 
-export const router = createBrowserRouter([
-    {
-      path: '/',
-      element: <Root />,
-      errorElement: <ErrorScreen />,
-      children: [
-        {
-          path: paths.calculator.url,
-          element: <CalculatorScreen />
-        },
-        {
-          path: paths.settings.url,
-          element: <SettingsScreen />
-        },
-        {
-          path: paths.help.url,
-          element: <HelpScreen />
-        },
-        {
-          path: paths.faq.url,
-          element: <FaqScreen />
-        },
-        {
-          path: paths.contacts.url,
-          element: <ContactsScreen />
-        }
-      ]
-    }
-  ])
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Root />,
+    errorElement: <ErrorScreen />,
+    children: [
+      {
+        path: paths.calculator.url,
+        element: <CalculatorScreen />,
+      },
+      {
+        path: paths.settings.url,
+        element: <SettingsScreen />,
+      },
+      {
+        path: paths.help.url,
+        element: <HelpScreen />,
+      },
+      {
+        path: paths.faq.url,
+        element: <FaqScreen />,
+      },
+      {
+        path: paths.contacts.url,
+        element: <ContactsScreen />,
+      },
+    ],
+  },
+]);
+export default router;

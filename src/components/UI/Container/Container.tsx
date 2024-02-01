@@ -1,16 +1,19 @@
-import { ReactNode } from 'react';
-import { StyledContainer } from './StyledContainer';
+import React, { ReactNode } from 'react';
+import StyledContainer from './StyledContainer';
 
 export default function Container({
-    className = '',
-    children
+  className = '',
+  children,
 }: {
-    className?: string,
-    children: ReactNode
+  className?: string,
+  children: ReactNode
 }) {
-    return (
-        <StyledContainer className={className}>
-            { children }
-        </StyledContainer>
-    );
-  }
+  return (
+    <StyledContainer className={className}>
+      { children }
+    </StyledContainer>
+  );
+}
+Container.defaultProps = {
+  className: '',
+};

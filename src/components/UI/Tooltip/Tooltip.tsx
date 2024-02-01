@@ -1,21 +1,21 @@
-import { ReactNode } from 'react';
-import { StyledTooltip } from './StyledTooltip';
+import React, { ReactNode } from 'react';
+import StyledTooltip from './StyledTooltip';
 
-export const Tooltip = ({
-    children,
-    text
+export default function Tooltip({
+  children,
+  text,
 }: {
-    children: ReactNode
-    text: string
-}) => {
-    return (
-        <StyledTooltip>
-            <div className="TooltipTrigger">
-                { children }
-            </div>
-            <div className="TooltipContent">
-                { text }
-            </div>
-        </StyledTooltip>
-    )
+  children: ReactNode
+  text: string
+}) {
+  return (
+    <StyledTooltip>
+      <div className="TooltipTrigger">
+        { children }
+      </div>
+      <div className="TooltipContent">
+        { text }
+      </div>
+    </StyledTooltip>
+  );
 }

@@ -1,4 +1,5 @@
 import { createContext } from 'react';
 import { IAuthContext } from '../types/user';
 
-export const AuthContext = createContext<IAuthContext>({});
+const AuthContext = createContext<IAuthContext>({});
+export default AuthContext;

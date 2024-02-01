@@ -1,14 +1,15 @@
+import React from 'react';
 import Container from '../UI/Container/Container';
 import Copyright from '../Copyright/Copyright';
 
-import { StyledFooter } from './StyledFooter';
+import StyledFooter from './StyledFooter';
 
 export default function Footer() {
-    return (
-        <StyledFooter>
-            <Container>
-                <Copyright />
-            </Container>
-        </StyledFooter>
-    );
+  return (
+    <StyledFooter>
+      <Container>
+        <Copyright />
+      </Container>
+    </StyledFooter>
+  );
 }

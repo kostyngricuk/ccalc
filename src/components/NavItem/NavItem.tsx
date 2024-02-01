@@ -1,28 +1,41 @@
-import { NavLink } from "react-router-dom";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 
-import { NavSub } from "../NavSub/NavSub";
-import { StyledNavItem } from "./StylesNavItem";
+import NavSub from '../NavSub/NavSub';
+import StyledNavItem from './StylesNavItem';
 
 export interface INavItem {
-    id: number,
-    link: string,
-    title: string,
-    submenu?: Array<INavItem>
+  id: number,
+  link: string,
+  title: string,
+  submenu?: Array<INavItem>
 }
 
-export const NavItem = ({
-    id,
+export default function NavItem({
+  item,
+}: {
+  item: INavItem
+}) {
+  const {
     link,
     title,
-    submenu = []
-}: INavItem) => (
+    submenu,
+  } = item;
+  return (
     <StyledNavItem>
-        {
-            submenu.length ? (
-                <NavSub id={id} items={submenu} link={link} title={title}/>
-            ) : (
-                <NavLink to={link}>{ title }</NavLink>
-            )
-        }
+      {
+        submenu?.length ? (
+          <NavSub link={link} title={title}>
+            {
+              submenu.map((subItem) => (
+                <NavItem item={subItem} key={subItem.id} />
+              ))
+            }
+          </NavSub>
+        ) : (
+          <NavLink to={link}>{ title }</NavLink>
+        )
+      }
     </StyledNavItem>
-);
+  );
+}

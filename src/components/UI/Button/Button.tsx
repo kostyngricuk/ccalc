@@ -1,30 +1,30 @@
-import { MouseEventHandler, ReactNode } from "react";
+import React, { MouseEventHandler, ReactNode } from 'react';
 
-import { StyledButton } from "./StyledButton";
+import StyledButton from './StyledButton';
 
 interface IButton {
   children: ReactNode;
-  type?: "button" | "submit";
+  type?: 'button' | 'submit';
   className?: string;
   $isIcon?: boolean;
   $isOutline?: boolean;
-  color?: "primary" | "secondry" | "red" | "black";
+  color?: 'primary' | 'secondry' | 'red' | 'black';
   ariaLabel?: string;
   $isDisabled?: boolean;
   onClick?: MouseEventHandler;
 }
 
-export const Button = ({
+export default function Button({
   children,
-  type = "button",
-  className = "",
+  type = 'button',
+  className = '',
   $isIcon = false,
   $isOutline = false,
-  color = "primary",
-  ariaLabel = "",
+  color = 'primary',
+  ariaLabel = '',
   $isDisabled = false,
   onClick,
-}: IButton) => {
+}: IButton) {
   return (
     <StyledButton
       color={color}
@@ -39,4 +39,14 @@ export const Button = ({
       {children}
     </StyledButton>
   );
+}
+Button.defaultProps = {
+  type: 'button',
+  className: '',
+  $isIcon: false,
+  $isOutline: false,
+  color: 'primary',
+  ariaLabel: '',
+  $isDisabled: false,
+  onClick: undefined,
 };

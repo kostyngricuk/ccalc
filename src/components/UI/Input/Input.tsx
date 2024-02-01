@@ -1,47 +1,92 @@
+import React, { ChangeEventHandler } from 'react';
+import classNames from 'classnames';
 import {
   Control,
   FieldError,
   FieldPath,
   FieldValues,
   useController,
-} from "react-hook-form";
-import { StyledInput, StyledInputLabel } from "./StyledInput";
-import { ChangeEventHandler } from "react";
-import classNames from "classnames";
+} from 'react-hook-form';
+import { StyledInput, StyledInputLabel } from './StyledInput';
 
 export enum EnumInputType {
-  text = "text",
-  email = "email",
-  password = "password",
-  number = "number",
-  tel = "tel",
-  radio = "radio",
+  text = 'text',
+  email = 'email',
+  password = 'password',
+  number = 'number',
+  tel = 'tel',
+  radio = 'radio',
 }
 
-interface IInput {
+interface IInputBase {
   name: FieldPath<FieldValues>;
-  type?: EnumInputType;
-  value?: string;
-  required?: boolean;
-  label?: string;
+  type: EnumInputType | undefined;
+  value: string | undefined;
+  label: string | undefined;
   units?: string;
-  error?: FieldError | string;
-  onChange?: ChangeEventHandler<HTMLInputElement>;
+}
+interface IInput extends IInputBase {
+  error: FieldError | string | undefined;
+  onChange: ChangeEventHandler<HTMLInputElement> | undefined;
   checked?: boolean;
 }
-interface IInputControlled extends IInput {
-  control?: Control<FieldValues>;
+interface IInputControlled extends IInputBase {
+  required?: boolean | undefined;
+  control: Control<FieldValues>;
 }
 
-export const InputControlled = ({
+export function Input(props: IInput) {
+  const {
+    name,
+    type,
+    value,
+    label,
+    error,
+    units,
+    checked,
+    onChange,
+  } = props;
+
+  return (
+    <StyledInput className="Input">
+      <StyledInputLabel
+        className={classNames(
+          error && 'has-error',
+          type === EnumInputType.radio && 'is-radio',
+          Boolean(units?.length) && 'has-units',
+        )}
+      >
+        <input
+          name={name}
+          value={value}
+          onChange={onChange}
+          autoComplete="off"
+          type={type?.toString()}
+          checked={checked}
+        />
+        {type === EnumInputType.radio && <span className="radio-button" />}
+        <span className="label">
+          {label}
+        </span>
+        {Boolean(units?.length) && <span className="units">{units}</span>}
+      </StyledInputLabel>
+    </StyledInput>
+  );
+}
+Input.defaultProps = {
+  units: '',
+  checked: false,
+};
+
+export function InputControlled({
   name,
   type = EnumInputType.text,
-  value = "",
+  value = '',
   required = false,
-  label = "",
+  label = '',
   units,
   control,
-}: IInputControlled) => {
+}: IInputControlled) {
   const { field, fieldState } = useController({
     name,
     control,
@@ -63,25 +108,8 @@ export const InputControlled = ({
       onChange={field.onChange}
     />
   );
-};
-
-export const Input = (props: IInput) => {
-  const { label, error, type, units } = props;
-
-  return (
-    <StyledInput className="Input">
-      <StyledInputLabel
-        className={classNames(
-          error && "has-error",
-          type === EnumInputType.radio && "is-radio",
-          Boolean(units?.length) && "has-units"
-        )}
-      >
-        <input {...props} autoComplete="off" type={type?.toString()} />
-        {type === EnumInputType.radio && <span className="radio-button"></span>}
-        <span className="label">{label}</span>
-        {Boolean(units?.length) && <span className="units">{units}</span>}
-      </StyledInputLabel>
-    </StyledInput>
-  );
+}
+InputControlled.defaultProps = {
+  units: '',
+  required: false,
 };

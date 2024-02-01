@@ -1,28 +1,28 @@
-import { NavLink } from "react-router-dom";
-import { NavItem, INavItem } from "../NavItem/NavItem";
-import { DropdownContent, DropdownTrigger } from "../UI/Dropdown/Dropdown";
+import React, { ReactNode } from 'react';
+import { NavLink } from 'react-router-dom';
+import { DropdownContent, DropdownTrigger } from '../UI/Dropdown/Dropdown';
 
-import { StyledNavSub, StyledNavSubWrap } from "./StyledNavSub";
+import { StyledNavSub, StyledNavSubWrap } from './StyledNavSub';
 
-interface INavSub extends INavItem {
-    items: Array<INavItem>
+export default function NavSub({
+  link,
+  title,
+  children,
+}: {
+  link: string,
+  title: string,
+  children: ReactNode
+}) {
+  return (
+    <StyledNavSub>
+      <DropdownTrigger>
+        <NavLink to={link}>{ title }</NavLink>
+      </DropdownTrigger>
+      <DropdownContent>
+        <StyledNavSubWrap>
+          { children }
+        </StyledNavSubWrap>
+      </DropdownContent>
+    </StyledNavSub>
+  );
 }
-
-export const NavSub = ({
-    link,
-    title,
-    items
-}: INavSub) => {
-    return (
-        <StyledNavSub>
-            <DropdownTrigger>
-                <NavLink to={link}>{ title }</NavLink>
-            </DropdownTrigger>
-            <DropdownContent>
-                <StyledNavSubWrap>
-                    { items.map(item => <NavItem {...item} key={item.id}/>) }
-                </StyledNavSubWrap>
-            </DropdownContent>
-        </StyledNavSub>
-    )
-};

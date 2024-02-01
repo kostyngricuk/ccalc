@@ -1,25 +1,29 @@
-import { ReactNode } from "react"
-import { StyledFieldRow, StyledFormActions, StyledFormField } from "./StyledFormField"
+import React, { ReactNode } from 'react';
+import { StyledFieldRow, StyledFormActions, StyledFormField } from './StyledFormField';
 
 export enum EnumFormFieldType {
   wrapper,
   row,
-  actions
+  actions,
 }
 
-export const FormField = ({
+export default function FormField({
   children,
-  type = EnumFormFieldType.wrapper
+  type,
 }: {
   children: ReactNode,
   type?: EnumFormFieldType
-}) => {
+}) {
   switch (type) {
-      case EnumFormFieldType.row:
-          return <StyledFieldRow>{ children }</StyledFieldRow>
-      case EnumFormFieldType.actions:
-          return <StyledFormActions>{ children }</StyledFormActions>
-      default:
-          return <StyledFormField>{ children }</StyledFormField>
+    case EnumFormFieldType.row:
+      return <StyledFieldRow>{ children }</StyledFieldRow>;
+    case EnumFormFieldType.actions:
+      return <StyledFormActions>{ children }</StyledFormActions>;
+    default:
+      return <StyledFormField>{ children }</StyledFormField>;
   }
 }
+
+FormField.defaultProps = {
+  type: EnumFormFieldType.wrapper,
+};

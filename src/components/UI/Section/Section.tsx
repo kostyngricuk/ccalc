@@ -1,15 +1,15 @@
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 
-import { StyledSection } from './StyledSection';
+import StyledSection from './StyledSection';
 
 export default function Section({
-    children
+  children,
 }: {
-    children: ReactNode
+  children: ReactNode
 }) {
-    return (
-        <StyledSection>
-            { children }
-        </StyledSection>
-    );
-  }
+  return (
+    <StyledSection>
+      { children }
+    </StyledSection>
+  );
+}
