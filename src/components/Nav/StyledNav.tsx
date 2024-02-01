@@ -29,7 +29,7 @@ export const StyledNavWrap = styled.ul`
         flex-direction: column;
         width: 100%;
         height: 100%;
-        background-color: ${props => props.theme.color.white};
+        background-color: var(--color-white);
         top: 0;
         left: 0;
         display: none;

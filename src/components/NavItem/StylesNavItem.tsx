@@ -12,14 +12,14 @@ export const StyledNavItem = styled.li`
         z-index: 2;
         &:hover,
         &:focus {
-            color: ${props => props.theme.color.primary};
+            color: var(--color-primary);
             & + .Dropdown .Dropdown__wrapper {
                 opacity: 1;
                 visibility: visible;
             }
         }
         &.active {
-            color: ${props => props.theme.color.primary};
+            color: var(--color-primary);
         }
         @media ${props => props.theme.device.tablet} {
             font-size: 32px;

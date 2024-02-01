@@ -56,7 +56,7 @@ export const StyledLoader = styled.div`
         display: block;
         width: 48px;
         height: 40px;
-        background-color: ${props => props.theme.color.primary};
+        background-color: var(--color-primary);
         overflow: hidden;
         border-radius: 15% 15% 35% 35%;
         z-index: -1;

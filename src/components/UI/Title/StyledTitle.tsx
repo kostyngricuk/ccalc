@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { EnumHorizontalPosition, EnumTitleVariant } from "../../../types/global";
 import { ITitle } from "./Title";
 
 const Tag = ({
@@ -14,40 +15,40 @@ const Tag = ({
     )
 }
 
-const getFontSize = (variant: string) => {
+const getFontSize = (variant: EnumTitleVariant) => {
     switch (variant) {
-        case 'h1':
+        case EnumTitleVariant.h1:
             return '44px';
-        case 'h2':
+        case EnumTitleVariant.h2:
             return '36px';
-        case 'h3':
+        case EnumTitleVariant.h3:
             return '32px';
-        case 'h4':
+        case EnumTitleVariant.h4:
             return '28px';
-        case 'h5':
+        case EnumTitleVariant.h5:
             return '24px';
-        case 'h6':
+        case EnumTitleVariant.h6:
             return '20px';
     }
 }
-const getFontSizeMobile = (variant: string) => {
+const getFontSizeMobile = (variant: EnumTitleVariant) => {
     switch (variant) {
-        case 'h1':
+        case EnumTitleVariant.h1:
             return '38px';
-        case 'h2':
+        case EnumTitleVariant.h2:
             return '34px';
-        case 'h3':
+        case EnumTitleVariant.h3:
             return '30px';
-        case 'h4':
+        case EnumTitleVariant.h4:
             return '26px';
-        case 'h5':
+        case EnumTitleVariant.h5:
             return '22px';
-        case 'h6':
+        case EnumTitleVariant.h6:
             return '18px';
     }
 }
 
-export const StyledTitle = styled(Tag)<{variant: string, position: string}>`
+export const StyledTitle = styled(Tag)<{variant: EnumTitleVariant, position: EnumHorizontalPosition}>`
     font-size: ${props => getFontSize(props.variant)};
     text-align: ${props => props.position};
     margin-bottom: 1.25em;

@@ -1,64 +1,21 @@
 import { FormEventHandler, ReactNode } from "react"
-import { StyledFormWrapper, StyledFormResult, StyledForm, StyledFormField, StyledFormActions } from "./StyledForm"
+import { StyledFormWrapper, StyledFormResult, StyledForm } from "./StyledForm"
 
 export const Form = ({
     children,
-    onSubmit
+    onSubmit,
+    resMessage
 }: {
     children: ReactNode,
-    onSubmit: FormEventHandler
-}) => {
-    return (
-        <StyledForm onSubmit={onSubmit}>
-            { children }
-        </StyledForm>
-    )
-}
-
-export const FormWrapper = ({
-    children,
-}: {
-    children: ReactNode,
+    onSubmit: FormEventHandler,
+    resMessage: string
 }) => {
     return (
         <StyledFormWrapper>
-            { children }
+            <StyledForm onSubmit={onSubmit}>
+                { children }
+            </StyledForm>
+            <StyledFormResult>{ resMessage }</StyledFormResult>
         </StyledFormWrapper>
-    )
-}
-
-export const FormField = ({
-    children,
-}: {
-    children: ReactNode,
-}) => {
-    return (
-        <StyledFormField>
-            { children }
-        </StyledFormField>
-    )
-}
-
-export const FormResult = ({
-    children,
-}: {
-    children: ReactNode,
-}) => {
-    return (
-        <StyledFormResult>
-            { children }
-        </StyledFormResult>
-    )
-}
-
-export const FormActions = ({
-    children,
-}: {
-    children: ReactNode,
-}) => {
-    return (
-        <StyledFormActions>
-            { children }
-        </StyledFormActions>
     )
 }

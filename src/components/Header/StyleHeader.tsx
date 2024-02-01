@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const StyledHeader = styled.header`
-    background-color: ${props => props.theme.color.white};
-    box-shadow: 0px 1px 2px 0px ${props => props.theme.color.gray};
+    background-color: var(--color-white);
+    box-shadow: 0px 1px 2px 0px var(--color-gray);
     & > * {
         display: flex;
         align-items: center;

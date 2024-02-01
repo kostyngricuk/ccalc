@@ -1,22 +1,23 @@
 import { ReactNode } from "react";
 import { StyledTitle } from "./StyledTitle";
+import { EnumHorizontalPosition, EnumTitleVariant } from "../../../types/global";
 
 export interface ITitle {
-    children?: ReactNode;
-    className?: string;
-    variant?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-    position?: "left" | "center" | "right"
+  children?: ReactNode;
+  className?: string;
+  variant?: EnumTitleVariant;
+  position?: EnumHorizontalPosition;
 }
 
 export const Title = ({
-    children,
-    className = "",
-    variant = 'h1',
-    position = 'left'
+  children,
+  className = "",
+  variant = EnumTitleVariant.h1,
+  position = EnumHorizontalPosition.left,
 }: ITitle) => {
-    return (
-        <StyledTitle className={className} variant={variant} position={position}>
-            {children}
-        </StyledTitle>
-    )
-}
+  return (
+    <StyledTitle className={className} variant={variant} position={position}>
+      {children}
+    </StyledTitle>
+  );
+};

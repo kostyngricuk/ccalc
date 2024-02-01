@@ -7,16 +7,17 @@ import { FieldValues, useForm, Controller } from "react-hook-form";
 import { Button } from "../components/UI/Button/Button";
 import {
   Form,
-  FormField,
-  FormActions,
-  FormResult,
-  FormWrapper,
 } from "../components/UI/Form/Form";
+import {
+  FormField,
+  EnumFormFieldType,
+} from "../components/UI/FormField/FormField";
 import { EnumInputType, Input, InputControlled } from "../components/UI/Input/Input";
 import { AuthContext } from "../services/contexts";
 import { Genders, IAuthContext } from "../types/user";
 import { calcDailyLimit } from "../services/utils/calculations";
 import { UNITS } from "../services/constants/global";
+import { EnumHorizontalPosition } from "../types/global";
 
 export default function SettingsScreen() {
   const [data, setData] = useState<FieldValues | null>(null);
@@ -39,20 +40,15 @@ export default function SettingsScreen() {
       return;
     }
 
-    const { height, weight, weightGoal, age, gender, email } = data;
+    const { oldPassword, newPassword, confirmNewPassword, ...userData } = data; // excluding properties
     setCurrentUser({
-      height,
-      weight,
-      weightGoal,
-      email,
-      age: parseInt(age),
-      gender,
+      ...userData,
       calorieWidget: {
         limit: calcDailyLimit({
-          height: parseInt(height),
-          weightGoal: parseInt(weightGoal),
-          age: parseInt(age),
-          gender,
+          height: parseInt(userData.height),
+          weightGoal: parseInt(userData.weightGoal),
+          age: parseInt(userData.age),
+          gender: userData.gender,
         }),
         eaten: currentUser?.calorieWidget?.eaten,
       },
@@ -81,116 +77,113 @@ export default function SettingsScreen() {
 
   return (
     <Section>
-      <Title position="center">{t("settings.title")}</Title>
-      <FormWrapper>
-        <Form onSubmit={onSubmit}>
-          <FormField>
-            <Controller
-              name="gender"
-              control={control}
-              defaultValue={currentUser?.gender}
-              rules={{
-                required: true
-              }}
-              render={({ field, fieldState }) => (
-                <div className="row">
-                  <Input
-                    name={field.name}
-                    type={EnumInputType.radio}
-                    value={Genders.man}
-                    label={t("form.field.gender.man")}
-                    error={fieldState?.error}
-                    onChange={field.onChange}
-                    checked={field.value === Genders.man}
-                  />
-                  <Input
-                    name={field.name}
-                    type={EnumInputType.radio}
-                    value={Genders.woman}
-                    label={t("form.field.gender.woman")}
-                    error={fieldState?.error}
-                    onChange={field.onChange}
-                    checked={field.value === Genders.woman}
-                  />
-                </div>
-              )}
-            />
-          </FormField>
-          <FormField>
-            <div className="row">
-              <InputControlled
-                type={EnumInputType.number}
-                value={currentUser?.age}
-                name="age"
-                label={t("settings.form.field.age")}
-                control={control}
-              />
-              <InputControlled
-                type={EnumInputType.number}
-                value={currentUser?.height}
-                name="height"
-                label={t("settings.form.field.height")}
-                control={control}
-                units={t(`units.${UNITS.sm}`)}
-              />
-              <InputControlled
-                type={EnumInputType.number}
-                value={currentUser?.weight}
-                name="weight"
-                label={t("settings.form.field.weight")}
-                control={control}
-                units={t(`units.${UNITS.kg}`)}
-              />
-            </div>
+      <Title position={EnumHorizontalPosition.center}>{t("settings.title")}</Title>
+      <Form onSubmit={onSubmit} resMessage={resMessage}>
+        <FormField>
+          <Controller
+            name="gender"
+            control={control}
+            defaultValue={currentUser?.gender}
+            rules={{
+              required: true
+            }}
+            render={({ field, fieldState }) => (
+              <FormField type={EnumFormFieldType.row}>
+                <Input
+                  name={field.name}
+                  type={EnumInputType.radio}
+                  value={Genders.man}
+                  label={t("form.field.gender.man")}
+                  error={fieldState?.error}
+                  onChange={field.onChange}
+                  checked={field.value === Genders.man}
+                />
+                <Input
+                  name={field.name}
+                  type={EnumInputType.radio}
+                  value={Genders.woman}
+                  label={t("form.field.gender.woman")}
+                  error={fieldState?.error}
+                  onChange={field.onChange}
+                  checked={field.value === Genders.woman}
+                />
+              </FormField>
+            )}
+          />
+        </FormField>
+        <FormField>
+          <FormField type={EnumFormFieldType.row}>
             <InputControlled
               type={EnumInputType.number}
-              value={currentUser?.weightGoal}
-              name="weightGoal"
-              label={t("settings.form.field.weightGoal")}
+              value={currentUser?.age?.toString()}
+              name="age"
+              label={t("settings.form.field.age")}
+              control={control}
+            />
+            <InputControlled
+              type={EnumInputType.number}
+              value={currentUser?.height?.toString()}
+              name="height"
+              label={t("settings.form.field.height")}
+              control={control}
+              units={t(`units.${UNITS.sm}`)}
+            />
+            <InputControlled
+              type={EnumInputType.number}
+              value={currentUser?.weight?.toString()}
+              name="weight"
+              label={t("settings.form.field.weight")}
               control={control}
               units={t(`units.${UNITS.kg}`)}
             />
           </FormField>
           <InputControlled
-            type={EnumInputType.email}
-            value={currentUser?.email}
-            name="email"
-            label={t("settings.form.field.email")}
-            required={true}
+            type={EnumInputType.number}
+            value={currentUser?.weightGoal?.toString()}
+            name="weightGoal"
+            label={t("settings.form.field.weightGoal")}
             control={control}
+            units={t(`units.${UNITS.kg}`)}
           />
-          <InputControlled
-            type={EnumInputType.password}
-            name="oldPassword"
-            label={t("settings.form.field.oldPassword")}
-            control={control}
-          />
-          <InputControlled
-            type={EnumInputType.password}
-            name="newPassword"
-            label={t("settings.form.field.newPassword")}
-            control={control}
-          />
-          <InputControlled
-            type={EnumInputType.password}
-            name="confirmNewPassword"
-            label={t("settings.form.field.confirmNewPassword")}
-            control={control}
-          />
-          <FormActions>
-            <Button type="submit">{t("settings.form.btnSave")}</Button>
-            <Button
-              type="button"
-              onClick={resetLimit}
-              color="red"
-              $isOutline={true}
-            >
-              {t("settings.form.btnResetWidget")}
-            </Button>
-          </FormActions>
-        </Form>
-        <FormResult>{resMessage}</FormResult>
-      </FormWrapper>
+        </FormField>
+        <InputControlled
+          type={EnumInputType.email}
+          value={currentUser?.email}
+          name="email"
+          label={t("settings.form.field.email")}
+          required={true}
+          control={control}
+        />
+        <InputControlled
+          type={EnumInputType.password}
+          name="oldPassword"
+          label={t("settings.form.field.oldPassword")}
+          control={control}
+        />
+        <InputControlled
+          type={EnumInputType.password}
+          name="newPassword"
+          label={t("settings.form.field.newPassword")}
+          control={control}
+        />
+        <InputControlled
+          type={EnumInputType.password}
+          name="confirmNewPassword"
+          label={t("settings.form.field.confirmNewPassword")}
+          control={control}
+        />
+        <FormField type={EnumFormFieldType.actions}>
+          <Button type="submit">{t("settings.form.btnSave")}</Button>
+          <Button
+            type="button"
+            onClick={resetLimit}
+            color="red"
+            $isOutline={true}
+          >
+            {t("settings.form.btnResetWidget")}
+          </Button>
+        </FormField>
+      </Form>
     </Section>
   );
 }

@@ -59,5 +59,12 @@
     "units": {
         "kg": "kg",
         "sm": "sm"
+    },
+    "areas": {
+        "goHome": "Go home"
+    },
+    "errors": {
+        "404": "Page Not Found!",
+        "unknown": "Something went wrong!"
     }
 }

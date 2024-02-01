@@ -5,12 +5,10 @@ export const StyledInput = styled.div`
     margin-bottom: 20px;
     position: relative;
 `
-export type TPosition = 'left' | 'center' | 'right';
-export const StyledInputLabel = styled.label<{$position: TPosition}>`
+
+export const StyledInputLabel = styled.label`
     display: flex;
     flex-direction: column-reverse;
-    align-items: ${props => props.$position};
-    text-align: ${props => props.$position};
     cursor: pointer;
     &.is-radio {
         flex-direction: row-reverse;
@@ -132,5 +130,5 @@ export const StyledInputLabel = styled.label<{$position: TPosition}>`
 `
 
 export const StyledInputError = styled.span`
-    color: ${props => props.theme.color.red};
+    color: var(--color-red);
 `

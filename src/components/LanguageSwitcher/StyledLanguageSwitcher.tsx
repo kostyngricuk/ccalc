@@ -14,10 +14,10 @@ export const StyledLanguageSwitcher = styled.div`
         cursor: pointer;
         &:hover,
         &:focus {
-            color: ${props => props.theme.color.primary};
+            color: var(--color-primary);
         }
         &.is-active {
-            color: ${props => props.theme.color.primary};
+            color: var(--color-primary);
             pointer-events: none;
         }
         @media ${props => props.theme.device.mobile} {
