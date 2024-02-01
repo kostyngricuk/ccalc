@@ -4,7 +4,7 @@ import { FieldValues, useForm, Controller } from 'react-hook-form';
 
 import Section from '../components/UI/Section/Section';
 import Title from '../components/UI/Title/Title';
-import Button from '../components/UI/Button/Button';
+import Button, { EnumButtonColor, EnumButtonType } from '../components/UI/Button/Button';
 import Form from '../components/UI/Form/Form';
 import FormField, {
   EnumFormFieldType,
@@ -179,11 +179,12 @@ export default function SettingsScreen() {
           control={control}
         />
         <FormField type={EnumFormFieldType.actions}>
-          <Button type="submit">{t('settings.form.btnSave')}</Button>
+          <Button type={EnumButtonType.submit}>
+            {t('settings.form.btnSave')}
+          </Button>
           <Button
-            type="button"
             onClick={resetLimit}
-            color="red"
+            color={EnumButtonColor.red}
             $isOutline
           >
             {t('settings.form.btnResetWidget')}

@@ -2,13 +2,24 @@ import React, { MouseEventHandler, ReactNode } from 'react';
 
 import StyledButton from './StyledButton';
 
+export enum EnumButtonType {
+  button = 'button',
+  submit = 'submit'
+};
+export enum EnumButtonColor {
+  primary = 'primary',
+  secondry = 'secondry',
+  red = 'red',
+  black = 'black'
+};
+
 interface IButton {
   children: ReactNode;
-  type?: 'button' | 'submit';
+  type?: EnumButtonType;
   className?: string;
   $isIcon?: boolean;
   $isOutline?: boolean;
-  color?: 'primary' | 'secondry' | 'red' | 'black';
+  color?: EnumButtonColor;
   ariaLabel?: string;
   $isDisabled?: boolean;
   onClick?: MouseEventHandler;
@@ -16,11 +27,11 @@ interface IButton {
 
 export default function Button({
   children,
-  type = 'button',
+  type = EnumButtonType.button,
   className = '',
   $isIcon = false,
   $isOutline = false,
-  color = 'primary',
+  color = EnumButtonColor.primary,
   ariaLabel = '',
   $isDisabled = false,
   onClick,
@@ -41,11 +52,11 @@ export default function Button({
   );
 }
 Button.defaultProps = {
-  type: 'button',
+  type: EnumButtonType.button,
   className: '',
   $isIcon: false,
   $isOutline: false,
-  color: 'primary',
+  color: EnumButtonColor.primary,
   ariaLabel: '',
   $isDisabled: false,
   onClick: undefined,

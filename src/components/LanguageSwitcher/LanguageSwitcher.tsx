@@ -18,7 +18,7 @@ export default function LanguageSwitcher() {
         const langLabel = LANGUAGES[langCode];
         return (
           <button
-            type="button"
+            type='button'
             className={classNames(
               langCode === i18n.language && 'is-active',
             )}

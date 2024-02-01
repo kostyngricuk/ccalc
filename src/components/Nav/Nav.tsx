@@ -6,6 +6,7 @@ import NavItem, { INavItem } from '../NavItem/NavItem';
 import Icon from '../UI/Icon/Icon';
 
 import { StyledNav, StyledNavBurger, StyledNavWrap } from './StyledNav';
+import { EnumButtonColor } from '../UI/Button/Button';
 
 interface INav {
   items: Array<INavItem>;
@@ -47,7 +48,7 @@ export default function Nav({ items, itemsMobile }: INav) {
       )}
       <StyledNavBurger
         className="Nav__burger"
-        color="black"
+        color={EnumButtonColor.black}
         $isIcon
         $isOutline
         ariaLabel="Menu"
