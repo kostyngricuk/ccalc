@@ -15,25 +15,17 @@ import { Genders, IAuthContext } from '../types/user';
 import calcDailyLimit from '../services/utils/calculations';
 import { UNITS } from '../services/constants/global';
 import { EnumHorizontalPosition } from '../types/global';
+import { TResponse, TResponseStatuses } from '../components/UI/Form/types';
 
 export default function SettingsScreen() {
-  const [data, setData] = useState<FieldValues | null>(null);
-  const [resMessage, setResMessage] = useState<string>('');
+  const [response, setResponse] = useState<TResponse>(null);
   const { t } = useTranslation();
   const { currentUser, setCurrentUser } = useContext<IAuthContext>(AuthContext);
 
-  const { handleSubmit, control } = useForm<FieldValues>();
+  const { handleSubmit, control, formState: { errors } } = useForm<FieldValues>();
 
   const onSubmit = handleSubmit((submitData: FieldValues) => {
     if (!submitData) {
-      return;
-    }
-    setData(submitData);
-    setResMessage(t('settings.form.res.success'));
-  });
-
-  useEffect(() => {
-    if (!data) {
       return;
     }
 
@@ -42,7 +34,7 @@ export default function SettingsScreen() {
       newPassword,
       confirmNewPassword,
       ...userData
-    } = data; // excluding properties
+    } = submitData; // excluding properties
     setCurrentUser({
       ...userData,
       calorieWidget: {
@@ -55,17 +47,22 @@ export default function SettingsScreen() {
         eaten: currentUser?.calorieWidget?.eaten,
       },
     });
-  }, [data, setCurrentUser, currentUser?.calorieWidget?.eaten]);
 
+    setResponse({
+      status: TResponseStatuses.success,
+      message: t('settings.form.res.success')
+    });
+  });
+
+  const countErrors = Object.keys(errors).length;
   useEffect(() => {
-    if (resMessage.length) {
-      const timeout = setTimeout(() => {
-        setResMessage('');
-      }, 3000);
-      return () => clearTimeout(timeout);
+    if (countErrors > 0) {
+      setResponse({
+        status: TResponseStatuses.error,
+        errors
+      });
     }
-    return undefined;
-  }, [resMessage]);
+  }, [errors, countErrors]);
 
   const resetLimit = () => {
     setCurrentUser({
@@ -75,13 +72,15 @@ export default function SettingsScreen() {
         eaten: 0,
       },
     });
-    setResMessage(t('settings.form.res.successReset'));
+    setResponse({
+      status: TResponseStatuses.success,
+      message: t('settings.form.res.successReset')
+    });
   };
-
   return (
     <Section>
       <Title position={EnumHorizontalPosition.center}>{t('settings.title')}</Title>
-      <Form onSubmit={onSubmit} resMessage={resMessage}>
+      <Form onSubmit={onSubmit} response={response}>
         <FormField>
           <Controller
             name="gender"
@@ -96,7 +95,7 @@ export default function SettingsScreen() {
                   name={field.name}
                   type={EnumInputType.radio}
                   value={Genders.man}
-                  label={t('form.field.gender.man')}
+                  label={t('form.field.genderOptions.man')}
                   error={fieldState?.error}
                   onChange={field.onChange}
                   checked={field.value === Genders.man}
@@ -105,7 +104,7 @@ export default function SettingsScreen() {
                   name={field.name}
                   type={EnumInputType.radio}
                   value={Genders.woman}
-                  label={t('form.field.gender.woman')}
+                  label={t('form.field.genderOptions.woman')}
                   error={fieldState?.error}
                   onChange={field.onChange}
                   checked={field.value === Genders.woman}
@@ -120,14 +119,14 @@ export default function SettingsScreen() {
               type={EnumInputType.number}
               value={currentUser?.age?.toString()}
               name="age"
-              label={t('settings.form.field.age')}
+              label={t('form.field.age')}
               control={control}
             />
             <InputControlled
               type={EnumInputType.number}
               value={currentUser?.height?.toString()}
               name="height"
-              label={t('settings.form.field.height')}
+              label={t('form.field.height')}
               control={control}
               units={t(`units.${UNITS.sm}`)}
             />
@@ -135,7 +134,7 @@ export default function SettingsScreen() {
               type={EnumInputType.number}
               value={currentUser?.weight?.toString()}
               name="weight"
-              label={t('settings.form.field.weight')}
+              label={t('form.field.weight')}
               control={control}
               units={t(`units.${UNITS.kg}`)}
             />
@@ -144,7 +143,7 @@ export default function SettingsScreen() {
             type={EnumInputType.number}
             value={currentUser?.weightGoal?.toString()}
             name="weightGoal"
-            label={t('settings.form.field.weightGoal')}
+            label={t('form.field.weightGoal')}
             control={control}
             units={t(`units.${UNITS.kg}`)}
           />
@@ -153,7 +152,7 @@ export default function SettingsScreen() {
           type={EnumInputType.email}
           value={currentUser?.email}
           name="email"
-          label={t('settings.form.field.email')}
+          label={t('form.field.email')}
           required
           control={control}
         />
@@ -161,21 +160,21 @@ export default function SettingsScreen() {
           type={EnumInputType.password}
           name="oldPassword"
           value=""
-          label={t('settings.form.field.oldPassword')}
+          label={t('form.field.oldPassword')}
           control={control}
         />
         <InputControlled
           type={EnumInputType.password}
           name="newPassword"
           value=""
-          label={t('settings.form.field.newPassword')}
+          label={t('form.field.newPassword')}
           control={control}
         />
         <InputControlled
           type={EnumInputType.password}
           name="confirmNewPassword"
           value=""
-          label={t('settings.form.field.confirmNewPassword')}
+          label={t('form.field.confirmNewPassword')}
           control={control}
         />
         <FormField type={EnumFormFieldType.actions}>

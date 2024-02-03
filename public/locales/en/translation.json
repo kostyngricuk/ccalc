@@ -1,70 +1,68 @@
 {
-    "nav": {
-        "calculator": "Calculator",
-        "help": "Help",
-        "faq": "Faq",
-        "contacts": "Contacts",
-        "settings": "Settings",
-        "exit": "Exit"
-    },
-    "calorieWidget": {
-        "tooltip": "Today calories limit",
-        "cal": "cal"
-    },
-    "calculator": {
-        "title": "Calculator"
-    },
-    "help": {
-        "title": "Help"
-    },
-    "faq": {
-        "title": "FAQ"
-    },
-    "contacts": {
-        "title": "Contacts"
-    },
-    "settings": {
-        "title": "Settings",
-        "form": {
-            "field": {
-                "height": "Height",
-                "weight": "Weight",
-                "weightGoal": "Weight (goal)",
-                "age": "Age",
-                "gender": "Gender",
-                "email": "Email",
-                "oldPassword": "Old password",
-                "newPassword": "New password",
-                "confirmNewPassword": "Confirm new password"
-            },
-            "res": {
-                "success": "Changes have been applied!",
-                "successReset": "Limit reset successfully!"
-            },
-            "btnSave": "Save changes",
-            "btnResetWidget": "Reset today limit"
-        }
-    },
+  "nav": {
+    "calculator": "Calculator",
+    "help": "Help",
+    "faq": "Faq",
+    "contacts": "Contacts",
+    "settings": "Settings",
+    "exit": "Exit"
+  },
+  "calorieWidget": {
+    "tooltip": "Today calories limit",
+    "cal": "cal"
+  },
+  "calculator": {
+    "title": "Calculator"
+  },
+  "help": {
+    "title": "Help"
+  },
+  "faq": {
+    "title": "FAQ"
+  },
+  "contacts": {
+    "title": "Contacts"
+  },
+  "settings": {
+    "title": "Settings",
     "form": {
-        "field": {
-            "gender": {
-                "man": "Man",
-                "woman": "Woman"
-            },
-            "error": {
-                "required": "This field is required"
-            }
-        }
-    },
-    "units": {
-        "kg": "kg",
-        "sm": "sm"
-    },
-    "areas": {
-        "goHome": "Go home"
-    },
-    "errors": {
-        "404": "Page Not Found!",
-        "unknown": "Something went wrong!"
+      "res": {
+        "success": "Changes have been applied!",
+        "successReset": "Limit reset successfully!"
+      },
+      "btnSave": "Save changes",
+      "btnResetWidget": "Reset today limit"
     }
+  },
+  "form": {
+    "field": {
+      "height": "Height",
+      "weight": "Weight",
+      "weightGoal": "Weight (goal)",
+      "age": "Age",
+      "gender": "Gender",
+      "genderOptions": {
+        "man": "Man",
+        "woman": "Woman"
+      },
+      "email": "Email",
+      "oldPassword": "Old password",
+      "newPassword": "New password",
+      "confirmNewPassword": "Confirm new password",
+      "error": {
+        "required": "is required"
+      }
+    }
+  },
+  "units": {
+    "kg": "kg",
+    "sm": "sm"
+  },
+  "areas": {
+    "goHome": "Go home"
+  },
+  "errors": {
+    "404": "Page Not Found!",
+    "unknown": "Something went wrong!"
+  }
 }

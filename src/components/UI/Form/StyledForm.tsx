@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { TResponseStatuses } from './types';
 
 export const StyledForm = styled.form`
   display: flex;
@@ -10,7 +11,7 @@ export const StyledFormWrapper = styled.div`
   margin: 0 auto;
 `;
 
-export const StyledFormResult = styled.p`
+export const StyledFormResult = styled.p<{status?: TResponseStatuses}>`
   margin-top: 1rem;
-  color: var(--color-primary);
+  color: ${(props) => props.status === TResponseStatuses.success ? props.theme.color.primary : props.theme.color.error };
 `;

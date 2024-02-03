@@ -7,6 +7,7 @@ import {
   FieldValues,
   useController,
 } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { StyledInput, StyledInputLabel } from './StyledInput';
 
 export enum EnumInputType {
@@ -87,12 +88,13 @@ export function InputControlled({
   units,
   control,
 }: IInputControlled) {
+  const { t } = useTranslation();
   const { field, fieldState } = useController({
     name,
     control,
     defaultValue: value,
     rules: {
-      required,
+      required: required === true ? `"${label}" ${t('form.field.error.required')}` : false,
       pattern: type === EnumInputType.number ? /\d/ : /./,
     },
   });

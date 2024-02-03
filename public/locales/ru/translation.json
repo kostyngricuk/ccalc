@@ -1,70 +1,68 @@
 {
-    "nav": {
-        "calculator": "Калькулятор",
-        "help": "Помощь",
-        "faq": "FAQ",
-        "contacts": "Контакты",
-        "settings": "Настройки",
-        "exit": "Выйти"
-    },
-    "calorieWidget": {
-        "tooltip": "Лимит калорий на сегодня",
-        "cal": "ккал"
-    },
-    "calculator": {
-        "title": "Калькулятор"
-    },
-    "help": {
-        "title": "Помощь"
-    },
-    "faq": {
-        "title": "Вопрос - Ответ"
-    },
-    "contacts": {
-        "title": "Контакты"
-    },
-    "settings": {
-        "title": "Настройки",
-        "form": {
-            "field": {
-                "height": "Рост",
-                "weight": "Вес",
-                "weightGoal": "Вес (цель)",
-                "age": "Возраст",
-                "gender": "Пол",
-                "email": "Email",
-                "oldPassword": "Старый пароль",
-                "newPassword": "Новый пароль",
-                "confirmNewPassword": "Новый пароль (подтверждение)"
-            },
-            "res": {
-                "success": "Изменения применены!",
-                "successReset": "Лимит успешно сброшен!"
-            },
-            "btnSave": "Сохранить изменения",
-            "btnResetWidget": "Сбросить лимит каллорий"
-        }
-    },
+  "nav": {
+    "calculator": "Калькулятор",
+    "help": "Помощь",
+    "faq": "FAQ",
+    "contacts": "Контакты",
+    "settings": "Настройки",
+    "exit": "Выйти"
+  },
+  "calorieWidget": {
+    "tooltip": "Лимит калорий на сегодня",
+    "cal": "ккал"
+  },
+  "calculator": {
+    "title": "Калькулятор"
+  },
+  "help": {
+    "title": "Помощь"
+  },
+  "faq": {
+    "title": "Вопрос - Ответ"
+  },
+  "contacts": {
+    "title": "Контакты"
+  },
+  "settings": {
+    "title": "Настройки",
     "form": {
-        "field": {
-            "gender": {
-                "man": "Man",
-                "woman": "Woman"
-            },
-            "error": {
-                "required": "Это обязательное поле"
-            }
-        }
-    },
-    "units": {
-        "kg": "кг",
-        "sm": "см"
-    },
-    "areas": {
-        "goHome": "На главную"
-    },
-    "errors": {
-        "404": "Страница не найдена!",
-        "unknown": "Что-то пошло не так!"
+      "res": {
+        "success": "Изменения применены!",
+        "successReset": "Лимит успешно сброшен!"
+      },
+      "btnSave": "Сохранить изменения",
+      "btnResetWidget": "Сбросить лимит каллорий"
     }
+  },
+  "form": {
+    "field": {
+      "height": "Рост",
+      "weight": "Вес",
+      "weightGoal": "Вес (цель)",
+      "age": "Возраст",
+      "gender": "Пол",
+      "genderOptions": {
+        "man": "Мужчина",
+        "woman": "Женщина"
+      },
+      "email": "Email",
+      "oldPassword": "Старый пароль",
+      "newPassword": "Новый пароль",
+      "confirmNewPassword": "Подтверждение нового пароля",
+      "error": {
+        "required": "обязательное поле"
+      }
+    }
+  },
+  "units": {
+    "kg": "кг",
+    "sm": "см"
+  },
+  "areas": {
+    "goHome": "На главную"
+  },
+  "errors": {
+    "404": "Страница не найдена!",
+    "unknown": "Что-то пошло не так!"
+  }
 }
