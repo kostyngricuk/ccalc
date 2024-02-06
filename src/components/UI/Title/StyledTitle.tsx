@@ -62,7 +62,7 @@ const StyledTitle = styled(TitleTag)<{
 }>`
   font-size: ${(props) => getFontSize(props.variant)};
   text-align: ${(props) => props.position};
-  margin-bottom: 1.25em;
+  margin-bottom: 0.5em;
   @media ${(props) => props.theme.device.mobile} {
       font-size: ${(props) => getFontSizeMobile(props.variant)};
   }

@@ -8,6 +8,7 @@ const StyledIcon = styled.span<{
   display: inline-block;
   height: ${(props) => props.height};
   width: ${(props) => props.width};
+  min-width: ${(props) => props.width};
   color: ${(props) => props.color};
   & svg {
     width: 100%;

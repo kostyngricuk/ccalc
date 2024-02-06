@@ -2,8 +2,9 @@ import styled from 'styled-components';
 import { scrollbar } from '../../services/styled/mixins';
 
 const StyledMain = styled.main`
-  height: calc(100vh - 85px - 60px);
+  height: calc(100vh - 60px);
   ${scrollbar({})}
-  overflow: hidden;
+  overflow: auto;
+  padding-top: 40px;
 `;
 export default StyledMain;

@@ -3,6 +3,10 @@ import styled from 'styled-components';
 export const StyledHeader = styled.header`
   background-color: var(--color-white);
   box-shadow: 0px 1px 2px 0px var(--color-gray);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   & > * {
       display: flex;
       align-items: center;
