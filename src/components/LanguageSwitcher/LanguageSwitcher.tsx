@@ -1,28 +1,35 @@
-import classNames from "classnames";
-import { useTranslation } from "react-i18next";
+import React from 'react';
+import classNames from 'classnames';
+import { useTranslation } from 'react-i18next';
 
-import { LANGUAGES } from "../../services/constants/global";
-import { StyledLanguageSwitcher } from "./StyledLanguageSwitcher";
+import { LANGUAGES, LANGUAGES_CODE_LIST } from '../../services/constants/global';
+import StyledLanguageSwitcher from './StyledLanguageSwitcher';
 
-export const LanguageSwitcher = () => {
+export default function LanguageSwitcher() {
   const { i18n } = useTranslation();
 
   const handleChangeLanguage = (lang: string) => () => {
     i18n.changeLanguage(lang);
-  }
+  };
+
   return (
     <StyledLanguageSwitcher>
-      {LANGUAGES.map((item) => {
-        const langCode = item.code;
-        const langLabel = item.label;
+      {LANGUAGES_CODE_LIST.map((langCode) => {
+        const langLabel = LANGUAGES[langCode];
         return (
-          <button className={classNames(
-            langCode === i18n.language && 'is-active'
-          )} key={langCode} aria-label={langLabel} onClick={handleChangeLanguage(langCode)}>
+          <button
+            type='button'
+            className={classNames(
+              langCode === i18n.language && 'is-active',
+            )}
+            key={langCode}
+            aria-label={langLabel}
+            onClick={handleChangeLanguage(langCode)}
+          >
             {langCode.toUpperCase()}
           </button>
         );
       })}
     </StyledLanguageSwitcher>
   );
-};
+}

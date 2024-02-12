@@ -1,69 +1,91 @@
-import Container from '../UI/Container/Container';
-import { Tooltip } from '../UI/Tooltip/Tooltip';
-import Logo from '../Logo/Logo';
-import { Nav } from '../Nav/Nav';
-import { INavItem } from "../NavItem/NavItem";
-import { ProfileMenu } from '../ProfileMenu/ProfileMenu';
-import { CalorieWidget } from '../CalorieWidget/CalorieWidget';
-import { LanguageSwitcher } from '../LanguageSwitcher/LanguageSwitcher';
-
+import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
+
+import Container from '../UI/Container/Container';
+import Tooltip from '../UI/Tooltip/Tooltip';
+import Logo from '../Logo/Logo';
+import Nav from '../Nav/Nav';
+import { INavItem } from '../NavItem/NavItem';
+import ProfileMenu from '../ProfileMenu/ProfileMenu';
+import CalorieWidget from '../CalorieWidget/CalorieWidget';
+import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
+
 import { StyledHeader, StyledHeaderContent } from './StyleHeader';
 
+import paths from '../../services/router/paths';
+import AuthContext from '../../services/contexts';
+import { IAuthContext } from '../../types/user';
+
 export default function Header() {
-    const { t } = useTranslation();
+  const { t } = useTranslation();
+  const {
+    currentUser,
+  } = useContext<IAuthContext>(AuthContext);
 
-    const menuItems: Array<INavItem> = [
+  const menuItems: Array<INavItem> = [
+    {
+      id: paths.calculator.id,
+      link: paths.calculator.url,
+      title: t('nav.calculator'),
+    },
+    {
+      id: paths.help.id,
+      link: paths.help.url,
+      title: t('nav.help'),
+      submenu: [
         {
-            id: 0,
-            link: '/',
-            title: t('nav.calculator'),
+          id: paths.faq.id,
+          link: paths.faq.url,
+          title: t('nav.faq'),
         },
-        {
-            id: 1,
-            link: '/help',
-            title: t('nav.help'),
-            submenu: [
-                {
-                    id: 2,
-                    link: '/faq',
-                    title: t('nav.faq'),
-                }
-            ]
-        },
-        {
-            id: 4,
-            link: '/contacts',
-            title: t('nav.contacts')
-        }
-    ]
+      ],
+    },
+    {
+      id: paths.contacts.id,
+      link: paths.contacts.url,
+      title: t('nav.contacts'),
+    },
+  ];
 
-    const menuProfileItems: Array<INavItem> = [
-        {
-            id: 4,
-            link: '/settings',
-            title: t('nav.settings')
-        },
-        {
-            id: 5,
-            link: '/',
-            title: t('nav.exit')
-        }
-    ]
+  const menuProfileItems: Array<INavItem> = [
+    {
+      id: paths.settings.id,
+      link: paths.settings.url,
+      title: t('nav.settings'),
+    },
+    {
+      id: paths.exit.id,
+      link: paths.exit.url,
+      title: t('nav.exit'),
+    },
+  ];
 
-    return (
-        <StyledHeader>
-            <Container>
-                <Logo />
-                <StyledHeaderContent>
-                    <Nav items={menuItems} itemsMobile={[...menuItems, ...menuProfileItems]}/>
-                    <LanguageSwitcher />
-                    <Tooltip text={t('calorieWidget.tooltip')}>
-                        <CalorieWidget eaten={765} limit={1980}/>
-                    </Tooltip>
-                    <ProfileMenu items={menuProfileItems} />
-                </StyledHeaderContent>
-            </Container>
-        </StyledHeader>
-    );
+  return (
+    <StyledHeader>
+      <Container>
+        <Logo />
+        <StyledHeaderContent>
+          {
+            Boolean(currentUser) && (
+              <Nav items={menuItems} itemsMobile={[...menuItems, ...menuProfileItems]} />
+            )
+          }
+          <LanguageSwitcher />
+          {
+            Boolean(currentUser) && (
+              <>
+                <Tooltip text={t('calorieWidget.tooltip')}>
+                  <CalorieWidget
+                    eaten={currentUser?.calorieWidget?.eaten}
+                    limit={currentUser?.calorieWidget?.limit}
+                  />
+                </Tooltip>
+                <ProfileMenu items={menuProfileItems} />
+              </>
+            )
+          }
+        </StyledHeaderContent>
+      </Container>
+    </StyledHeader>
+  );
 }

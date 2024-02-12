@@ -1,8 +1,8 @@
-import { createGlobalStyle, css } from "styled-components";
+import { createGlobalStyle, css } from 'styled-components';
 
-export const StyledGlobal = createGlobalStyle`
+const StyledGlobal = createGlobalStyle`
   :root {
-    ${props => Object.keys(props.theme.color).map(colorName => css`--color-${colorName}: ${props.theme.color[colorName]};`)}
+    ${(props) => Object.keys(props.theme.color).map((colorName) => css`--color-${colorName}: ${(props).theme.color[colorName]};`)}
   }
 
   html {
@@ -12,7 +12,7 @@ export const StyledGlobal = createGlobalStyle`
   *,
   *::before,
   *::after {
-    box-sizing: inherit;
+    box-sizing: border-box;
   }
 
   body, h1, h2, h3, h4, h5, h6, p, ul, ol {
@@ -33,3 +33,4 @@ export const StyledGlobal = createGlobalStyle`
       font-size: 32px;
   }
 `;
+export default StyledGlobal;
