@@ -36,6 +36,14 @@ const paths: IPaths = {
     id: 6,
     url: '/exit',
   },
+  signin: {
+    id: 7,
+    url: '/login',
+  },
+  signup: {
+    id: 8,
+    url: '/register',
+  },
 };
 
 export default paths;

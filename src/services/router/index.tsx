@@ -6,12 +6,15 @@ import {
 // pages
 import Root from '../../pages';
 import ErrorScreen from '../../pages/ErrorScreen';
+import SigninScreen from '../../pages/SigninScreen';
+import SignupScreen from '../../pages/SignupScreen';
 import CalculatorScreen from '../../pages/CalculatorScreen';
 import HelpScreen from '../../pages/HelpScreen';
 import ContactsScreen from '../../pages/ContactsScreen';
 import SettingsScreen from '../../pages/SettingsScreen';
 import FaqScreen from '../../pages/FaqScreen';
 
+import ProtectedRoute from './ProtectedRoute';
 import paths from './paths';
 
 const router = createBrowserRouter([
@@ -21,24 +24,32 @@ const router = createBrowserRouter([
     errorElement: <ErrorScreen />,
     children: [
       {
+        path: paths.signin.url,
+        element: <SigninScreen />,
+      },
+      {
+        path: paths.signup.url,
+        element: <SignupScreen />,
+      },
+      {
         path: paths.calculator.url,
-        element: <CalculatorScreen />,
+        element: <ProtectedRoute><CalculatorScreen /></ProtectedRoute>,
       },
       {
         path: paths.settings.url,
-        element: <SettingsScreen />,
+        element: <ProtectedRoute><SettingsScreen /></ProtectedRoute>,
       },
       {
         path: paths.help.url,
-        element: <HelpScreen />,
+        element: <ProtectedRoute><HelpScreen /></ProtectedRoute>,
       },
       {
         path: paths.faq.url,
-        element: <FaqScreen />,
+        element: <ProtectedRoute><FaqScreen /></ProtectedRoute>,
       },
       {
         path: paths.contacts.url,
-        element: <ContactsScreen />,
+        element: <ProtectedRoute><ContactsScreen /></ProtectedRoute>,
       },
     ],
   },
