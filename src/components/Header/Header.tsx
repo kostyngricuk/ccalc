@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import Container from '../UI/Container/Container';
@@ -13,18 +13,20 @@ import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
 import { StyledHeader, StyledHeaderContent } from './StyleHeader';
 
 import paths from '../../services/router/paths';
-import AuthContext from '../../services/contexts';
-import { IAuthContext } from '../../types/user';
+import useAuth from '../../services/hooks/useAuth';
+import { setCredentials } from '../../services/reducers/auth';
 
 export default function Header() {
   const { t } = useTranslation();
   const {
-    currentUser,
-    setCurrentUser
-  } = useContext<IAuthContext>(AuthContext);
+    user
+  } = useAuth();
 
   const handleLogout = () => {
-    setCurrentUser(null)
+    setCredentials({
+      user: null,
+      token: null
+    })
   };
 
   const menuItems: Array<INavItem> = [
@@ -71,18 +73,18 @@ export default function Header() {
         <Logo />
         <StyledHeaderContent>
           {
-            Boolean(currentUser) && (
+            Boolean(user) && (
               <Nav items={menuItems} itemsMobile={[...menuItems, ...menuProfileItems]} />
             )
           }
           <LanguageSwitcher />
           {
-            Boolean(currentUser) && (
+            Boolean(user) && (
               <>
                 <Tooltip text={t('calorieWidget.tooltip')}>
                   <CalorieWidget
-                    eaten={currentUser?.calorieWidget?.eaten}
-                    limit={currentUser?.calorieWidget?.limit}
+                    eaten={user?.calorieWidget?.eaten}
+                    limit={user?.calorieWidget?.limit}
                   />
                 </Tooltip>
                 <ProfileMenu items={menuProfileItems} />

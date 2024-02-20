@@ -18,7 +18,3 @@ interface IUser {
 }
 
 export type TUser = IUser | null;
-export interface IAuthContext {
-  currentUser?: TUser,
-  setCurrentUser?: any,
-}

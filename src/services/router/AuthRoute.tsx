@@ -4,21 +4,15 @@ import { Navigate } from "react-router-dom";
 import paths from "./paths";
 import useAuth from "../hooks/useAuth";
 
-export default function ProtectedRoute({
+export default function AuthRoute({
   children,
-  redirectTo
 }: {
   children: ReactNode,
-  redirectTo?: string
 }) {
   const { user } = useAuth();
 
   if (user) {
-    return children;
+    return <Navigate to={paths.home.url} replace />;
   }
-  return !!redirectTo && <Navigate to={redirectTo} replace />;
-}
-
-ProtectedRoute.defaultProps = {
-  redirectTo: paths.signin.url
+  return children;
 }
