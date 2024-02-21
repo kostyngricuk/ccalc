@@ -2,11 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../store";
 
-import { TUser } from "../../types/user";
+import { IUser } from "../../types/user";
 
 interface AuthState {
-  user: TUser,
-  token: string | null
+  user?: IUser | null,
+  token?: string | null
 }
 
 const initialState: AuthState = {
@@ -20,8 +20,13 @@ export const slice = createSlice({
   reducers: {
     setCredentials: (
       state,
-      action: PayloadAction<AuthState>
+      action: PayloadAction<AuthState | null>
     ) => {
+      if (action.payload === null) {
+        state.user = null;
+        state.token = null;
+        return;
+      }
       const { user, token } = action.payload;
       state.user = user;
       state.token = token;
@@ -33,4 +38,4 @@ export default slice.reducer;
 
 export const { setCredentials } = slice.actions;
 
-export const selectCurrentUser = (state: RootState) => state.auth.user;
+export const selectCurrenIUser = (state: RootState) => state.auth.user;

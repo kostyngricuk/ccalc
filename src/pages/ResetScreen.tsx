@@ -4,7 +4,6 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import { FieldValues, useForm } from 'react-hook-form';
 
 import paths from '../services/router/paths';
-import { setCredentials } from '../services/reducers/auth';
 import useAuth from '../services/hooks/useAuth';
 import { EnumHorizontalPosition } from '../types/global';
 
@@ -30,11 +29,6 @@ export default function SigninScreen() {
     if (!submitData) {
       return;
     }
-    const { userInfo, token } = submitData;
-    setCredentials({
-      user: userInfo,
-      token
-    });
   });
 
   useEffect(() => {

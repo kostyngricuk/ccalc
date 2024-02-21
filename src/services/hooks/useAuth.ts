@@ -1,9 +1,9 @@
 import { useMemo } from 'react'
 import { useAppSelector } from './store'
-import { selectCurrentUser } from '../reducers/auth'
+import { selectCurrenIUser } from '../reducers/auth'
 
 const useAuth = () => {
-  const user = useAppSelector(selectCurrentUser)
+  const user = useAppSelector(selectCurrenIUser)
 
   return useMemo(() => ({ user }), [user])
 }

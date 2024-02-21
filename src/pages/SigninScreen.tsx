@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FieldValues, useForm } from 'react-hook-form';
 
 import paths from '../services/router/paths';
 import { setCredentials } from '../services/reducers/auth';
+import { useAppDispatch } from '../services/hooks/store';
 import useAuth from '../services/hooks/useAuth';
 import { EnumHorizontalPosition } from '../types/global';
 
@@ -16,26 +17,57 @@ import FormField, { EnumFormFieldType } from '../components/UI/FormField/FormFie
 import { EnumInputType, InputControlled } from '../components/UI/Input/Input';
 import Button, { EnumButtonColor, EnumButtonType } from '../components/UI/Button/Button';
 import Text from '../components/UI/Text/Text';
+import { reqLogin } from '../services/api/users';
 
 
-export default function SigninScreen() {
+export default function   SigninScreen() {
   const [response, setResponse] = useState<TResponse>(null);
   const { t } = useTranslation();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { user } = useAuth();
+  const dispatch = useAppDispatch();
 
   const { handleSubmit, control, formState: { errors } } = useForm<FieldValues>();
   const handleRegistration = () => navigate(paths.signup.url);
 
-  const onSubmit = handleSubmit((submitData: FieldValues) => {
+  const onSubmit = handleSubmit(async (submitData: FieldValues) => {
     if (!submitData) {
       return;
     }
-    const { userInfo, token } = submitData;
-    setCredentials({
-      user: userInfo,
-      token
+    const { email, password } = submitData;
+
+    const response = await reqLogin({
+      email,
+      password
     });
+
+    if (!response?.data) {
+      setResponse({
+        status: TResponseStatuses.error,
+        message: 'Something went wrong!'
+      });
+      return;
+    }
+
+    const {
+      success,
+      user,
+      token,
+      message,
+    } = response.data;
+
+    if (!success) {
+      setResponse({
+        status: TResponseStatuses.error,
+        message: message
+      });
+      return;
+    }
+
+    dispatch(setCredentials({
+      user,
+      token
+    }));
   });
 
   useEffect(() => {
@@ -48,8 +80,9 @@ export default function SigninScreen() {
   }, [errors]);
 
   if (user) {
-    return <Navigate to='/' replace />
+    navigate(paths.home.url);
   }
+
   return (
     <Section>
       <Title position={EnumHorizontalPosition.center}>{t('signin.title')}</Title>

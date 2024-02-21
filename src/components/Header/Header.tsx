@@ -15,18 +15,17 @@ import { StyledHeader, StyledHeaderContent } from './StyleHeader';
 import paths from '../../services/router/paths';
 import useAuth from '../../services/hooks/useAuth';
 import { setCredentials } from '../../services/reducers/auth';
+import { useAppDispatch } from '../../services/hooks/store';
 
 export default function Header() {
   const { t } = useTranslation();
   const {
     user
   } = useAuth();
+  const dispatch = useAppDispatch();
 
   const handleLogout = () => {
-    setCredentials({
-      user: null,
-      token: null
-    })
+    dispatch(setCredentials(null))
   };
 
   const menuItems: Array<INavItem> = [

@@ -3,8 +3,8 @@ export enum Genders {
   woman = 'woman',
 }
 
-interface IUser {
-  id?: number,
+export interface IUser {
+  id?: string,
   height?: number,
   weight?: number,
   weightGoal?: number,
@@ -16,5 +16,3 @@ interface IUser {
     eaten: number,
   },
 }
-
-export type TUser = IUser | null;
