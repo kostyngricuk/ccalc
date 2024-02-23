@@ -23,6 +23,12 @@
   "contacts": {
     "title": "Contacts"
   },
+  "signin": {
+    "title": "Sign in"
+  },
+  "signup": {
+    "title": "Sign up"
+  },
   "settings": {
     "title": "Settings",
     "form": {
@@ -64,5 +70,6 @@
   "errors": {
     "404": "Page Not Found!",
     "unknown": "Something went wrong!"
-  }
+  },
+  "copyright": "Kanstantsin Hrytsuk"
 }

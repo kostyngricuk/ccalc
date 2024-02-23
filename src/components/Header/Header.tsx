@@ -20,7 +20,12 @@ export default function Header() {
   const { t } = useTranslation();
   const {
     currentUser,
+    setCurrentUser
   } = useContext<IAuthContext>(AuthContext);
+
+  const handleLogout = () => {
+    setCurrentUser(null)
+  };
 
   const menuItems: Array<INavItem> = [
     {
@@ -55,8 +60,8 @@ export default function Header() {
     },
     {
       id: paths.exit.id,
-      link: paths.exit.url,
       title: t('nav.exit'),
+      handleClick: handleLogout
     },
   ];
 

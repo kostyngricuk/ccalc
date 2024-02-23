@@ -9,14 +9,20 @@ export default function NavSub({
   title,
   children,
 }: {
-  link: string,
+  link?: string,
   title: string,
   children: ReactNode
 }) {
   return (
     <StyledNavSub>
       <DropdownTrigger>
-        <NavLink to={link}>{ title }</NavLink>
+        {
+          link ? (
+            <NavLink to={link}>{ title }</NavLink>
+          ) : (
+            <span>{ title }</span>
+          )
+        }
       </DropdownTrigger>
       <DropdownContent>
         <StyledNavSubWrap>
@@ -25,4 +31,8 @@ export default function NavSub({
       </DropdownContent>
     </StyledNavSub>
   );
+}
+
+NavSub.defaultProps = {
+  link: ''
 }

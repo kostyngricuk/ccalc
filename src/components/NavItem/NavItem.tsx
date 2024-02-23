@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import NavSub from '../NavSub/NavSub';
@@ -6,9 +6,10 @@ import StyledNavItem from './StylesNavItem';
 
 export interface INavItem {
   id: number,
-  link: string,
+  link?: string,
   title: string,
-  submenu?: Array<INavItem>
+  submenu?: Array<INavItem>,
+  handleClick?: MouseEventHandler
 }
 
 export default function NavItem({
@@ -20,20 +21,29 @@ export default function NavItem({
     link,
     title,
     submenu,
+    handleClick
   } = item;
+
+  if (submenu?.length) {
+    return (
+      <StyledNavItem>
+        <NavSub link={link} title={title}>
+          {
+            submenu.map((subItem) => (
+              <NavItem item={subItem} key={subItem.id} />
+            ))
+          }
+        </NavSub>
+      </StyledNavItem>
+    );
+  }
   return (
     <StyledNavItem>
       {
-        submenu?.length ? (
-          <NavSub link={link} title={title}>
-            {
-              submenu.map((subItem) => (
-                <NavItem item={subItem} key={subItem.id} />
-              ))
-            }
-          </NavSub>
-        ) : (
+        link ? (
           <NavLink to={link}>{ title }</NavLink>
+        ) : (
+          <button type='button' onClick={handleClick}>{ title }</button>
         )
       }
     </StyledNavItem>

@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 const StyledNavItem = styled.li`
   position: relative;
-  a {
+  a,
+  button {
     text-decoration: none;
     color: inherit;
     font-weight: 700;
@@ -24,6 +25,11 @@ const StyledNavItem = styled.li`
     @media ${(props) => props.theme.device.tablet} {
       font-size: 32px;
     }
+  }
+  button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
   }
   & + & {
       margin-left: 3rem;
