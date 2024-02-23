@@ -4,6 +4,7 @@ export const StyledInput = styled.div`
   display: inline-block;
   margin-bottom: 20px;
   position: relative;
+  width: 100%;
 `;
 
 export const StyledInputLabel = styled.label`
