@@ -6,6 +6,9 @@ import { FieldValues, useForm } from 'react-hook-form';
 import paths from '../services/router/paths';
 import useAuth from '../services/hooks/useAuth';
 import { EnumHorizontalPosition } from '../types/global';
+import { reqRegister } from '../services/api/users';
+import { useAppDispatch } from '../services/hooks/store';
+import { setCredentials } from '../services/reducers/auth';
 
 import Section from '../components/UI/Section/Section';
 import Title from '../components/UI/Title/Title';
@@ -20,15 +23,60 @@ export default function SignupScreen() {
   const { t } = useTranslation();
   const navigate = useNavigate()
   const { user } = useAuth();
+  const dispatch = useAppDispatch();
 
   const { handleSubmit, control, formState: { errors } } = useForm<FieldValues>();
   const handleLogin = () => navigate(paths.signin.url);
 
-  const onSubmit = handleSubmit((submitData: FieldValues) => {
+  const onSubmit = handleSubmit(async (submitData: FieldValues) => {
     if (!submitData) {
       return;
     }
+    const { email, password, confirmPassword } = submitData;
+
+    if (password !== confirmPassword) {
+      setResponse({
+        status: TResponseStatuses.error,
+        message: 'Password mismatch!'
+      });
+      return;
+    }
+
+    const response = await reqRegister({
+      email,
+      password
+    });
+    if (!response?.data) {
+      setResponse({
+        status: TResponseStatuses.error,
+        message: 'Something went wrong!'
+      });
+      return;
+    }
+
+    const {
+      success,
+      user,
+      token,
+      message,
+    } = response.data;
+    if (!success) {
+      setResponse({
+        status: TResponseStatuses.error,
+        message: message
+      });
+      return;
+    }
+
+    dispatch(setCredentials({
+      user,
+      token
+    }));
   });
+
+  if (user) {
+    navigate(paths.home.url);
+  }
 
   useEffect(() => {
     if (Object.keys(errors).length > 0) {

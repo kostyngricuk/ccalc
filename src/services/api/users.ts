@@ -1,7 +1,7 @@
 import http from '../http';
 
 import { IUser } from '../../types/user';
-import { API_LOGIN } from '../constants/api';
+import { API_LOGIN, API_REGISTER } from '../constants/api';
 
 // const users = [
 //   {
@@ -19,7 +19,7 @@ import { API_LOGIN } from '../constants/api';
 //   },
 // ] as IUser[];
 
-export interface IResLogin {
+interface IResAuth {
   success: boolean,
   user?: IUser,
   token?: string | null,
@@ -34,7 +34,24 @@ export const reqLogin = async ({
   password: string
 }) => {
   try {
-    return await http.post<IResLogin>(API_LOGIN, {
+    return await http.post<IResAuth>(API_LOGIN, {
+      email,
+      password
+    });
+  } catch (error) {
+    return null;
+  }
+}
+
+export const reqRegister = async ({
+  email,
+  password
+}: {
+  email: string,
+  password: string
+}) => {
+  try {
+    return await http.post<IResAuth>(API_REGISTER, {
       email,
       password
     });
