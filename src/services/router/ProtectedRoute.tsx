@@ -3,22 +3,20 @@ import { Navigate } from "react-router-dom";
 
 import paths from "./paths";
 import useAuth from "../hooks/useAuth";
+import { hasAdditionalInfo } from "../utils/auth";
 
 export default function ProtectedRoute({
   children,
-  redirectTo
 }: {
   children: ReactNode,
-  redirectTo?: string
 }) {
   const { user } = useAuth();
 
-  if (user) {
-    return children;
+  if (!user) {
+    return <Navigate to={paths.signin.url} replace />;
   }
-  return !!redirectTo && <Navigate to={redirectTo} replace />;
-}
-
-ProtectedRoute.defaultProps = {
-  redirectTo: paths.signin.url
+  if (user && !hasAdditionalInfo(user)) {
+    return <Navigate to={paths.userInfo.url} replace />;
+  }
+  return children;
 }

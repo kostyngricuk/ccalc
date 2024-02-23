@@ -47,6 +47,10 @@ const paths: IPaths = {
   reset: {
     id: 9,
     url: '/reset'
+  },
+  userInfo: {
+    id: 10,
+    url: '/userInfo'
   }
 };
 

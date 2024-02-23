@@ -45,6 +45,12 @@
       "btnLogin": "Войти"
     }
   },
+  "userInfo": {
+    "title": "Информация о вас",
+    "form": {
+      "btnSubmit": "Сохранить"
+    }
+  },
   "settings": {
     "title": "Настройки",
     "form": {

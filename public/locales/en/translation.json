@@ -45,6 +45,12 @@
       "btnLogin": "Sign in"
     }
   },
+  "userInfo": {
+    "title": "Info about you",
+    "form": {
+      "btnSubmit": "Save"
+    }
+  },
   "settings": {
     "title": "Settings",
     "form": {

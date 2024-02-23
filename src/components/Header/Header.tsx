@@ -16,6 +16,7 @@ import paths from '../../services/router/paths';
 import useAuth from '../../services/hooks/useAuth';
 import { setCredentials } from '../../services/reducers/auth';
 import { useAppDispatch } from '../../services/hooks/store';
+import { hasAdditionalInfo } from '../../services/utils/auth';
 
 export default function Header() {
   const { t } = useTranslation();
@@ -53,18 +54,26 @@ export default function Header() {
     },
   ];
 
-  const menuProfileItems: Array<INavItem> = [
-    {
-      id: paths.settings.id,
-      link: paths.settings.url,
-      title: t('nav.settings'),
-    },
-    {
-      id: paths.exit.id,
-      title: t('nav.exit'),
-      handleClick: handleLogout
-    },
-  ];
+  const menuProfileItems: Array<INavItem> = hasAdditionalInfo(user) ?
+    [
+      {
+        id: paths.settings.id,
+        link: paths.settings.url,
+        title: t('nav.settings'),
+      },
+      {
+        id: paths.exit.id,
+        title: t('nav.exit'),
+        handleClick: handleLogout
+      },
+    ]
+  : [
+      {
+        id: paths.exit.id,
+        title: t('nav.exit'),
+        handleClick: handleLogout
+      },
+    ];
 
   return (
     <StyledHeader>
@@ -72,23 +81,23 @@ export default function Header() {
         <Logo />
         <StyledHeaderContent>
           {
-            Boolean(user) && (
+            hasAdditionalInfo(user) && (
               <Nav items={menuItems} itemsMobile={[...menuItems, ...menuProfileItems]} />
             )
           }
           <LanguageSwitcher />
           {
-            Boolean(user) && (
-              <>
-                <Tooltip text={t('calorieWidget.tooltip')}>
-                  <CalorieWidget
-                    eaten={user?.calorieWidget?.eaten}
-                    limit={user?.calorieWidget?.limit}
-                  />
-                </Tooltip>
-                <ProfileMenu items={menuProfileItems} />
-              </>
+            hasAdditionalInfo(user) && (
+              <Tooltip text={t('calorieWidget.tooltip')}>
+                <CalorieWidget
+                  eaten={user?.calorieWidget?.eaten}
+                  limit={user?.calorieWidget?.limit}
+                />
+              </Tooltip>
             )
+          }
+          {
+            user && <ProfileMenu items={menuProfileItems} />
           }
         </StyledHeaderContent>
       </Container>

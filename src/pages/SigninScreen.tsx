@@ -24,7 +24,6 @@ export default function   SigninScreen() {
   const [response, setResponse] = useState<TResponse>(null);
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { user } = useAuth();
   const dispatch = useAppDispatch();
 
   const { handleSubmit, control, formState: { errors } } = useForm<FieldValues>();
@@ -78,10 +77,6 @@ export default function   SigninScreen() {
       });
     }
   }, [errors]);
-
-  if (user) {
-    navigate(paths.home.url);
-  }
 
   return (
     <Section>

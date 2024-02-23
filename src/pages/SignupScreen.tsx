@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { FieldValues, useForm } from 'react-hook-form';
 
 import paths from '../services/router/paths';
@@ -17,12 +17,12 @@ import { TResponse, TResponseStatuses } from '../components/UI/Form/types';
 import FormField, { EnumFormFieldType } from '../components/UI/FormField/FormField';
 import { EnumInputType, InputControlled } from '../components/UI/Input/Input';
 import Button, { EnumButtonColor, EnumButtonType } from '../components/UI/Button/Button';
+import { hasAdditionalInfo } from '../services/utils/auth';
 
 export default function SignupScreen() {
   const [response, setResponse] = useState<TResponse>(null);
   const { t } = useTranslation();
-  const navigate = useNavigate()
-  const { user } = useAuth();
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const { handleSubmit, control, formState: { errors } } = useForm<FieldValues>();
@@ -74,10 +74,6 @@ export default function SignupScreen() {
     }));
   });
 
-  if (user) {
-    navigate(paths.home.url);
-  }
-
   useEffect(() => {
     if (Object.keys(errors).length > 0) {
       setResponse({
@@ -87,9 +83,6 @@ export default function SignupScreen() {
     }
   }, [errors]);
 
-  if (user) {
-    return <Navigate to='/' replace />
-  }
   return (
     <Section>
       <Title position={EnumHorizontalPosition.center}>{t('signup.title')}</Title>

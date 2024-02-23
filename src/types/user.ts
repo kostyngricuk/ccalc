@@ -16,3 +16,5 @@ export interface IUser {
     eaten: number,
   },
 }
+
+export type TUser = IUser | null | undefined;

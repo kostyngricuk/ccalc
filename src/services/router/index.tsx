@@ -11,6 +11,7 @@ import ErrorScreen from '../../pages/ErrorScreen';
 import SigninScreen from '../../pages/SigninScreen';
 import SignupScreen from '../../pages/SignupScreen';
 import ResetScreen from '../../pages/ResetScreen';
+import UserInfoScreen from '../../pages/UserInfoScreen';
 import CalculatorScreen from '../../pages/CalculatorScreen';
 import HelpScreen from '../../pages/HelpScreen';
 import ContactsScreen from '../../pages/ContactsScreen';
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: paths.reset.url,
         element: <AuthRoute><ResetScreen /></AuthRoute>,
+      },
+      {
+        path: paths.userInfo.url,
+        element: <UserInfoScreen />,
       },
       {
         path: paths.calculator.url,
