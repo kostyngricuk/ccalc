@@ -5,13 +5,13 @@ import type { RootState } from "../store";
 import { IUser } from "../../types/user";
 
 interface AuthState {
-  user?: IUser | null,
-  token?: string | null
+  currentUser?: IUser | null,
+  currentToken?: string | null
 }
 
 const initialState: AuthState = {
-  user: null,
-  token: null
+  currentUser: null,
+  currentToken: null
 }
 
 export const slice = createSlice({
@@ -23,13 +23,13 @@ export const slice = createSlice({
       action: PayloadAction<AuthState | null>
     ) => {
       if (action.payload === null) {
-        state.user = null;
-        state.token = null;
+        state.currentUser = null;
+        state.currentToken = null;
         return;
       }
-      const { user, token } = action.payload;
-      state.user = user;
-      state.token = token;
+      const { currentUser, currentToken } = action.payload;
+      state.currentUser = currentUser;
+      state.currentToken = currentToken;
     },
   }
 })
@@ -38,4 +38,5 @@ export default slice.reducer;
 
 export const { setCredentials } = slice.actions;
 
-export const selectCurrenIUser = (state: RootState) => state.auth.user;
+export const selectCurrenIUser = (state: RootState) => state.auth.currentUser;
+export const selectCurrentToken = (state: RootState) => state.auth.currentToken;

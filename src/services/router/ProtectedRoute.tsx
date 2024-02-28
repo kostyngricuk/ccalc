@@ -10,12 +10,12 @@ export default function ProtectedRoute({
 }: {
   children: ReactNode,
 }) {
-  const { user } = useAuth();
+  const { currentUser } = useAuth();
 
-  if (!user) {
+  if (!currentUser) {
     return <Navigate to={paths.signin.url} replace />;
   }
-  if (user && !hasAdditionalInfo(user)) {
+  if (currentUser && !hasAdditionalInfo(currentUser)) {
     return <Navigate to={paths.userInfo.url} replace />;
   }
   return children;

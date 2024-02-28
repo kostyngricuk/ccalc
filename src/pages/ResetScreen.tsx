@@ -20,7 +20,7 @@ export default function SigninScreen() {
   const [response, setResponse] = useState<TResponse>(null);
   const { t } = useTranslation();
   const navigate = useNavigate()
-  const { user } = useAuth();
+  const { currentUser } = useAuth();
 
   const { handleSubmit, control, formState: { errors } } = useForm<FieldValues>();
   const handleLogin = () => navigate(paths.signin.url);
@@ -40,7 +40,7 @@ export default function SigninScreen() {
     }
   }, [errors]);
 
-  if (user) {
+  if (currentUser) {
     return <Navigate to='/' replace />
   }
   return (

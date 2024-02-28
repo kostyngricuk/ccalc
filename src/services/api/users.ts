@@ -1,23 +1,7 @@
 import http from '../http';
 
 import { IUser } from '../../types/user';
-import { API_LOGIN, API_REGISTER } from '../constants/api';
-
-// const users = [
-//   {
-//     id: 0,
-//     height: 180,
-//     weight: 85,
-//     weightGoal: 80,
-//     age: 25,
-//     gender: Genders.man,
-//     email: 'tesIUser@gmail.com',
-//     calorieWidget: {
-//       limit: 1805,
-//       eaten: 200,
-//     },
-//   },
-// ] as IUser[];
+import { API_LOGIN, API_REGISTER, API_USER_UPDATE } from '../constants/api';
 
 interface IResAuth {
   success: boolean,
@@ -54,6 +38,26 @@ export const reqRegister = async ({
     return await http.post<IResAuth>(API_REGISTER, {
       email,
       password
+    });
+  } catch (error) {
+    return null;
+  }
+}
+
+export const updateUserInfo = async ({
+  email,
+  token
+}: {
+  email: string,
+  token?: string | null
+}) => {
+  try {
+    return await http.post<IResAuth>(API_USER_UPDATE, {
+      email,
+    }, {
+      headers: {
+        "Authorization": `Bearer ${token}`
+      }
     });
   } catch (error) {
     return null;

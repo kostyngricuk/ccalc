@@ -10,7 +10,7 @@ export interface IUser {
   weightGoal?: number,
   age?: number,
   gender?: Genders,
-  email?: string,
+  email: string,
   calorieWidget?: {
     limit: number,
     eaten: number,

@@ -29,7 +29,7 @@ interface IInputBase {
 interface IInput extends IInputBase {
   error: FieldError | string | undefined;
   onChange: ChangeEventHandler<HTMLInputElement> | undefined;
-  checked?: boolean;
+  checked?: boolean | undefined;
 }
 interface IInputControlled extends IInputBase {
   required?: boolean | undefined;

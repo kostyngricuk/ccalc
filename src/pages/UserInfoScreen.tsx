@@ -8,6 +8,7 @@ import useAuth from '../services/hooks/useAuth';
 import { EnumHorizontalPosition } from '../types/global';
 import { UNITS } from '../services/constants/global';
 import { Genders } from '../types/user';
+import { updateUserInfo } from '../services/api/users';
 
 import Section from '../components/UI/Section/Section';
 import Title from '../components/UI/Title/Title';
@@ -16,19 +17,56 @@ import { TResponse, TResponseStatuses } from '../components/UI/Form/types';
 import FormField, { EnumFormFieldType } from '../components/UI/FormField/FormField';
 import { EnumInputType, Input, InputControlled } from '../components/UI/Input/Input';
 import Button, { EnumButtonType } from '../components/UI/Button/Button';
+import { useAppDispatch } from '../services/hooks/store';
+import { setCredentials } from '../services/reducers/auth';
 
 export default function UserInfoScreen() {
   const [response, setResponse] = useState<TResponse>(null);
   const { t } = useTranslation();
   const navigate = useNavigate()
-  const { user } = useAuth();
+  const { currentUser, currentToken } = useAuth();
+  const dispatch = useAppDispatch();
 
   const { handleSubmit, control, formState: { errors } } = useForm<FieldValues>();
 
-  const onSubmit = handleSubmit((submitData: FieldValues) => {
-    if (!submitData) {
+  const onSubmit = handleSubmit(async (submitData: FieldValues) => {
+    if (!submitData || !currentUser) {
       return;
     }
+
+    const response = await updateUserInfo({
+      email: currentUser.email,
+      token: currentToken,
+      ...submitData
+    });
+
+    if (!response?.data) {
+      setResponse({
+        status: TResponseStatuses.error,
+        message: 'Something went wrong!'
+      });
+      return;
+    }
+
+    const {
+      success,
+      user,
+      token,
+      message,
+    } = response.data;
+
+    if (!success) {
+      setResponse({
+        status: TResponseStatuses.error,
+        message: message
+      });
+      return;
+    }
+
+    dispatch(setCredentials({
+      currentUser: user,
+      currentToken: token,
+    }));
   });
 
   useEffect(() => {
@@ -40,7 +78,7 @@ export default function UserInfoScreen() {
     }
   }, [errors]);
 
-  if (!user) {
+  if (!currentUser) {
     navigate(paths.signin.url);
   }
 
@@ -52,7 +90,7 @@ export default function UserInfoScreen() {
           <Controller
             name="gender"
             control={control}
-            defaultValue={user?.gender}
+            defaultValue={Genders.man}
             rules={{
               required: true,
             }}
@@ -83,8 +121,9 @@ export default function UserInfoScreen() {
         <FormField>
           <InputControlled
             type={EnumInputType.number}
-            value={user?.age?.toString()}
+            value={currentUser?.age?.toString()}
             name="age"
+            required
             label={t('form.field.age')}
             control={control}
           />
@@ -92,8 +131,9 @@ export default function UserInfoScreen() {
         <FormField>
           <InputControlled
             type={EnumInputType.number}
-            value={user?.height?.toString()}
+            value={currentUser?.height?.toString()}
             name="height"
+            required
             label={t('form.field.height')}
             control={control}
             units={t(`units.${UNITS.sm}`)}
@@ -102,8 +142,9 @@ export default function UserInfoScreen() {
         <FormField>
           <InputControlled
             type={EnumInputType.number}
-            value={user?.weight?.toString()}
+            value={currentUser?.weight?.toString()}
             name="weight"
+            required
             label={t('form.field.weight')}
             control={control}
             units={t(`units.${UNITS.kg}`)}
@@ -112,8 +153,9 @@ export default function UserInfoScreen() {
         <FormField>
           <InputControlled
             type={EnumInputType.number}
-            value={user?.weightGoal?.toString()}
+            value={currentUser?.weightGoal?.toString()}
             name="weightGoal"
+            required
             label={t('form.field.weightGoal')}
             control={control}
             units={t(`units.${UNITS.kg}`)}

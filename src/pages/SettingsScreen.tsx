@@ -19,7 +19,7 @@ import useAuth from '../services/hooks/useAuth';
 export default function SettingsScreen() {
   const [response, setResponse] = useState<TResponse>(null);
   const { t } = useTranslation();
-  const { user } = useAuth();
+  const { currentUser } = useAuth();
 
   const { handleSubmit, control, formState: { errors } } = useForm<FieldValues>();
 
@@ -57,7 +57,7 @@ export default function SettingsScreen() {
           <Controller
             name="gender"
             control={control}
-            defaultValue={user?.gender}
+            defaultValue={currentUser?.gender}
             rules={{
               required: true,
             }}
@@ -89,14 +89,14 @@ export default function SettingsScreen() {
           <FormField type={EnumFormFieldType.row}>
             <InputControlled
               type={EnumInputType.number}
-              value={user?.age?.toString()}
+              value={currentUser?.age?.toString()}
               name="age"
               label={t('form.field.age')}
               control={control}
             />
             <InputControlled
               type={EnumInputType.number}
-              value={user?.height?.toString()}
+              value={currentUser?.height?.toString()}
               name="height"
               label={t('form.field.height')}
               control={control}
@@ -104,7 +104,7 @@ export default function SettingsScreen() {
             />
             <InputControlled
               type={EnumInputType.number}
-              value={user?.weight?.toString()}
+              value={currentUser?.weight?.toString()}
               name="weight"
               label={t('form.field.weight')}
               control={control}
@@ -113,7 +113,7 @@ export default function SettingsScreen() {
           </FormField>
           <InputControlled
             type={EnumInputType.number}
-            value={user?.weightGoal?.toString()}
+            value={currentUser?.weightGoal?.toString()}
             name="weightGoal"
             label={t('form.field.weightGoal')}
             control={control}
@@ -122,7 +122,7 @@ export default function SettingsScreen() {
         </FormField>
         <InputControlled
           type={EnumInputType.email}
-          value={user?.email}
+          value={currentUser?.email}
           name="email"
           label={t('form.field.email')}
           required

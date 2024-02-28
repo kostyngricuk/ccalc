@@ -64,8 +64,8 @@ export default function   SigninScreen() {
     }
 
     dispatch(setCredentials({
-      user,
-      token
+      currentUser: user,
+      currentToken: token
     }));
   });
 
