@@ -6,7 +6,6 @@ import { API_LOGIN, API_REGISTER, API_USER_UPDATE } from '../constants/api';
 interface IResAuth {
   success: boolean,
   user?: IUser,
-  token?: string | null,
   message?: string
 }
 

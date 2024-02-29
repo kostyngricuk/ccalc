@@ -24,7 +24,7 @@ export default function UserInfoScreen() {
   const [response, setResponse] = useState<TResponse>(null);
   const { t } = useTranslation();
   const navigate = useNavigate()
-  const { currentUser, currentToken } = useAuth();
+  const { currentUser } = useAuth();
   const dispatch = useAppDispatch();
 
   const { handleSubmit, control, formState: { errors } } = useForm<FieldValues>();
@@ -36,7 +36,6 @@ export default function UserInfoScreen() {
 
     const response = await updateUserInfo({
       email: currentUser.email,
-      token: currentToken,
       ...submitData
     });
 
@@ -65,7 +64,6 @@ export default function UserInfoScreen() {
 
     dispatch(setCredentials({
       currentUser: user,
-      currentToken: token,
     }));
   });
 

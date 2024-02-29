@@ -51,7 +51,6 @@ export default function   SigninScreen() {
     const {
       success,
       user,
-      token,
       message,
     } = response.data;
 
@@ -64,8 +63,7 @@ export default function   SigninScreen() {
     }
 
     dispatch(setCredentials({
-      currentUser: user,
-      currentToken: token
+      currentUser: user
     }));
   });
 

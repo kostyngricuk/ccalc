@@ -1,12 +1,11 @@
 import { useMemo } from 'react'
 import { useAppSelector } from './store'
-import { selectCurrenIUser, selectCurrentToken } from '../reducers/auth'
+import { selectCurrenIUser } from '../reducers/auth'
 
 const useAuth = () => {
   const currentUser = useAppSelector(selectCurrenIUser)
-  const currentToken = useAppSelector(selectCurrentToken)
 
-  return useMemo(() => ({ currentUser, currentToken }), [currentUser, currentToken])
+  return useMemo(() => ({ currentUser }), [currentUser])
 }
 
 export default useAuth;
