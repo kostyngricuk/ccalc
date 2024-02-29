@@ -19,6 +19,7 @@ import { EnumInputType, Input, InputControlled } from '../components/UI/Input/In
 import Button, { EnumButtonType } from '../components/UI/Button/Button';
 import { useAppDispatch } from '../services/hooks/store';
 import { setCredentials } from '../services/reducers/auth';
+import { hasAdditionalInfo } from '../services/utils/auth';
 
 export default function UserInfoScreen() {
   const [response, setResponse] = useState<TResponse>(null);
@@ -35,7 +36,6 @@ export default function UserInfoScreen() {
     }
 
     const response = await updateUserInfo({
-      email: currentUser.email,
       ...submitData
     });
 
@@ -50,7 +50,6 @@ export default function UserInfoScreen() {
     const {
       success,
       user,
-      token,
       message,
     } = response.data;
 
@@ -65,6 +64,10 @@ export default function UserInfoScreen() {
     dispatch(setCredentials({
       currentUser: user,
     }));
+
+    if (hasAdditionalInfo(user)) {
+      navigate(paths.home.url);
+    }
   });
 
   useEffect(() => {

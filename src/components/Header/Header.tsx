@@ -20,9 +20,7 @@ import { hasAdditionalInfo } from '../../services/utils/auth';
 
 export default function Header() {
   const { t } = useTranslation();
-  const {
-    user
-  } = useAuth();
+  const {currentUser } = useAuth();
   const dispatch = useAppDispatch();
 
   const handleLogout = () => {
@@ -54,7 +52,7 @@ export default function Header() {
     },
   ];
 
-  const menuProfileItems: Array<INavItem> = hasAdditionalInfo(user) ?
+  const menuProfileItems: Array<INavItem> = hasAdditionalInfo(currentUser) ?
     [
       {
         id: paths.settings.id,
@@ -81,23 +79,23 @@ export default function Header() {
         <Logo />
         <StyledHeaderContent>
           {
-            hasAdditionalInfo(user) && (
+            hasAdditionalInfo(currentUser) && (
               <Nav items={menuItems} itemsMobile={[...menuItems, ...menuProfileItems]} />
             )
           }
           <LanguageSwitcher />
           {
-            hasAdditionalInfo(user) && (
+            hasAdditionalInfo(currentUser) && (
               <Tooltip text={t('calorieWidget.tooltip')}>
                 <CalorieWidget
-                  eaten={user?.calorieWidget?.eaten}
-                  limit={user?.calorieWidget?.limit}
+                  eaten={currentUser?.calorieWidget?.eaten}
+                  limit={currentUser?.calorieWidget?.limit}
                 />
               </Tooltip>
             )
           }
           {
-            user && <ProfileMenu items={menuProfileItems} />
+            currentUser && <ProfileMenu items={menuProfileItems} />
           }
         </StyledHeaderContent>
       </Container>

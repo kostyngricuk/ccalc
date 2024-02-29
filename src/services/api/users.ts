@@ -1,6 +1,6 @@
 import http from '../http';
 
-import { IUser } from '../../types/user';
+import { Genders, IUser } from '../../types/user';
 import { API_LOGIN, API_REGISTER, API_USER_UPDATE } from '../constants/api';
 
 interface IResAuth {
@@ -44,19 +44,25 @@ export const reqRegister = async ({
 }
 
 export const updateUserInfo = async ({
-  email,
-  token
+  gender,
+  age,
+  height,
+  weight,
+  weightGoal
 }: {
-  email: string,
-  token?: string | null
+  gender?: Genders,
+  age?: number,
+  height?: number,
+  weight?: number,
+  weightGoal?: number,
 }) => {
   try {
     return await http.post<IResAuth>(API_USER_UPDATE, {
-      email,
-    }, {
-      headers: {
-        "Authorization": `Bearer ${token}`
-      }
+      gender,
+      age,
+      height,
+      weight,
+      weightGoal
     });
   } catch (error) {
     return null;

@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../store";
+import Cookies from 'js-cookie';
+import { jwtDecode } from "jwt-decode";
 
 import { IUser } from "../../types/user";
 
@@ -8,8 +10,10 @@ interface AuthState {
   currentUser?: IUser | null,
 }
 
+const accessToken = Cookies.get('e-access-token');
+
 const initialState: AuthState = {
-  currentUser: null,
+  currentUser: accessToken ? jwtDecode(accessToken) : null,
 }
 
 export const slice = createSlice({
@@ -22,6 +26,7 @@ export const slice = createSlice({
     ) => {
       if (action.payload === null) {
         state.currentUser = null;
+        Cookies.remove('e-access-token');
         return;
       }
       const { currentUser } = action.payload;
