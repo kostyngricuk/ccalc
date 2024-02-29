@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { FieldValues, useForm } from 'react-hook-form';
 
 import paths from '../services/router/paths';
-import useAuth from '../services/hooks/useAuth';
 import { EnumHorizontalPosition } from '../types/global';
 import { reqRegister } from '../services/api/users';
 import { useAppDispatch } from '../services/hooks/store';
@@ -17,7 +16,6 @@ import { TResponse, TResponseStatuses } from '../components/UI/Form/types';
 import FormField, { EnumFormFieldType } from '../components/UI/FormField/FormField';
 import { EnumInputType, InputControlled } from '../components/UI/Input/Input';
 import Button, { EnumButtonColor, EnumButtonType } from '../components/UI/Button/Button';
-import { hasAdditionalInfo } from '../services/utils/auth';
 
 export default function SignupScreen() {
   const [response, setResponse] = useState<TResponse>(null);
@@ -42,11 +40,11 @@ export default function SignupScreen() {
       return;
     }
 
-    const response = await reqRegister({
+    const res = await reqRegister({
       email,
       password
     });
-    if (!response?.data) {
+    if (!res?.data) {
       setResponse({
         status: TResponseStatuses.error,
         message: 'Something went wrong!'
@@ -57,13 +55,12 @@ export default function SignupScreen() {
     const {
       success,
       user,
-      token,
       message,
-    } = response.data;
+    } = res.data;
     if (!success) {
       setResponse({
         status: TResponseStatuses.error,
-        message: message
+        message
       });
       return;
     }

@@ -6,7 +6,6 @@ import { FieldValues, useForm } from 'react-hook-form';
 import paths from '../services/router/paths';
 import { setCredentials } from '../services/reducers/auth';
 import { useAppDispatch } from '../services/hooks/store';
-import useAuth from '../services/hooks/useAuth';
 import { EnumHorizontalPosition } from '../types/global';
 
 import Section from '../components/UI/Section/Section';
@@ -35,12 +34,12 @@ export default function   SigninScreen() {
     }
     const { email, password } = submitData;
 
-    const response = await reqLogin({
+    const res = await reqLogin({
       email,
       password
     });
 
-    if (!response?.data) {
+    if (!res?.data) {
       setResponse({
         status: TResponseStatuses.error,
         message: 'Something went wrong!'
@@ -52,12 +51,12 @@ export default function   SigninScreen() {
       success,
       user,
       message,
-    } = response.data;
+    } = res.data;
 
     if (!success) {
       setResponse({
         status: TResponseStatuses.error,
-        message: message
+        message
       });
       return;
     }

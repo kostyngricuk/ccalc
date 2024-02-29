@@ -1,6 +1,6 @@
 import { TUser } from "../../types/user";
 
-export const hasAdditionalInfo = (user: TUser) => {
+const hasAdditionalInfo = (user: TUser) => {
   if (
     !user?.gender ||
     !user?.age ||
@@ -12,3 +12,4 @@ export const hasAdditionalInfo = (user: TUser) => {
   }
   return true;
 };
+export default hasAdditionalInfo;

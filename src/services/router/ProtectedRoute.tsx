@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 
 import paths from "./paths";
 import useAuth from "../hooks/useAuth";
-import { hasAdditionalInfo } from "../utils/auth";
+import hasAdditionalInfo from "../utils/auth";
 
 export default function ProtectedRoute({
   children,

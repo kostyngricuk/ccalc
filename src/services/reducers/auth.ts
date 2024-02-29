@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import type { RootState } from "../store";
 import Cookies from 'js-cookie';
 import { jwtDecode } from "jwt-decode";
 
+import type { RootState } from "../store";
 import { IUser } from "../../types/user";
 
 interface AuthState {

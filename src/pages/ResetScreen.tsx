@@ -27,8 +27,9 @@ export default function SigninScreen() {
 
   const onSubmit = handleSubmit((submitData: FieldValues) => {
     if (!submitData) {
-      return;
+      return false;
     }
+    return false;
   });
 
   useEffect(() => {

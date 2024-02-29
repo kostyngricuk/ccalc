@@ -16,7 +16,7 @@ import paths from '../../services/router/paths';
 import useAuth from '../../services/hooks/useAuth';
 import { setCredentials } from '../../services/reducers/auth';
 import { useAppDispatch } from '../../services/hooks/store';
-import { hasAdditionalInfo } from '../../services/utils/auth';
+import hasAdditionalInfo from '../../services/utils/auth';
 
 export default function Header() {
   const { t } = useTranslation();
