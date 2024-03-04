@@ -5,18 +5,18 @@ import paths from "./paths";
 import useAuth from "../hooks/useAuth";
 import hasAdditionalInfo from "../utils/auth";
 
-export default function ProtectedRoute({
+export default function AuthRoute({
   children,
 }: {
   children: ReactNode,
 }) {
   const { currentUser } = useAuth();
 
-  if (!currentUser) {
-    return <Navigate to={paths.signin.url} replace />;
-  }
   if (currentUser && !hasAdditionalInfo(currentUser)) {
     return <Navigate to={paths.userInfo.url} replace />;
+  }
+  if (currentUser && hasAdditionalInfo(currentUser)) {
+    return <Navigate to={paths.home.url} replace />;
   }
   return children;
 }

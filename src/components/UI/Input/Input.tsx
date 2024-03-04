@@ -21,15 +21,15 @@ export enum EnumInputType {
 
 interface IInputBase {
   name: FieldPath<FieldValues>;
-  type: EnumInputType | undefined;
-  value: string | undefined;
+  type?: EnumInputType | undefined;
+  value?: string | undefined;
   label: string | undefined;
   units?: string;
 }
 interface IInput extends IInputBase {
   error: FieldError | string | undefined;
   onChange: ChangeEventHandler<HTMLInputElement> | undefined;
-  checked?: boolean;
+  checked?: boolean | undefined;
 }
 interface IInputControlled extends IInputBase {
   required?: boolean | undefined;
@@ -75,16 +75,18 @@ export function Input(props: IInput) {
   );
 }
 Input.defaultProps = {
+  type: EnumInputType.text,
   units: '',
   checked: false,
+  value: ''
 };
 
 export function InputControlled({
   name,
-  type = EnumInputType.text,
-  value = '',
-  required = false,
-  label = '',
+  type,
+  value,
+  required,
+  label,
   units,
   control,
 }: IInputControlled) {
@@ -112,6 +114,8 @@ export function InputControlled({
   );
 }
 InputControlled.defaultProps = {
+  type: EnumInputType.text,
   units: '',
   required: false,
+  value: '',
 };

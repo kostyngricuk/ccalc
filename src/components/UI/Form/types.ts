@@ -10,9 +10,10 @@ export interface IResponseSuccess {
   message: string
 }
 
-export interface IResponseErrors {
+export interface IResponseError {
   status: TResponseStatuses.error,
-  errors: FieldErrors<FieldValues>
+  message?: string,
+  errors?: FieldErrors<FieldValues>
 }
 
-export type TResponse = IResponseSuccess | IResponseErrors | null;
+export type TResponse = IResponseSuccess | IResponseError | null;

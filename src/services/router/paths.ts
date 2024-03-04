@@ -44,6 +44,14 @@ const paths: IPaths = {
     id: 8,
     url: '/register',
   },
+  reset: {
+    id: 9,
+    url: '/reset'
+  },
+  userInfo: {
+    id: 10,
+    url: '/userInfo'
+  }
 };
 
 export default paths;

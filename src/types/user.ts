@@ -3,22 +3,18 @@ export enum Genders {
   woman = 'woman',
 }
 
-interface IUser {
-  id?: number,
+export interface IUser {
+  id?: string,
   height?: number,
   weight?: number,
   weightGoal?: number,
   age?: number,
   gender?: Genders,
-  email?: string,
+  email: string,
   calorieWidget?: {
     limit: number,
     eaten: number,
   },
 }
 
-export type TUser = IUser | null;
-export interface IAuthContext {
-  currentUser?: TUser,
-  setCurrentUser?: any,
-}
+export type TUser = IUser | null | undefined;

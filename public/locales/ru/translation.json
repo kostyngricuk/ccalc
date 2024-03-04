@@ -24,10 +24,32 @@
     "title": "Контакты"
   },
   "signin": {
-    "title": "Авторизация"
+    "title": "Авторизация",
+    "form": {
+      "btnSubmit": "Войти",
+      "btnRegistration": "Создать аккаунт"
+    },
+    "resetPassword": "Восстановить пароль"
   },
   "signup": {
-    "title": "Регистрация"
+    "title": "Регистрация",
+    "form": {
+      "btnSubmit": "Создать",
+      "btnLogin": "Войти"
+    }
+  },
+  "reset": {
+    "title": "Сбросить пароль",
+    "form": {
+      "btnSubmit": "Сбросить",
+      "btnLogin": "Войти"
+    }
+  },
+  "userInfo": {
+    "title": "Информация о вас",
+    "form": {
+      "btnSubmit": "Сохранить"
+    }
   },
   "settings": {
     "title": "Настройки",
@@ -52,6 +74,8 @@
         "woman": "Женщина"
       },
       "email": "Email",
+      "password": "Пароль",
+      "confirmPassword": "Подтверждение пароля",
       "oldPassword": "Старый пароль",
       "newPassword": "Новый пароль",
       "confirmNewPassword": "Подтверждение нового пароля",

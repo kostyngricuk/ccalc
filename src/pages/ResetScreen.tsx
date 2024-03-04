@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { FieldValues, useForm } from 'react-hook-form';
 
 import paths from '../services/router/paths';
+import useAuth from '../services/hooks/useAuth';
 import { EnumHorizontalPosition } from '../types/global';
-import { reqRegister } from '../services/api/users';
-import { useAppDispatch } from '../services/hooks/store';
-import { setCredentials } from '../services/reducers/auth';
 
 import Section from '../components/UI/Section/Section';
 import Title from '../components/UI/Title/Title';
@@ -17,57 +15,21 @@ import FormField, { EnumFormFieldType } from '../components/UI/FormField/FormFie
 import { EnumInputType, InputControlled } from '../components/UI/Input/Input';
 import Button, { EnumButtonColor, EnumButtonType } from '../components/UI/Button/Button';
 
-export default function SignupScreen() {
+
+export default function SigninScreen() {
   const [response, setResponse] = useState<TResponse>(null);
   const { t } = useTranslation();
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
+  const navigate = useNavigate()
+  const { currentUser } = useAuth();
 
   const { handleSubmit, control, formState: { errors } } = useForm<FieldValues>();
   const handleLogin = () => navigate(paths.signin.url);
 
-  const onSubmit = handleSubmit(async (submitData: FieldValues) => {
+  const onSubmit = handleSubmit((submitData: FieldValues) => {
     if (!submitData) {
-      return;
+      return false;
     }
-    const { email, password, confirmPassword } = submitData;
-
-    if (password !== confirmPassword) {
-      setResponse({
-        status: TResponseStatuses.error,
-        message: 'Password mismatch!'
-      });
-      return;
-    }
-
-    const res = await reqRegister({
-      email,
-      password
-    });
-    if (!res?.data) {
-      setResponse({
-        status: TResponseStatuses.error,
-        message: 'Something went wrong!'
-      });
-      return;
-    }
-
-    const {
-      success,
-      user,
-      message,
-    } = res.data;
-    if (!success) {
-      setResponse({
-        status: TResponseStatuses.error,
-        message
-      });
-      return;
-    }
-
-    dispatch(setCredentials({
-      currentUser: user
-    }));
+    return false;
   });
 
   useEffect(() => {
@@ -79,9 +41,12 @@ export default function SignupScreen() {
     }
   }, [errors]);
 
+  if (currentUser) {
+    return <Navigate to='/' replace />
+  }
   return (
     <Section>
-      <Title position={EnumHorizontalPosition.center}>{t('signup.title')}</Title>
+      <Title position={EnumHorizontalPosition.center}>{t('reset.title')}</Title>
       <Form onSubmit={onSubmit} response={response}>
         <InputControlled
           type={EnumInputType.email}
@@ -90,32 +55,16 @@ export default function SignupScreen() {
           required
           control={control}
         />
-        <InputControlled
-          type={EnumInputType.password}
-          name="password"
-          required
-          value=""
-          label={t('form.field.password')}
-          control={control}
-        />
-        <InputControlled
-          type={EnumInputType.password}
-          name="confirmPassword"
-          required
-          value=""
-          label={t('form.field.confirmPassword')}
-          control={control}
-        />
         <FormField type={EnumFormFieldType.actions}>
           <Button type={EnumButtonType.submit}>
-            {t('signup.form.btnSubmit')}
+            {t('reset.form.btnSubmit')}
           </Button>
           <Button
             color={EnumButtonColor.black}
             $isOutline
             onClick={handleLogin}
           >
-            {t('signup.form.btnLogin')}
+            {t('reset.form.btnLogin')}
           </Button>
         </FormField>
       </Form>

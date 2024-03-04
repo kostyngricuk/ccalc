@@ -24,10 +24,32 @@
     "title": "Contacts"
   },
   "signin": {
-    "title": "Sign in"
+    "title": "Sign in",
+    "form": {
+      "btnSubmit": "Go",
+      "btnRegistration": "Create account"
+    },
+    "resetPassword": "Reset password"
   },
   "signup": {
-    "title": "Sign up"
+    "title": "Sign up",
+    "form": {
+      "btnSubmit": "Create",
+      "btnLogin": "Sign in"
+    }
+  },
+  "reset": {
+    "title": "Reset Password",
+    "form": {
+      "btnSubmit": "Reset",
+      "btnLogin": "Sign in"
+    }
+  },
+  "userInfo": {
+    "title": "Info about you",
+    "form": {
+      "btnSubmit": "Save"
+    }
   },
   "settings": {
     "title": "Settings",
@@ -52,6 +74,8 @@
         "woman": "Woman"
       },
       "email": "Email",
+      "password": "Password",
+      "confirmPassword": "Confirm password",
       "oldPassword": "Old password",
       "newPassword": "New password",
       "confirmNewPassword": "Confirm new password",

@@ -1,26 +1,70 @@
-import { Genders, TUser } from '../../types/user';
+import http from '../http';
 
-const users = [
-  {
-    id: 0,
-    height: 180,
-    weight: 85,
-    weightGoal: 80,
-    age: 25,
-    gender: Genders.man,
-    email: 'testuser@gmail.com',
-    calorieWidget: {
-      limit: 1805,
-      eaten: 200,
-    },
-  },
-] as TUser[];
+import { Genders, IUser } from '../../types/user';
+import { API_LOGIN, API_REGISTER, API_USER_UPDATE } from '../constants/api';
 
-const getUserById = (id: number): TUser => {
-  const targetUser = users.find((user) => user?.id === id);
-  if (targetUser) {
-    return targetUser;
+interface IResAuth {
+  success: boolean,
+  user?: IUser,
+  message?: string
+}
+
+export const reqLogin = async ({
+  email,
+  password
+}: {
+  email: string,
+  password: string
+}) => {
+  try {
+    return await http.post<IResAuth>(API_LOGIN, {
+      email,
+      password
+    });
+  } catch (error) {
+    return null;
   }
-  return null;
-};
-export default getUserById;
+}
+
+export const reqRegister = async ({
+  email,
+  password
+}: {
+  email: string,
+  password: string
+}) => {
+  try {
+    return await http.post<IResAuth>(API_REGISTER, {
+      email,
+      password
+    });
+  } catch (error) {
+    return null;
+  }
+}
+
+export const updateUserInfo = async ({
+  gender,
+  age,
+  height,
+  weight,
+  weightGoal
+}: {
+  gender?: Genders,
+  age?: number,
+  height?: number,
+  weight?: number,
+  weightGoal?: number,
+}) => {
+  try {
+    return await http.post<IResAuth>(API_USER_UPDATE, {
+      gender,
+      age,
+      height,
+      weight,
+      weightGoal
+    });
+  } catch (error) {
+    return null;
+  }
+}

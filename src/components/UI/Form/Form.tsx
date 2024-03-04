@@ -21,12 +21,15 @@ export default function Form({
           response?.status === TResponseStatuses.success && response?.message
         }
         {
-          response?.status === TResponseStatuses.error && Object.values(response.errors).map((error) => (
-            <>
-              <span>{ `${error?.message}` }</span>
-              <br/>
-            </>
-          ))
+          response?.status === TResponseStatuses.error && response?.message
+        }
+        {
+          response?.status === TResponseStatuses.error && response?.errors && Object.values(response?.errors).map((error) => (
+              <>
+                <span>{ `${error?.message}` }</span>
+                <br/>
+              </>
+            ))
         }
       </StyledFormResult>
     </StyledFormWrapper>

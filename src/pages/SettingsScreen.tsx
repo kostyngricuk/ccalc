@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FieldValues, useForm, Controller } from 'react-hook-form';
 
@@ -10,17 +10,16 @@ import FormField, {
   EnumFormFieldType,
 } from '../components/UI/FormField/FormField';
 import { EnumInputType, Input, InputControlled } from '../components/UI/Input/Input';
-import AuthContext from '../services/contexts';
-import { Genders, IAuthContext } from '../types/user';
-import calcDailyLimit from '../services/utils/calculations';
+import { Genders } from '../types/user';
 import { UNITS } from '../services/constants/global';
 import { EnumHorizontalPosition } from '../types/global';
 import { TResponse, TResponseStatuses } from '../components/UI/Form/types';
+import useAuth from '../services/hooks/useAuth';
 
 export default function SettingsScreen() {
   const [response, setResponse] = useState<TResponse>(null);
   const { t } = useTranslation();
-  const { currentUser, setCurrentUser } = useContext<IAuthContext>(AuthContext);
+  const { currentUser } = useAuth();
 
   const { handleSubmit, control, formState: { errors } } = useForm<FieldValues>();
 
@@ -29,49 +28,22 @@ export default function SettingsScreen() {
       return;
     }
 
-    const {
-      oldPassword,
-      newPassword,
-      confirmNewPassword,
-      ...userData
-    } = submitData; // excluding properties
-    setCurrentUser({
-      ...userData,
-      calorieWidget: {
-        limit: calcDailyLimit({
-          height: parseInt(userData.height, 10),
-          weightGoal: parseInt(userData.weightGoal, 10),
-          age: parseInt(userData.age, 10),
-          gender: userData.gender,
-        }),
-        eaten: currentUser?.calorieWidget?.eaten,
-      },
-    });
-
     setResponse({
       status: TResponseStatuses.success,
       message: t('settings.form.res.success')
     });
   });
 
-  const countErrors = Object.keys(errors).length;
   useEffect(() => {
-    if (countErrors > 0) {
+    if (Object.keys(errors).length > 0) {
       setResponse({
         status: TResponseStatuses.error,
         errors
       });
     }
-  }, [errors, countErrors]);
+  }, [errors]);
 
   const resetLimit = () => {
-    setCurrentUser({
-      ...currentUser,
-      calorieWidget: {
-        ...currentUser?.calorieWidget,
-        eaten: 0,
-      },
-    });
     setResponse({
       status: TResponseStatuses.success,
       message: t('settings.form.res.successReset')

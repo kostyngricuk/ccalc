@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import Container from '../UI/Container/Container';
@@ -13,18 +13,18 @@ import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
 import { StyledHeader, StyledHeaderContent } from './StyleHeader';
 
 import paths from '../../services/router/paths';
-import AuthContext from '../../services/contexts';
-import { IAuthContext } from '../../types/user';
+import useAuth from '../../services/hooks/useAuth';
+import { setCredentials } from '../../services/reducers/auth';
+import { useAppDispatch } from '../../services/hooks/store';
+import hasAdditionalInfo from '../../services/utils/auth';
 
 export default function Header() {
   const { t } = useTranslation();
-  const {
-    currentUser,
-    setCurrentUser
-  } = useContext<IAuthContext>(AuthContext);
+  const {currentUser } = useAuth();
+  const dispatch = useAppDispatch();
 
   const handleLogout = () => {
-    setCurrentUser(null)
+    dispatch(setCredentials(null))
   };
 
   const menuItems: Array<INavItem> = [
@@ -52,18 +52,26 @@ export default function Header() {
     },
   ];
 
-  const menuProfileItems: Array<INavItem> = [
-    {
-      id: paths.settings.id,
-      link: paths.settings.url,
-      title: t('nav.settings'),
-    },
-    {
-      id: paths.exit.id,
-      title: t('nav.exit'),
-      handleClick: handleLogout
-    },
-  ];
+  const menuProfileItems: Array<INavItem> = hasAdditionalInfo(currentUser) ?
+    [
+      {
+        id: paths.settings.id,
+        link: paths.settings.url,
+        title: t('nav.settings'),
+      },
+      {
+        id: paths.exit.id,
+        title: t('nav.exit'),
+        handleClick: handleLogout
+      },
+    ]
+  : [
+      {
+        id: paths.exit.id,
+        title: t('nav.exit'),
+        handleClick: handleLogout
+      },
+    ];
 
   return (
     <StyledHeader>
@@ -71,23 +79,23 @@ export default function Header() {
         <Logo />
         <StyledHeaderContent>
           {
-            Boolean(currentUser) && (
+            hasAdditionalInfo(currentUser) && (
               <Nav items={menuItems} itemsMobile={[...menuItems, ...menuProfileItems]} />
             )
           }
           <LanguageSwitcher />
           {
-            Boolean(currentUser) && (
-              <>
-                <Tooltip text={t('calorieWidget.tooltip')}>
-                  <CalorieWidget
-                    eaten={currentUser?.calorieWidget?.eaten}
-                    limit={currentUser?.calorieWidget?.limit}
-                  />
-                </Tooltip>
-                <ProfileMenu items={menuProfileItems} />
-              </>
+            hasAdditionalInfo(currentUser) && (
+              <Tooltip text={t('calorieWidget.tooltip')}>
+                <CalorieWidget
+                  eaten={currentUser?.calorieWidget?.eaten}
+                  limit={currentUser?.calorieWidget?.limit}
+                />
+              </Tooltip>
             )
+          }
+          {
+            currentUser && <ProfileMenu items={menuProfileItems} />
           }
         </StyledHeaderContent>
       </Container>
