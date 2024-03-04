@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link, useNavigate } from 'react-router-dom';
 import { FieldValues, useForm } from 'react-hook-form';
+import { Navigate, useNavigate } from 'react-router-dom';
 
-import paths from '../services/router/paths';
-import { setCredentials } from '../services/reducers/auth';
-import { useAppDispatch } from '../services/hooks/store';
 import { EnumHorizontalPosition } from '../types/global';
-import { reqLogin } from '../services/api/users';
+import useAuth from '../services/hooks/useAuth';
+import paths from '../services/router/paths';
+import { reqChangePassword } from '../services/api/users';
+import { setChangePassword } from '../services/reducers/auth';
+import { useAppDispatch } from '../services/hooks/store';
 
 import Section from '../components/UI/Section/Section';
 import Title from '../components/UI/Title/Title';
@@ -15,36 +16,41 @@ import Form from '../components/UI/Form/Form';
 import { TResponse, TResponseStatuses } from '../components/UI/Form/types';
 import FormField, { EnumFormFieldType } from '../components/UI/FormField/FormField';
 import { EnumInputType, InputControlled } from '../components/UI/Input/Input';
-import Button, { EnumButtonColor, EnumButtonType } from '../components/UI/Button/Button';
-import Text from '../components/UI/Text/Text';
+import Button, { EnumButtonType } from '../components/UI/Button/Button';
 
 
-export default function   SigninScreen() {
+export default function ChangePasswordScreen() {
   const [response, setResponse] = useState<TResponse>(null);
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const { currentUser } = useAuth();
   const dispatch = useAppDispatch();
 
   const { handleSubmit, control, formState: { errors } } = useForm<FieldValues>();
-  const handleRegistration = () => navigate(paths.signup.url);
 
   const onSubmit = handleSubmit(async (submitData: FieldValues) => {
     if (!submitData) {
       return;
     }
-    const { email, password } = submitData;
+    const { newPassword, confirmNewPassword } = submitData;
 
-    const resData = await reqLogin({
-      email,
-      password
+    if (newPassword !== confirmNewPassword) {
+      setResponse({
+        status: TResponseStatuses.error,
+        message: t('errors.passwordMismatch')
+      });
+      return;
+    }
+
+    const resData = await reqChangePassword({
+      email: currentUser?.email,
+      password: newPassword
     });
 
     const {
       success,
-      user,
       message,
     } = resData;
-
     if (!success) {
       setResponse({
         status: TResponseStatuses.error,
@@ -53,9 +59,8 @@ export default function   SigninScreen() {
       return;
     }
 
-    dispatch(setCredentials({
-      currentUser: user
-    }));
+    dispatch(setChangePassword(false));
+    navigate(paths.home.url);
   });
 
   useEffect(() => {
@@ -67,41 +72,34 @@ export default function   SigninScreen() {
     }
   }, [errors]);
 
+  if (!currentUser) {
+    return <Navigate to={paths.signin.url} replace />
+  }
+
   return (
     <Section>
-      <Title position={EnumHorizontalPosition.center}>{t('signin.title')}</Title>
+      <Title position={EnumHorizontalPosition.center}>{t('changePassword.title')}</Title>
       <Form onSubmit={onSubmit} response={response}>
         <InputControlled
-          type={EnumInputType.email}
-          name="email"
-          label={t('form.field.email')}
-          required
+          type={EnumInputType.password}
+          name="newPassword"
+          value=""
+          label={t('form.field.newPassword')}
           control={control}
         />
         <InputControlled
           type={EnumInputType.password}
-          name="password"
-          required
+          name="confirmNewPassword"
           value=""
-          label={t('form.field.password')}
+          label={t('form.field.confirmNewPassword')}
           control={control}
         />
         <FormField type={EnumFormFieldType.actions}>
           <Button type={EnumButtonType.submit}>
-            {t('signin.form.btnSubmit')}
-          </Button>
-          <Button
-            color={EnumButtonColor.black}
-            $isOutline
-            onClick={handleRegistration}
-          >
-            {t('signin.form.btnRegistration')}
+            {t('changePassword.form.btnSubmit')}
           </Button>
         </FormField>
       </Form>
-      <Text position={EnumHorizontalPosition.center}>
-        <Link to={paths.reset.url}>{t('signin.resetPassword')}</Link>
-      </Text>
     </Section>
   );
 }

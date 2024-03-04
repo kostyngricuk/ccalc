@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { Controller, FieldValues, useForm } from 'react-hook-form';
 
 import paths from '../services/router/paths';
@@ -9,6 +9,9 @@ import { EnumHorizontalPosition } from '../types/global';
 import { UNITS } from '../services/constants/global';
 import { Genders } from '../types/user';
 import { updateUserInfo } from '../services/api/users';
+import { useAppDispatch } from '../services/hooks/store';
+import { setCredentials } from '../services/reducers/auth';
+import hasAdditionalInfo from '../services/utils/auth';
 
 import Section from '../components/UI/Section/Section';
 import Title from '../components/UI/Title/Title';
@@ -17,14 +20,12 @@ import { TResponse, TResponseStatuses } from '../components/UI/Form/types';
 import FormField, { EnumFormFieldType } from '../components/UI/FormField/FormField';
 import { EnumInputType, Input, InputControlled } from '../components/UI/Input/Input';
 import Button, { EnumButtonType } from '../components/UI/Button/Button';
-import { useAppDispatch } from '../services/hooks/store';
-import { setCredentials } from '../services/reducers/auth';
-import hasAdditionalInfo from '../services/utils/auth';
+
 
 export default function UserInfoScreen() {
   const [response, setResponse] = useState<TResponse>(null);
   const { t } = useTranslation();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { currentUser } = useAuth();
   const dispatch = useAppDispatch();
 
@@ -35,23 +36,15 @@ export default function UserInfoScreen() {
       return;
     }
 
-    const res = await updateUserInfo({
+    const resData = await updateUserInfo({
       ...submitData
     });
-
-    if (!res?.data) {
-      setResponse({
-        status: TResponseStatuses.error,
-        message: 'Something went wrong!'
-      });
-      return;
-    }
 
     const {
       success,
       user,
       message,
-    } = res.data;
+    } = resData;
 
     if (!success) {
       setResponse({
@@ -80,7 +73,7 @@ export default function UserInfoScreen() {
   }, [errors]);
 
   if (!currentUser) {
-    navigate(paths.signin.url);
+    return <Navigate to={paths.signin.url} replace />
   }
 
   return (

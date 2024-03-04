@@ -48,8 +48,12 @@ const paths: IPaths = {
     id: 9,
     url: '/reset'
   },
-  userInfo: {
+  changePassword: {
     id: 10,
+    url: '/changePassword'
+  },
+  userInfo: {
+    id: 11,
     url: '/userInfo'
   }
 };

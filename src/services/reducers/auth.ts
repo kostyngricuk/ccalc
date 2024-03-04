@@ -6,14 +6,16 @@ import { jwtDecode } from "jwt-decode";
 import type { RootState } from "../store";
 import { IUser } from "../../types/user";
 
-interface AuthState {
+interface IAuthState {
   currentUser?: IUser | null,
+  isChangePassword?: boolean | null
 }
 
 const accessToken = Cookies.get('e-access-token');
 
-const initialState: AuthState = {
+const initialState: IAuthState = {
   currentUser: accessToken ? jwtDecode(accessToken) : null,
+  isChangePassword: false
 }
 
 export const slice = createSlice({
@@ -22,7 +24,7 @@ export const slice = createSlice({
   reducers: {
     setCredentials: (
       state,
-      action: PayloadAction<AuthState | null>
+      action: PayloadAction<IAuthState | null>
     ) => {
       if (action.payload === null) {
         state.currentUser = null;
@@ -32,11 +34,18 @@ export const slice = createSlice({
       const { currentUser } = action.payload;
       state.currentUser = currentUser;
     },
+    setChangePassword: (
+      state,
+      action: PayloadAction<boolean | null>
+    ) => {
+      state.isChangePassword = action.payload;
+    }
   }
 })
 
 export default slice.reducer;
 
-export const { setCredentials } = slice.actions;
+export const { setCredentials, setChangePassword } = slice.actions;
 
-export const selectCurrenIUser = (state: RootState) => state.auth.currentUser;
+export const selectCurrenUser = (state: RootState) => state.auth.currentUser;
+export const selectIsChangePass = (state: RootState) => state.auth.isChangePassword;

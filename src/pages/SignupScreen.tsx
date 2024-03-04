@@ -35,28 +35,21 @@ export default function SignupScreen() {
     if (password !== confirmPassword) {
       setResponse({
         status: TResponseStatuses.error,
-        message: 'Password mismatch!'
+        message: t('errors.passwordMismatch')
       });
       return;
     }
 
-    const res = await reqRegister({
+    const resData = await reqRegister({
       email,
       password
     });
-    if (!res?.data) {
-      setResponse({
-        status: TResponseStatuses.error,
-        message: 'Something went wrong!'
-      });
-      return;
-    }
 
     const {
       success,
       user,
       message,
-    } = res.data;
+    } = resData;
     if (!success) {
       setResponse({
         status: TResponseStatuses.error,

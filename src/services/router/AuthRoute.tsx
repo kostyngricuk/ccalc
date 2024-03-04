@@ -10,8 +10,11 @@ export default function AuthRoute({
 }: {
   children: ReactNode,
 }) {
-  const { currentUser } = useAuth();
+  const { currentUser, isChangePassword } = useAuth();
 
+  if (isChangePassword) {
+    return <Navigate to={paths.changePassword.url} replace />;
+  }
   if (currentUser && !hasAdditionalInfo(currentUser)) {
     return <Navigate to={paths.userInfo.url} replace />;
   }

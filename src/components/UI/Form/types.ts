@@ -7,7 +7,7 @@ export enum TResponseStatuses {
 
 export interface IResponseSuccess {
   status: TResponseStatuses.success,
-  message: string
+  message?: string
 }
 
 export interface IResponseError {

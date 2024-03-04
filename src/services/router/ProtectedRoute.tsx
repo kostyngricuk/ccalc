@@ -10,10 +10,13 @@ export default function ProtectedRoute({
 }: {
   children: ReactNode,
 }) {
-  const { currentUser } = useAuth();
+  const { currentUser, isChangePassword } = useAuth();
 
   if (!currentUser) {
     return <Navigate to={paths.signin.url} replace />;
+  }
+  if (isChangePassword) {
+    return <Navigate to={paths.changePassword.url} replace />;
   }
   if (currentUser && !hasAdditionalInfo(currentUser)) {
     return <Navigate to={paths.userInfo.url} replace />;
