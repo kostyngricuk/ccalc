@@ -28,7 +28,7 @@ export function Notification({
       notificationContext.removeNotification(id)
     }, 3000);
     return () => clearTimeout(removeItemTimeut);
-  }, [null])
+  }, [])
   return (
     <StyleNotification $type={type}>
       <Icon width='30px' height='30px' Sprite={getSpriteByType(type)} />
