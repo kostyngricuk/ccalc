@@ -13,7 +13,7 @@ import { EnumInputType, Input, InputControlled } from '../components/UI/Input/In
 import { Genders } from '../types/user';
 import { UNITS } from '../services/constants/global';
 import { EnumHorizontalPosition } from '../types/global';
-import { TResponse, TResponseStatuses } from '../components/UI/Form/types';
+import { TResponse, EResponseStatuses } from '../components/UI/Form/types';
 import useAuth from '../services/hooks/useAuth';
 
 export default function SettingsScreen() {
@@ -29,7 +29,7 @@ export default function SettingsScreen() {
     }
 
     setResponse({
-      status: TResponseStatuses.success,
+      status: EResponseStatuses.success,
       message: t('settings.form.res.success')
     });
   });
@@ -37,7 +37,7 @@ export default function SettingsScreen() {
   useEffect(() => {
     if (Object.keys(errors).length > 0) {
       setResponse({
-        status: TResponseStatuses.error,
+        status: EResponseStatuses.error,
         errors
       });
     }
@@ -45,7 +45,7 @@ export default function SettingsScreen() {
 
   const resetLimit = () => {
     setResponse({
-      status: TResponseStatuses.success,
+      status: EResponseStatuses.success,
       message: t('settings.form.res.successReset')
     });
   };

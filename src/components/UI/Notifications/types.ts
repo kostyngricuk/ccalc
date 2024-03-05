@@ -1,5 +1,6 @@
 enum ENotificationType {
   success,
+  error,
   info
 }
 

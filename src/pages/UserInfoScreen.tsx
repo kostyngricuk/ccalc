@@ -16,7 +16,7 @@ import hasAdditionalInfo from '../services/utils/auth';
 import Section from '../components/UI/Section/Section';
 import Title from '../components/UI/Title/Title';
 import Form from '../components/UI/Form/Form';
-import { TResponse, TResponseStatuses } from '../components/UI/Form/types';
+import { TResponse, EResponseStatuses } from '../components/UI/Form/types';
 import FormField, { EnumFormFieldType } from '../components/UI/FormField/FormField';
 import { EnumInputType, Input, InputControlled } from '../components/UI/Input/Input';
 import Button, { EnumButtonType } from '../components/UI/Button/Button';
@@ -48,7 +48,7 @@ export default function UserInfoScreen() {
 
     if (!success) {
       setResponse({
-        status: TResponseStatuses.error,
+        status: EResponseStatuses.error,
         message
       });
       return;
@@ -66,7 +66,7 @@ export default function UserInfoScreen() {
   useEffect(() => {
     if (Object.keys(errors).length > 0) {
       setResponse({
-        status: TResponseStatuses.error,
+        status: EResponseStatuses.error,
         errors
       });
     }

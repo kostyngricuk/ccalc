@@ -12,7 +12,7 @@ import { setCredentials } from '../services/reducers/auth';
 import Section from '../components/UI/Section/Section';
 import Title from '../components/UI/Title/Title';
 import Form from '../components/UI/Form/Form';
-import { TResponse, TResponseStatuses } from '../components/UI/Form/types';
+import { TResponse, EResponseStatuses } from '../components/UI/Form/types';
 import FormField, { EnumFormFieldType } from '../components/UI/FormField/FormField';
 import { EnumInputType, InputControlled } from '../components/UI/Input/Input';
 import Button, { EnumButtonColor, EnumButtonType } from '../components/UI/Button/Button';
@@ -34,7 +34,7 @@ export default function SignupScreen() {
 
     if (password !== confirmPassword) {
       setResponse({
-        status: TResponseStatuses.error,
+        status: EResponseStatuses.error,
         message: t('errors.passwordMismatch')
       });
       return;
@@ -52,7 +52,7 @@ export default function SignupScreen() {
     } = resData;
     if (!success) {
       setResponse({
-        status: TResponseStatuses.error,
+        status: EResponseStatuses.error,
         message
       });
       return;
@@ -66,7 +66,7 @@ export default function SignupScreen() {
   useEffect(() => {
     if (Object.keys(errors).length > 0) {
       setResponse({
-        status: TResponseStatuses.error,
+        status: EResponseStatuses.error,
         errors
       });
     }
