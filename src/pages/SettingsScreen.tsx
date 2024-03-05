@@ -10,29 +10,18 @@ import FormField, {
   EnumFormFieldType,
 } from '../components/UI/FormField/FormField';
 import { EnumInputType, Input, InputControlled } from '../components/UI/Input/Input';
-import { Genders } from '../types/user';
+import { Genders, IUser } from '../services/types/user';
 import { UNITS } from '../services/constants/global';
-import { EnumHorizontalPosition } from '../types/global';
+import { EnumHorizontalPosition } from '../services/types/global';
 import { TResponse, EResponseStatuses } from '../components/UI/Form/types';
-import useAuth from '../services/hooks/useAuth';
 
 export default function SettingsScreen() {
   const [response, setResponse] = useState<TResponse>(null);
   const { t } = useTranslation();
-  const { currentUser } = useAuth();
 
   const { handleSubmit, control, formState: { errors } } = useForm<FieldValues>();
 
-  const onSubmit = handleSubmit((submitData: FieldValues) => {
-    if (!submitData) {
-      return;
-    }
-
-    setResponse({
-      status: EResponseStatuses.success,
-      message: t('settings.form.res.success')
-    });
-  });
+  const onSubmit = handleSubmit((submitData: FieldValues) => submitData);
 
   useEffect(() => {
     if (Object.keys(errors).length > 0) {
@@ -42,6 +31,10 @@ export default function SettingsScreen() {
       });
     }
   }, [errors]);
+
+  const currentUser: IUser = {
+    email: 'test@gmail.com'
+  }
 
   const resetLimit = () => {
     setResponse({

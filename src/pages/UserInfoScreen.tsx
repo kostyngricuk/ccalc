@@ -1,17 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { Controller, FieldValues, useForm } from 'react-hook-form';
 
 import paths from '../services/router/paths';
-import useAuth from '../services/hooks/useAuth';
-import { EnumHorizontalPosition } from '../types/global';
+import { EnumHorizontalPosition } from '../services/types/global';
 import { UNITS } from '../services/constants/global';
-import { Genders } from '../types/user';
-import { updateUserInfo } from '../services/api/users';
-import { useAppDispatch } from '../services/hooks/store';
-import { setCredentials } from '../services/reducers/auth';
-import hasAdditionalInfo from '../services/utils/auth';
+import { Genders, IUser } from '../services/types/user';
 
 import Section from '../components/UI/Section/Section';
 import Title from '../components/UI/Title/Title';
@@ -25,43 +20,10 @@ import Button, { EnumButtonType } from '../components/UI/Button/Button';
 export default function UserInfoScreen() {
   const [response, setResponse] = useState<TResponse>(null);
   const { t } = useTranslation();
-  const navigate = useNavigate();
-  const { currentUser } = useAuth();
-  const dispatch = useAppDispatch();
 
   const { handleSubmit, control, formState: { errors } } = useForm<FieldValues>();
 
-  const onSubmit = handleSubmit(async (submitData: FieldValues) => {
-    if (!submitData || !currentUser) {
-      return;
-    }
-
-    const resData = await updateUserInfo({
-      ...submitData
-    });
-
-    const {
-      success,
-      user,
-      message,
-    } = resData;
-
-    if (!success) {
-      setResponse({
-        status: EResponseStatuses.error,
-        message
-      });
-      return;
-    }
-
-    dispatch(setCredentials({
-      currentUser: user,
-    }));
-
-    if (hasAdditionalInfo(user)) {
-      navigate(paths.home.url);
-    }
-  });
+  const onSubmit = handleSubmit(async (submitData: FieldValues) => submitData);
 
   useEffect(() => {
     if (Object.keys(errors).length > 0) {
@@ -71,6 +33,10 @@ export default function UserInfoScreen() {
       });
     }
   }, [errors]);
+
+  const currentUser:IUser = {
+    email: 'test@gmail.com'
+  };
 
   if (!currentUser) {
     return <Navigate to={paths.signin.url} replace />

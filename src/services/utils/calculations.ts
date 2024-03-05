@@ -1,4 +1,4 @@
-import { Genders } from '../../types/user';
+import { Genders } from '../types/user';
 
 const calcDailyLimit = ({
   height,

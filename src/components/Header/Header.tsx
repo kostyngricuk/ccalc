@@ -13,19 +13,18 @@ import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
 import { StyledHeader, StyledHeaderContent } from './StyleHeader';
 
 import paths from '../../services/router/paths';
-import useAuth from '../../services/hooks/useAuth';
-import { setCredentials } from '../../services/reducers/auth';
-import { useAppDispatch } from '../../services/hooks/store';
 import hasAdditionalInfo from '../../services/utils/auth';
+import { IUser } from '../../services/types/user';
 
 export default function Header() {
   const { t } = useTranslation();
-  const { currentUser, isChangePassword } = useAuth();
-  const dispatch = useAppDispatch();
 
-  const handleLogout = () => {
-    dispatch(setCredentials(null))
-  };
+  const handleLogout = () => {};
+
+  const currentUser:IUser = {
+    email: 'test@gmail.com'
+  }
+  const isChangePassword = false;
 
   const menuItems: Array<INavItem> = [
     {

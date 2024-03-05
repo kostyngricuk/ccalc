@@ -4,10 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FieldValues, useForm } from 'react-hook-form';
 
 import paths from '../services/router/paths';
-import { setCredentials } from '../services/reducers/auth';
 import { useAppDispatch } from '../services/hooks/store';
-import { EnumHorizontalPosition } from '../types/global';
-import { reqLogin } from '../services/api/users';
+import { EnumHorizontalPosition } from '../services/types/global';
 
 import Section from '../components/UI/Section/Section';
 import Title from '../components/UI/Title/Title';
@@ -17,6 +15,7 @@ import FormField, { EnumFormFieldType } from '../components/UI/FormField/FormFie
 import { EnumInputType, InputControlled } from '../components/UI/Input/Input';
 import Button, { EnumButtonColor, EnumButtonType } from '../components/UI/Button/Button';
 import Text from '../components/UI/Text/Text';
+import { LOGIN_REQUEST } from '../services/constants/user';
 
 
 export default function   SigninScreen() {
@@ -34,28 +33,7 @@ export default function   SigninScreen() {
     }
     const { email, password } = submitData;
 
-    const resData = await reqLogin({
-      email,
-      password
-    });
-
-    const {
-      success,
-      user,
-      message,
-    } = resData;
-
-    if (!success) {
-      setResponse({
-        status: EResponseStatuses.error,
-        message
-      });
-      return;
-    }
-
-    dispatch(setCredentials({
-      currentUser: user
-    }));
+    dispatch({type: LOGIN_REQUEST, payload: { email, password }});
   });
 
   useEffect(() => {

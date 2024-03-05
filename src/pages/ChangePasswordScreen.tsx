@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FieldValues, useForm } from 'react-hook-form';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
-import { EnumHorizontalPosition } from '../types/global';
-import useAuth from '../services/hooks/useAuth';
+import { EnumHorizontalPosition } from '../services/types/global';
 import paths from '../services/router/paths';
-import { reqChangePassword } from '../services/api/users';
-import { setChangePassword } from '../services/reducers/auth';
-import { useAppDispatch } from '../services/hooks/store';
 
 import Section from '../components/UI/Section/Section';
 import Title from '../components/UI/Title/Title';
@@ -17,51 +13,16 @@ import { TResponse, EResponseStatuses } from '../components/UI/Form/types';
 import FormField, { EnumFormFieldType } from '../components/UI/FormField/FormField';
 import { EnumInputType, InputControlled } from '../components/UI/Input/Input';
 import Button, { EnumButtonType } from '../components/UI/Button/Button';
+import { IUser } from '../services/types/user';
 
 
 export default function ChangePasswordScreen() {
   const [response, setResponse] = useState<TResponse>(null);
   const { t } = useTranslation();
-  const navigate = useNavigate();
-  const { currentUser } = useAuth();
-  const dispatch = useAppDispatch();
 
   const { handleSubmit, control, formState: { errors } } = useForm<FieldValues>();
 
-  const onSubmit = handleSubmit(async (submitData: FieldValues) => {
-    if (!submitData) {
-      return;
-    }
-    const { newPassword, confirmNewPassword } = submitData;
-
-    if (newPassword !== confirmNewPassword) {
-      setResponse({
-        status: EResponseStatuses.error,
-        message: t('errors.passwordMismatch')
-      });
-      return;
-    }
-
-    const resData = await reqChangePassword({
-      email: currentUser?.email,
-      password: newPassword
-    });
-
-    const {
-      success,
-      message,
-    } = resData;
-    if (!success) {
-      setResponse({
-        status: EResponseStatuses.error,
-        message
-      });
-      return;
-    }
-
-    dispatch(setChangePassword(false));
-    navigate(paths.home.url);
-  });
+  const onSubmit = handleSubmit(async (submitData: FieldValues) => submitData);
 
   useEffect(() => {
     if (Object.keys(errors).length > 0) {
@@ -71,6 +32,10 @@ export default function ChangePasswordScreen() {
       });
     }
   }, [errors]);
+
+  const currentUser: IUser = {
+    email: 'test@gmail.com'
+  }
 
   if (!currentUser) {
     return <Navigate to={paths.signin.url} replace />
