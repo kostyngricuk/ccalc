@@ -8,4 +8,7 @@ export const StyledForm = styled.form`
 export const StyledFormWrapper = styled.div`
   max-width: 380px;
   margin: 0 auto;
+  & + * {
+    margin-top: 20px;
+  }
 `;
