@@ -10,10 +10,11 @@ import FormField, {
   EnumFormFieldType,
 } from '../components/UI/FormField/FormField';
 import { EnumInputType, Input, InputControlled } from '../components/UI/Input/Input';
-import { Genders, IUser } from '../services/types/user';
+import { Genders } from '../services/types/user';
 import { UNITS } from '../services/constants/global';
 import { EnumHorizontalPosition } from '../services/types/global';
 import { TResponse, EResponseStatuses } from '../components/UI/Form/types';
+import { useAppSelector } from '../services/hooks/store';
 
 export default function SettingsScreen() {
   const [response, setResponse] = useState<TResponse>(null);
@@ -32,9 +33,7 @@ export default function SettingsScreen() {
     }
   }, [errors]);
 
-  const currentUser: IUser = {
-    email: 'test@gmail.com'
-  }
+  const currentUser = useAppSelector((state) => state.user.user);
 
   const resetLimit = () => {
     setResponse({

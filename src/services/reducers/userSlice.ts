@@ -36,14 +36,45 @@ export const userSlice = createSlice({
     ) => {
       state.user = null;
       state.isLoading = false;
-    }
+    },
+    logoutRequest: (
+      state: IUserState
+    ) => {
+      Cookies.remove('e-access-token');
+      state.user = null;
+    },
+    registerRequest: (
+      state: IUserState,
+    ) => {
+      state.user = null;
+      state.isLoading = true;
+    },
+    registerSuccess: (
+      state: IUserState,
+      {
+        payload: user
+      }: PayloadAction<TUser>
+    ) => {
+      state.user = user;
+      state.isLoading = false;
+    },
+    registerError: (
+      state: IUserState,
+    ) => {
+      state.user = null;
+      state.isLoading = false;
+    },
   }
 })
 
 export const {
   loginRequest,
   loginSuccess,
-  loginError
+  loginError,
+  logoutRequest,
+  registerRequest,
+  registerSuccess,
+  registerError,
 } = userSlice.actions;
 
 export default userSlice.reducer;

@@ -14,17 +14,18 @@ import { StyledHeader, StyledHeaderContent } from './StyleHeader';
 
 import paths from '../../services/router/paths';
 import hasAdditionalInfo from '../../services/utils/auth';
-import { IUser } from '../../services/types/user';
+import { useAppDispatch, useAppSelector } from '../../services/hooks/store';
+import { logoutRequest } from '../../services/reducers/userSlice';
 
 export default function Header() {
   const { t } = useTranslation();
+  const dispatch = useAppDispatch();
 
-  const handleLogout = () => {};
+  const handleLogout = () => {
+    dispatch(logoutRequest())
+  };
 
-  const currentUser:IUser = {
-    email: 'test@gmail.com'
-  }
-  const isChangePassword = false;
+  const currentUser = useAppSelector((state) => state.user.user);
 
   const menuItems: Array<INavItem> = [
     {
@@ -51,7 +52,7 @@ export default function Header() {
     },
   ];
 
-  const menuProfileItems: Array<INavItem> = hasAdditionalInfo(currentUser) && !isChangePassword ?
+  const menuProfileItems: Array<INavItem> = hasAdditionalInfo(currentUser) ?
     [
       {
         id: paths.settings.id,
@@ -78,13 +79,13 @@ export default function Header() {
         <Logo />
         <StyledHeaderContent>
           {
-            hasAdditionalInfo(currentUser) && !isChangePassword && (
+            hasAdditionalInfo(currentUser) && (
               <Nav items={menuItems} itemsMobile={[...menuItems, ...menuProfileItems]} />
             )
           }
           <LanguageSwitcher />
           {
-            hasAdditionalInfo(currentUser) && !isChangePassword && (
+            hasAdditionalInfo(currentUser) && (
               <Tooltip text={t('calorieWidget.tooltip')}>
                 <CalorieWidget
                   eaten={currentUser?.calorieWidget?.eaten}

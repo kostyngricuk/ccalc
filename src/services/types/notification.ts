@@ -1,4 +1,8 @@
-import ENotificationType from "../../components/UI/Notifications/types";
+export enum ENotificationType {
+  success,
+  error,
+  info
+}
 
 export interface INotification {
   id?: number,
@@ -7,5 +11,5 @@ export interface INotification {
 }
 
 export interface INotificationState {
-  notifications: INotification[]
+  items: INotification[]
 }

@@ -1,26 +1,31 @@
-import React, { FormEventHandler, ReactNode, useContext, useEffect } from 'react';
+import React, { FormEventHandler, ReactNode, useEffect } from 'react';
 import { StyledFormWrapper, StyledForm } from './StyledForm';
 import { TResponse, EResponseStatuses } from './types';
-import NotificationContext from '../../../services/notificationContext';
-import ENotificationType from '../Notifications/types';
+import { addNotification } from '../../../services/reducers/notificationSlice';
+import { useAppDispatch } from '../../../services/hooks/store';
+import { ENotificationType } from '../../../services/types/notification';
 
 export default function Form({
   children,
   onSubmit,
   response,
+  isLoading
 }: {
   children: ReactNode,
   onSubmit: FormEventHandler,
-  response: TResponse
+  response: TResponse,
+  isLoading?: boolean
 }) {
-  const notificationContext = useContext(NotificationContext);
+  const dispatch = useAppDispatch();
 
   const addNotificationToContext = (type: ENotificationType, message: string) => {
-    notificationContext.addNotification({
-      id: notificationContext.notifications.length,
-      type,
-      message
-    })
+    dispatch({
+      type: addNotification.type,
+      payload: {
+        type,
+        message
+      }
+    });
   };
 
   useEffect(() => {
@@ -48,9 +53,13 @@ export default function Form({
 
   return (
     <StyledFormWrapper>
-      <StyledForm onSubmit={onSubmit}>
+      <StyledForm onSubmit={onSubmit} $isLoading={isLoading}>
         { children }
       </StyledForm>
     </StyledFormWrapper>
   );
+}
+
+Form.defaultProps = {
+  isLoading: false
 }

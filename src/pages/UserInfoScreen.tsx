@@ -6,7 +6,7 @@ import { Controller, FieldValues, useForm } from 'react-hook-form';
 import paths from '../services/router/paths';
 import { EnumHorizontalPosition } from '../services/types/global';
 import { UNITS } from '../services/constants/global';
-import { Genders, IUser } from '../services/types/user';
+import { Genders } from '../services/types/user';
 
 import Section from '../components/UI/Section/Section';
 import Title from '../components/UI/Title/Title';
@@ -15,6 +15,7 @@ import { TResponse, EResponseStatuses } from '../components/UI/Form/types';
 import FormField, { EnumFormFieldType } from '../components/UI/FormField/FormField';
 import { EnumInputType, Input, InputControlled } from '../components/UI/Input/Input';
 import Button, { EnumButtonType } from '../components/UI/Button/Button';
+import { useAppSelector } from '../services/hooks/store';
 
 
 export default function UserInfoScreen() {
@@ -34,9 +35,7 @@ export default function UserInfoScreen() {
     }
   }, [errors]);
 
-  const currentUser:IUser = {
-    email: 'test@gmail.com'
-  };
+  const currentUser = useAppSelector((state) => state.user.user);
 
   if (!currentUser) {
     return <Navigate to={paths.signin.url} replace />

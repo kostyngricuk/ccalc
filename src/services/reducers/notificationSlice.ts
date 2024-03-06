@@ -4,7 +4,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import { INotification, INotificationState } from "../types/notification";
 
 const initialState: INotificationState = {
-  notifications: []
+  items: []
 }
 
 export const notificationSlice = createSlice({
@@ -20,8 +20,8 @@ export const notificationSlice = createSlice({
         }
       }: PayloadAction<INotification>
     ) => {
-      state.notifications = [...state.notifications, {
-        id: state.notifications.length,
+      state.items = [...state.items, {
+        id: state.items.length,
         type,
         message,
       }]
@@ -32,7 +32,7 @@ export const notificationSlice = createSlice({
         payload: id
       }: PayloadAction<number>
     ) => {
-      state.notifications = state.notifications.filter(item => item.id !== id)
+      state.items = state.items.filter(item => item.id !== id)
     },
   }
 })

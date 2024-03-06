@@ -3,20 +3,14 @@ import { Navigate } from "react-router-dom";
 
 import paths from "./paths";
 import hasAdditionalInfo from "../utils/auth";
-import { IUser } from "../types/user";
+import { useAppSelector } from "../hooks/store";
 
 export default function AuthRoute({
   children,
 }: {
   children: ReactNode,
 }) {
-  const isChangePassword = false;
-  const currentUser: IUser = {
-    email: 'test@gmail.com'
-  }
-  if (isChangePassword) {
-    return <Navigate to={paths.changePassword.url} replace />;
-  }
+  const currentUser = useAppSelector((state) => state.user.user);
   if (currentUser && !hasAdditionalInfo(currentUser)) {
     return <Navigate to={paths.userInfo.url} replace />;
   }

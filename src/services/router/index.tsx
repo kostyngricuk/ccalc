@@ -30,7 +30,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: paths.signin.url,
-        element: <SigninScreen />,
+        element: <AuthRoute><SigninScreen /></AuthRoute>,
       },
       {
         path: paths.signup.url,

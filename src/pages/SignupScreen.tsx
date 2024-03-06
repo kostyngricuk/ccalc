@@ -13,16 +13,33 @@ import { TResponse, EResponseStatuses } from '../components/UI/Form/types';
 import FormField, { EnumFormFieldType } from '../components/UI/FormField/FormField';
 import { EnumInputType, InputControlled } from '../components/UI/Input/Input';
 import Button, { EnumButtonColor, EnumButtonType } from '../components/UI/Button/Button';
+import { useAppDispatch } from '../services/hooks/store';
+import { registerRequest } from '../services/reducers/userSlice';
 
 export default function SignupScreen() {
   const [response, setResponse] = useState<TResponse>(null);
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const { handleSubmit, control, formState: { errors } } = useForm<FieldValues>();
   const handleLogin = () => navigate(paths.signin.url);
 
-  const onSubmit = handleSubmit(async (submitData: FieldValues) => submitData);
+  const onSubmit = handleSubmit(async (submitData: FieldValues) => {
+    if (!submitData) {
+      return;
+    }
+    const { email, password, confirmPassword } = submitData;
+
+    dispatch({
+      type: registerRequest.type,
+      payload: {
+        email,
+        password,
+        confirmPassword
+      }
+    });
+  });
 
   useEffect(() => {
     if (Object.keys(errors).length > 0) {

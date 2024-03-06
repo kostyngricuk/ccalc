@@ -13,6 +13,7 @@ import { TResponse, EResponseStatuses } from '../components/UI/Form/types';
 import FormField, { EnumFormFieldType } from '../components/UI/FormField/FormField';
 import { EnumInputType, InputControlled } from '../components/UI/Input/Input';
 import Button, { EnumButtonColor, EnumButtonType } from '../components/UI/Button/Button';
+import { useAppSelector } from '../services/hooks/store';
 
 
 export default function SigninScreen() {
@@ -36,7 +37,7 @@ export default function SigninScreen() {
     }
   }, [errors]);
 
-  const userEmail = null;
+  const userEmail = useAppSelector((state) => state.user.user?.email);
 
   return (
     <Section>

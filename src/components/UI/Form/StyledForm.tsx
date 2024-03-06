@@ -1,8 +1,14 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const StyledForm = styled.form`
+export const StyledForm = styled.form<{
+  $isLoading?: boolean
+}>`
   display: flex;
   flex-direction: column;
+  ${(props) => props.$isLoading && css`
+    opacity: .65;
+    pointer-events: none;
+  `}
 `;
 
 export const StyledFormWrapper = styled.div`

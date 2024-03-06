@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FieldValues, useForm } from 'react-hook-form';
 
 import paths from '../services/router/paths';
-import { useAppDispatch } from '../services/hooks/store';
+import { useAppDispatch, useAppSelector } from '../services/hooks/store';
 import { EnumHorizontalPosition } from '../services/types/global';
 
 import Section from '../components/UI/Section/Section';
@@ -26,6 +26,8 @@ export default function   SigninScreen() {
 
   const { handleSubmit, control, formState: { errors } } = useForm<FieldValues>();
   const handleRegistration = () => navigate(paths.signup.url);
+
+  const isLoading = useAppSelector((state) => state.user.isLoading);
 
   const onSubmit = handleSubmit(async (submitData: FieldValues) => {
     if (!submitData) {
@@ -54,7 +56,7 @@ export default function   SigninScreen() {
   return (
     <Section>
       <Title position={EnumHorizontalPosition.center}>{t('signin.title')}</Title>
-      <Form onSubmit={onSubmit} response={response}>
+      <Form onSubmit={onSubmit} response={response} isLoading={isLoading}>
         <InputControlled
           type={EnumInputType.email}
           name="email"
