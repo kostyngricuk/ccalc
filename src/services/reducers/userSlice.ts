@@ -10,8 +10,6 @@ const accessToken = Cookies.get('e-access-token');
 const initialState: IUserState = {
   user: accessToken ? jwtDecode(accessToken) : null,
   isLoading: false,
-  message: '',
-  success: true
 }
 
 export const userSlice = createSlice({
@@ -21,8 +19,8 @@ export const userSlice = createSlice({
     loginRequest: (
       state: IUserState,
     ) => {
+      state.user = null;
       state.isLoading = true;
-      state.message = '';
     },
     loginSuccess: (
       state: IUserState,
@@ -32,17 +30,12 @@ export const userSlice = createSlice({
     ) => {
       state.user = user;
       state.isLoading = false;
-      state.message = '';
     },
     loginError: (
       state: IUserState,
-      {
-        payload: message
-      }: PayloadAction<string>
     ) => {
       state.user = null;
       state.isLoading = false;
-      state.message = message;
     }
   }
 })

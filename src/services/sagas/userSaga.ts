@@ -1,36 +1,43 @@
 import { call, put, takeLatest } from 'redux-saga/effects'
 
-import userApi from '../api/userApi';
-import { IRes } from '../types/api';
-import { USER_LOGIN_REQUEST } from '../constants/user';
-import { loginError, loginSuccess } from '../reducers/userSlice';
-import { IUserState } from '../types/user';
+import userApi, { ILoginResponse } from '../api/userApi';
+import { loginRequest, loginError, loginSuccess } from '../reducers/userSlice';
+import ENotificationType from '../../components/UI/Notifications/types';
+import { addNotification } from '../reducers/notificationSlice';
 
-function* loginUser(action: any): Generator {
+function* userLogin(action: any): Generator {
   try {
     const {
       email,
       password
     } = action.payload;
 
-    const res = yield call(userApi.login, {
+    const res = (yield call(userApi.login, {
       email,
       password
-    });
+    })) as ILoginResponse;
 
-    if ((res as IRes).success) {
-      yield put(loginSuccess((res as IUserState).user));
+    if (res?.success) {
+      yield put(loginSuccess(res.user));
       return;
     }
-    yield put(loginError((res as IRes).message));
+    yield put(loginError());
+    yield put(addNotification({
+      type: ENotificationType.error,
+      message: res?.message
+    }));
 
   } catch (e) {
-    yield put(loginError((e as Error).message));
+    yield put(loginError());
+    yield put(addNotification({
+      type: ENotificationType.error,
+      message: (e as Error).message
+    }));
   }
 }
 
 function* userSaga() {
-  yield takeLatest(USER_LOGIN_REQUEST, loginUser)
+  yield takeLatest(loginRequest.type, userLogin)
 }
 
 export default userSaga;

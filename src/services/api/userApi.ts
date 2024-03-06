@@ -1,11 +1,17 @@
-import { IUserState } from '../types/user';
+import { IUserState, TUser } from '../types/user';
 import http from '../http';
+
+export interface ILoginResponse {
+  user: TUser,
+  message: string,
+  success: boolean
+}
 
 const login = async (body: {
   email: string,
   password: string
 }) => {
-  const { data } = await http.post<IUserState>('/auth/login', body);
+  const { data } = await http.post('/auth/login', body);
   return data;
 };
 

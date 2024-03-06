@@ -1,5 +1,3 @@
-import { IRes } from "./api";
-
 export enum Genders {
   man = 'man',
   woman = 'woman',
@@ -21,6 +19,7 @@ export interface IUser {
 
 export type TUser = IUser | null | undefined;
 
-export interface IUserState extends IRes {
+export interface IUserState {
+  isLoading: boolean,
   user: TUser;
 }

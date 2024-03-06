@@ -15,7 +15,7 @@ import FormField, { EnumFormFieldType } from '../components/UI/FormField/FormFie
 import { EnumInputType, InputControlled } from '../components/UI/Input/Input';
 import Button, { EnumButtonColor, EnumButtonType } from '../components/UI/Button/Button';
 import Text from '../components/UI/Text/Text';
-import { LOGIN_REQUEST } from '../services/constants/user';
+import { loginRequest } from '../services/reducers/userSlice';
 
 
 export default function   SigninScreen() {
@@ -33,7 +33,13 @@ export default function   SigninScreen() {
     }
     const { email, password } = submitData;
 
-    dispatch({type: LOGIN_REQUEST, payload: { email, password }});
+    dispatch({
+      type: loginRequest.type,
+      payload: {
+        email,
+        password
+      }
+    });
   });
 
   useEffect(() => {
