@@ -15,7 +15,6 @@ import { EnumInputType, InputControlled } from '../components/UI/Input/Input';
 import Button, { EnumButtonType } from '../components/UI/Button/Button';
 import { IUser } from '../services/types/user';
 
-
 export default function ChangePasswordScreen() {
   const [response, setResponse] = useState<TResponse>(null);
   const { t } = useTranslation();

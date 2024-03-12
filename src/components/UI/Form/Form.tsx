@@ -18,7 +18,7 @@ export default function Form({
 }) {
   const dispatch = useAppDispatch();
 
-  const addNotificationToContext = (type: ENotificationType, message: string) => {
+  const diptachNotification = (type: ENotificationType, message: string) => {
     dispatch({
       type: addNotification.type,
       payload: {
@@ -33,20 +33,20 @@ export default function Form({
       const textMessage = response?.message as string;
       switch (response?.status) {
         case EResponseStatuses.success:
-          addNotificationToContext(ENotificationType.success, textMessage);
+          diptachNotification(ENotificationType.success, textMessage);
           break;
         case EResponseStatuses.error:
-          addNotificationToContext(ENotificationType.error, textMessage);
+          diptachNotification(ENotificationType.error, textMessage);
           break;
         default:
-          addNotificationToContext(ENotificationType.info, textMessage);
+          diptachNotification(ENotificationType.info, textMessage);
           break;
       }
     }
     if (response?.status === EResponseStatuses.error && response?.errors) {
       Object.values(response.errors).forEach((error) => {
         const textMessage = error?.message as string;
-        addNotificationToContext(ENotificationType.error, textMessage);
+        diptachNotification(ENotificationType.error, textMessage);
       })
     }
   }, [response?.status, response?.message]);

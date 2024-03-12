@@ -13,8 +13,8 @@ import { TResponse, EResponseStatuses } from '../components/UI/Form/types';
 import FormField, { EnumFormFieldType } from '../components/UI/FormField/FormField';
 import { EnumInputType, InputControlled } from '../components/UI/Input/Input';
 import Button, { EnumButtonColor, EnumButtonType } from '../components/UI/Button/Button';
-import { useAppSelector } from '../services/hooks/store';
-
+import { selectCurrentUser } from '../services/hooks/selectors';
+import { store } from '../services/store';
 
 export default function SigninScreen() {
   const [response, setResponse] = useState<TResponse>(null);
@@ -37,7 +37,7 @@ export default function SigninScreen() {
     }
   }, [errors]);
 
-  const userEmail = useAppSelector((state) => state.user.user?.email);
+  const userEmail = selectCurrentUser(store.getState())?.email;
 
   return (
     <Section>

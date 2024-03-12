@@ -15,8 +15,8 @@ import { TResponse, EResponseStatuses } from '../components/UI/Form/types';
 import FormField, { EnumFormFieldType } from '../components/UI/FormField/FormField';
 import { EnumInputType, Input, InputControlled } from '../components/UI/Input/Input';
 import Button, { EnumButtonType } from '../components/UI/Button/Button';
-import { useAppSelector } from '../services/hooks/store';
-
+import { selectCurrentUser } from '../services/hooks/selectors';
+import { store } from '../services/store';
 
 export default function UserInfoScreen() {
   const [response, setResponse] = useState<TResponse>(null);
@@ -35,7 +35,7 @@ export default function UserInfoScreen() {
     }
   }, [errors]);
 
-  const currentUser = useAppSelector((state) => state.user.user);
+  const currentUser = selectCurrentUser(store.getState())
 
   if (!currentUser) {
     return <Navigate to={paths.signin.url} replace />

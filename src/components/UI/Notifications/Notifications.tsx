@@ -3,8 +3,10 @@ import { StyleNotifications, StyleNotification } from './StyleNotifications';
 import Icon from '../Icon/Icon';
 import { CheckSVG, InfoSVG } from '../../../icons';
 import { ENotificationType, INotification } from '../../../services/types/notification';
-import { useAppDispatch, useAppSelector } from '../../../services/hooks/store';
+import { useAppDispatch } from '../../../services/hooks/store';
+import { selectNotificationItems } from '../../../services/hooks/selectors';
 import { removeNotification } from '../../../services/reducers/notificationSlice';
+import { store } from '../../../services/store';
 
 const getSpriteByType = (type?: ENotificationType) => {
   if (type === ENotificationType.info) {
@@ -38,7 +40,7 @@ export function Notification({
 }
 
 export function Notifications() {
-  const items = useAppSelector((state) => state.notification.items);
+  const items = selectNotificationItems(store.getState());
 
   return (
     <StyleNotifications>

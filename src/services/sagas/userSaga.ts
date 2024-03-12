@@ -1,4 +1,5 @@
-import { call, put, takeLatest } from 'redux-saga/effects'
+import { call, put, takeLatest } from 'redux-saga/effects';
+import i18n from '../i18n';
 
 import userApi, { IAuthResponse } from '../api/user';
 import { loginRequest, loginError, loginSuccess, registerRequest, registerError, registerSuccess } from '../reducers/userSlice';
@@ -40,7 +41,7 @@ function* userRegister(action: any): Generator {
     } = action.payload;
 
     if (password !== confirmPassword) {
-      throw new Error('Password not equally');
+      throw new Error(i18n.t('errors.passwordMismatch'));
     }
 
     const res = (yield call(userApi.register, {

@@ -10,7 +10,6 @@ import StyledGlobal from './services/styled/StyledGlobal';
 import { store } from './services/store';
 import { Notifications } from './components/UI/Notifications/Notifications';
 
-
 export default function App() {
   return (
     <ThemeProvider theme={lightTheme}>

@@ -14,8 +14,10 @@ import { StyledHeader, StyledHeaderContent } from './StyleHeader';
 
 import paths from '../../services/router/paths';
 import hasAdditionalInfo from '../../services/utils/auth';
-import { useAppDispatch, useAppSelector } from '../../services/hooks/store';
+import { useAppDispatch } from '../../services/hooks/store';
 import { logoutRequest } from '../../services/reducers/userSlice';
+import { store } from '../../services/store';
+import { selectCurrentUser } from '../../services/hooks/selectors';
 
 export default function Header() {
   const { t } = useTranslation();
@@ -25,7 +27,7 @@ export default function Header() {
     dispatch(logoutRequest())
   };
 
-  const currentUser = useAppSelector((state) => state.user.user);
+  const currentUser = selectCurrentUser(store.getState());
 
   const menuItems: Array<INavItem> = [
     {
