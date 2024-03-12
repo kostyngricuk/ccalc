@@ -3,15 +3,15 @@ import { Navigate } from "react-router-dom";
 
 import paths from "./paths";
 import hasAdditionalInfo from "../utils/auth";
-import { store } from "../store";
 import { selectCurrentUser } from "../hooks/selectors";
+import { useAppSelector } from "../hooks/store";
 
 export default function AuthRoute({
   children,
 }: {
   children: ReactNode,
 }) {
-  const currentUser = selectCurrentUser(store.getState())
+  const currentUser = useAppSelector(selectCurrentUser);
   if (currentUser && !hasAdditionalInfo(currentUser)) {
     return <Navigate to={paths.userInfo.url} replace />;
   }

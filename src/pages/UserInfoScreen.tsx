@@ -16,7 +16,7 @@ import FormField, { EnumFormFieldType } from '../components/UI/FormField/FormFie
 import { EnumInputType, Input, InputControlled } from '../components/UI/Input/Input';
 import Button, { EnumButtonType } from '../components/UI/Button/Button';
 import { selectCurrentUser } from '../services/hooks/selectors';
-import { store } from '../services/store';
+import { useAppSelector } from '../services/hooks/store';
 
 export default function UserInfoScreen() {
   const [response, setResponse] = useState<TResponse>(null);
@@ -35,7 +35,7 @@ export default function UserInfoScreen() {
     }
   }, [errors]);
 
-  const currentUser = selectCurrentUser(store.getState())
+  const currentUser = useAppSelector(selectCurrentUser);
 
   if (!currentUser) {
     return <Navigate to={paths.signin.url} replace />

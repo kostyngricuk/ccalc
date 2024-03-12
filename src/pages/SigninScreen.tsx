@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FieldValues, useForm } from 'react-hook-form';
 
 import paths from '../services/router/paths';
-import { useAppDispatch } from '../services/hooks/store';
+import { useAppDispatch, useAppSelector } from '../services/hooks/store';
 import { EnumHorizontalPosition } from '../services/types/global';
 
 import Section from '../components/UI/Section/Section';
@@ -16,7 +16,6 @@ import { EnumInputType, InputControlled } from '../components/UI/Input/Input';
 import Button, { EnumButtonColor, EnumButtonType } from '../components/UI/Button/Button';
 import Text from '../components/UI/Text/Text';
 import { loginRequest } from '../services/reducers/userSlice';
-import { store } from '../services/store';
 import { selectIsLoading } from '../services/hooks/selectors';
 
 export default function   SigninScreen() {
@@ -28,7 +27,7 @@ export default function   SigninScreen() {
   const { handleSubmit, control, formState: { errors } } = useForm<FieldValues>();
   const handleRegistration = () => navigate(paths.signup.url);
 
-  const isLoading = selectIsLoading(store.getState());
+  const isLoading = useAppSelector(selectIsLoading);
 
   const onSubmit = handleSubmit(async (submitData: FieldValues) => {
     if (!submitData) {

@@ -14,8 +14,8 @@ import { Genders } from '../services/types/user';
 import { UNITS } from '../services/constants/global';
 import { EnumHorizontalPosition } from '../services/types/global';
 import { TResponse, EResponseStatuses } from '../components/UI/Form/types';
-import { store } from '../services/store';
 import { selectCurrentUser } from '../services/hooks/selectors';
+import { useAppSelector } from '../services/hooks/store';
 
 export default function SettingsScreen() {
   const [response, setResponse] = useState<TResponse>(null);
@@ -34,7 +34,7 @@ export default function SettingsScreen() {
     }
   }, [errors]);
 
-  const currentUser = selectCurrentUser(store.getState())
+  const currentUser = useAppSelector(selectCurrentUser)
 
   const resetLimit = () => {
     setResponse({

@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
+
 import { StyleNotifications, StyleNotification } from './StyleNotifications';
 import Icon from '../Icon/Icon';
 import { CheckSVG, InfoSVG } from '../../../icons';
 import { ENotificationType, INotification } from '../../../services/types/notification';
-import { useAppDispatch } from '../../../services/hooks/store';
+import { useAppDispatch, useAppSelector } from '../../../services/hooks/store';
 import { selectNotificationItems } from '../../../services/hooks/selectors';
 import { removeNotification } from '../../../services/reducers/notificationSlice';
-import { store } from '../../../services/store';
 
 const getSpriteByType = (type?: ENotificationType) => {
   if (type === ENotificationType.info) {
@@ -40,12 +40,12 @@ export function Notification({
 }
 
 export function Notifications() {
-  const items = selectNotificationItems(store.getState());
+  const items = useAppSelector(selectNotificationItems);
 
   return (
     <StyleNotifications>
       {
-        items?.map((item) => (
+        items?.map((item: INotification) => (
           <Notification key={item.id} id={item.id} type={item.type} message={item.message} />
         ))
       }

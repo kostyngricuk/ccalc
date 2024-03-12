@@ -1,22 +1,6 @@
-import { createAppSelector } from "./store";
+import { RootState } from "../store";
 
-export const selectCurrentUser = createAppSelector(
-  [
-    (state) => state.user.user
-  ],
-  (user) => user
-)
-
-export const selectIsLoading = createAppSelector(
-  [
-    (state) => state.user.isLoading
-  ],
-  (isLoading) => isLoading === true
-)
-
-export const selectNotificationItems = createAppSelector(
-  [
-    (state) => state.notification.items
-  ],
-  (items) => items
-)
+export const selectCurrentUser = (state: RootState) => state.user.user;
+export const selectCurrentUserEmail = (state: RootState) => state.user.user?.email;
+export const selectIsLoading = (state: RootState) => state.user.isLoading;
+export const selectNotificationItems = (state: RootState) => state.notification.items;
