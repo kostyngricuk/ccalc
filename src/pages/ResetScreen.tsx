@@ -15,10 +15,12 @@ import { EnumInputType, InputControlled } from '../components/UI/Input/Input';
 import Button, { EnumButtonColor, EnumButtonType } from '../components/UI/Button/Button';
 import { useAppDispatch, useAppSelector } from '../services/hooks/store';
 import { selectCurrentUser, selectIsLoading } from '../services/hooks/selectors';
-import { resetRequest } from '../services/reducers/userSlice';
+import { changePasswordRequest, resetRequest, sendCodeRequest } from '../services/reducers/userSlice';
+import hasAdditionalInfo from '../services/utils/auth';
 
-export default function SigninScreen() {
+export default function ResetScreen() {
   const [response, setResponse] = useState<TResponse>(null);
+  const [isCodeVerified, setIsCodeVerified] = useState<boolean>(false);
   const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -27,22 +29,44 @@ export default function SigninScreen() {
   const handleLogin = () => navigate(paths.signin.url);
 
   const isLoading = useAppSelector(selectIsLoading);
+  const currentUser = useAppSelector(selectCurrentUser);
 
   const onSubmit = handleSubmit(async (submitData: FieldValues) => {
     if (!submitData) {
       return;
     }
-    const { email } = submitData;
+
+    if (isCodeVerified) {
+      const { password, confirmPassword } = submitData;
+      dispatch({
+        type: changePasswordRequest.type,
+        payload: {
+          email: currentUser?.email,
+          password,
+          confirmPassword
+        }
+      });
+      return;
+    }
+
+    if (currentUser) {
+      dispatch({
+        type: sendCodeRequest.type,
+        payload: {
+          email: currentUser?.email,
+          code: submitData.code
+        }
+      });
+      return;
+    }
 
     dispatch({
       type: resetRequest.type,
       payload: {
-        email,
+        email: submitData.email
       }
     });
   });
-
-  const onSubmitCode = handleSubmit(async (submitData: FieldValues) => submitData);
 
   useEffect(() => {
     if (Object.keys(errors).length > 0) {
@@ -53,28 +77,17 @@ export default function SigninScreen() {
     }
   }, [errors]);
 
-  const currentUser = useAppSelector(selectCurrentUser);
+  useEffect(() => {
+    if (currentUser && hasAdditionalInfo(currentUser)) {
+      setIsCodeVerified(true);
+    }
+  }, [currentUser]);
 
   return (
     <Section>
-      <Title position={EnumHorizontalPosition.center}>{t('reset.title')}</Title>
+      <Title position={EnumHorizontalPosition.center}>{isCodeVerified ? t('changePassword.title') : t('reset.title')}</Title>
       {
-        currentUser?.email ? (
-          <Form onSubmit={onSubmitCode} response={response} isLoading={isLoading}>
-            <InputControlled
-              type={EnumInputType.number}
-              name="code"
-              label={t('form.field.code')}
-              required
-              control={control}
-            />
-            <FormField type={EnumFormFieldType.actions}>
-              <Button type={EnumButtonType.submit}>
-                {t('reset.form.btnSubmitCode')}
-              </Button>
-            </FormField>
-          </Form>
-        ) : (
+        !currentUser?.email && (
           <Form onSubmit={onSubmit} response={response}>
             <InputControlled
               type={EnumInputType.email}
@@ -93,6 +106,49 @@ export default function SigninScreen() {
                 onClick={handleLogin}
               >
                 {t('reset.form.btnLogin')}
+              </Button>
+            </FormField>
+          </Form>
+        )
+      }
+      {
+        currentUser?.email && !isCodeVerified && (
+          <Form onSubmit={onSubmit} response={response} isLoading={isLoading}>
+            <InputControlled
+              type={EnumInputType.number}
+              name="code"
+              label={t('form.field.code')}
+              required
+              control={control}
+            />
+            <FormField type={EnumFormFieldType.actions}>
+              <Button type={EnumButtonType.submit}>
+                {t('reset.form.btnSubmitCode')}
+              </Button>
+            </FormField>
+          </Form>
+        )
+      }
+      {
+        currentUser?.email && isCodeVerified && (
+          <Form onSubmit={onSubmit} response={response} isLoading={isLoading}>
+            <InputControlled
+              type={EnumInputType.password}
+              name="password"
+              value=""
+              label={t('form.field.newPassword')}
+              control={control}
+            />
+            <InputControlled
+              type={EnumInputType.password}
+              name="confirmPassword"
+              value=""
+              label={t('form.field.confirmNewPassword')}
+              control={control}
+            />
+            <FormField type={EnumFormFieldType.actions}>
+              <Button type={EnumButtonType.submit}>
+                {t('changePassword.form.btnSubmit')}
               </Button>
             </FormField>
           </Form>

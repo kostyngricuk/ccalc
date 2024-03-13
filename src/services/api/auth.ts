@@ -37,18 +37,9 @@ const sendCode = async (body: {
   return data;
 };
 
-const changePassword = async (body: {
-  email: string,
-  password: string
-}) => {
-  const { data } = await http.post<IUserState>('/auth/changePassword', body);
-  return data;
-};
-
 export default {
   login,
   register,
   sendCode,
-  resetPassword,
-  changePassword
+  resetPassword
 }

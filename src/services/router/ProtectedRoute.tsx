@@ -20,8 +20,5 @@ export default function ProtectedRoute({
   if (currentUser && !hasAdditionalInfo(currentUser) && location.pathname !== paths.userInfo.url) {
     return <Navigate to={paths.userInfo.url} replace />;
   }
-  if (currentUser && hasAdditionalInfo(currentUser)) {
-    return <Navigate to={paths.home.url} replace />;
-  }
   return children;
 }

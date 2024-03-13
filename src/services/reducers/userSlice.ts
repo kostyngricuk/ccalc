@@ -38,13 +38,22 @@ export const userSlice = createSlice({
     ) => {
       state.isLoading = true;
     },
+    sendCodeRequest: (
+      state: IUserState
+    ) => {
+      state.isLoading = true;
+    },
+    changePasswordRequest: (
+      state: IUserState
+    ) => {
+      state.isLoading = true;
+    },
     logoutRequest: (
       state: IUserState
     ) => {
       Cookies.remove('e-access-token');
       state.user = null;
     },
-
     requsetSuccess: (
       state: IUserState,
       {
@@ -57,7 +66,6 @@ export const userSlice = createSlice({
     requsetError: (
       state: IUserState,
     ) => {
-      state.user = null;
       state.isLoading = false;
     },
   }
@@ -68,6 +76,8 @@ export const {
   registerRequest,
   updateRequest,
   resetRequest,
+  sendCodeRequest,
+  changePasswordRequest,
   logoutRequest,
   requsetSuccess,
   requsetError,
