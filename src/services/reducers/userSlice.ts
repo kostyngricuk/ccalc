@@ -22,20 +22,21 @@ export const userSlice = createSlice({
       state.user = null;
       state.isLoading = true;
     },
-    loginSuccess: (
-      state: IUserState,
-      {
-        payload: user
-      }: PayloadAction<TUser>
-    ) => {
-      state.user = user;
-      state.isLoading = false;
-    },
-    loginError: (
+    registerRequest: (
       state: IUserState,
     ) => {
       state.user = null;
-      state.isLoading = false;
+      state.isLoading = true;
+    },
+    updateRequest: (
+      state: IUserState,
+    ) => {
+      state.isLoading = true;
+    },
+    resetRequest: (
+      state: IUserState
+    ) => {
+      state.isLoading = true;
     },
     logoutRequest: (
       state: IUserState
@@ -43,13 +44,8 @@ export const userSlice = createSlice({
       Cookies.remove('e-access-token');
       state.user = null;
     },
-    registerRequest: (
-      state: IUserState,
-    ) => {
-      state.user = null;
-      state.isLoading = true;
-    },
-    registerSuccess: (
+
+    requsetSuccess: (
       state: IUserState,
       {
         payload: user
@@ -58,7 +54,7 @@ export const userSlice = createSlice({
       state.user = user;
       state.isLoading = false;
     },
-    registerError: (
+    requsetError: (
       state: IUserState,
     ) => {
       state.user = null;
@@ -69,12 +65,12 @@ export const userSlice = createSlice({
 
 export const {
   loginRequest,
-  loginSuccess,
-  loginError,
-  logoutRequest,
   registerRequest,
-  registerSuccess,
-  registerError,
+  updateRequest,
+  resetRequest,
+  logoutRequest,
+  requsetSuccess,
+  requsetError,
 } = userSlice.actions;
 
 export default userSlice.reducer;

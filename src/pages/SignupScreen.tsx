@@ -13,8 +13,9 @@ import { TResponse, EResponseStatuses } from '../components/UI/Form/types';
 import FormField, { EnumFormFieldType } from '../components/UI/FormField/FormField';
 import { EnumInputType, InputControlled } from '../components/UI/Input/Input';
 import Button, { EnumButtonColor, EnumButtonType } from '../components/UI/Button/Button';
-import { useAppDispatch } from '../services/hooks/store';
+import { useAppDispatch, useAppSelector } from '../services/hooks/store';
 import { registerRequest } from '../services/reducers/userSlice';
+import { selectIsLoading } from '../services/hooks/selectors';
 
 export default function SignupScreen() {
   const [response, setResponse] = useState<TResponse>(null);
@@ -24,6 +25,8 @@ export default function SignupScreen() {
 
   const { handleSubmit, control, formState: { errors } } = useForm<FieldValues>();
   const handleLogin = () => navigate(paths.signin.url);
+
+  const isLoading = useAppSelector(selectIsLoading);
 
   const onSubmit = handleSubmit(async (submitData: FieldValues) => {
     if (!submitData) {
@@ -53,7 +56,7 @@ export default function SignupScreen() {
   return (
     <Section>
       <Title position={EnumHorizontalPosition.center}>{t('signup.title')}</Title>
-      <Form onSubmit={onSubmit} response={response}>
+      <Form onSubmit={onSubmit} response={response} isLoading={isLoading}>
         <InputControlled
           type={EnumInputType.email}
           name="email"

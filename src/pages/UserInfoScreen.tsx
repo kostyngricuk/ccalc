@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Navigate } from 'react-router-dom';
 import { Controller, FieldValues, useForm } from 'react-hook-form';
 
-import paths from '../services/router/paths';
 import { EnumHorizontalPosition } from '../services/types/global';
 import { UNITS } from '../services/constants/global';
 import { Genders } from '../services/types/user';
@@ -15,16 +13,42 @@ import { TResponse, EResponseStatuses } from '../components/UI/Form/types';
 import FormField, { EnumFormFieldType } from '../components/UI/FormField/FormField';
 import { EnumInputType, Input, InputControlled } from '../components/UI/Input/Input';
 import Button, { EnumButtonType } from '../components/UI/Button/Button';
-import { selectCurrentUser } from '../services/hooks/selectors';
-import { useAppSelector } from '../services/hooks/store';
+import { selectCurrentUser, selectIsLoading } from '../services/hooks/selectors';
+import { useAppDispatch, useAppSelector } from '../services/hooks/store';
+import { updateRequest } from '../services/reducers/userSlice';
 
 export default function UserInfoScreen() {
   const [response, setResponse] = useState<TResponse>(null);
   const { t } = useTranslation();
+  const dispatch = useAppDispatch();
 
   const { handleSubmit, control, formState: { errors } } = useForm<FieldValues>();
 
-  const onSubmit = handleSubmit(async (submitData: FieldValues) => submitData);
+  const isLoading = useAppSelector(selectIsLoading);
+
+  const onSubmit = handleSubmit(async (submitData: FieldValues) => {
+    if (!submitData) {
+      return;
+    }
+    const {
+      gender,
+      age,
+      height,
+      weight,
+      weightGoal
+    } = submitData;
+
+    dispatch({
+      type: updateRequest.type,
+      payload: {
+        gender,
+        age,
+        height,
+        weight,
+        weightGoal
+      }
+    });
+  });
 
   useEffect(() => {
     if (Object.keys(errors).length > 0) {
@@ -37,14 +61,10 @@ export default function UserInfoScreen() {
 
   const currentUser = useAppSelector(selectCurrentUser);
 
-  if (!currentUser) {
-    return <Navigate to={paths.signin.url} replace />
-  }
-
   return (
     <Section>
       <Title position={EnumHorizontalPosition.center}>{t('userInfo.title')}</Title>
-      <Form onSubmit={onSubmit} response={response}>
+      <Form onSubmit={onSubmit} response={response} isLoading={isLoading}>
         <FormField>
           <Controller
             name="gender"

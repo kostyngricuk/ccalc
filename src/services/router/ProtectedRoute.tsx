@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 
 import paths from "./paths";
 import hasAdditionalInfo from "../utils/auth";
@@ -12,12 +12,16 @@ export default function ProtectedRoute({
   children: ReactNode,
 }) {
   const currentUser = useAppSelector(selectCurrentUser);
+  const location = useLocation();
 
   if (!currentUser) {
     return <Navigate to={paths.signin.url} replace />;
   }
-  if (currentUser && !hasAdditionalInfo(currentUser)) {
+  if (currentUser && !hasAdditionalInfo(currentUser) && location.pathname !== paths.userInfo.url) {
     return <Navigate to={paths.userInfo.url} replace />;
+  }
+  if (currentUser && hasAdditionalInfo(currentUser)) {
+    return <Navigate to={paths.home.url} replace />;
   }
   return children;
 }

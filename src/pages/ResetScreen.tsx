@@ -13,18 +13,34 @@ import { TResponse, EResponseStatuses } from '../components/UI/Form/types';
 import FormField, { EnumFormFieldType } from '../components/UI/FormField/FormField';
 import { EnumInputType, InputControlled } from '../components/UI/Input/Input';
 import Button, { EnumButtonColor, EnumButtonType } from '../components/UI/Button/Button';
-import { useAppSelector } from '../services/hooks/store';
-import { selectCurrentUserEmail } from '../services/hooks/selectors';
+import { useAppDispatch, useAppSelector } from '../services/hooks/store';
+import { selectCurrentUser, selectIsLoading } from '../services/hooks/selectors';
+import { resetRequest } from '../services/reducers/userSlice';
 
 export default function SigninScreen() {
   const [response, setResponse] = useState<TResponse>(null);
   const { t } = useTranslation();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const { handleSubmit, control, formState: { errors } } = useForm<FieldValues>();
   const handleLogin = () => navigate(paths.signin.url);
 
-  const onSubmit = handleSubmit(async (submitData: FieldValues) => submitData);
+  const isLoading = useAppSelector(selectIsLoading);
+
+  const onSubmit = handleSubmit(async (submitData: FieldValues) => {
+    if (!submitData) {
+      return;
+    }
+    const { email } = submitData;
+
+    dispatch({
+      type: resetRequest.type,
+      payload: {
+        email,
+      }
+    });
+  });
 
   const onSubmitCode = handleSubmit(async (submitData: FieldValues) => submitData);
 
@@ -37,14 +53,14 @@ export default function SigninScreen() {
     }
   }, [errors]);
 
-  const userEmail = useAppSelector(selectCurrentUserEmail);
+  const currentUser = useAppSelector(selectCurrentUser);
 
   return (
     <Section>
       <Title position={EnumHorizontalPosition.center}>{t('reset.title')}</Title>
       {
-        userEmail ? (
-          <Form onSubmit={onSubmitCode} response={response}>
+        currentUser?.email ? (
+          <Form onSubmit={onSubmitCode} response={response} isLoading={isLoading}>
             <InputControlled
               type={EnumInputType.number}
               name="code"

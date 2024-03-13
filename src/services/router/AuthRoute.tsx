@@ -12,6 +12,7 @@ export default function AuthRoute({
   children: ReactNode,
 }) {
   const currentUser = useAppSelector(selectCurrentUser);
+
   if (currentUser && !hasAdditionalInfo(currentUser)) {
     return <Navigate to={paths.userInfo.url} replace />;
   }

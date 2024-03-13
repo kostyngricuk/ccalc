@@ -46,7 +46,7 @@ const router = createBrowserRouter([
       },
       {
         path: paths.userInfo.url,
-        element: <UserInfoScreen />,
+        element: <ProtectedRoute><UserInfoScreen /></ProtectedRoute>,
       },
       {
         path: paths.calculator.url,
