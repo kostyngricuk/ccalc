@@ -43,13 +43,18 @@ export default function ResetScreen() {
         payload: {
           email: currentUser?.email,
           password,
-          confirmPassword
+          confirmPassword,
+          navigate
         }
       });
       return;
     }
 
-    if (currentUser) {
+    const {
+      code,
+      email
+    } = submitData;
+    if (currentUser && code) {
       dispatch({
         type: sendCodeRequest.type,
         payload: {
@@ -63,7 +68,7 @@ export default function ResetScreen() {
     dispatch({
       type: resetRequest.type,
       payload: {
-        email: submitData.email
+        email
       }
     });
   });

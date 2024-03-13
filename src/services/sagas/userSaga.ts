@@ -15,6 +15,7 @@ import {
 } from '../reducers/userSlice';
 import { addNotification } from '../reducers/notificationSlice';
 import { ENotificationType } from '../types/notification';
+import paths from '../router/paths';
 
 function* userLogin(action: any): Generator {
   try {
@@ -32,7 +33,6 @@ function* userLogin(action: any): Generator {
       throw new Error(res?.message);
     }
     yield put(requsetSuccess(res.user));
-
   } catch (e) {
     yield put(requsetError());
     yield put(addNotification({
@@ -142,7 +142,8 @@ function* changePassword(action: any): Generator {
     const {
       email,
       password,
-      confirmPassword
+      confirmPassword,
+      navigate
     } = action.payload;
 
     if (password !== confirmPassword) {
@@ -158,7 +159,7 @@ function* changePassword(action: any): Generator {
       throw new Error(res?.message);
     }
     yield put(requsetSuccess(res.user));
-    window.location.href = '/';
+    navigate(paths.home.url);
   } catch (e) {
     yield put(requsetError());
     yield put(addNotification({

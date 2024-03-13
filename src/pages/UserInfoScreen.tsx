@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { Controller, FieldValues, useForm } from 'react-hook-form';
 
 import { EnumHorizontalPosition } from '../services/types/global';
@@ -16,10 +17,13 @@ import Button, { EnumButtonType } from '../components/UI/Button/Button';
 import { selectCurrentUser, selectIsLoading } from '../services/hooks/selectors';
 import { useAppDispatch, useAppSelector } from '../services/hooks/store';
 import { updateRequest } from '../services/reducers/userSlice';
+import hasAdditionalInfo from '../services/utils/auth';
+import paths from '../services/router/paths';
 
 export default function UserInfoScreen() {
   const [response, setResponse] = useState<TResponse>(null);
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const { handleSubmit, control, formState: { errors } } = useForm<FieldValues>();
@@ -60,6 +64,11 @@ export default function UserInfoScreen() {
   }, [errors]);
 
   const currentUser = useAppSelector(selectCurrentUser);
+  useEffect(() => {
+    if (currentUser && hasAdditionalInfo(currentUser)) {
+      navigate(paths.home.url);
+    }
+  }, [currentUser]);
 
   return (
     <Section>
