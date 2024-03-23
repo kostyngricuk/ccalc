@@ -76,7 +76,8 @@ function* userUpdate(action: any): Generator {
   try {
     const {
       password,
-      confirmPassword
+      confirmPassword,
+      successCallback
     } = action.payload;
 
     if (password !== confirmPassword) {
@@ -89,6 +90,10 @@ function* userUpdate(action: any): Generator {
       throw new Error(res?.message);
     }
     yield put(requsetSuccess(res.user));
+
+    if (typeof successCallback !== 'undefined') {
+      successCallback();
+    }
   } catch (e) {
     yield put(requsetError());
     yield put(addNotification({

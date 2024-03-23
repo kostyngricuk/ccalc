@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FieldValues, useForm, Controller } from 'react-hook-form';
 
@@ -14,16 +14,60 @@ import { Genders } from '../services/types/user';
 import { UNITS } from '../services/constants/global';
 import { EnumHorizontalPosition } from '../services/types/global';
 import { TResponse, EResponseStatuses } from '../components/UI/Form/types';
-import { selectCurrentUser } from '../services/hooks/selectors';
-import { useAppSelector } from '../services/hooks/store';
+import { selectCurrentUser, selectIsLoading } from '../services/hooks/selectors';
+import { useAppDispatch, useAppSelector } from '../services/hooks/store';
+import { updateRequest } from '../services/reducers/userSlice';
 
 export default function SettingsScreen() {
   const [response, setResponse] = useState<TResponse>(null);
   const { t } = useTranslation();
+  const dispatch = useAppDispatch();
 
-  const { handleSubmit, control, formState: { errors } } = useForm<FieldValues>();
+  const { handleSubmit, control, reset, formState: { errors } } = useForm<FieldValues>();
 
-  const onSubmit = handleSubmit((submitData: FieldValues) => submitData);
+  const isLoading = useAppSelector(selectIsLoading);
+  const currentUser = useAppSelector(selectCurrentUser)
+
+  const successCallback = useCallback(() => {
+    setResponse({
+      status: EResponseStatuses.success,
+      message: t('settings.form.res.success')
+    });
+    reset();
+  }, []);
+
+  const onSubmit = handleSubmit(async (submitData: FieldValues) => {
+    if (!submitData) {
+      return;
+    }
+    const {
+      gender,
+      age,
+      height,
+      weight,
+      weightGoal,
+      email,
+      oldPassword,
+      password,
+      confirmPassword
+    } = submitData;
+
+    dispatch({
+      type: updateRequest.type,
+      payload: {
+        gender,
+        age,
+        height,
+        weight,
+        weightGoal,
+        email,
+        oldPassword,
+        password,
+        confirmPassword,
+        successCallback
+      }
+    });
+  });
 
   useEffect(() => {
     if (Object.keys(errors).length > 0) {
@@ -34,18 +78,10 @@ export default function SettingsScreen() {
     }
   }, [errors]);
 
-  const currentUser = useAppSelector(selectCurrentUser)
-
-  const resetLimit = () => {
-    setResponse({
-      status: EResponseStatuses.success,
-      message: t('settings.form.res.successReset')
-    });
-  };
   return (
     <Section>
       <Title position={EnumHorizontalPosition.center}>{t('settings.title')}</Title>
-      <Form onSubmit={onSubmit} response={response}>
+      <Form onSubmit={onSubmit} response={response} isLoading={isLoading}>
         <FormField>
           <Controller
             name="gender"
@@ -130,14 +166,14 @@ export default function SettingsScreen() {
         />
         <InputControlled
           type={EnumInputType.password}
-          name="newPassword"
+          name="password"
           value=""
           label={t('form.field.newPassword')}
           control={control}
         />
         <InputControlled
           type={EnumInputType.password}
-          name="confirmNewPassword"
+          name="confirmPassword"
           value=""
           label={t('form.field.confirmNewPassword')}
           control={control}
@@ -147,7 +183,6 @@ export default function SettingsScreen() {
             {t('settings.form.btnSave')}
           </Button>
           <Button
-            onClick={resetLimit}
             color={EnumButtonColor.red}
             $isOutline
           >
