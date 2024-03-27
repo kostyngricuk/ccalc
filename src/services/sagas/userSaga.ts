@@ -1,5 +1,4 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import i18n from '../i18n';
 
 import authApi, { IAuthResponse } from '../api/auth';
 import userApi from '../api/user';
@@ -8,14 +7,12 @@ import {
   registerRequest,
   updateRequest,
   requsetSuccess,
-  requsetError,
   resetRequest,
   sendCodeRequest,
   changePasswordRequest
 } from '../reducers/userSlice';
-import { addNotification } from '../reducers/notificationSlice';
-import { ENotificationType } from '../types/notification';
 import paths from '../router/paths';
+import { errorAction, errorCodes } from '../constants/errors';
 
 function* userLogin(action: any): Generator {
   try {
@@ -28,17 +25,12 @@ function* userLogin(action: any): Generator {
       email,
       password
     })) as IAuthResponse;
-
     if (!res?.success) {
-      throw new Error(res?.message);
+      throw new Error(res?.errorCode);
     }
     yield put(requsetSuccess(res.user));
-  } catch (e) {
-    yield put(requsetError());
-    yield put(addNotification({
-      type: ENotificationType.error,
-      message: (e as Error).message
-    }));
+  } catch (error) {
+    yield put({ type: errorAction, error });
   }
 }
 
@@ -51,7 +43,7 @@ function* userRegister(action: any): Generator {
     } = action.payload;
 
     if (password !== confirmPassword) {
-      throw new Error(i18n.t('errors.passwordMismatch'));
+      throw new Error(errorCodes.PASSWORD_MISMATCH);
     }
 
     const res = (yield call(authApi.register, {
@@ -60,15 +52,11 @@ function* userRegister(action: any): Generator {
     })) as IAuthResponse;
 
     if (!res?.success) {
-      throw new Error(res?.message);
+      throw new Error(res?.errorCode);
     }
     yield put(requsetSuccess(res.user));
-  } catch (e) {
-    yield put(requsetError());
-    yield put(addNotification({
-      type: ENotificationType.error,
-      message: (e as Error).message
-    }));
+  } catch (error) {
+    yield put({ type: errorAction, error });
   }
 }
 
@@ -81,25 +69,21 @@ function* userUpdate(action: any): Generator {
     } = action.payload;
 
     if (password !== confirmPassword) {
-      throw new Error(i18n.t('errors.passwordMismatch'));
+      throw new Error(errorCodes.PASSWORD_MISMATCH);
     }
 
     const res = (yield call(userApi.update, action.payload)) as IAuthResponse;
 
     if (!res?.success) {
-      throw new Error(res?.message);
+      throw new Error(res?.errorCode);
     }
     yield put(requsetSuccess(res.user));
 
     if (typeof successCallback !== 'undefined') {
-      successCallback();
+      successCallback(res.user);
     }
-  } catch (e) {
-    yield put(requsetError());
-    yield put(addNotification({
-      type: ENotificationType.error,
-      message: (e as Error).message
-    }));
+  } catch (error) {
+    yield put({ type: errorAction, error });
   }
 }
 
@@ -113,15 +97,11 @@ function* resetPassword(action: any): Generator {
     })) as IAuthResponse;
 
     if (!res?.success) {
-      throw new Error(res?.message);
+      throw new Error(res?.errorCode);
     }
     yield put(requsetSuccess(res.user));
-  } catch (e) {
-    yield put(requsetError());
-    yield put(addNotification({
-      type: ENotificationType.error,
-      message: (e as Error).message
-    }));
+  } catch (error) {
+    yield put({ type: errorAction, error });
   }
 }
 
@@ -130,15 +110,11 @@ function* sendCode(action: any): Generator {
     const res = (yield call(authApi.sendCode, action.payload)) as IAuthResponse;
 
     if (!res?.success) {
-      throw new Error(res?.message);
+      throw new Error(res?.errorCode);
     }
     yield put(requsetSuccess(res.user));
-  } catch (e) {
-    yield put(requsetError());
-    yield put(addNotification({
-      type: ENotificationType.error,
-      message: (e as Error).message
-    }));
+  } catch (error) {
+    yield put({ type: errorAction, error });
   }
 }
 
@@ -152,7 +128,7 @@ function* changePassword(action: any): Generator {
     } = action.payload;
 
     if (password !== confirmPassword) {
-      throw new Error(i18n.t('errors.passwordMismatch'));
+      throw new Error(errorCodes.PASSWORD_MISMATCH);
     }
 
     const res = (yield call(userApi.changePassword, {
@@ -161,16 +137,12 @@ function* changePassword(action: any): Generator {
     })) as IAuthResponse;
 
     if (!res?.success) {
-      throw new Error(res?.message);
+      throw new Error(res?.errorCode);
     }
     yield put(requsetSuccess(res.user));
     navigate(paths.home.url);
-  } catch (e) {
-    yield put(requsetError());
-    yield put(addNotification({
-      type: ENotificationType.error,
-      message: (e as Error).message
-    }));
+  } catch (error) {
+    yield put({ type: errorAction, error });
   }
 }
 

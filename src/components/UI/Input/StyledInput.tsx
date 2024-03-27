@@ -1,9 +1,12 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const StyledInput = styled.div`
+export const StyledInput = styled.div<{$isFullwidth: boolean | undefined}>`
   display: inline-block;
   margin-bottom: 20px;
   position: relative;
+  ${(props) => props.$isFullwidth && css`
+    width: 100%;
+  `}
 `;
 
 export const StyledInputLabel = styled.label`

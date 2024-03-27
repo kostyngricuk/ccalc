@@ -10,7 +10,7 @@ import FormField, {
   EnumFormFieldType,
 } from '../components/UI/FormField/FormField';
 import { EnumInputType, Input, InputControlled } from '../components/UI/Input/Input';
-import { Genders } from '../services/types/user';
+import { Genders, TUser } from '../services/types/user';
 import { UNITS } from '../services/constants/global';
 import { EnumHorizontalPosition } from '../services/types/global';
 import { TResponse, EResponseStatuses } from '../components/UI/Form/types';
@@ -28,12 +28,23 @@ export default function SettingsScreen() {
   const isLoading = useAppSelector(selectIsLoading);
   const currentUser = useAppSelector(selectCurrentUser)
 
-  const successCallback = useCallback(() => {
+  const successCallback = useCallback((data: TUser) => {
+    if (!data) {
+      return;
+    }
+
     setResponse({
       status: EResponseStatuses.success,
       message: t('settings.form.res.success')
     });
-    reset();
+    reset({
+      gender: data?.gender,
+      age: data?.age,
+      height: data?.height,
+      weight: data?.weight,
+      weightGoal: data?.weightGoal,
+      email: data?.email,
+    });
   }, []);
 
   const onSubmit = handleSubmit(async (submitData: FieldValues) => {

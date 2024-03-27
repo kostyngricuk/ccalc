@@ -9,6 +9,7 @@ import {
 } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { StyledInput, StyledInputLabel } from './StyledInput';
+import { errorCodes } from '../../../services/constants/errors';
 
 export enum EnumInputType {
   text = 'text',
@@ -25,6 +26,7 @@ interface IInputBase {
   value?: string | undefined;
   label: string | undefined;
   units?: string;
+  isFullwidth?: boolean | undefined;
 }
 interface IInput extends IInputBase {
   error: FieldError | string | undefined;
@@ -46,10 +48,11 @@ export function Input(props: IInput) {
     units,
     checked,
     onChange,
+    isFullwidth
   } = props;
 
   return (
-    <StyledInput className="Input">
+    <StyledInput $isFullwidth={isFullwidth} className="Input">
       <StyledInputLabel
         className={classNames(
           error && 'has-error',
@@ -78,7 +81,8 @@ Input.defaultProps = {
   type: EnumInputType.text,
   units: '',
   checked: false,
-  value: ''
+  value: '',
+  isFullwidth: false
 };
 
 export function InputControlled({
@@ -89,6 +93,7 @@ export function InputControlled({
   label,
   units,
   control,
+  isFullwidth
 }: IInputControlled) {
   const { t } = useTranslation();
   const { field, fieldState } = useController({
@@ -96,7 +101,7 @@ export function InputControlled({
     control,
     defaultValue: value,
     rules: {
-      required: required === true ? `"${label}" ${t('form.field.error.required')}` : false,
+      required: required === true ? `"${label}" ${t(`errors.${errorCodes.IS_REQUIRED}`)}` : false,
       pattern: type === EnumInputType.number ? /\d/ : /./,
     },
   });
@@ -110,6 +115,7 @@ export function InputControlled({
       type={type}
       error={fieldState?.error}
       onChange={field.onChange}
+      isFullwidth={isFullwidth}
     />
   );
 }
@@ -118,4 +124,5 @@ InputControlled.defaultProps = {
   units: '',
   required: false,
   value: '',
+  isFullwidth: false
 };

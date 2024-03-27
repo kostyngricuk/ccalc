@@ -3,7 +3,7 @@ import http from '../http';
 
 export interface IAuthResponse {
   user: TUser,
-  message: string,
+  errorCode: string,
   success: boolean
 }
 const login = async (body: {

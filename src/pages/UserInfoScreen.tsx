@@ -108,6 +108,7 @@ export default function UserInfoScreen() {
         </FormField>
         <FormField>
           <InputControlled
+            isFullwidth
             type={EnumInputType.number}
             value={currentUser?.age?.toString()}
             name="age"
@@ -118,6 +119,7 @@ export default function UserInfoScreen() {
         </FormField>
         <FormField>
           <InputControlled
+            isFullwidth
             type={EnumInputType.number}
             value={currentUser?.height?.toString()}
             name="height"
@@ -129,6 +131,7 @@ export default function UserInfoScreen() {
         </FormField>
         <FormField>
           <InputControlled
+            isFullwidth
             type={EnumInputType.number}
             value={currentUser?.weight?.toString()}
             name="weight"
@@ -140,6 +143,7 @@ export default function UserInfoScreen() {
         </FormField>
         <FormField>
           <InputControlled
+            isFullwidth
             type={EnumInputType.number}
             value={currentUser?.weightGoal?.toString()}
             name="weightGoal"
