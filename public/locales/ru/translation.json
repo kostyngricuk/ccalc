@@ -42,7 +42,14 @@
     "title": "Сбросить пароль",
     "form": {
       "btnSubmit": "Сбросить",
+      "btnSubmitCode": "Проверить",
       "btnLogin": "Войти"
+    }
+  },
+  "changePassword": {
+    "title": "Изменить пароль",
+    "form": {
+      "btnSubmit": "Сохранить"
     }
   },
   "userInfo": {
@@ -79,6 +86,7 @@
       "oldPassword": "Старый пароль",
       "newPassword": "Новый пароль",
       "confirmNewPassword": "Подтверждение нового пароля",
+      "code": "Проверочный код",
       "error": {
         "required": "обязательное поле"
       }
@@ -93,7 +101,16 @@
   },
   "errors": {
     "404": "Страница не найдена!",
-    "unknown": "Что-то пошло не так!"
+    "IS_REQUIRED": "обязательно для заполнения",
+    "UNKNOWN_ERROR": "Что-то пошло не так!",
+    "undefined": "Неизвестная ошибка!",
+    "PASSWORD_MISMATCH": "Пароли не совпадают",
+    "USER_NOT_FOUND": "Пользователь не найден",
+    "CODE_IS_NOT_VALID": "Код не верный",
+    "USER_EMAIL_EXIST": "Пользователь с таким Email уже существует",
+    "PASSWORD_INCORRECT": "Пароль не верный",
+    "ERR_NETWORK": "Ошибка подключения",
+    "REQUEST_NOT_FOUND": "Запрос не найден"
   },
   "copyright": "Грицук Константин"
 }

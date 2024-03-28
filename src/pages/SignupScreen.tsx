@@ -4,18 +4,18 @@ import { useNavigate } from 'react-router-dom';
 import { FieldValues, useForm } from 'react-hook-form';
 
 import paths from '../services/router/paths';
-import { EnumHorizontalPosition } from '../types/global';
-import { reqRegister } from '../services/api/users';
-import { useAppDispatch } from '../services/hooks/store';
-import { setCredentials } from '../services/reducers/auth';
+import { EnumHorizontalPosition } from '../services/types/global';
 
 import Section from '../components/UI/Section/Section';
 import Title from '../components/UI/Title/Title';
 import Form from '../components/UI/Form/Form';
-import { TResponse, TResponseStatuses } from '../components/UI/Form/types';
+import { TResponse, EResponseStatuses } from '../components/UI/Form/types';
 import FormField, { EnumFormFieldType } from '../components/UI/FormField/FormField';
 import { EnumInputType, InputControlled } from '../components/UI/Input/Input';
 import Button, { EnumButtonColor, EnumButtonType } from '../components/UI/Button/Button';
+import { useAppDispatch, useAppSelector } from '../services/hooks/store';
+import { registerRequest } from '../services/reducers/userSlice';
+import { selectIsLoading } from '../services/hooks/selectors';
 
 export default function SignupScreen() {
   const [response, setResponse] = useState<TResponse>(null);
@@ -26,54 +26,28 @@ export default function SignupScreen() {
   const { handleSubmit, control, formState: { errors } } = useForm<FieldValues>();
   const handleLogin = () => navigate(paths.signin.url);
 
+  const isLoading = useAppSelector(selectIsLoading);
+
   const onSubmit = handleSubmit(async (submitData: FieldValues) => {
     if (!submitData) {
       return;
     }
     const { email, password, confirmPassword } = submitData;
 
-    if (password !== confirmPassword) {
-      setResponse({
-        status: TResponseStatuses.error,
-        message: 'Password mismatch!'
-      });
-      return;
-    }
-
-    const res = await reqRegister({
-      email,
-      password
+    dispatch({
+      type: registerRequest.type,
+      payload: {
+        email,
+        password,
+        confirmPassword
+      }
     });
-    if (!res?.data) {
-      setResponse({
-        status: TResponseStatuses.error,
-        message: 'Something went wrong!'
-      });
-      return;
-    }
-
-    const {
-      success,
-      user,
-      message,
-    } = res.data;
-    if (!success) {
-      setResponse({
-        status: TResponseStatuses.error,
-        message
-      });
-      return;
-    }
-
-    dispatch(setCredentials({
-      currentUser: user
-    }));
   });
 
   useEffect(() => {
     if (Object.keys(errors).length > 0) {
       setResponse({
-        status: TResponseStatuses.error,
+        status: EResponseStatuses.error,
         errors
       });
     }
@@ -82,7 +56,7 @@ export default function SignupScreen() {
   return (
     <Section>
       <Title position={EnumHorizontalPosition.center}>{t('signup.title')}</Title>
-      <Form onSubmit={onSubmit} response={response}>
+      <Form onSubmit={onSubmit} response={response} isLoading={isLoading}>
         <InputControlled
           type={EnumInputType.email}
           name="email"

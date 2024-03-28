@@ -42,7 +42,14 @@
     "title": "Reset Password",
     "form": {
       "btnSubmit": "Reset",
+      "btnSubmitCode": "Verify",
       "btnLogin": "Sign in"
+    }
+  },
+  "changePassword": {
+    "title": "Change Password",
+    "form": {
+      "btnSubmit": "Save"
     }
   },
   "userInfo": {
@@ -79,9 +86,7 @@
       "oldPassword": "Old password",
       "newPassword": "New password",
       "confirmNewPassword": "Confirm new password",
-      "error": {
-        "required": "is required"
-      }
+      "code": "Verification code"
     }
   },
   "units": {
@@ -93,7 +98,16 @@
   },
   "errors": {
     "404": "Page Not Found!",
-    "unknown": "Something went wrong!"
+    "IS_REQUIRED": "is required",
+    "UNKNOWN_ERROR": "Something went wrong!",
+    "undefined": "Undefined error!",
+    "PASSWORD_MISMATCH": "Password mismatch!",
+    "USER_NOT_FOUND": "User not found!",
+    "CODE_IS_NOT_VALID": "Code is not correct",
+    "USER_EMAIL_EXIST": "Email is being used by another user",
+    "PASSWORD_INCORRECT": "Password is not valid",
+    "ERR_NETWORK": "Connection error",
+    "REQUEST_NOT_FOUND": "Request not found"
   },
   "copyright": "Kanstantsin Hrytsuk"
 }

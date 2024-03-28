@@ -37,11 +37,11 @@ const router = createBrowserRouter([
       },
       {
         path: paths.reset.url,
-        element: <AuthRoute><ResetScreen /></AuthRoute>,
+        element: <ResetScreen />,
       },
       {
         path: paths.userInfo.url,
-        element: <UserInfoScreen />,
+        element: <ProtectedRoute><UserInfoScreen /></ProtectedRoute>,
       },
       {
         path: paths.calculator.url,

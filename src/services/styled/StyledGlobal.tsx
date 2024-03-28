@@ -32,5 +32,14 @@ const StyledGlobal = createGlobalStyle`
   .h2 {
       font-size: 32px;
   }
+
+  a {
+    text-decoration: none;
+    color: var(--color-primary);
+    font-weight: 700;
+    &:hover {
+      color: var(--color-black);
+    }
+  }
 `;
 export default StyledGlobal;
