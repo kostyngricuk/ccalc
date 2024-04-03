@@ -18,3 +18,8 @@ export interface IUser {
 }
 
 export type TUser = IUser | null | undefined;
+
+export interface IUserState {
+  isLoading: boolean,
+  user: TUser;
+}

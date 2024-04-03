@@ -1,37 +1,65 @@
-import React, { FormEventHandler, ReactNode } from 'react';
-import { StyledFormWrapper, StyledFormResult, StyledForm } from './StyledForm';
-import { TResponse, TResponseStatuses } from './types';
+import React, { FormEventHandler, ReactNode, useEffect } from 'react';
+import { StyledFormWrapper, StyledForm } from './StyledForm';
+import { TResponse, EResponseStatuses } from './types';
+import { addNotification } from '../../../services/reducers/notificationSlice';
+import { useAppDispatch } from '../../../services/hooks/store';
+import { ENotificationType } from '../../../services/types/notification';
 
 export default function Form({
   children,
   onSubmit,
   response,
+  isLoading
 }: {
   children: ReactNode,
   onSubmit: FormEventHandler,
-  response: TResponse
+  response: TResponse,
+  isLoading?: boolean
 }) {
+  const dispatch = useAppDispatch();
+
+  const diptachNotification = (type: ENotificationType, message: string) => {
+    dispatch({
+      type: addNotification.type,
+      payload: {
+        type,
+        message
+      }
+    });
+  };
+
+  useEffect(() => {
+    if (response?.message) {
+      const textMessage = response?.message as string;
+      switch (response?.status) {
+        case EResponseStatuses.success:
+          diptachNotification(ENotificationType.success, textMessage);
+          break;
+        case EResponseStatuses.error:
+          diptachNotification(ENotificationType.error, textMessage);
+          break;
+        default:
+          diptachNotification(ENotificationType.info, textMessage);
+          break;
+      }
+    }
+    if (response?.status === EResponseStatuses.error && response?.errors) {
+      Object.values(response.errors).forEach((error) => {
+        const textMessage = error?.message as string;
+        diptachNotification(ENotificationType.error, textMessage);
+      })
+    }
+  }, [response?.status, response?.message]);
+
   return (
     <StyledFormWrapper>
-      <StyledForm onSubmit={onSubmit}>
+      <StyledForm onSubmit={onSubmit} $isLoading={isLoading}>
         { children }
       </StyledForm>
-      <StyledFormResult status={response?.status}>
-        {
-          response?.status === TResponseStatuses.success && response?.message
-        }
-        {
-          response?.status === TResponseStatuses.error && response?.message
-        }
-        {
-          response?.status === TResponseStatuses.error && response?.errors && Object.values(response?.errors).map((error) => (
-              <>
-                <span>{ `${error?.message}` }</span>
-                <br/>
-              </>
-            ))
-        }
-      </StyledFormResult>
     </StyledFormWrapper>
   );
+}
+
+Form.defaultProps = {
+  isLoading: false
 }

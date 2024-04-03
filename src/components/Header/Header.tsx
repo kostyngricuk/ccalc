@@ -13,19 +13,20 @@ import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
 import { StyledHeader, StyledHeaderContent } from './StyleHeader';
 
 import paths from '../../services/router/paths';
-import useAuth from '../../services/hooks/useAuth';
-import { setCredentials } from '../../services/reducers/auth';
-import { useAppDispatch } from '../../services/hooks/store';
 import hasAdditionalInfo from '../../services/utils/auth';
+import { useAppDispatch, useAppSelector } from '../../services/hooks/store';
+import { logoutRequest } from '../../services/reducers/userSlice';
+import { selectCurrentUser } from '../../services/hooks/selectors';
 
 export default function Header() {
   const { t } = useTranslation();
-  const {currentUser } = useAuth();
   const dispatch = useAppDispatch();
 
   const handleLogout = () => {
-    dispatch(setCredentials(null))
+    dispatch(logoutRequest())
   };
+
+  const currentUser = useAppSelector(selectCurrentUser);
 
   const menuItems: Array<INavItem> = [
     {

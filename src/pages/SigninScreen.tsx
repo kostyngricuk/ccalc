@@ -4,20 +4,19 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FieldValues, useForm } from 'react-hook-form';
 
 import paths from '../services/router/paths';
-import { setCredentials } from '../services/reducers/auth';
-import { useAppDispatch } from '../services/hooks/store';
-import { EnumHorizontalPosition } from '../types/global';
+import { useAppDispatch, useAppSelector } from '../services/hooks/store';
+import { EnumHorizontalPosition } from '../services/types/global';
 
 import Section from '../components/UI/Section/Section';
 import Title from '../components/UI/Title/Title';
 import Form from '../components/UI/Form/Form';
-import { TResponse, TResponseStatuses } from '../components/UI/Form/types';
+import { TResponse, EResponseStatuses } from '../components/UI/Form/types';
 import FormField, { EnumFormFieldType } from '../components/UI/FormField/FormField';
 import { EnumInputType, InputControlled } from '../components/UI/Input/Input';
 import Button, { EnumButtonColor, EnumButtonType } from '../components/UI/Button/Button';
 import Text from '../components/UI/Text/Text';
-import { reqLogin } from '../services/api/users';
-
+import { loginRequest } from '../services/reducers/userSlice';
+import { selectIsLoading } from '../services/hooks/selectors';
 
 export default function   SigninScreen() {
   const [response, setResponse] = useState<TResponse>(null);
@@ -28,48 +27,27 @@ export default function   SigninScreen() {
   const { handleSubmit, control, formState: { errors } } = useForm<FieldValues>();
   const handleRegistration = () => navigate(paths.signup.url);
 
+  const isLoading = useAppSelector(selectIsLoading);
+
   const onSubmit = handleSubmit(async (submitData: FieldValues) => {
     if (!submitData) {
       return;
     }
     const { email, password } = submitData;
 
-    const res = await reqLogin({
-      email,
-      password
+    dispatch({
+      type: loginRequest.type,
+      payload: {
+        email,
+        password
+      }
     });
-
-    if (!res?.data) {
-      setResponse({
-        status: TResponseStatuses.error,
-        message: 'Something went wrong!'
-      });
-      return;
-    }
-
-    const {
-      success,
-      user,
-      message,
-    } = res.data;
-
-    if (!success) {
-      setResponse({
-        status: TResponseStatuses.error,
-        message
-      });
-      return;
-    }
-
-    dispatch(setCredentials({
-      currentUser: user
-    }));
   });
 
   useEffect(() => {
     if (Object.keys(errors).length > 0) {
       setResponse({
-        status: TResponseStatuses.error,
+        status: EResponseStatuses.error,
         errors
       });
     }
@@ -78,7 +56,7 @@ export default function   SigninScreen() {
   return (
     <Section>
       <Title position={EnumHorizontalPosition.center}>{t('signin.title')}</Title>
-      <Form onSubmit={onSubmit} response={response}>
+      <Form onSubmit={onSubmit} response={response} isLoading={isLoading}>
         <InputControlled
           type={EnumInputType.email}
           name="email"
