@@ -12,7 +12,12 @@
     "cal": "ккал"
   },
   "calculator": {
-    "title": "Калькулятор"
+    "title": "Калькулятор",
+    "form": {
+      "btn": {
+        "add": "Add product"
+      }
+    }
   },
   "help": {
     "title": "Помощь"
@@ -26,36 +31,46 @@
   "signin": {
     "title": "Авторизация",
     "form": {
-      "btnSubmit": "Войти",
-      "btnRegistration": "Создать аккаунт"
+      "btn": {
+        "submit": "Войти",
+        "registration": "Создать аккаунт"
+      }
     },
     "resetPassword": "Восстановить пароль"
   },
   "signup": {
     "title": "Регистрация",
     "form": {
-      "btnSubmit": "Создать",
-      "btnLogin": "Войти"
+      "btn": {
+        "submit": "Создать",
+        "login": "Войти"
+      }
     }
   },
   "reset": {
     "title": "Сбросить пароль",
     "form": {
-      "btnSubmit": "Сбросить",
-      "btnSubmitCode": "Проверить",
-      "btnLogin": "Войти"
+      "btn": {
+        "submit": "Сбросить",
+        "submitCode": "Проверить",
+        "login": "Войти"
+      }
     }
   },
   "changePassword": {
     "title": "Изменить пароль",
     "form": {
-      "btnSubmit": "Сохранить"
+      "btn": {
+        "submit": "Сохранить"
+      }
     }
   },
   "userInfo": {
     "title": "Информация о вас",
     "form": {
-      "btnSubmit": "Сохранить"
+      "btn": {
+        "submit": "Сохранить"
+      }
     }
   },
   "settings": {
@@ -65,8 +80,10 @@
         "success": "Изменения применены!",
         "successReset": "Лимит успешно сброшен!"
       },
-      "btnSave": "Сохранить изменения",
-      "btnResetWidget": "Сбросить лимит каллорий"
+      "btn": {
+        "save": "Сохранить изменения",
+        "resetWidget": "Сбросить лимит каллорий"
+      }
     }
   },
   "form": {
@@ -87,9 +104,7 @@
       "newPassword": "Новый пароль",
       "confirmNewPassword": "Подтверждение нового пароля",
       "code": "Проверочный код",
-      "error": {
-        "required": "обязательное поле"
-      }
+      "selectProduct": "Выберите продукты"
     }
   },
   "units": {

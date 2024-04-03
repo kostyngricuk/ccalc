@@ -155,7 +155,7 @@ export default function UserInfoScreen() {
         </FormField>
         <FormField type={EnumFormFieldType.actions}>
           <Button type={EnumButtonType.submit}>
-            {t('userInfo.form.btnSubmit')}
+            {t('userInfo.form.btn.submit')}
           </Button>
         </FormField>
       </Form>

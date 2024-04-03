@@ -103,14 +103,14 @@ export default function ResetScreen() {
             />
             <FormField type={EnumFormFieldType.actions}>
               <Button type={EnumButtonType.submit}>
-                {t('reset.form.btnSubmit')}
+                {t('reset.form.btn.submit')}
               </Button>
               <Button
                 color={EnumButtonColor.black}
                 $isOutline
                 onClick={handleLogin}
               >
-                {t('reset.form.btnLogin')}
+                {t('reset.form.btn.login')}
               </Button>
             </FormField>
           </Form>
@@ -128,7 +128,7 @@ export default function ResetScreen() {
             />
             <FormField type={EnumFormFieldType.actions}>
               <Button type={EnumButtonType.submit}>
-                {t('reset.form.btnSubmitCode')}
+                {t('reset.form.btn.submitCode')}
               </Button>
             </FormField>
           </Form>
@@ -153,7 +153,7 @@ export default function ResetScreen() {
             />
             <FormField type={EnumFormFieldType.actions}>
               <Button type={EnumButtonType.submit}>
-                {t('changePassword.form.btnSubmit')}
+                {t('changePassword.form.btn.submit')}
               </Button>
             </FormField>
           </Form>

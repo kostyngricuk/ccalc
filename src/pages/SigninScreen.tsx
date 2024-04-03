@@ -74,14 +74,14 @@ export default function   SigninScreen() {
         />
         <FormField type={EnumFormFieldType.actions}>
           <Button type={EnumButtonType.submit}>
-            {t('signin.form.btnSubmit')}
+            {t('signin.form.btn.submit')}
           </Button>
           <Button
             color={EnumButtonColor.black}
             $isOutline
             onClick={handleRegistration}
           >
-            {t('signin.form.btnRegistration')}
+            {t('signin.form.btn.registration')}
           </Button>
         </FormField>
       </Form>

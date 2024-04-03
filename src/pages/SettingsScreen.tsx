@@ -191,13 +191,13 @@ export default function SettingsScreen() {
         />
         <FormField type={EnumFormFieldType.actions}>
           <Button type={EnumButtonType.submit}>
-            {t('settings.form.btnSave')}
+            {t('settings.form.btn.save')}
           </Button>
           <Button
             color={EnumButtonColor.red}
             $isOutline
           >
-            {t('settings.form.btnResetWidget')}
+            {t('settings.form.btn.resetWidget')}
           </Button>
         </FormField>
       </Form>
