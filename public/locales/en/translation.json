@@ -109,6 +109,8 @@
   },
   "units": {
     "kg": "kg",
+    "g": "g",
+    "ml": "ml",
     "sm": "sm"
   },
   "areas": {

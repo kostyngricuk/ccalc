@@ -4,6 +4,7 @@ enum EnumColorsLight {
   primary = '#57b945',
   secondary = '#FFCF00',
   gray = 'rgba(0, 0, 0, 0.25)',
+  lightgray = 'rgba(0, 0, 0, 0.1)',
   red = '#C00',
   error = 'rgb(231, 24, 24)',
 }

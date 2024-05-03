@@ -15,7 +15,7 @@ export default function Select<
   return (
     <ReactSelect
       name={name}
-      value={value}
+      value={options?.length ? value : null}
       onChange={onChange}
       options={options}
     />

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FieldValues, useForm } from 'react-hook-form';
+import { differenceBy } from "lodash";
 
 import Section from '../components/UI/Section/Section';
 import Title from '../components/UI/Title/Title';
@@ -12,85 +13,66 @@ import FormField, {
 import { EnumInputType, InputControlled } from '../components/UI/Input/Input';
 import { EnumHorizontalPosition } from '../services/types/global';
 import { TResponse, EResponseStatuses } from '../components/UI/Form/types';
-import { TProducts } from '../services/types/products';
+import ProductList from '../components/ProductList/ProductList';
+import { useAppDispatch, useAppSelector } from '../services/hooks/store';
+import { selectProductItems, selectProductSelectedItems } from '../services/hooks/selectors';
+import { addProduct, getProducts } from '../services/reducers/productSlice';
 
-const products = [
-  {
-    id: 0,
-    name: "Milk",
-    kkal: 1,
-    proto: 2,
-    fats: 3,
-    carbo: 4
-  },
-  {
-    id: 1,
-    name: "Beef",
-    kkal: 1,
-    proto: 2,
-    fats: 3,
-    carbo: 4
-  },
-  {
-    id: 2,
-    name: "Potato",
-    kkal: 1,
-    proto: 2,
-    fats: 3,
-    carbo: 4
-  },
-] as TProducts;
+const SearchProductForm = React.memo(
+  () => {
+    const [response, setResponse] = useState<TResponse>(null);
+    const { t } = useTranslation();
+    const dispatch = useAppDispatch();
 
-export default function CalculatorScreen() {
-  const [selectedProducts, setSelectedProducts] = useState<TProducts>([]);
-  const [response, setResponse] = useState<TResponse>(null);
-  const { t } = useTranslation();
+    useEffect(() => {
+      dispatch({
+        type: getProducts.type,
+      });
+    }, []);
 
-  const { handleSubmit, control, formState: { errors } } = useForm<FieldValues>();
+    const allProducts = useAppSelector(selectProductItems);
+    const selectedProducts = useAppSelector(selectProductSelectedItems);
 
-  const onSubmit = handleSubmit(async (submitData: FieldValues) => {
-    if (!submitData) {
-      return;
-    }
-    setResponse({
-      status: EResponseStatuses.success,
-      message: 'Success'
+    const diffProducts = differenceBy(allProducts, selectedProducts, 'id');
+    const productOptions = diffProducts.map((el) => {
+      const option = {
+        label: el.name,
+        value: el.id
+      }
+      return option;
     });
-  });
 
-  useEffect(() => {
-    if (Object.keys(errors).length > 0) {
-      setResponse({
-        status: EResponseStatuses.error,
-        errors
+    const onChangeSelectProduct = (optionValue: string) => {
+      dispatch({
+        type: addProduct.type,
+        payload: {
+          id: parseInt(optionValue, 10)
+        }
       });
     }
-  }, [errors]);
 
+    const { handleSubmit, control, formState: { errors } } = useForm<FieldValues>();
 
-  const productOptions = products.map((el) => {
-    const option = {
-      label: el.name,
-      value: el.id
-    }
-    return option;
-  });
+    const onSubmit = handleSubmit(async (submitData: FieldValues) => {
+      if (!submitData) {
+        return;
+      }
+      setResponse({
+        status: EResponseStatuses.success,
+        message: 'Success'
+      });
+    });
 
-  const onChangeSelectProduct = (optionValue: string) => {
-    const productId = parseInt(optionValue, 10);
-    const selectedItem = products.find((el) => el.id === productId);
-    if (selectedItem) {
-      setSelectedProducts([...selectedProducts, selectedItem]);
-    }
-  }
+    useEffect(() => {
+      if (Object.keys(errors).length > 0) {
+        setResponse({
+          status: EResponseStatuses.error,
+          errors
+        });
+      }
+    }, [errors]);
 
-  useEffect(() => {
-    console.log(selectedProducts);
-  }, [selectedProducts])
-
-  return (
-    <Section>
-      <Title position={EnumHorizontalPosition.center}>{t('calculator.title')}</Title>
+    return (
       <Form onSubmit={onSubmit} response={response}>
         <FormField type={EnumFormFieldType.row}>
           <InputControlled
@@ -102,11 +84,23 @@ export default function CalculatorScreen() {
             control={control}
             onChangeTrigger={onChangeSelectProduct}
           />
-          <Button type={EnumButtonType.submit} ariaLabel={t('calculator.form.btn.add')}>
+          <Button type={EnumButtonType.button} ariaLabel={t('calculator.form.btn.add')}>
             +
           </Button>
         </FormField>
       </Form>
+    )
+  }
+)
+
+export default function CalculatorScreen() {
+  const { t } = useTranslation();
+
+  return (
+    <Section>
+      <Title position={EnumHorizontalPosition.center}>{t('calculator.title')}</Title>
+      <SearchProductForm />
+      <ProductList />
     </Section>
   );
 }

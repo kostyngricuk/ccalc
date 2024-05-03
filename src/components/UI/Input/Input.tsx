@@ -34,7 +34,7 @@ interface IInputBase {
   options?: any;
 }
 interface IInput extends IInputBase {
-  error: FieldError | string | undefined;
+  error?: FieldError | string | undefined;
   checked?: boolean | undefined;
   onChange: (value: string) => ChangeEventHandler<HTMLInputElement> | void;
 }
@@ -114,7 +114,8 @@ Input.defaultProps = {
   checked: false,
   value: '',
   isFullwidth: false,
-  options: []
+  options: [],
+  error: ''
 };
 
 export function InputControlled({

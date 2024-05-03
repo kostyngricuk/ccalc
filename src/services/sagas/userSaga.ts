@@ -9,7 +9,8 @@ import {
   requsetSuccess,
   resetRequest,
   sendCodeRequest,
-  changePasswordRequest
+  changePasswordRequest,
+  requsetUserError
 } from '../reducers/userSlice';
 import paths from '../router/paths';
 import { errorAction, errorCodes } from '../constants/errors';
@@ -30,6 +31,7 @@ function* userLogin(action: any): Generator {
     }
     yield put(requsetSuccess(res.user));
   } catch (error) {
+    yield put(requsetUserError());
     yield put({ type: errorAction, error });
   }
 }
@@ -56,6 +58,7 @@ function* userRegister(action: any): Generator {
     }
     yield put(requsetSuccess(res.user));
   } catch (error) {
+    yield put(requsetUserError());
     yield put({ type: errorAction, error });
   }
 }
@@ -83,6 +86,7 @@ function* userUpdate(action: any): Generator {
       successCallback(res.user);
     }
   } catch (error) {
+    yield put(requsetUserError());
     yield put({ type: errorAction, error });
   }
 }
@@ -101,6 +105,7 @@ function* resetPassword(action: any): Generator {
     }
     yield put(requsetSuccess(res.user));
   } catch (error) {
+    yield put(requsetUserError());
     yield put({ type: errorAction, error });
   }
 }
@@ -114,6 +119,7 @@ function* sendCode(action: any): Generator {
     }
     yield put(requsetSuccess(res.user));
   } catch (error) {
+    yield put(requsetUserError());
     yield put({ type: errorAction, error });
   }
 }
@@ -142,6 +148,7 @@ function* changePassword(action: any): Generator {
     yield put(requsetSuccess(res.user));
     navigate(paths.home.url);
   } catch (error) {
+    yield put(requsetUserError());
     yield put({ type: errorAction, error });
   }
 }

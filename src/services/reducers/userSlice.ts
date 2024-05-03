@@ -63,7 +63,7 @@ export const userSlice = createSlice({
       state.user = user;
       state.isLoading = false;
     },
-    requsetError: (
+    requsetUserError: (
       state: IUserState,
     ) => {
       state.isLoading = false;
@@ -80,7 +80,7 @@ export const {
   changePasswordRequest,
   logoutRequest,
   requsetSuccess,
-  requsetError,
+  requsetUserError,
 } = userSlice.actions;
 
 export default userSlice.reducer;

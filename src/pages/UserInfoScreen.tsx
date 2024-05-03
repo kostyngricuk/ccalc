@@ -29,6 +29,7 @@ export default function UserInfoScreen() {
   const { handleSubmit, control, formState: { errors } } = useForm<FieldValues>();
 
   const isLoading = useAppSelector(selectIsLoading);
+  const currentUser = useAppSelector(selectCurrentUser)
 
   const onSubmit = handleSubmit(async (submitData: FieldValues) => {
     if (!submitData) {
@@ -49,7 +50,8 @@ export default function UserInfoScreen() {
         age,
         height,
         weight,
-        weightGoal
+        weightGoal,
+        email: currentUser?.email
       }
     });
   });
@@ -63,7 +65,6 @@ export default function UserInfoScreen() {
     }
   }, [errors]);
 
-  const currentUser = useAppSelector(selectCurrentUser);
   useEffect(() => {
     if (currentUser && hasAdditionalInfo(currentUser)) {
       navigate(paths.home.url);
