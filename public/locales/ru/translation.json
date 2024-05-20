@@ -14,9 +14,16 @@
   "calculator": {
     "title": "Калькулятор",
     "form": {
+      "title": "Выберите продукты",
       "btn": {
         "add": "Add product"
       }
+    },
+    "res": {
+      "title": "Результат"
+    },
+    "item": {
+      "remove": "Удалить продукт"
     }
   },
   "help": {

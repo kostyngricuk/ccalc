@@ -14,9 +14,16 @@
   "calculator": {
     "title": "Calculator",
     "form": {
+      "title": "Choose products",
       "btn": {
         "add": "Add product"
       }
+    },
+    "res": {
+      "title": "Result"
+    },
+    "item": {
+      "remove": "Remove product"
     }
   },
   "help": {

@@ -38,10 +38,13 @@ export const productSlice = createSlice({
     ) => {
       const selectedItem = state.items.find((item) => item.id === id);
       if (selectedItem) {
-        state.selectedItems = [...state.selectedItems, {
-          ...selectedItem,
-          id: state.selectedItems.length,
-        }];
+        state.selectedItems = [
+          {
+            ...selectedItem,
+            id: state.selectedItems.length,
+          },
+          ...state.selectedItems
+        ];
       }
     },
     removeProduct: (

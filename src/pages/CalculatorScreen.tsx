@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { FieldValues, useForm } from 'react-hook-form';
 import { differenceBy } from "lodash";
 
-import Section from '../components/UI/Section/Section';
 import Title from '../components/UI/Title/Title';
 import Button, { EnumButtonType } from '../components/UI/Button/Button';
 import Form from '../components/UI/Form/Form';
@@ -11,12 +10,13 @@ import FormField, {
   EnumFormFieldType,
 } from '../components/UI/FormField/FormField';
 import { EnumInputType, InputControlled } from '../components/UI/Input/Input';
-import { EnumHorizontalPosition } from '../services/types/global';
+import { EnumHorizontalPosition, EnumTitleVariant } from '../services/types/global';
 import { TResponse, EResponseStatuses } from '../components/UI/Form/types';
 import ProductList from '../components/ProductList/ProductList';
 import { useAppDispatch, useAppSelector } from '../services/hooks/store';
 import { selectProductItems, selectProductSelectedItems } from '../services/hooks/selectors';
 import { addProduct, getProducts } from '../services/reducers/productSlice';
+import Columns from '../components/UI/Columns/Columns';
 
 const SearchProductForm = React.memo(
   () => {
@@ -97,10 +97,15 @@ export default function CalculatorScreen() {
   const { t } = useTranslation();
 
   return (
-    <Section>
-      <Title position={EnumHorizontalPosition.center}>{t('calculator.title')}</Title>
-      <SearchProductForm />
-      <ProductList />
-    </Section>
+    <Columns>
+      <div>
+        <Title position={EnumHorizontalPosition.center} variant={EnumTitleVariant.h2}>{t('calculator.form.title')}</Title>
+        <SearchProductForm />
+        <ProductList />
+      </div>
+      <div style={{backgroundColor: 'var(--color-lightgreen)'}}>
+        <Title position={EnumHorizontalPosition.center} variant={EnumTitleVariant.h2}>{t('calculator.res.title')}</Title>
+      </div>
+    </Columns>
   );
 }
