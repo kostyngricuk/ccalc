@@ -15,15 +15,25 @@
     "title": "Calculator",
     "form": {
       "title": "Choose products",
+      "or": "- OR -",
       "btn": {
-        "add": "Add product"
+        "add": "Add custom product"
       }
     },
     "res": {
       "title": "Result"
     },
     "item": {
+      "nutrients": "P / F / C",
+      "colories": "Сalories",
       "remove": "Remove product"
+    },
+    "newProductForm": {
+      "title": "Add custom product",
+      "btn": {
+        "submit": "Add",
+        "cancel": "Cancel"
+      }
     }
   },
   "help": {
@@ -88,7 +98,7 @@
         "successReset": "Limit reset successfully!"
       },
       "btn": {
-        "submit": "Save changes",
+        "save": "Save changes",
         "resetWidget": "Reset today limit"
       }
     }
@@ -111,14 +121,21 @@
       "newPassword": "New password",
       "confirmNewPassword": "Confirm new password",
       "code": "Verification code",
-      "selectProduct": "Select the product"
+      "selectProduct": "Select the product",
+      "productTitle": "Product name"
     }
   },
   "units": {
     "kg": "kg",
     "g": "g",
     "ml": "ml",
-    "sm": "sm"
+    "sm": "sm",
+    "proto": "Proteins",
+    "fats": "Fats",
+    "carbo": "Carbohydrates",
+    "protoShort": "P",
+    "fatsShort": "F",
+    "carboShort": "C"
   },
   "areas": {
     "goHome": "Go home"

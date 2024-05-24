@@ -49,8 +49,8 @@ export default function ProductItem({
     <StyledProductItem>
       <div>
         <Title variant={EnumTitleVariant.h3}>{item.name}</Title>
-        <p><strong>P / F / C :</strong> {proto}/{fats}/{carbo}</p>
-        <p><strong>Сalories :</strong> {kkal}</p>
+        <p><strong>{t('calculator.item.nutrients')} :</strong> {proto}/{fats}/{carbo}</p>
+        <p><strong>{t('calculator.item.colories')} :</strong> {kkal}</p>
       </div>
       <Input
         units={t(`units.${UNITS.g}`)}

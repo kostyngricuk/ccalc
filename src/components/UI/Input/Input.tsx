@@ -32,6 +32,7 @@ interface IInputBase {
   units?: string;
   isFullwidth?: boolean | undefined;
   options?: any;
+  required?: boolean;
 }
 interface IInput extends IInputBase {
   error?: FieldError | string | undefined;
@@ -39,8 +40,7 @@ interface IInput extends IInputBase {
   onChange: (value: string) => ChangeEventHandler<HTMLInputElement> | void;
 }
 interface IInputControlled extends IInputBase {
-  required?: boolean | undefined;
-  control: Control<FieldValues>;
+  control?: Control<FieldValues>;
   onChangeTrigger?: (value: string) => void;
 }
 
@@ -55,7 +55,8 @@ export function Input(props: IInput) {
     checked,
     onChange,
     isFullwidth,
-    options
+    options,
+    required
   } = props;
 
   if (type === EnumInputType.select) {
@@ -77,6 +78,7 @@ export function Input(props: IInput) {
           error && 'has-error',
           type === EnumInputType.radio && 'is-radio',
           Boolean(units?.length) && 'has-units',
+          required && 'is-required'
         )}
       >
         {type === EnumInputType.radio ? (
@@ -95,6 +97,7 @@ export function Input(props: IInput) {
           <input
             name={name}
             value={value}
+            required={required}
             onChange={(e) => onChange(e.target.value)}
             autoComplete="off"
             type={type?.toString()}
@@ -115,7 +118,8 @@ Input.defaultProps = {
   value: '',
   isFullwidth: false,
   options: [],
-  error: ''
+  error: '',
+  required: false,
 };
 
 export function InputControlled({
@@ -147,6 +151,7 @@ export function InputControlled({
       name={field.name}
       value={field.value}
       label={label}
+      required={required}
       type={type}
       error={fieldState?.error}
       onChange={(input: any) => {
@@ -167,5 +172,6 @@ InputControlled.defaultProps = {
   value: '',
   isFullwidth: false,
   options: [],
-  onChangeTrigger: () => null
+  control: null,
+  onChangeTrigger: () => null,
 };

@@ -15,15 +15,25 @@
     "title": "Калькулятор",
     "form": {
       "title": "Выберите продукты",
+      "or": "- ИЛИ -",
       "btn": {
-        "add": "Add product"
+        "add": "Добавить свой продукт"
       }
     },
     "res": {
       "title": "Результат"
     },
     "item": {
+      "nutrients": "Б / Ж / У",
+      "colories": "Каллории",
       "remove": "Удалить продукт"
+    },
+    "newProductForm": {
+      "title": "Добавить свой продукт",
+      "btn": {
+        "submit": "Добавить",
+        "cancel": "Отмена"
+      }
     }
   },
   "help": {
@@ -111,14 +121,21 @@
       "newPassword": "Новый пароль",
       "confirmNewPassword": "Подтверждение нового пароля",
       "code": "Проверочный код",
-      "selectProduct": "Выберите продукты"
+      "selectProduct": "Выберите продукты",
+      "productTitle": "Название продукта"
     }
   },
   "units": {
     "kg": "кг",
     "g": "г",
     "ml": "мл",
-    "sm": "см"
+    "sm": "см",
+    "proto": "Белки",
+    "fats": "Жиры",
+    "carbo": "Углеводы",
+    "protoShort": "Б",
+    "fatsShort": "Ж",
+    "carboShort": "У"
   },
   "areas": {
     "goHome": "На главную"

@@ -36,6 +36,10 @@ export const StyledInputLabel = styled.label`
     width: 100%;
     padding-top: 0.5em;
   }
+  &.is-required .label::after {
+    content: '*';
+    color: var(--color-red);
+  }
   .units {
     color: var(--color-gray);
     position: absolute;

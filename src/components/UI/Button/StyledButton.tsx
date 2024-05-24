@@ -34,10 +34,12 @@ const StyledButton = styled.button<{
   align-items: center;
   justify-content: center;
   height: 40px;
+  padding: 0 15px;
   border-radius: 0;
   background-color: transparent;
   cursor: pointer;
   border-style: solid;
+  font-weight: 600;
   ${(props) => props.$isIcon && css`
       width: 40px;
       .Icon {

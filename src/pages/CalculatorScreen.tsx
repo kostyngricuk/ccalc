@@ -4,7 +4,7 @@ import { FieldValues, useForm } from 'react-hook-form';
 import { differenceBy } from "lodash";
 
 import Title from '../components/UI/Title/Title';
-import Button, { EnumButtonType } from '../components/UI/Button/Button';
+import Button, { EnumButtonColor, EnumButtonType } from '../components/UI/Button/Button';
 import Form from '../components/UI/Form/Form';
 import FormField, {
   EnumFormFieldType,
@@ -17,10 +17,12 @@ import { useAppDispatch, useAppSelector } from '../services/hooks/store';
 import { selectProductItems, selectProductSelectedItems } from '../services/hooks/selectors';
 import { addProduct, getProducts } from '../services/reducers/productSlice';
 import Columns from '../components/UI/Columns/Columns';
+import Modal from '../components/UI/Modal/Modal';
 
 const SearchProductForm = React.memo(
   () => {
     const [response, setResponse] = useState<TResponse>(null);
+    const [isShowModal, setIsShowModal] = useState<Boolean>(false);
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
 
@@ -51,16 +53,25 @@ const SearchProductForm = React.memo(
       });
     }
 
-    const { handleSubmit, control, formState: { errors } } = useForm<FieldValues>();
+    const {
+      handleSubmit,
+      control,
+      reset,
+      formState: { errors }
+    } = useForm<FieldValues>();
 
     const onSubmit = handleSubmit(async (submitData: FieldValues) => {
       if (!submitData) {
         return;
       }
+
       setResponse({
         status: EResponseStatuses.success,
         message: 'Success'
       });
+
+      reset();
+      setIsShowModal(false)
     });
 
     useEffect(() => {
@@ -73,7 +84,7 @@ const SearchProductForm = React.memo(
     }, [errors]);
 
     return (
-      <Form onSubmit={onSubmit} response={response}>
+      <>
         <FormField type={EnumFormFieldType.row}>
           <InputControlled
             type={EnumInputType.select}
@@ -84,11 +95,65 @@ const SearchProductForm = React.memo(
             control={control}
             onChangeTrigger={onChangeSelectProduct}
           />
-          <Button type={EnumButtonType.button} ariaLabel={t('calculator.form.btn.add')}>
-            +
+          <span>{ t('calculator.form.or') }</span>
+          <Button
+            type={EnumButtonType.button} ariaLabel={t('calculator.form.btn.add')}
+            onClick={() => setIsShowModal(true)}
+          >
+            { t('calculator.form.btn.add') }
           </Button>
         </FormField>
-      </Form>
+        {
+          isShowModal && (
+            <Modal>
+              <Title position={EnumHorizontalPosition.center} variant={EnumTitleVariant.h3}>{t('calculator.newProductForm.title')}</Title>
+              <Form onSubmit={onSubmit} response={response}>
+                <InputControlled
+                  required
+                  name="title"
+                  label={t('form.field.productTitle')}
+                  control={control}
+                />
+                <FormField type={EnumFormFieldType.row}>
+                  <InputControlled
+                    required
+                    type={EnumInputType.number}
+                    name="proto"
+                    label={t('units.protoShort')}
+                    control={control}
+                  />
+                  <InputControlled
+                    required
+                    type={EnumInputType.number}
+                    name="fats"
+                    label={t('units.fatsShort')}
+                    control={control}
+                  />
+                  <InputControlled
+                    required
+                    type={EnumInputType.number}
+                    name="carbo"
+                    label={t('units.carboShort')}
+                    control={control}
+                  />
+                </FormField>
+                <FormField type={EnumFormFieldType.actions}>
+                  <Button
+                    color={EnumButtonColor.red}
+                    $isOutline
+                    onClick={() => setIsShowModal(false)}
+                  >
+                    {t('calculator.newProductForm.btn.cancel')}
+                  </Button>
+                  <Button type={EnumButtonType.submit}>
+                    {t('calculator.newProductForm.btn.submit')}
+                  </Button>
+                </FormField>
+              </Form>
+            </Modal>
+          )
+        }
+      </>
     )
   }
 )

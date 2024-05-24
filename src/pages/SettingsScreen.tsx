@@ -23,7 +23,12 @@ export default function SettingsScreen() {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
 
-  const { handleSubmit, control, reset, formState: { errors } } = useForm<FieldValues>();
+  const {
+    handleSubmit,
+    control,
+    reset,
+    formState: { errors }
+  } = useForm<FieldValues>();
 
   const isLoading = useAppSelector(selectIsLoading);
   const currentUser = useAppSelector(selectCurrentUser)
@@ -128,6 +133,7 @@ export default function SettingsScreen() {
         <FormField>
           <FormField type={EnumFormFieldType.row}>
             <InputControlled
+              required
               type={EnumInputType.number}
               value={currentUser?.age?.toString()}
               name="age"
@@ -135,6 +141,7 @@ export default function SettingsScreen() {
               control={control}
             />
             <InputControlled
+              required
               type={EnumInputType.number}
               value={currentUser?.height?.toString()}
               name="height"
@@ -143,6 +150,7 @@ export default function SettingsScreen() {
               units={t(`units.${UNITS.sm}`)}
             />
             <InputControlled
+              required
               type={EnumInputType.number}
               value={currentUser?.weight?.toString()}
               name="weight"
@@ -152,6 +160,7 @@ export default function SettingsScreen() {
             />
           </FormField>
           <InputControlled
+            required
             type={EnumInputType.number}
             value={currentUser?.weightGoal?.toString()}
             name="weightGoal"
@@ -161,11 +170,11 @@ export default function SettingsScreen() {
           />
         </FormField>
         <InputControlled
+          required
           type={EnumInputType.email}
           value={currentUser?.email}
           name="email"
           label={t('form.field.email')}
-          required
           control={control}
         />
         <InputControlled
