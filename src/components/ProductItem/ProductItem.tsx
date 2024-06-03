@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { IProduct } from "../../services/types/products";
+import { ISelectedProduct } from "../../services/types/products";
 import { StyledProductItem, StyledRemoveProductButton } from "./StyledProductItem";
 import Title from "../UI/Title/Title";
 import { EnumInputType, Input } from "../UI/Input/Input";
@@ -15,9 +15,9 @@ import Icon from "../UI/Icon/Icon";
 export default function ProductItem({
   item
 }: {
-  item: IProduct
+  item: ISelectedProduct
 }) {
-  const [weigh, setWeight] = useState<number>(100);
+  const [weigh, setWeight] = useState<number>(item.weight);
   const [carbo, setCarbo] = useState<number>(item.carbo);
   const [fats, setFats] = useState<number>(item.fats);
   const [proto, setProto] = useState<number>(item.proto);

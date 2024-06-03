@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-import { IProductState, TProducts } from "../types/products";
+import { IProduct, IProductState, TProducts } from "../types/products";
 
 const initialState: IProductState = {
   items: [],
@@ -41,11 +41,25 @@ export const productSlice = createSlice({
         state.selectedItems = [
           {
             ...selectedItem,
-            id: state.selectedItems.length,
+            weight: 100
           },
           ...state.selectedItems
         ];
       }
+    },
+    addCustomProduct: (
+      state: IProductState,
+      {
+        payload: product
+      }: PayloadAction<IProduct>
+    ) => {
+      state.selectedItems = [
+        {
+          ...product,
+          weight: 100
+        },
+        ...state.selectedItems
+      ];
     },
     removeProduct: (
       state: IProductState,
@@ -63,6 +77,7 @@ export const {
   getProductsSuccess,
   getProductsError,
   addProduct,
+  addCustomProduct,
   removeProduct
 } = productSlice.actions;
 

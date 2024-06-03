@@ -130,9 +130,12 @@
     "g": "g",
     "ml": "ml",
     "sm": "sm",
+    "weight": "Weight",
+    "kkal": "Сalories",
     "proto": "Proteins",
     "fats": "Fats",
     "carbo": "Carbohydrates",
+    "kkalShort": "Kkal",
     "protoShort": "P",
     "fatsShort": "F",
     "carboShort": "C"

@@ -7,9 +7,13 @@ export interface IProduct {
   carbo: number;
 }
 
+export interface ISelectedProduct extends IProduct {
+  weight: number;
+}
+
 export type TProducts = IProduct[];
 
 export interface IProductState {
   items: TProducts,
-  selectedItems: TProducts
+  selectedItems: ISelectedProduct[]
 }

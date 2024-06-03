@@ -15,9 +15,12 @@ import { TResponse, EResponseStatuses } from '../components/UI/Form/types';
 import ProductList from '../components/ProductList/ProductList';
 import { useAppDispatch, useAppSelector } from '../services/hooks/store';
 import { selectProductItems, selectProductSelectedItems } from '../services/hooks/selectors';
-import { addProduct, getProducts } from '../services/reducers/productSlice';
+import { addCustomProduct, addProduct, getProducts } from '../services/reducers/productSlice';
 import Columns from '../components/UI/Columns/Columns';
 import Modal from '../components/UI/Modal/Modal';
+import { IProduct } from '../services/types/products';
+import { getKkal } from '../services/utils/calculations';
+import CalculatorResult from '../components/CalculatorResult/CalculatorResult';
 
 const SearchProductForm = React.memo(
   () => {
@@ -65,9 +68,29 @@ const SearchProductForm = React.memo(
         return;
       }
 
-      setResponse({
-        status: EResponseStatuses.success,
-        message: 'Success'
+      const {
+        name,
+        proto,
+        carbo,
+        fats
+      } = submitData;
+
+      const product = {
+        id: diffProducts.length + selectedProducts.length,
+        name,
+        proto,
+        carbo,
+        fats,
+        kkal: getKkal({
+          proto,
+          carbo,
+          fats,
+        })
+      } as IProduct;
+
+      dispatch({
+        type: addCustomProduct.type,
+        payload: product
       });
 
       reset();
@@ -110,7 +133,7 @@ const SearchProductForm = React.memo(
               <Form onSubmit={onSubmit} response={response}>
                 <InputControlled
                   required
-                  name="title"
+                  name="name"
                   label={t('form.field.productTitle')}
                   control={control}
                 />
@@ -119,21 +142,21 @@ const SearchProductForm = React.memo(
                     required
                     type={EnumInputType.number}
                     name="proto"
-                    label={t('units.protoShort')}
+                    label={t('units.proto')}
                     control={control}
                   />
                   <InputControlled
                     required
                     type={EnumInputType.number}
                     name="fats"
-                    label={t('units.fatsShort')}
+                    label={t('units.fats')}
                     control={control}
                   />
                   <InputControlled
                     required
                     type={EnumInputType.number}
                     name="carbo"
-                    label={t('units.carboShort')}
+                    label={t('units.carbo')}
                     control={control}
                   />
                 </FormField>
@@ -170,6 +193,7 @@ export default function CalculatorScreen() {
       </div>
       <div style={{backgroundColor: 'var(--color-lightgreen)'}}>
         <Title position={EnumHorizontalPosition.center} variant={EnumTitleVariant.h2}>{t('calculator.res.title')}</Title>
+        <CalculatorResult />
       </div>
     </Columns>
   );

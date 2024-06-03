@@ -130,9 +130,12 @@
     "g": "г",
     "ml": "мл",
     "sm": "см",
+    "weight": "Вес",
+    "kkal": "Каллории",
     "proto": "Белки",
     "fats": "Жиры",
     "carbo": "Углеводы",
+    "kkalShort": "Ккал",
     "protoShort": "Б",
     "fatsShort": "Ж",
     "carboShort": "У"
