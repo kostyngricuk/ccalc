@@ -1,5 +1,11 @@
 import { call, put, takeLatest } from "redux-saga/effects";
-import { addProduct, getProductsError, getProducts, getProductsSuccess, removeProduct } from "../reducers/productSlice";
+import {
+  addProduct,
+  getProductsError,
+  getProducts,
+  getProductsSuccess,
+  removeProduct
+} from "../reducers/productSlice";
 import productApi, { IProductResponse } from"../api/product";
 import { errorAction } from "../constants/errors";
 
@@ -37,6 +43,7 @@ function* removeProductFromItems(action: any): Generator {
   } = action.payload;
   yield put(removeProduct(id));
 }
+
 
 function* productSaga() {
   yield takeLatest(getProducts.type, getProductsRequest);

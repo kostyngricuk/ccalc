@@ -119,7 +119,8 @@ export default function SearchProductForm() {
         />
         <span>{ t('calculator.form.or') }</span>
         <Button
-          type={EnumButtonType.button} ariaLabel={t('calculator.form.btn.add')}
+          type={EnumButtonType.button}
+          ariaLabel={t('calculator.form.btn.add')}
           onClick={showModal}
         >
           { t('calculator.form.btn.add') }

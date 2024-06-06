@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
 
 import { ISelectedProduct } from "../../services/types/products";
@@ -17,20 +17,9 @@ export default function ProductItem({
 }: {
   item: ISelectedProduct
 }) {
-  const [carbo, setCarbo] = useState<number>(item.carbo);
-  const [fats, setFats] = useState<number>(item.fats);
-  const [proto, setProto] = useState<number>(item.proto);
-  const [kkal, setKkal] = useState<number>(item.kkal);
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
 
-
-  useEffect(() => {
-    setCarbo(parseFloat((item.carbo / 100 * item.weight).toFixed(2)));
-    setFats(parseFloat((item.fats / 100 * item.weight).toFixed(2)));
-    setProto(parseFloat((item.proto / 100 * item.weight).toFixed(2)));
-    setKkal(parseFloat((item.kkal / 100 * item.weight).toFixed(2)));
-  }, [item.weight]);
 
   const removeProductFromList = (itemId: number) => {
     dispatch({
@@ -46,22 +35,32 @@ export default function ProductItem({
       type: updateProductWeight.type,
       payload: {
         id: item.id,
-        weight: parseInt(value, 10)
+        newWeight: parseInt(value, 10)
       }
     });
   }
 
+  const {
+    id,
+    name,
+    kkal,
+    proto,
+    fats,
+    carbo,
+    weight
+  } = item;
+
   return (
     <StyledProductItem>
       <div>
-        <Title variant={EnumTitleVariant.h3}>{item.name}</Title>
+        <Title variant={EnumTitleVariant.h3}>{name}</Title>
         <p><strong>{t('calculator.item.nutrients')} :</strong> {proto}/{fats}/{carbo}</p>
         <p><strong>{t('calculator.item.colories')} :</strong> {kkal}</p>
       </div>
       <Input
         units={t(`units.${UNITS.g}`)}
         name="weight"
-        value={item.weight.toString()}
+        value={weight.toString()}
         label={t('form.field.weight')}
         type={EnumInputType.number}
         onChange={(value: string) => changeWeight(value)}
@@ -70,7 +69,7 @@ export default function ProductItem({
         $isIcon
         $isOutline
         ariaLabel={t('calculator.item.remove')}
-        onClick={() => removeProductFromList(item.id)}
+        onClick={() => removeProductFromList(id)}
       >
         <Icon Sprite={CloseSVG} />
       </StyledRemoveProductButton>

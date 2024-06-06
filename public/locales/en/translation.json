@@ -17,11 +17,13 @@
       "title": "Choose products",
       "or": "- OR -",
       "btn": {
-        "add": "Add custom product"
+        "add": "Add custom product",
+        "saveResult": "Save Result"
       }
     },
     "res": {
-      "title": "Result"
+      "title": "Result",
+      "noSelectedItems": "No selected products"
     },
     "item": {
       "nutrients": "P / F / C",

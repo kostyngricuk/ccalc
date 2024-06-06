@@ -11,3 +11,5 @@ export enum UNITS {
   ml = 'ml',
   sm = 'sm',
 }
+
+export const reqSaveCalcAction = 'product/REQUEST_SAVE_CALC';

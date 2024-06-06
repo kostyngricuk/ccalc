@@ -6,7 +6,7 @@ import {
   loginRequest,
   registerRequest,
   updateRequest,
-  requsetSuccess,
+  requestSuccess,
   resetRequest,
   sendCodeRequest,
   changePasswordRequest,
@@ -14,6 +14,8 @@ import {
 } from '../reducers/userSlice';
 import paths from '../router/paths';
 import { errorAction, errorCodes } from '../constants/errors';
+import { reqSaveCalcAction } from '../constants/global';
+import { saveProductsSuccess } from '../reducers/productSlice';
 
 function* userLogin(action: any): Generator {
   try {
@@ -29,7 +31,7 @@ function* userLogin(action: any): Generator {
     if (!res?.success) {
       throw new Error(res?.errorCode);
     }
-    yield put(requsetSuccess(res.user));
+    yield put(requestSuccess(res.user));
   } catch (error) {
     yield put(requsetUserError());
     yield put({ type: errorAction, error });
@@ -56,7 +58,7 @@ function* userRegister(action: any): Generator {
     if (!res?.success) {
       throw new Error(res?.errorCode);
     }
-    yield put(requsetSuccess(res.user));
+    yield put(requestSuccess(res.user));
   } catch (error) {
     yield put(requsetUserError());
     yield put({ type: errorAction, error });
@@ -80,7 +82,7 @@ function* userUpdate(action: any): Generator {
     if (!res?.success) {
       throw new Error(res?.errorCode);
     }
-    yield put(requsetSuccess(res.user));
+    yield put(requestSuccess(res.user));
 
     if (typeof successCallback !== 'undefined') {
       successCallback(res.user);
@@ -103,7 +105,7 @@ function* resetPassword(action: any): Generator {
     if (!res?.success) {
       throw new Error(res?.errorCode);
     }
-    yield put(requsetSuccess(res.user));
+    yield put(requestSuccess(res.user));
   } catch (error) {
     yield put(requsetUserError());
     yield put({ type: errorAction, error });
@@ -117,7 +119,7 @@ function* sendCode(action: any): Generator {
     if (!res?.success) {
       throw new Error(res?.errorCode);
     }
-    yield put(requsetSuccess(res.user));
+    yield put(requestSuccess(res.user));
   } catch (error) {
     yield put(requsetUserError());
     yield put({ type: errorAction, error });
@@ -145,10 +147,24 @@ function* changePassword(action: any): Generator {
     if (!res?.success) {
       throw new Error(res?.errorCode);
     }
-    yield put(requsetSuccess(res.user));
+    yield put(requestSuccess(res.user));
     navigate(paths.home.url);
   } catch (error) {
     yield put(requsetUserError());
+    yield put({ type: errorAction, error });
+  }
+}
+
+function* saveCalcRequset(action: any): Generator {
+  try {
+    const res = (yield call(userApi.eaten, action.payload)) as IAuthResponse;
+
+    if (!res?.success) {
+      throw new Error(res?.errorCode);
+    }
+    yield put(saveProductsSuccess());
+    yield put(requestSuccess(res.user));
+  } catch (error) {
     yield put({ type: errorAction, error });
   }
 }
@@ -160,6 +176,7 @@ function* userSaga() {
   yield takeLatest(resetRequest.type, resetPassword);
   yield takeLatest(sendCodeRequest.type, sendCode);
   yield takeLatest(changePasswordRequest.type, changePassword);
+  yield takeLatest(reqSaveCalcAction, saveCalcRequset)
 }
 
 export default userSaga;

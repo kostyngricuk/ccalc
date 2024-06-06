@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 import { IProduct, IProductState, TProducts } from "../types/products";
+import { getNutritionByWeight } from "../utils/calculations";
 
 const initialState: IProductState = {
   items: [],
@@ -74,20 +75,35 @@ export const productSlice = createSlice({
       {
         payload: {
           id,
-          weight
+          newWeight
         }
       }: PayloadAction<{
         id: number,
-        weight: number
+        newWeight: number
       }>
     ) => {
-      const targetItem = state.selectedItems.find(item => item.id === id);
-      if (!targetItem) {
+      const targetIndex = state.selectedItems.findIndex(item => item.id === id);
+      if (targetIndex === -1) {
         return;
       }
 
-      targetItem.weight = weight;
-    }
+      const product = state.selectedItems[targetIndex];
+
+      const nutrition = getNutritionByWeight({
+        product,
+        newWeight
+      });
+
+      state.selectedItems[targetIndex] = {
+        ...product,
+        ...nutrition,
+      };
+    },
+    saveProductsSuccess: (
+      state: IProductState
+    ) => {
+      state.selectedItems = [];
+    },
   }
 })
 
@@ -98,7 +114,8 @@ export const {
   addProduct,
   addCustomProduct,
   removeProduct,
-  updateProductWeight
+  updateProductWeight,
+  saveProductsSuccess,
 } = productSlice.actions;
 
 export default productSlice.reducer;

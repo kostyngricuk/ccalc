@@ -12,6 +12,12 @@ const getProducts = async () => {
   return data;
 };
 
+const saveProducts = async () => {
+  const { data } = await http.get<IProductState>('/product/all');
+  return data;
+};
+
 export default {
-  getProducts
+  getProducts,
+  saveProducts
 };

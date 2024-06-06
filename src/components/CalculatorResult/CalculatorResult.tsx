@@ -1,34 +1,66 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-import { useAppSelector } from "../../services/hooks/store";
+import { useAppDispatch, useAppSelector } from "../../services/hooks/store";
 import { selectProductSelectedItems } from "../../services/hooks/selectors";
 import { getTottal } from "../../services/utils/calculations";
+import Button, { EnumButtonType } from "../UI/Button/Button";
+import { reqSaveCalcAction } from "../../services/constants/global";
+import FormField, { EnumFormFieldType } from "../UI/FormField/FormField";
 
 export default function CalculatorResult() {
   const { t } = useTranslation();
+  const dispatch = useAppDispatch();
   const selectedProducts = useAppSelector(selectProductSelectedItems);
 
-  const tottal = getTottal(selectedProducts);
+  const {
+    weight,
+    kkal,
+    proto,
+    fats,
+    carbo
+  } = getTottal(selectedProducts);
 
-  return (
+  const saveResult = () => {
+    dispatch({
+      type: reqSaveCalcAction,
+      payload: {
+        count: kkal
+      }
+    });
+  }
+
+  return selectedProducts.length > 0 ? (
     <>
-      <p>
-        <strong>{t('units.weight')}:</strong> { tottal.weight }
-      </p>
-      <p>
-        <strong>{t('units.kkal')}:</strong> { tottal.kkal }
-      </p>
-      <hr />
-      <p>
-        <strong>{t('units.proto')}:</strong> { tottal.proto }
-      </p>
-      <p>
-        <strong>{t('units.fats')}:</strong> { tottal.fats }
-      </p>
-      <p>
-        <strong>{t('units.carbo')}:</strong> { tottal.carbo }
-      </p>
+      <FormField type={EnumFormFieldType.row}>
+        <p>
+          <strong>{t('units.kkal')}:</strong> { weight }
+        </p>
+        <p>
+          <strong>{t('units.kkal')}:</strong> { kkal }
+        </p>
+      </FormField>
+      <FormField type={EnumFormFieldType.row}>
+        <p>
+          <strong>{t('units.proto')}:</strong> { proto }
+        </p>
+        <p>
+          <strong>{t('units.fats')}:</strong> { fats }
+        </p>
+        <p>
+          <strong>{t('units.carbo')}:</strong> { carbo }
+        </p>
+      </FormField>
+      <FormField type={EnumFormFieldType.actions}>
+        <Button
+          type={EnumButtonType.button}
+          onClick={saveResult}
+        >
+          {t('calculator.form.btn.saveResult')}
+        </Button>
+      </FormField>
     </>
+  ) : (
+    <p>{t('calculator.res.noSelectedItems')}</p>
   )
 }

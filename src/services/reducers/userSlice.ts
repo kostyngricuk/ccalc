@@ -54,7 +54,7 @@ export const userSlice = createSlice({
       Cookies.remove('e-access-token');
       state.user = null;
     },
-    requsetSuccess: (
+    requestSuccess: (
       state: IUserState,
       {
         payload: user
@@ -79,7 +79,7 @@ export const {
   sendCodeRequest,
   changePasswordRequest,
   logoutRequest,
-  requsetSuccess,
+  requestSuccess,
   requsetUserError,
 } = userSlice.actions;
 
