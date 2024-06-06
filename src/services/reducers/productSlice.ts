@@ -67,7 +67,26 @@ export const productSlice = createSlice({
         payload: id
       }: PayloadAction<number>
     ) => {
-      state.selectedItems = state.selectedItems.filter(item => item.id !== id)
+      state.selectedItems = state.selectedItems.filter(item => item.id !== id);
+    },
+    updateProductWeight: (
+      state: IProductState,
+      {
+        payload: {
+          id,
+          weight
+        }
+      }: PayloadAction<{
+        id: number,
+        weight: number
+      }>
+    ) => {
+      const targetItem = state.selectedItems.find(item => item.id === id);
+      if (!targetItem) {
+        return;
+      }
+
+      targetItem.weight = weight;
     }
   }
 })
@@ -78,7 +97,8 @@ export const {
   getProductsError,
   addProduct,
   addCustomProduct,
-  removeProduct
+  removeProduct,
+  updateProductWeight
 } = productSlice.actions;
 
 export default productSlice.reducer;

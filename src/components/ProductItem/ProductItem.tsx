@@ -8,7 +8,7 @@ import { EnumInputType, Input } from "../UI/Input/Input";
 import { UNITS } from "../../services/constants/global";
 import { EnumTitleVariant } from "../../services/types/global";
 import { useAppDispatch } from "../../services/hooks/store";
-import { removeProduct } from "../../services/reducers/productSlice";
+import { removeProduct, updateProductWeight } from "../../services/reducers/productSlice";
 import { CloseSVG } from "../../icons";
 import Icon from "../UI/Icon/Icon";
 
@@ -17,7 +17,6 @@ export default function ProductItem({
 }: {
   item: ISelectedProduct
 }) {
-  const [weigh, setWeight] = useState<number>(item.weight);
   const [carbo, setCarbo] = useState<number>(item.carbo);
   const [fats, setFats] = useState<number>(item.fats);
   const [proto, setProto] = useState<number>(item.proto);
@@ -27,20 +26,27 @@ export default function ProductItem({
 
 
   useEffect(() => {
-    if (!weigh) {
-      return;
-    }
-    setCarbo(parseFloat((item.carbo / 100 * weigh).toFixed(2)));
-    setFats(parseFloat((item.fats / 100 * weigh).toFixed(2)));
-    setProto(parseFloat((item.proto / 100 * weigh).toFixed(2)));
-    setKkal(parseFloat((item.kkal / 100 * weigh).toFixed(2)));
-  }, [weigh]);
+    setCarbo(parseFloat((item.carbo / 100 * item.weight).toFixed(2)));
+    setFats(parseFloat((item.fats / 100 * item.weight).toFixed(2)));
+    setProto(parseFloat((item.proto / 100 * item.weight).toFixed(2)));
+    setKkal(parseFloat((item.kkal / 100 * item.weight).toFixed(2)));
+  }, [item.weight]);
 
   const removeProductFromList = (itemId: number) => {
     dispatch({
       type: removeProduct.type,
       payload: {
         id: itemId
+      }
+    });
+  }
+
+  const changeWeight = (value: string) => {
+    dispatch({
+      type: updateProductWeight.type,
+      payload: {
+        id: item.id,
+        weight: parseInt(value, 10)
       }
     });
   }
@@ -55,10 +61,10 @@ export default function ProductItem({
       <Input
         units={t(`units.${UNITS.g}`)}
         name="weight"
-        value={weigh.toString()}
+        value={item.weight.toString()}
         label={t('form.field.weight')}
         type={EnumInputType.number}
-        onChange={(value: string) => setWeight(parseInt(value, 10))}
+        onChange={(value: string) => changeWeight(value)}
       />
       <StyledRemoveProductButton
         $isIcon
