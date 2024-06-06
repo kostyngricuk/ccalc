@@ -47,10 +47,9 @@ export function DropdownTrigger({
   useEffect(() => {
     const handleClickOutside:EventListener = (event) => {
       const triggerEl = refTrigger?.current;
-      if (!triggerEl || triggerEl.contains((event?.target as Node) || null)) {
-        return;
+      if (triggerEl && !triggerEl.contains((event?.target as Node) || null)) {
+        setIsActive(false);
       }
-      setIsActive(false);
     };
     document.addEventListener('click', handleClickOutside, true);
     return () => {
