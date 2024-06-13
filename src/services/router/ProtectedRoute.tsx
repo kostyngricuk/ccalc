@@ -15,10 +15,10 @@ export default function ProtectedRoute({
   const location = useLocation();
 
   if (!currentUser) {
-    return <Navigate to={paths.signin.url} replace />;
+    return <Navigate to={paths.signin.path} replace />;
   }
-  if (currentUser && !hasAdditionalInfo(currentUser) && location.pathname !== paths.userInfo.url) {
-    return <Navigate to={paths.userInfo.url} replace />;
+  if (currentUser && !hasAdditionalInfo(currentUser) && location.pathname !== paths.userInfo.path) {
+    return <Navigate to={paths.userInfo.path} replace />;
   }
   return children;
 }

@@ -5,7 +5,7 @@ import NavSub from '@components/NavSub/NavSub';
 import StyledNavItem from './StylesNavItem';
 
 export interface INavItem {
-  id: number,
+  id: number | string,
   link?: string,
   title: string,
   submenu?: Array<INavItem>,

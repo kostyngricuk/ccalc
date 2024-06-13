@@ -16,10 +16,10 @@ export default function AuthRoute({
   const currentUser = useAppSelector(selectCurrentUser);
 
   if (currentUser && !hasAdditionalInfo(currentUser)) {
-    return <Navigate to={paths.userInfo.url} replace />;
+    return <Navigate to={paths.userInfo.path} replace />;
   }
   if (currentUser && hasAdditionalInfo(currentUser)) {
-    return <Navigate to={paths.home.url} replace />;
+    return <Navigate to={paths.home.path} replace />;
   }
   return children;
 }

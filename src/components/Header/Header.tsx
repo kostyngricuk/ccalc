@@ -30,25 +30,25 @@ export default function Header() {
 
   const menuItems: Array<INavItem> = [
     {
-      id: paths.calculator.id,
-      link: paths.calculator.url,
+      id: 'calculator',
+      link: paths.calculator.path,
       title: t('nav.calculator'),
     },
     {
-      id: paths.help.id,
-      link: paths.help.url,
+      id: "help",
+      link: paths.help.path,
       title: t('nav.help'),
       submenu: [
         {
-          id: paths.faq.id,
-          link: paths.faq.url,
+          id: "faq",
+          link: paths.faq.path,
           title: t('nav.faq'),
         },
       ],
     },
     {
-      id: paths.contacts.id,
-      link: paths.contacts.url,
+      id: "contacts",
+      link: paths.contacts.path,
       title: t('nav.contacts'),
     },
   ];
@@ -56,19 +56,19 @@ export default function Header() {
   const menuProfileItems: Array<INavItem> = hasAdditionalInfo(currentUser) ?
     [
       {
-        id: paths.settings.id,
-        link: paths.settings.url,
+        id: "settings",
+        link: paths.settings.path,
         title: t('nav.settings'),
       },
       {
-        id: paths.exit.id,
+        id: "exit",
         title: t('nav.exit'),
         handleClick: handleLogout
       },
     ]
   : [
       {
-        id: paths.exit.id,
+        id: "exit",
         title: t('nav.exit'),
         handleClick: handleLogout
       },

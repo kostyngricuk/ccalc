@@ -148,7 +148,7 @@ function* changePassword(action: any): Generator {
       throw new Error(res?.errorCode);
     }
     yield put(requestSuccess(res.user));
-    navigate(paths.home.url);
+    navigate(paths.home.path);
   } catch (error) {
     yield put(requsetUserError());
     yield put({ type: errorAction, error });
