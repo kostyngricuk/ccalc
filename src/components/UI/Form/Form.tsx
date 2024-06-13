@@ -1,9 +1,9 @@
 import React, { FormEventHandler, ReactNode, useEffect } from 'react';
-import { StyledFormWrapper, StyledForm } from './StyledForm';
+import { addNotification } from '@services/reducers/notificationSlice';
+import { useAppDispatch } from '@services/hooks/store';
+import { ENotificationType } from '@services/types/notification';
 import { TResponse, EResponseStatuses } from './types';
-import { addNotification } from '../../../services/reducers/notificationSlice';
-import { useAppDispatch } from '../../../services/hooks/store';
-import { ENotificationType } from '../../../services/types/notification';
+import { StyledFormWrapper, StyledForm } from './StyledForm';
 
 export default function Form({
   children,

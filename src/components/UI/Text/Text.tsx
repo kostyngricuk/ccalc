@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
+import { EnumHorizontalPosition } from '@services/types/global';
 import StyledText from './StyledText';
-import { EnumHorizontalPosition } from '../../../services/types/global';
 
 export default function Text({
   children,

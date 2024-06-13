@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Dropdown } from '../UI/Dropdown/Dropdown';
+import { Dropdown } from '@components/UI/Dropdown/Dropdown';
 
 export const StyledProfileMenu = styled(Dropdown)`
   & .DropdownContent {

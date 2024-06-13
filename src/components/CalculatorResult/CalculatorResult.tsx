@@ -1,12 +1,12 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-import { useAppDispatch, useAppSelector } from "../../services/hooks/store";
-import { selectProductSelectedItems } from "../../services/hooks/selectors";
-import { getTottal } from "../../services/utils/calculations";
-import Button, { EnumButtonType } from "../UI/Button/Button";
-import { reqSaveCalcAction } from "../../services/constants/global";
-import FormField, { EnumFormFieldType } from "../UI/FormField/FormField";
+import { useAppDispatch, useAppSelector } from "@services/hooks/store";
+import { selectProductSelectedItems } from "@services/hooks/selectors";
+import { getTottal } from "@services/utils/calculations";
+import Button, { EnumButtonType } from "@components/UI/Button/Button";
+import { reqSaveCalcAction } from "@services/constants/global";
+import FormField, { EnumFormFieldType } from "@components/UI/FormField/FormField";
 
 export default function CalculatorResult() {
   const { t } = useTranslation();

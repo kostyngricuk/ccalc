@@ -1,4 +1,4 @@
-import { TUser } from "../types/user";
+import { TUser } from "@services/types/user";
 
 const hasAdditionalInfo = (user: TUser) => {
   if (

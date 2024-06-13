@@ -1,10 +1,10 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import Icon from '../UI/Icon/Icon';
-import { LogoSVG } from '../../icons';
+import { LogoSVG } from '@icons/index';
+import paths from '@services/router/paths';
+import Icon from '@components/UI/Icon/Icon';
 import StyledLogo from './StyledLogo';
 
-import paths from '../../services/router/paths';
 
 export default function Logo() {
   const { t } = useTranslation();

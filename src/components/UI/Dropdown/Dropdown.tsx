@@ -6,8 +6,8 @@ import React, {
 } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import Icon from '../Icon/Icon';
-import { ArrowUpSVG, ArrowDownSVG } from '../../../icons';
+import { ArrowUpSVG, ArrowDownSVG } from '@icons/index';
+import Icon from '@components/UI/Icon/Icon';
 
 import { StyledDropdown, StyledDropdownContent, StyledDropdownTrigger } from './StyledDropdown';
 

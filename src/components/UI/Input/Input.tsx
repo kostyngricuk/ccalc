@@ -9,10 +9,10 @@ import {
 } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
+import { errorCodes } from '@services/constants/errors';
+import { TChange, TOptions } from '@components/UI/Select/types';
+import Select from '@components/UI/Select/Select';
 import { StyledInput, StyledInputLabel } from './StyledInput';
-import { errorCodes } from '../../../services/constants/errors';
-import { TChange, TOptions } from '../Select/types';
-import Select from '../Select/Select';
 
 export enum EnumInputType {
   text = 'text',

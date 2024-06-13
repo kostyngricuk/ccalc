@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 
+import { CheckSVG, InfoSVG } from '@icons/index';
+import { ENotificationType, INotification } from '@services/types/notification';
+import { useAppDispatch, useAppSelector } from '@services/hooks/store';
+import { selectNotificationItems } from '@services/hooks/selectors';
+import { removeNotification } from '@services/reducers/notificationSlice';
+import Icon from '@components/UI/Icon/Icon';
 import { StyleNotifications, StyleNotification } from './StyleNotifications';
-import Icon from '../Icon/Icon';
-import { CheckSVG, InfoSVG } from '../../../icons';
-import { ENotificationType, INotification } from '../../../services/types/notification';
-import { useAppDispatch, useAppSelector } from '../../../services/hooks/store';
-import { selectNotificationItems } from '../../../services/hooks/selectors';
-import { removeNotification } from '../../../services/reducers/notificationSlice';
 
 const getSpriteByType = (type?: ENotificationType) => {
   if (type === ENotificationType.info) {

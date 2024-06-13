@@ -2,21 +2,21 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FieldValues, useForm, Controller } from 'react-hook-form';
 
-import Section from '../components/UI/Section/Section';
-import Title from '../components/UI/Title/Title';
-import Button, { EnumButtonColor, EnumButtonType } from '../components/UI/Button/Button';
-import Form from '../components/UI/Form/Form';
+import Section from '@components/UI/Section/Section';
+import Title from '@components/UI/Title/Title';
+import Button, { EnumButtonColor, EnumButtonType } from '@components/UI/Button/Button';
+import Form from '@components/UI/Form/Form';
 import FormField, {
   EnumFormFieldType,
-} from '../components/UI/FormField/FormField';
-import { EnumInputType, Input, InputControlled } from '../components/UI/Input/Input';
-import { Genders, TUser } from '../services/types/user';
-import { UNITS } from '../services/constants/global';
-import { EnumHorizontalPosition } from '../services/types/global';
-import { TResponse, EResponseStatuses } from '../components/UI/Form/types';
-import { selectCurrentUser, selectIsLoading } from '../services/hooks/selectors';
-import { useAppDispatch, useAppSelector } from '../services/hooks/store';
-import { updateRequest } from '../services/reducers/userSlice';
+} from '@components/UI/FormField/FormField';
+import { EnumInputType, Input, InputControlled } from '@components/UI/Input/Input';
+import { Genders, TUser } from '@services/types/user';
+import { UNITS } from '@services/constants/global';
+import { EnumHorizontalPosition } from '@services/types/global';
+import { TResponse, EResponseStatuses } from '@components/UI/Form/types';
+import { selectCurrentUser, selectIsLoading } from '@services/hooks/selectors';
+import { useAppDispatch, useAppSelector } from '@services/hooks/store';
+import { updateRequest } from '@services/reducers/userSlice';
 
 export default function SettingsScreen() {
   const [response, setResponse] = useState<TResponse>(null);

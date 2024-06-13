@@ -1,22 +1,22 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-import Container from '../UI/Container/Container';
-import Tooltip from '../UI/Tooltip/Tooltip';
-import Logo from '../Logo/Logo';
-import Nav from '../Nav/Nav';
-import { INavItem } from '../NavItem/NavItem';
-import ProfileMenu from '../ProfileMenu/ProfileMenu';
-import CalorieWidget from '../CalorieWidget/CalorieWidget';
-import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
+import paths from '@services/router/paths';
+import hasAdditionalInfo from '@services/utils/auth';
+import { useAppDispatch, useAppSelector } from '@services/hooks/store';
+import { logoutRequest } from '@services/reducers/userSlice';
+import { selectCurrentUser } from '@services/hooks/selectors';
+import Container from '@components/UI/Container/Container';
+import Tooltip from '@components/UI/Tooltip/Tooltip';
+import Logo from '@components/Logo/Logo';
+import Nav from '@components/Nav/Nav';
+import { INavItem } from '@components/NavItem/NavItem';
+import ProfileMenu from '@components/ProfileMenu/ProfileMenu';
+import CalorieWidget from '@components/CalorieWidget/CalorieWidget';
+import LanguageSwitcher from '@components/LanguageSwitcher/LanguageSwitcher';
 
 import { StyledHeader, StyledHeaderContent } from './StyleHeader';
 
-import paths from '../../services/router/paths';
-import hasAdditionalInfo from '../../services/utils/auth';
-import { useAppDispatch, useAppSelector } from '../../services/hooks/store';
-import { logoutRequest } from '../../services/reducers/userSlice';
-import { selectCurrentUser } from '../../services/hooks/selectors';
 
 export default function Header() {
   const { t } = useTranslation();

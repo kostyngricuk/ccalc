@@ -3,22 +3,22 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { Controller, FieldValues, useForm } from 'react-hook-form';
 
-import { EnumHorizontalPosition } from '../services/types/global';
-import { UNITS } from '../services/constants/global';
-import { Genders } from '../services/types/user';
+import { EnumHorizontalPosition } from '@services/types/global';
+import { UNITS } from '@services/constants/global';
+import { Genders } from '@services/types/user';
 
-import Section from '../components/UI/Section/Section';
-import Title from '../components/UI/Title/Title';
-import Form from '../components/UI/Form/Form';
-import { TResponse, EResponseStatuses } from '../components/UI/Form/types';
-import FormField, { EnumFormFieldType } from '../components/UI/FormField/FormField';
-import { EnumInputType, Input, InputControlled } from '../components/UI/Input/Input';
-import Button, { EnumButtonType } from '../components/UI/Button/Button';
-import { selectCurrentUser, selectIsLoading } from '../services/hooks/selectors';
-import { useAppDispatch, useAppSelector } from '../services/hooks/store';
-import { updateRequest } from '../services/reducers/userSlice';
-import hasAdditionalInfo from '../services/utils/auth';
-import paths from '../services/router/paths';
+import Section from '@components/UI/Section/Section';
+import Title from '@components/UI/Title/Title';
+import Form from '@components/UI/Form/Form';
+import { TResponse, EResponseStatuses } from '@components/UI/Form/types';
+import FormField, { EnumFormFieldType } from '@components/UI/FormField/FormField';
+import { EnumInputType, Input, InputControlled } from '@components/UI/Input/Input';
+import Button, { EnumButtonType } from '@components/UI/Button/Button';
+import { selectCurrentUser, selectIsLoading } from '@services/hooks/selectors';
+import { useAppDispatch, useAppSelector } from '@services/hooks/store';
+import { updateRequest } from '@services/reducers/userSlice';
+import hasAdditionalInfo from '@services/utils/auth';
+import paths from '@services/router/paths';
 
 export default function UserInfoScreen() {
   const [response, setResponse] = useState<TResponse>(null);

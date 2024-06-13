@@ -1,4 +1,4 @@
-import { ISelectedProduct } from "../types/products";
+import { ISelectedProduct } from "@services/types/products";
 
 export const getKkal = ({
   proto,

@@ -3,19 +3,19 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { FieldValues, useForm } from 'react-hook-form';
 
-import paths from '../services/router/paths';
-import { EnumHorizontalPosition } from '../services/types/global';
+import paths from '@services/router/paths';
+import { EnumHorizontalPosition } from '@services/types/global';
 
-import Section from '../components/UI/Section/Section';
-import Title from '../components/UI/Title/Title';
-import Form from '../components/UI/Form/Form';
-import { TResponse, EResponseStatuses } from '../components/UI/Form/types';
-import FormField, { EnumFormFieldType } from '../components/UI/FormField/FormField';
-import { EnumInputType, InputControlled } from '../components/UI/Input/Input';
-import Button, { EnumButtonColor, EnumButtonType } from '../components/UI/Button/Button';
-import { useAppDispatch, useAppSelector } from '../services/hooks/store';
-import { registerRequest } from '../services/reducers/userSlice';
-import { selectIsLoading } from '../services/hooks/selectors';
+import Section from '@components/UI/Section/Section';
+import Title from '@components/UI/Title/Title';
+import Form from '@components/UI/Form/Form';
+import { TResponse, EResponseStatuses } from '@components/UI/Form/types';
+import FormField, { EnumFormFieldType } from '@components/UI/FormField/FormField';
+import { EnumInputType, InputControlled } from '@components/UI/Input/Input';
+import Button, { EnumButtonColor, EnumButtonType } from '@components/UI/Button/Button';
+import { useAppDispatch, useAppSelector } from '@services/hooks/store';
+import { registerRequest } from '@services/reducers/userSlice';
+import { selectIsLoading } from '@services/hooks/selectors';
 
 export default function SignupScreen() {
   const [response, setResponse] = useState<TResponse>(null);

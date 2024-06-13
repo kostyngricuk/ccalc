@@ -1,7 +1,7 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 
-import authApi, { IAuthResponse } from '../api/auth';
-import userApi from '../api/user';
+import authApi, { IAuthResponse } from '@services/api/auth';
+import userApi from '@services/api/user';
 import {
   loginRequest,
   registerRequest,
@@ -11,11 +11,11 @@ import {
   sendCodeRequest,
   changePasswordRequest,
   requsetUserError
-} from '../reducers/userSlice';
-import paths from '../router/paths';
-import { errorAction, errorCodes } from '../constants/errors';
-import { reqSaveCalcAction } from '../constants/global';
-import { saveProductsSuccess } from '../reducers/productSlice';
+} from '@services/reducers/userSlice';
+import paths from '@services/router/paths';
+import { errorAction, errorCodes } from '@services/constants/errors';
+import { reqSaveCalcAction } from '@services/constants/global';
+import { saveProductsSuccess } from '@services/reducers/productSlice';
 
 function* userLogin(action: any): Generator {
   try {

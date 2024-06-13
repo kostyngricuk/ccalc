@@ -10,7 +10,13 @@ module.exports = {
   },
   resolve: {
     symlinks: false,
-    extensions: ['.js', '.jsx', '.ts', '.tsx']
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    alias: {
+      "@components": path.resolve(__dirname, "src/components"),
+      "@icons": path.resolve(__dirname, "src/icons"),
+      "@pages": path.resolve(__dirname, "src/pages"),
+      "@services": path.resolve(__dirname, "src/services"),
+    }
   },
   performance: {
     hints: false,

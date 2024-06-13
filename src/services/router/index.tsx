@@ -3,20 +3,20 @@ import {
   createBrowserRouter,
 } from 'react-router-dom';
 
-import paths from './paths';
+import paths from '@services/router/paths';
 
 // pages
-import Root from '../../pages';
-import ErrorScreen from '../../pages/ErrorScreen';
-import SigninScreen from '../../pages/SigninScreen';
-import SignupScreen from '../../pages/SignupScreen';
-import ResetScreen from '../../pages/ResetScreen';
-import UserInfoScreen from '../../pages/UserInfoScreen';
-import CalculatorScreen from '../../pages/CalculatorScreen';
-import HelpScreen from '../../pages/HelpScreen';
-import ContactsScreen from '../../pages/ContactsScreen';
-import SettingsScreen from '../../pages/SettingsScreen';
-import FaqScreen from '../../pages/FaqScreen';
+import Root from '@pages/index';
+import ErrorScreen from '@pages/ErrorScreen';
+import SigninScreen from '@pages/SigninScreen';
+import SignupScreen from '@pages/SignupScreen';
+import ResetScreen from '@pages/ResetScreen';
+import UserInfoScreen from '@pages/UserInfoScreen';
+import CalculatorScreen from '@pages/CalculatorScreen';
+import HelpScreen from '@pages/HelpScreen';
+import ContactsScreen from '@pages/ContactsScreen';
+import SettingsScreen from '@pages/SettingsScreen';
+import FaqScreen from '@pages/FaqScreen';
 
 import ProtectedRoute from './ProtectedRoute';
 import AuthRoute from './AuthRoute';

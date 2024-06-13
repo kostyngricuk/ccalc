@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-import { IProduct, IProductState, TProducts } from "../types/products";
-import { getNutritionByWeight } from "../utils/calculations";
+import { IProduct, IProductState, TProducts } from "@services/types/products";
+import { getNutritionByWeight } from "@services/utils/calculations";
 
 const initialState: IProductState = {
   items: [],

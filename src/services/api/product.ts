@@ -1,5 +1,5 @@
-import http from '../http';
-import { IProductState, TProducts } from '../types/products';
+import http from '@services/http';
+import { IProductState, TProducts } from '@services/types/products';
 
 export interface IProductResponse {
   items: TProducts,

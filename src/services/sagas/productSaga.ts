@@ -5,9 +5,9 @@ import {
   getProducts,
   getProductsSuccess,
   removeProduct
-} from "../reducers/productSlice";
-import productApi, { IProductResponse } from"../api/product";
-import { errorAction } from "../constants/errors";
+} from "@services/reducers/productSlice";
+import productApi, { IProductResponse } from"@services/api/product";
+import { errorAction } from "@services/constants/errors";
 
 function* getProductsRequest(): Generator {
   try {

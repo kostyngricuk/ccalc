@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-import { INotification, INotificationState } from "../types/notification";
+import { INotification, INotificationState } from "@services/types/notification";
 
 const initialState: INotificationState = {
   items: []

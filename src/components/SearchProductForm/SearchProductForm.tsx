@@ -3,21 +3,21 @@ import { useTranslation } from 'react-i18next';
 import { FieldValues, useForm } from 'react-hook-form';
 import { differenceBy } from "lodash";
 
-import Title from '../UI/Title/Title';
-import Button, { EnumButtonColor, EnumButtonType } from '../UI/Button/Button';
-import Form from '../UI/Form/Form';
+import { EnumHorizontalPosition, EnumTitleVariant } from '@services/types/global';
+import { useAppDispatch, useAppSelector } from '@services/hooks/store';
+import { selectProductItems, selectProductSelectedItems } from '@services/hooks/selectors';
+import { addCustomProduct, addProduct, getProducts } from '@services/reducers/productSlice';
+import { IProduct } from '@services/types/products';
+import { getKkal } from '@services/utils/calculations';
+import Title from '@components/UI/Title/Title';
+import Button, { EnumButtonColor, EnumButtonType } from '@components/UI/Button/Button';
+import Form from '@components/UI/Form/Form';
 import FormField, {
   EnumFormFieldType,
-} from '../UI/FormField/FormField';
-import { EnumInputType, InputControlled } from '../UI/Input/Input';
-import { EnumHorizontalPosition, EnumTitleVariant } from '../../services/types/global';
-import { TResponse, EResponseStatuses } from '../UI/Form/types';
-import { useAppDispatch, useAppSelector } from '../../services/hooks/store';
-import { selectProductItems, selectProductSelectedItems } from '../../services/hooks/selectors';
-import { addCustomProduct, addProduct, getProducts } from '../../services/reducers/productSlice';
-import Modal from '../UI/Modal/Modal';
-import { IProduct } from '../../services/types/products';
-import { getKkal } from '../../services/utils/calculations';
+} from '@components/UI/FormField/FormField';
+import { EnumInputType, InputControlled } from '@components/UI/Input/Input';
+import { TResponse, EResponseStatuses } from '@components/UI/Form/types';
+import Modal from '@components/UI/Modal/Modal';
 
 export default function SearchProductForm() {
   const [response, setResponse] = useState<TResponse>(null);

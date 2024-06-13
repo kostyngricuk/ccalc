@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Button from '../UI/Button/Button';
+import Button from '@components/UI/Button/Button';
 
 export const StyledNav = styled.nav`
   display: flex;

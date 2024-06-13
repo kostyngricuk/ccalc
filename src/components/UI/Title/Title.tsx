@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
+import { EnumHorizontalPosition, EnumTitleVariant } from '@services/types/global';
 import StyledTitle from './StyledTitle';
-import { EnumHorizontalPosition, EnumTitleVariant } from '../../../services/types/global';
 
 export default function Title({
   children,

@@ -3,7 +3,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import Cookies from 'js-cookie';
 import { jwtDecode } from "jwt-decode";
 
-import { IUserState, TUser } from "../types/user";
+import { IUserState, TUser } from "@services/types/user";
 
 const accessToken = Cookies.get('e-access-token');
 

@@ -1,16 +1,16 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-import { ISelectedProduct } from "../../services/types/products";
+import { ISelectedProduct } from "@services/types/products";
+import { UNITS } from "@services/constants/global";
+import { EnumTitleVariant } from "@services/types/global";
+import { useAppDispatch } from "@services/hooks/store";
+import { removeProduct, updateProductWeight } from "@services/reducers/productSlice";
+import { CloseSVG } from "@icons/index";
+import { EnumInputType, Input } from "@components/UI/Input/Input";
+import Title from "@components/UI/Title/Title";
+import Icon from "@components/UI/Icon/Icon";
 import { StyledProductItem, StyledRemoveProductButton } from "./StyledProductItem";
-import Title from "../UI/Title/Title";
-import { EnumInputType, Input } from "../UI/Input/Input";
-import { UNITS } from "../../services/constants/global";
-import { EnumTitleVariant } from "../../services/types/global";
-import { useAppDispatch } from "../../services/hooks/store";
-import { removeProduct, updateProductWeight } from "../../services/reducers/productSlice";
-import { CloseSVG } from "../../icons";
-import Icon from "../UI/Icon/Icon";
 
 export default function ProductItem({
   item

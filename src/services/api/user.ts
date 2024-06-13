@@ -1,5 +1,5 @@
-import { IUserState, TUser } from '../types/user';
-import http from '../http';
+import { IUserState, TUser } from '@services/types/user';
+import http from '@services/http';
 
 const update = async (body: TUser) => {
   const { data } = await http.post<IUserState>('/user/update', body);

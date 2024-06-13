@@ -1,12 +1,12 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-import Title from '../components/UI/Title/Title';
-import { EnumHorizontalPosition, EnumTitleVariant } from '../services/types/global';
-import ProductList from '../components/ProductList/ProductList';
-import Columns from '../components/UI/Columns/Columns';
-import CalculatorResult from '../components/CalculatorResult/CalculatorResult';
-import SearchProductForm from '../components/SearchProductForm/SearchProductForm';
+import Title from '@components/UI/Title/Title';
+import { EnumHorizontalPosition, EnumTitleVariant } from '@services/types/global';
+import ProductList from '@components/ProductList/ProductList';
+import Columns from '@components/UI/Columns/Columns';
+import CalculatorResult from '@components/CalculatorResult/CalculatorResult';
+import SearchProductForm from '@components/SearchProductForm/SearchProductForm';
 
 export default function CalculatorScreen() {
   const { t } = useTranslation();

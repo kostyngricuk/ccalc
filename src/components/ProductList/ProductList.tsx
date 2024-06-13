@@ -1,10 +1,10 @@
 import React from "react";
-import { ISelectedProduct } from "../../services/types/products";
+import { ISelectedProduct } from "@services/types/products";
 
-import ProductItem from "../ProductItem/ProductItem";
+import { useAppSelector } from "@services/hooks/store";
+import { selectProductSelectedItems } from "@services/hooks/selectors";
+import ProductItem from "@components/ProductItem/ProductItem";
 import StyledProductList from "./StyledProductList";
-import { useAppSelector } from "../../services/hooks/store";
-import { selectProductSelectedItems } from "../../services/hooks/selectors";
 
 export default function ProductList() {
   const selectedProducts = useAppSelector(selectProductSelectedItems);
