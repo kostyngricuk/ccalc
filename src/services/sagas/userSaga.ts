@@ -28,10 +28,11 @@ function* userLogin(action: any): Generator {
       email,
       password
     })) as IAuthResponse;
-    if (!res?.success) {
-      throw new Error(res?.errorCode);
+    if (res?.success) {
+      yield put(requestSuccess(res.user));
+      return;
     }
-    yield put(requestSuccess(res.user));
+    throw new Error(res?.errorCode);
   } catch (error) {
     yield put(requsetUserError());
     yield put({ type: errorAction, error });
@@ -55,10 +56,11 @@ function* userRegister(action: any): Generator {
       password
     })) as IAuthResponse;
 
-    if (!res?.success) {
-      throw new Error(res?.errorCode);
+    if (res?.success) {
+      yield put(requestSuccess(res.user));
+      return;
     }
-    yield put(requestSuccess(res.user));
+    throw new Error(res?.errorCode);
   } catch (error) {
     yield put(requsetUserError());
     yield put({ type: errorAction, error });
@@ -79,10 +81,11 @@ function* userUpdate(action: any): Generator {
 
     const res = (yield call(userApi.update, action.payload)) as IAuthResponse;
 
-    if (!res?.success) {
-      throw new Error(res?.errorCode);
+    if (res?.success) {
+      yield put(requestSuccess(res.user));
+      return;
     }
-    yield put(requestSuccess(res.user));
+    throw new Error(res?.errorCode);
 
     if (typeof successCallback !== 'undefined') {
       successCallback(res.user);
@@ -102,10 +105,11 @@ function* resetPassword(action: any): Generator {
       email
     })) as IAuthResponse;
 
-    if (!res?.success) {
-      throw new Error(res?.errorCode);
+    if (res?.success) {
+      yield put(requestSuccess(res.user));
+      return;
     }
-    yield put(requestSuccess(res.user));
+    throw new Error(res?.errorCode);
   } catch (error) {
     yield put(requsetUserError());
     yield put({ type: errorAction, error });
@@ -116,10 +120,11 @@ function* sendCode(action: any): Generator {
   try {
     const res = (yield call(authApi.sendCode, action.payload)) as IAuthResponse;
 
-    if (!res?.success) {
-      throw new Error(res?.errorCode);
+    if (res?.success) {
+      yield put(requestSuccess(res.user));
+      return;
     }
-    yield put(requestSuccess(res.user));
+    throw new Error(res?.errorCode);
   } catch (error) {
     yield put(requsetUserError());
     yield put({ type: errorAction, error });
@@ -144,11 +149,12 @@ function* changePassword(action: any): Generator {
       password
     })) as IAuthResponse;
 
-    if (!res?.success) {
-      throw new Error(res?.errorCode);
+    if (res?.success) {
+      yield put(requestSuccess(res.user));
+      navigate(paths.home.path);
+      return;
     }
-    yield put(requestSuccess(res.user));
-    navigate(paths.home.path);
+    throw new Error(res?.errorCode);
   } catch (error) {
     yield put(requsetUserError());
     yield put({ type: errorAction, error });
@@ -159,11 +165,12 @@ function* saveCalcRequset(action: any): Generator {
   try {
     const res = (yield call(userApi.eaten, action.payload)) as IAuthResponse;
 
-    if (!res?.success) {
-      throw new Error(res?.errorCode);
+    if (res?.success) {
+      yield put(saveProductsSuccess());
+      yield put(requestSuccess(res.user));
+      return;
     }
-    yield put(saveProductsSuccess());
-    yield put(requestSuccess(res.user));
+    throw new Error(res?.errorCode);
   } catch (error) {
     yield put({ type: errorAction, error });
   }

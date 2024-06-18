@@ -8,7 +8,7 @@ import '@services/i18n';
 import lightTheme from '@services/styled/themes';
 import StyledGlobal from '@services/styled/StyledGlobal';
 import { store } from '@services/store';
-import { Notifications } from '@components/UI/Notifications/Notifications';
+import { Notifications } from '@components/UI/Notifications'
 
 export default function App() {
   return (

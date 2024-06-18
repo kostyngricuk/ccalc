@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import Button from "@components/UI/Button/Button";
+import styled from 'styled-components';
+import Button from '@components/UI/Button'
 
 export const StyledProductItem = styled.li`
   margin-bottom: 10px;

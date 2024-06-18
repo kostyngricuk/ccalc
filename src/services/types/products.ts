@@ -1,5 +1,7 @@
+export const KEY_PRODUCT_ID = 'id';
+
 export interface IProduct {
-  id: number;
+  [KEY_PRODUCT_ID]: number;
   name: string;
   kkal: number;
   proto: number;

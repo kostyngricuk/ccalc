@@ -5,7 +5,7 @@ import { ENotificationType, INotification } from '@services/types/notification';
 import { useAppDispatch, useAppSelector } from '@services/hooks/store';
 import { selectNotificationItems } from '@services/hooks/selectors';
 import { removeNotification } from '@services/reducers/notificationSlice';
-import Icon from '@components/UI/Icon/Icon';
+import Icon from '@components/UI/Icon'
 import { StyleNotifications, StyleNotification } from './StyleNotifications';
 
 const getSpriteByType = (type?: ENotificationType) => {

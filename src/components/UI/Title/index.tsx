@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { EnumHorizontalPosition, EnumTitleVariant } from '@services/types/global';
+import { EnumHorizontalPosition, TypeTitleVariant } from '@services/types/global';
 import StyledTitle from './StyledTitle';
 
 export default function Title({
@@ -10,7 +10,7 @@ export default function Title({
 }: {
   children: ReactNode;
   className?: string;
-  variant?: EnumTitleVariant;
+  variant?: TypeTitleVariant;
   position?: EnumHorizontalPosition;
 }) {
   return (
@@ -22,6 +22,6 @@ export default function Title({
 
 Title.defaultProps = {
   className: '',
-  variant: EnumTitleVariant.h1,
+  variant: 'h1',
   position: EnumHorizontalPosition.left,
 };

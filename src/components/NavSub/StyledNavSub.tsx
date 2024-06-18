@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Dropdown } from '@components/UI/Dropdown/Dropdown';
+import { Dropdown } from '@components/UI/Dropdown'
 
 export const StyledNavSub = styled(Dropdown)`
   @media ${(props) => props.theme.device.mobile} {

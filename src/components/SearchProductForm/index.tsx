@@ -1,23 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FieldValues, useForm } from 'react-hook-form';
-import { differenceBy } from "lodash";
+import { differenceBy } from 'lodash';
 
-import { EnumHorizontalPosition, EnumTitleVariant } from '@services/types/global';
+import { EnumHorizontalPosition } from '@services/types/global';
 import { useAppDispatch, useAppSelector } from '@services/hooks/store';
 import { selectProductItems, selectProductSelectedItems } from '@services/hooks/selectors';
 import { addCustomProduct, addProduct, getProducts } from '@services/reducers/productSlice';
-import { IProduct } from '@services/types/products';
+import { IProduct, KEY_PRODUCT_ID } from '@services/types/products';
 import { getKkal } from '@services/utils/calculations';
-import Title from '@components/UI/Title/Title';
-import Button, { EnumButtonColor, EnumButtonType } from '@components/UI/Button/Button';
-import Form from '@components/UI/Form/Form';
+import Title from '@components/UI/Title'
+import Button, { EnumButtonColor, EnumButtonType } from '@components/UI/Button'
+import Form from '@components/UI/Form'
 import FormField, {
   EnumFormFieldType,
-} from '@components/UI/FormField/FormField';
-import { EnumInputType, InputControlled } from '@components/UI/Input/Input';
-import { TResponse, EResponseStatuses } from '@components/UI/Form/types';
-import Modal from '@components/UI/Modal/Modal';
+} from '@components/UI/FormField'
+import { InputControlled } from '@components/UI/Input'
+import { TResponse, EResponseStatuses } from '@components/UI/Form/types'
+import Modal from '@components/UI/Modal'
+import { ISelectOption } from '@components/UI/Select/types'
 
 export default function SearchProductForm() {
   const [response, setResponse] = useState<TResponse>(null);
@@ -31,17 +32,18 @@ export default function SearchProductForm() {
     });
   }, []);
 
+  const toggleModal = () => setIsActiveModal((prevState) => !prevState)
+
   const allProducts = useAppSelector(selectProductItems);
   const selectedProducts = useAppSelector(selectProductSelectedItems);
 
-  const diffProducts = differenceBy(allProducts, selectedProducts, 'id');
-  const productOptions = diffProducts.map((el) => {
-    const option = {
+  const diffProducts = differenceBy(allProducts, selectedProducts, KEY_PRODUCT_ID);
+  const productOptions: ISelectOption[] = diffProducts.map((el) => (
+    {
       label: el.name,
-      value: el.id
+      value: el.id.toString()
     }
-    return option;
-  });
+  ));
 
   const onChangeSelectProduct = (optionValue: string) => {
     dispatch({
@@ -59,7 +61,7 @@ export default function SearchProductForm() {
     formState: { errors }
   } = useForm<FieldValues>();
 
-  const onSubmit = handleSubmit(async (submitData: FieldValues) => {
+  const onSubmit = handleSubmit((submitData: FieldValues) => {
     if (!submitData) {
       return;
     }
@@ -90,7 +92,7 @@ export default function SearchProductForm() {
     });
 
     reset();
-    setIsActiveModal(false)
+    toggleModal()
   });
 
   useEffect(() => {
@@ -102,14 +104,11 @@ export default function SearchProductForm() {
     }
   }, [errors]);
 
-  const showModal = () => setIsActiveModal(true);
-  const closeModal = () => setIsActiveModal(false);
-
   return (
     <>
       <FormField type={EnumFormFieldType.row}>
         <InputControlled
-          type={EnumInputType.select}
+          type='select'
           options={productOptions}
           value=""
           name="products"
@@ -121,13 +120,13 @@ export default function SearchProductForm() {
         <Button
           type={EnumButtonType.button}
           ariaLabel={t('calculator.form.btn.add')}
-          onClick={showModal}
+          onClick={toggleModal}
         >
           { t('calculator.form.btn.add') }
         </Button>
       </FormField>
-        <Modal isActive={isActiveModal} onClose={closeModal}>
-          <Title position={EnumHorizontalPosition.center} variant={EnumTitleVariant.h3}>{t('calculator.newProductForm.title')}</Title>
+        <Modal isActive={isActiveModal} onClose={toggleModal}>
+          <Title position={EnumHorizontalPosition.center} variant='h3'>{t('calculator.newProductForm.title')}</Title>
           <Form onSubmit={onSubmit} response={response}>
             <InputControlled
               required
@@ -138,21 +137,21 @@ export default function SearchProductForm() {
             <FormField type={EnumFormFieldType.row}>
               <InputControlled
                 required
-                type={EnumInputType.number}
+                type='number'
                 name="proto"
                 label={t('units.proto')}
                 control={control}
               />
               <InputControlled
                 required
-                type={EnumInputType.number}
+                type='number'
                 name="fats"
                 label={t('units.fats')}
                 control={control}
               />
               <InputControlled
                 required
-                type={EnumInputType.number}
+                type='number'
                 name="carbo"
                 label={t('units.carbo')}
                 control={control}

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import Loader from '@components/Loader/Loader';
+import Loader from '@components/Loader'
 
-import Header from '@components/Header/Header';
-import Main from '@components/Main/Main';
-import Footer from '@components/Footer/Footer';
+import Header from '@components/Header'
+import Main from '@components/Main'
+import Footer from '@components/Footer'
 
 export default function Index() {
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
@@ -17,16 +17,13 @@ export default function Index() {
     return () => clearTimeout(timeout);
   }, []);
 
-  if (!isLoaded) {
-    return <Loader />;
-  }
-  return (
-    <>
-      <Header />
-      <Main>
-        <Outlet />
-      </Main>
-      <Footer />
-    </>
-  );
+  return isLoaded ? (
+      <>
+        <Header />
+        <Main>
+          <Outlet />
+        </Main>
+        <Footer />
+      </>
+    ) : <Loader />;
 }

@@ -6,14 +6,14 @@ import hasAdditionalInfo from '@services/utils/auth';
 import { useAppDispatch, useAppSelector } from '@services/hooks/store';
 import { logoutRequest } from '@services/reducers/userSlice';
 import { selectCurrentUser } from '@services/hooks/selectors';
-import Container from '@components/UI/Container/Container';
-import Tooltip from '@components/UI/Tooltip/Tooltip';
-import Logo from '@components/Logo/Logo';
-import Nav from '@components/Nav/Nav';
-import { INavItem } from '@components/NavItem/NavItem';
-import ProfileMenu from '@components/ProfileMenu/ProfileMenu';
-import CalorieWidget from '@components/CalorieWidget/CalorieWidget';
-import LanguageSwitcher from '@components/LanguageSwitcher/LanguageSwitcher';
+import Container from '@components/UI/Container'
+import Tooltip from '@components/UI/Tooltip'
+import Logo from '@components/Logo'
+import Nav from '@components/Nav'
+import { INavItem } from '@components/NavItem'
+import ProfileMenu from '@components/ProfileMenu'
+import CalorieWidget from '@components/CalorieWidget'
+import LanguageSwitcher from '@components/LanguageSwitcher'
 
 import { StyledHeader, StyledHeaderContent } from './StyleHeader';
 

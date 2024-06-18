@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode } from 'react';
 
 import SigninScreen from '@pages/SigninScreen';
 import SignupScreen from '@pages/SignupScreen';

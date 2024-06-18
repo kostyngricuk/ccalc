@@ -7,13 +7,13 @@ import { EnumHorizontalPosition } from '@services/types/global';
 import { UNITS } from '@services/constants/global';
 import { Genders } from '@services/types/user';
 
-import Section from '@components/UI/Section/Section';
-import Title from '@components/UI/Title/Title';
-import Form from '@components/UI/Form/Form';
-import { TResponse, EResponseStatuses } from '@components/UI/Form/types';
-import FormField, { EnumFormFieldType } from '@components/UI/FormField/FormField';
-import { EnumInputType, Input, InputControlled } from '@components/UI/Input/Input';
-import Button, { EnumButtonType } from '@components/UI/Button/Button';
+import Section from '@components/UI/Section'
+import Title from '@components/UI/Title'
+import Form from '@components/UI/Form'
+import { TResponse, EResponseStatuses } from '@components/UI/Form/types'
+import FormField, { EnumFormFieldType } from '@components/UI/FormField'
+import { Input, InputControlled } from '@components/UI/Input'
+import Button, { EnumButtonType } from '@components/UI/Button'
 import { selectCurrentUser, selectIsLoading } from '@services/hooks/selectors';
 import { useAppDispatch, useAppSelector } from '@services/hooks/store';
 import { updateRequest } from '@services/reducers/userSlice';
@@ -67,7 +67,7 @@ export default function UserInfoScreen() {
 
   useEffect(() => {
     if (currentUser && hasAdditionalInfo(currentUser)) {
-      navigate(paths.home.url);
+      navigate(paths.home.path);
     }
   }, [currentUser]);
 
@@ -87,7 +87,7 @@ export default function UserInfoScreen() {
               <FormField type={EnumFormFieldType.row}>
                 <Input
                   name={field.name}
-                  type={EnumInputType.radio}
+                  type='radio'
                   value={Genders.man}
                   label={t('form.field.genderOptions.man')}
                   error={fieldState?.error}
@@ -96,7 +96,7 @@ export default function UserInfoScreen() {
                 />
                 <Input
                   name={field.name}
-                  type={EnumInputType.radio}
+                  type='radio'
                   value={Genders.woman}
                   label={t('form.field.genderOptions.woman')}
                   error={fieldState?.error}
@@ -110,7 +110,7 @@ export default function UserInfoScreen() {
         <FormField>
           <InputControlled
             isFullwidth
-            type={EnumInputType.number}
+            type='number'
             value={currentUser?.age?.toString()}
             name="age"
             required
@@ -121,7 +121,7 @@ export default function UserInfoScreen() {
         <FormField>
           <InputControlled
             isFullwidth
-            type={EnumInputType.number}
+            type='number'
             value={currentUser?.height?.toString()}
             name="height"
             required
@@ -133,7 +133,7 @@ export default function UserInfoScreen() {
         <FormField>
           <InputControlled
             isFullwidth
-            type={EnumInputType.number}
+            type='number'
             value={currentUser?.weight?.toString()}
             name="weight"
             required
@@ -145,7 +145,7 @@ export default function UserInfoScreen() {
         <FormField>
           <InputControlled
             isFullwidth
-            type={EnumInputType.number}
+            type='number'
             value={currentUser?.weightGoal?.toString()}
             name="weightGoal"
             required

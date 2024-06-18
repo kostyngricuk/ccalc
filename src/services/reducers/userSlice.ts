@@ -1,9 +1,10 @@
-import { createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
 import Cookies from 'js-cookie';
-import { jwtDecode } from "jwt-decode";
+import { jwtDecode } from 'jwt-decode';
 
-import { IUserState, TUser } from "@services/types/user";
+import { IUserState, TUser } from '@services/types/user';
+import { SLICE_USER_NAME } from '@services/constants/store';
 
 const accessToken = Cookies.get('e-access-token');
 
@@ -13,7 +14,7 @@ const initialState: IUserState = {
 }
 
 export const userSlice = createSlice({
-  name: 'user',
+  name: SLICE_USER_NAME,
   initialState,
   reducers: {
     loginRequest: (

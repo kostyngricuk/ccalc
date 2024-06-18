@@ -1,6 +1,6 @@
 import React from 'react';
-import Container from '@components/UI/Container/Container';
-import Copyright from '@components/Copyright/Copyright';
+import Container from '@components/UI/Container'
+import Copyright from '@components/Copyright'
 
 import StyledFooter from './StyledFooter';
 

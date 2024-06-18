@@ -1,16 +1,15 @@
-import React from "react";
-import { useTranslation } from "react-i18next";
+import React from 'react';
+import { useTranslation } from 'react-i18next';
 
-import { ISelectedProduct } from "@services/types/products";
-import { UNITS } from "@services/constants/global";
-import { EnumTitleVariant } from "@services/types/global";
-import { useAppDispatch } from "@services/hooks/store";
-import { removeProduct, updateProductWeight } from "@services/reducers/productSlice";
-import { CloseSVG } from "@icons/index";
-import { EnumInputType, Input } from "@components/UI/Input/Input";
-import Title from "@components/UI/Title/Title";
-import Icon from "@components/UI/Icon/Icon";
-import { StyledProductItem, StyledRemoveProductButton } from "./StyledProductItem";
+import { ISelectedProduct } from '@services/types/products';
+import { UNITS } from '@services/constants/global';
+import { useAppDispatch } from '@services/hooks/store';
+import { removeProduct, updateProductWeight } from '@services/reducers/productSlice';
+import { CloseSVG } from '@icons/index';
+import { Input } from '@components/UI/Input'
+import Title from '@components/UI/Title'
+import Icon from '@components/UI/Icon'
+import { StyledProductItem, StyledRemoveProductButton } from './StyledProductItem';
 
 export default function ProductItem({
   item
@@ -53,7 +52,7 @@ export default function ProductItem({
   return (
     <StyledProductItem>
       <div>
-        <Title variant={EnumTitleVariant.h3}>{name}</Title>
+        <Title variant='h3'>{name}</Title>
         <p><strong>{t('calculator.item.nutrients')} :</strong> {proto}/{fats}/{carbo}</p>
         <p><strong>{t('calculator.item.colories')} :</strong> {kkal}</p>
       </div>
@@ -62,7 +61,7 @@ export default function ProductItem({
         name="weight"
         value={weight.toString()}
         label={t('form.field.weight')}
-        type={EnumInputType.number}
+        type='number'
         onChange={(value: string) => changeWeight(value)}
       />
       <StyledRemoveProductButton

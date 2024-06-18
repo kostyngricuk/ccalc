@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { BurgerSVG, CloseSVG } from '@icons/index';
-import Icon from '@components/UI/Icon/Icon';
-import { EnumButtonColor } from '@components/UI/Button/Button';
-import NavItem, { INavItem } from '@components/NavItem/NavItem';
+import Icon from '@components/UI/Icon'
+import { EnumButtonColor } from '@components/UI/Button'
+import NavItem, { INavItem } from '@components/NavItem'
 
 import { StyledNav, StyledNavBurger, StyledNavWrap } from './StyledNav';
 

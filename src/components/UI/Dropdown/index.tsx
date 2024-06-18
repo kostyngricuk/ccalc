@@ -7,7 +7,7 @@ import React, {
 import { useLocation } from 'react-router-dom';
 
 import { ArrowUpSVG, ArrowDownSVG } from '@icons/index';
-import Icon from '@components/UI/Icon/Icon';
+import Icon from '@components/UI/Icon'
 
 import { StyledDropdown, StyledDropdownContent, StyledDropdownTrigger } from './StyledDropdown';
 

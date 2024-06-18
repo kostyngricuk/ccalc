@@ -2,18 +2,18 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FieldValues, useForm, Controller } from 'react-hook-form';
 
-import Section from '@components/UI/Section/Section';
-import Title from '@components/UI/Title/Title';
-import Button, { EnumButtonColor, EnumButtonType } from '@components/UI/Button/Button';
-import Form from '@components/UI/Form/Form';
+import Section from '@components/UI/Section'
+import Title from '@components/UI/Title'
+import Button, { EnumButtonColor, EnumButtonType } from '@components/UI/Button'
+import Form from '@components/UI/Form'
 import FormField, {
   EnumFormFieldType,
-} from '@components/UI/FormField/FormField';
-import { EnumInputType, Input, InputControlled } from '@components/UI/Input/Input';
+} from '@components/UI/FormField'
+import { Input, InputControlled } from '@components/UI/Input'
 import { Genders, TUser } from '@services/types/user';
 import { UNITS } from '@services/constants/global';
 import { EnumHorizontalPosition } from '@services/types/global';
-import { TResponse, EResponseStatuses } from '@components/UI/Form/types';
+import { TResponse, EResponseStatuses } from '@components/UI/Form/types'
 import { selectCurrentUser, selectIsLoading } from '@services/hooks/selectors';
 import { useAppDispatch, useAppSelector } from '@services/hooks/store';
 import { updateRequest } from '@services/reducers/userSlice';
@@ -34,22 +34,20 @@ export default function SettingsScreen() {
   const currentUser = useAppSelector(selectCurrentUser)
 
   const successCallback = useCallback((data: TUser) => {
-    if (!data) {
-      return;
+    if (data) {
+      setResponse({
+        status: EResponseStatuses.success,
+        message: t('settings.form.res.success')
+      });
+      reset({
+        gender: data?.gender,
+        age: data?.age,
+        height: data?.height,
+        weight: data?.weight,
+        weightGoal: data?.weightGoal,
+        email: data?.email,
+      });
     }
-
-    setResponse({
-      status: EResponseStatuses.success,
-      message: t('settings.form.res.success')
-    });
-    reset({
-      gender: data?.gender,
-      age: data?.age,
-      height: data?.height,
-      weight: data?.weight,
-      weightGoal: data?.weightGoal,
-      email: data?.email,
-    });
   }, []);
 
   const onSubmit = handleSubmit(async (submitData: FieldValues) => {
@@ -110,7 +108,7 @@ export default function SettingsScreen() {
               <FormField type={EnumFormFieldType.row}>
                 <Input
                   name={field.name}
-                  type={EnumInputType.radio}
+                  type='radio'
                   value={Genders.man}
                   label={t('form.field.genderOptions.man')}
                   error={fieldState?.error}
@@ -119,7 +117,7 @@ export default function SettingsScreen() {
                 />
                 <Input
                   name={field.name}
-                  type={EnumInputType.radio}
+                  type='radio'
                   value={Genders.woman}
                   label={t('form.field.genderOptions.woman')}
                   error={fieldState?.error}
@@ -134,7 +132,7 @@ export default function SettingsScreen() {
           <FormField type={EnumFormFieldType.row}>
             <InputControlled
               required
-              type={EnumInputType.number}
+              type='number'
               value={currentUser?.age?.toString()}
               name="age"
               label={t('form.field.age')}
@@ -142,7 +140,7 @@ export default function SettingsScreen() {
             />
             <InputControlled
               required
-              type={EnumInputType.number}
+              type='number'
               value={currentUser?.height?.toString()}
               name="height"
               label={t('form.field.height')}
@@ -151,7 +149,7 @@ export default function SettingsScreen() {
             />
             <InputControlled
               required
-              type={EnumInputType.number}
+              type='number'
               value={currentUser?.weight?.toString()}
               name="weight"
               label={t('form.field.weight')}
@@ -161,7 +159,7 @@ export default function SettingsScreen() {
           </FormField>
           <InputControlled
             required
-            type={EnumInputType.number}
+            type='number'
             value={currentUser?.weightGoal?.toString()}
             name="weightGoal"
             label={t('form.field.weightGoal')}
@@ -171,28 +169,28 @@ export default function SettingsScreen() {
         </FormField>
         <InputControlled
           required
-          type={EnumInputType.email}
+          type='email'
           value={currentUser?.email}
           name="email"
           label={t('form.field.email')}
           control={control}
         />
         <InputControlled
-          type={EnumInputType.password}
+          type='password'
           name="oldPassword"
           value=""
           label={t('form.field.oldPassword')}
           control={control}
         />
         <InputControlled
-          type={EnumInputType.password}
+          type='password'
           name="password"
           value=""
           label={t('form.field.newPassword')}
           control={control}
         />
         <InputControlled
-          type={EnumInputType.password}
+          type='password'
           name="confirmPassword"
           value=""
           label={t('form.field.confirmNewPassword')}

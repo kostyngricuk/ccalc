@@ -1,21 +1,22 @@
-import { call, put, takeLatest } from "redux-saga/effects";
+import { call, put, takeLatest } from 'redux-saga/effects';
 import {
   addProduct,
   getProductsError,
   getProducts,
   getProductsSuccess,
   removeProduct
-} from "@services/reducers/productSlice";
+} from '@services/reducers/productSlice';
 import productApi, { IProductResponse } from"@services/api/product";
-import { errorAction } from "@services/constants/errors";
+import { errorAction } from '@services/constants/errors';
 
 function* getProductsRequest(): Generator {
   try {
     const res = (yield call(productApi.getProducts)) as IProductResponse;
-    if (!res?.success) {
-      throw new Error(res?.errorCode);
+    if (res?.success) {
+      yield put(getProductsSuccess(res.items));
+      return;
     }
-    yield put(getProductsSuccess(res.items));
+    throw new Error(res?.errorCode);
   } catch (error) {
     yield put(getProductsError());
     yield put({ type: errorAction, error });
@@ -23,25 +24,21 @@ function* getProductsRequest(): Generator {
 }
 
 function* addProductToItems(action: any): Generator {
-  if (!action.payload) {
-    return;
+  if (action.payload) {
+    const {
+      id
+    } = action.payload;
+    yield put(addProduct(id));
   }
-
-  const {
-    id
-  } = action.payload;
-  yield put(addProduct(id));
 }
 
 function* removeProductFromItems(action: any): Generator {
-  if (!action.payload) {
-    return;
+  if (action.payload) {
+    const {
+      id
+    } = action.payload;
+    yield put(removeProduct(id));
   }
-
-  const {
-    id
-  } = action.payload;
-  yield put(removeProduct(id));
 }
 
 

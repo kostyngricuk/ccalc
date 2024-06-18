@@ -1,8 +1,9 @@
-import { createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
+import { SLICE_PRODUCT_NAME } from '@services/constants/store';
 
-import { IProduct, IProductState, TProducts } from "@services/types/products";
-import { getNutritionByWeight } from "@services/utils/calculations";
+import { IProduct, IProductState, TProducts } from '@services/types/products';
+import { getNutritionByWeight } from '@services/utils/calculations';
 
 const initialState: IProductState = {
   items: [],
@@ -10,7 +11,7 @@ const initialState: IProductState = {
 }
 
 export const productSlice = createSlice({
-  name: 'product',
+  name: SLICE_PRODUCT_NAME,
   initialState,
   reducers: {
     getProducts: (

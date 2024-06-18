@@ -1,10 +1,10 @@
 import React from 'react';
 import { ProfileSVG } from '@icons/index';
-import NavItem, { INavItem } from '@components/NavItem/NavItem';
-import Button from '@components/UI/Button/Button';
-import { DropdownTrigger, DropdownContent } from '@components/UI/Dropdown/Dropdown';
+import NavItem, { INavItem } from '@components/NavItem'
+import Button from '@components/UI/Button'
+import { DropdownTrigger, DropdownContent } from '@components/UI/Dropdown'
 
-import Icon from '@components/UI/Icon/Icon';
+import Icon from '@components/UI/Icon'
 
 import { StyledProfileMenu, StyledProfileMenuWrap } from './StyledProfileMenu';
 
