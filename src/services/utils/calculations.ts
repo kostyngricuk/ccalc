@@ -18,20 +18,17 @@ export interface ITottalValues {
   fats: number
 }
 
-export const getTottal = (items: ISelectedProduct[]): ITottalValues => {
-  const weight = items.reduce((acc, item) => acc + item.weight, 0);
-  const kkal = items.reduce((acc, item) => acc + item.kkal, 0);
-  const proto = items.reduce((acc, item) => acc + item.proto, 0);
-  const carbo = items.reduce((acc, item) => acc + item.carbo, 0);
-  const fats = items.reduce((acc, item) => acc + item.fats, 0);
-  return {
-    weight,
-    kkal,
-    proto,
-    carbo,
-    fats
-  }
-}
+export const getTottal = (items: ISelectedProduct[]): ITottalValues => (
+  items.reduce((acc, item) => (
+    {
+      weight: acc.weight + item.weight,
+      kkal: acc.kkal + item.kkal,
+      proto: acc.proto + item.proto,
+      carbo: acc.carbo + item.carbo,
+      fats: acc.fats + item.fats
+    }
+  ), { weight: 0, kkal: 0, proto: 0, carbo: 0, fats: 0 })
+)
 
 export const getNutritionByWeight = ({
   product,

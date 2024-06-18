@@ -76,13 +76,13 @@ export default function SearchProductForm() {
     const product = {
       id: diffProducts.length + selectedProducts.length,
       name,
-      proto,
-      carbo,
-      fats,
+      proto: parseInt(proto, 10),
+      carbo: parseInt(carbo, 10),
+      fats: parseInt(fats, 10),
       kkal: getKkal({
-        proto,
-        carbo,
-        fats,
+        proto: parseInt(proto, 10),
+        carbo: parseInt(carbo, 10),
+        fats: parseInt(fats, 10),
       })
     } as IProduct;
 
