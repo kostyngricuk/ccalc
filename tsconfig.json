@@ -7,12 +7,16 @@
     "outDir": "./dist",
     "strict": true,
     "esModuleInterop": true,
-    "paths": { 
+    "paths": {
       "@components/*": ["./src/components/*"],
 			"@services/*": ["./src/services/*"],
 			"@icons/*": ["./src/icons/*"],
       "@pages/*": ["./src/pages/*"]
-		}
+		},
+    "types": [
+      "jest",
+      "node"
+    ],
   },
-  "include": ["*.ts", "*.js", "**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"]
+  "include": ["*.ts", "*.js", "**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "./setupTests.ts"]
 }
