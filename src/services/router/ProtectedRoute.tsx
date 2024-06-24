@@ -1,10 +1,10 @@
-import React, { ReactNode } from "react";
-import { Navigate, useLocation } from "react-router-dom";
+import React, { ReactNode } from 'react';
+import { Navigate, useLocation } from 'react-router-dom';
 
-import paths from "./paths";
-import hasAdditionalInfo from "../utils/auth";
-import { selectCurrentUser } from "../hooks/selectors";
-import { useAppSelector } from "../hooks/store";
+import paths from '@services/router/paths';
+import hasAdditionalInfo from '@services/utils/auth';
+import { selectCurrentUser } from '@services/hooks/selectors';
+import { useAppSelector } from '@services/hooks/store';
 
 export default function ProtectedRoute({
   children,
@@ -15,10 +15,10 @@ export default function ProtectedRoute({
   const location = useLocation();
 
   if (!currentUser) {
-    return <Navigate to={paths.signin.url} replace />;
+    return <Navigate to={paths.signin.path} replace />;
   }
-  if (currentUser && !hasAdditionalInfo(currentUser) && location.pathname !== paths.userInfo.url) {
-    return <Navigate to={paths.userInfo.url} replace />;
+  if (currentUser && !hasAdditionalInfo(currentUser) && location.pathname !== paths.userInfo.path) {
+    return <Navigate to={paths.userInfo.path} replace />;
   }
   return children;
 }

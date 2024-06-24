@@ -1,13 +1,10 @@
-import { put, takeEvery } from "redux-saga/effects";
-import { requsetError } from "../reducers/userSlice";
-import { addNotification } from "../reducers/notificationSlice";
-import { ENotificationType } from "../types/notification";
-import i18n from "../i18n";
-import { errorAction } from "../constants/errors";
+import { put, takeEvery } from 'redux-saga/effects';
+import { addNotification } from '@services/reducers/notificationSlice';
+import { ENotificationType } from '@services/types/notification';
+import i18n from '@services/i18n';
+import { errorAction } from '@services/constants/errors';
 
 function* showError(action: any): Generator {
-    yield put(requsetError());
-
     const errorCode = action.error?.code ? action.error?.message : action.error?.message
     yield put(addNotification({
       type: ENotificationType.error,

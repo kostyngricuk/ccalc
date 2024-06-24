@@ -3,22 +3,22 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { Controller, FieldValues, useForm } from 'react-hook-form';
 
-import { EnumHorizontalPosition } from '../services/types/global';
-import { UNITS } from '../services/constants/global';
-import { Genders } from '../services/types/user';
+import { EnumHorizontalPosition } from '@services/types/global';
+import { UNITS } from '@services/constants/global';
+import { Genders } from '@services/types/user';
 
-import Section from '../components/UI/Section/Section';
-import Title from '../components/UI/Title/Title';
-import Form from '../components/UI/Form/Form';
-import { TResponse, EResponseStatuses } from '../components/UI/Form/types';
-import FormField, { EnumFormFieldType } from '../components/UI/FormField/FormField';
-import { EnumInputType, Input, InputControlled } from '../components/UI/Input/Input';
-import Button, { EnumButtonType } from '../components/UI/Button/Button';
-import { selectCurrentUser, selectIsLoading } from '../services/hooks/selectors';
-import { useAppDispatch, useAppSelector } from '../services/hooks/store';
-import { updateRequest } from '../services/reducers/userSlice';
-import hasAdditionalInfo from '../services/utils/auth';
-import paths from '../services/router/paths';
+import Section from '@components/UI/Section'
+import Title from '@components/UI/Title'
+import Form from '@components/UI/Form'
+import { TResponse, EResponseStatuses } from '@components/UI/Form/types'
+import FormField, { EnumFormFieldType } from '@components/UI/FormField'
+import { Input, InputControlled } from '@components/UI/Input'
+import Button, { EnumButtonType } from '@components/UI/Button'
+import { selectCurrentUser, selectIsLoading } from '@services/hooks/selectors';
+import { useAppDispatch, useAppSelector } from '@services/hooks/store';
+import { updateRequest } from '@services/reducers/userSlice';
+import hasAdditionalInfo from '@services/utils/auth';
+import paths from '@services/router/paths';
 
 export default function UserInfoScreen() {
   const [response, setResponse] = useState<TResponse>(null);
@@ -29,6 +29,7 @@ export default function UserInfoScreen() {
   const { handleSubmit, control, formState: { errors } } = useForm<FieldValues>();
 
   const isLoading = useAppSelector(selectIsLoading);
+  const currentUser = useAppSelector(selectCurrentUser)
 
   const onSubmit = handleSubmit(async (submitData: FieldValues) => {
     if (!submitData) {
@@ -49,7 +50,8 @@ export default function UserInfoScreen() {
         age,
         height,
         weight,
-        weightGoal
+        weightGoal,
+        email: currentUser?.email
       }
     });
   });
@@ -63,10 +65,9 @@ export default function UserInfoScreen() {
     }
   }, [errors]);
 
-  const currentUser = useAppSelector(selectCurrentUser);
   useEffect(() => {
     if (currentUser && hasAdditionalInfo(currentUser)) {
-      navigate(paths.home.url);
+      navigate(paths.home.path);
     }
   }, [currentUser]);
 
@@ -86,7 +87,7 @@ export default function UserInfoScreen() {
               <FormField type={EnumFormFieldType.row}>
                 <Input
                   name={field.name}
-                  type={EnumInputType.radio}
+                  type='radio'
                   value={Genders.man}
                   label={t('form.field.genderOptions.man')}
                   error={fieldState?.error}
@@ -95,7 +96,7 @@ export default function UserInfoScreen() {
                 />
                 <Input
                   name={field.name}
-                  type={EnumInputType.radio}
+                  type='radio'
                   value={Genders.woman}
                   label={t('form.field.genderOptions.woman')}
                   error={fieldState?.error}
@@ -109,7 +110,7 @@ export default function UserInfoScreen() {
         <FormField>
           <InputControlled
             isFullwidth
-            type={EnumInputType.number}
+            type='number'
             value={currentUser?.age?.toString()}
             name="age"
             required
@@ -120,7 +121,7 @@ export default function UserInfoScreen() {
         <FormField>
           <InputControlled
             isFullwidth
-            type={EnumInputType.number}
+            type='number'
             value={currentUser?.height?.toString()}
             name="height"
             required
@@ -132,7 +133,7 @@ export default function UserInfoScreen() {
         <FormField>
           <InputControlled
             isFullwidth
-            type={EnumInputType.number}
+            type='number'
             value={currentUser?.weight?.toString()}
             name="weight"
             required
@@ -144,7 +145,7 @@ export default function UserInfoScreen() {
         <FormField>
           <InputControlled
             isFullwidth
-            type={EnumInputType.number}
+            type='number'
             value={currentUser?.weightGoal?.toString()}
             name="weightGoal"
             required
@@ -155,7 +156,7 @@ export default function UserInfoScreen() {
         </FormField>
         <FormField type={EnumFormFieldType.actions}>
           <Button type={EnumButtonType.submit}>
-            {t('userInfo.form.btnSubmit')}
+            {t('userInfo.form.btn.submit')}
           </Button>
         </FormField>
       </Form>

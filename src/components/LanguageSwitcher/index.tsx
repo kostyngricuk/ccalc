@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
 
-import { LANGUAGES, LANGUAGES_CODE_LIST } from '../../services/constants/global';
+import { LANGUAGES, LANGUAGES_CODE_LIST } from '@services/constants/global';
 import StyledLanguageSwitcher from './StyledLanguageSwitcher';
 
 export default function LanguageSwitcher() {

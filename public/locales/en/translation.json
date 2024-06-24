@@ -12,7 +12,31 @@
     "cal": "cal"
   },
   "calculator": {
-    "title": "Calculator"
+    "title": "Calculator",
+    "form": {
+      "title": "Choose products",
+      "or": "- OR -",
+      "btn": {
+        "add": "Add custom product",
+        "saveResult": "Save Result"
+      }
+    },
+    "res": {
+      "title": "Result",
+      "noSelectedItems": "No selected products"
+    },
+    "item": {
+      "nutrients": "P / F / C",
+      "colories": "Сalories",
+      "remove": "Remove product"
+    },
+    "newProductForm": {
+      "title": "Add custom product",
+      "btn": {
+        "submit": "Add",
+        "cancel": "Cancel"
+      }
+    }
   },
   "help": {
     "title": "Help"
@@ -26,36 +50,46 @@
   "signin": {
     "title": "Sign in",
     "form": {
-      "btnSubmit": "Go",
-      "btnRegistration": "Create account"
+      "btn": {
+        "submit": "Go",
+        "registration": "Create account"
+      }
     },
     "resetPassword": "Reset password"
   },
   "signup": {
     "title": "Sign up",
     "form": {
-      "btnSubmit": "Create",
-      "btnLogin": "Sign in"
+      "btn": {
+        "submit": "Create",
+        "login": "Sign in"
+      }
     }
   },
   "reset": {
     "title": "Reset Password",
     "form": {
-      "btnSubmit": "Reset",
-      "btnSubmitCode": "Verify",
-      "btnLogin": "Sign in"
+      "btn": {
+        "submit": "Reset",
+        "submitCode": "Verify",
+        "login": "Sign in"
+      }
     }
   },
   "changePassword": {
     "title": "Change Password",
     "form": {
-      "btnSubmit": "Save"
+      "btn": {
+        "submit": "Save"
+      }
     }
   },
   "userInfo": {
     "title": "Info about you",
     "form": {
-      "btnSubmit": "Save"
+      "btn": {
+        "submit": "Save"
+      }
     }
   },
   "settings": {
@@ -65,8 +99,10 @@
         "success": "Changes have been applied!",
         "successReset": "Limit reset successfully!"
       },
-      "btnSave": "Save changes",
-      "btnResetWidget": "Reset today limit"
+      "btn": {
+        "save": "Save changes",
+        "resetWidget": "Reset today limit"
+      }
     }
   },
   "form": {
@@ -86,12 +122,25 @@
       "oldPassword": "Old password",
       "newPassword": "New password",
       "confirmNewPassword": "Confirm new password",
-      "code": "Verification code"
+      "code": "Verification code",
+      "selectProduct": "Select the product",
+      "productTitle": "Product name"
     }
   },
   "units": {
     "kg": "kg",
-    "sm": "sm"
+    "g": "g",
+    "ml": "ml",
+    "sm": "sm",
+    "weight": "Weight",
+    "kkal": "Сalories",
+    "proto": "Proteins",
+    "fats": "Fats",
+    "carbo": "Carbohydrates",
+    "kkalShort": "Kkal",
+    "protoShort": "P",
+    "fatsShort": "F",
+    "carboShort": "C"
   },
   "areas": {
     "goHome": "Go home"

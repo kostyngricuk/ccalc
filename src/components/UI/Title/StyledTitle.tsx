@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import styled from 'styled-components';
-import { EnumHorizontalPosition, EnumTitleVariant } from '../../../services/types/global';
+import { EnumHorizontalPosition, TypeTitleVariant } from '@services/types/global';
 
 function TitleTag({
   children,
@@ -9,7 +9,7 @@ function TitleTag({
 }: {
   children: ReactNode;
   className?: string;
-  variant: EnumTitleVariant;
+  variant: TypeTitleVariant;
 }) {
   const TagElement = `${variant}` as keyof JSX.IntrinsicElements;
   return (
@@ -22,34 +22,34 @@ TitleTag.defaultProps = {
   className: '',
 };
 
-const getFontSize = (variant: EnumTitleVariant) => {
+const getFontSize = (variant: TypeTitleVariant) => {
   switch (variant) {
-    case EnumTitleVariant.h2:
+    case 'h2':
       return '36px';
-    case EnumTitleVariant.h3:
+    case 'h3':
       return '32px';
-    case EnumTitleVariant.h4:
+    case 'h4':
       return '28px';
-    case EnumTitleVariant.h5:
+    case 'h5':
       return '24px';
-    case EnumTitleVariant.h6:
+    case 'h6':
       return '20px';
     default:
       return '44px';
   }
 };
 
-const getFontSizeMobile = (variant: EnumTitleVariant) => {
+const getFontSizeMobile = (variant: TypeTitleVariant) => {
   switch (variant) {
-    case EnumTitleVariant.h2:
+    case 'h2':
       return '34px';
-    case EnumTitleVariant.h3:
+    case 'h3':
       return '30px';
-    case EnumTitleVariant.h4:
+    case 'h4':
       return '26px';
-    case EnumTitleVariant.h5:
+    case 'h5':
       return '22px';
-    case EnumTitleVariant.h6:
+    case 'h6':
       return '18px';
     default:
       return '38px';
@@ -57,7 +57,7 @@ const getFontSizeMobile = (variant: EnumTitleVariant) => {
 };
 
 const StyledTitle = styled(TitleTag)<{
-  variant: EnumTitleVariant,
+  variant: TypeTitleVariant,
   position: EnumHorizontalPosition
 }>`
   font-size: ${(props) => getFontSize(props.variant)};

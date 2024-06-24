@@ -6,8 +6,8 @@ import React, {
 } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import Icon from '../Icon/Icon';
-import { ArrowUpSVG, ArrowDownSVG } from '../../../icons';
+import { ArrowUpSVG, ArrowDownSVG } from '@icons/index';
+import Icon from '@components/UI/Icon'
 
 import { StyledDropdown, StyledDropdownContent, StyledDropdownTrigger } from './StyledDropdown';
 
@@ -47,10 +47,9 @@ export function DropdownTrigger({
   useEffect(() => {
     const handleClickOutside:EventListener = (event) => {
       const triggerEl = refTrigger?.current;
-      if (!triggerEl || triggerEl.contains((event?.target as Node) || null)) {
-        return;
+      if (triggerEl && !triggerEl.contains((event?.target as Node) || null)) {
+        setIsActive(false);
       }
-      setIsActive(false);
     };
     document.addEventListener('click', handleClickOutside, true);
     return () => {

@@ -8,34 +8,34 @@ import {
   useController,
 } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { StyledInput, StyledInputLabel } from './StyledInput';
-import { errorCodes } from '../../../services/constants/errors';
 
-export enum EnumInputType {
-  text = 'text',
-  email = 'email',
-  password = 'password',
-  number = 'number',
-  tel = 'tel',
-  radio = 'radio',
-}
+import { errorCodes } from '@services/constants/errors';
+import { ISelectOption, TChange, TOptions } from '@components/UI/Select/types'
+import Select from '@components/UI/Select'
+import { StyledInput, StyledInputLabel } from './StyledInput';
+
+export type TypeInput = 'text' | 'email' | 'password' | 'number' | 'tel' | 'radio' | 'select';
 
 interface IInputBase {
   name: FieldPath<FieldValues>;
-  type?: EnumInputType | undefined;
+  type?: TypeInput | undefined;
   value?: string | undefined;
   label: string | undefined;
   units?: string;
   isFullwidth?: boolean | undefined;
+  options?: any;
+  required?: boolean;
 }
+
 interface IInput extends IInputBase {
-  error: FieldError | string | undefined;
-  onChange: ChangeEventHandler<HTMLInputElement> | undefined;
+  error?: FieldError | string | undefined;
   checked?: boolean | undefined;
+  onChange: (value: string) => ChangeEventHandler<HTMLInputElement> | void;
 }
+
 interface IInputControlled extends IInputBase {
-  required?: boolean | undefined;
-  control: Control<FieldValues>;
+  control?: Control<FieldValues>;
+  onChangeTrigger?: (value: string) => void;
 }
 
 export function Input(props: IInput) {
@@ -48,27 +48,43 @@ export function Input(props: IInput) {
     units,
     checked,
     onChange,
-    isFullwidth
+    isFullwidth,
+    options,
+    required
   } = props;
 
+  if (type === 'select') {
+    return (
+      <StyledInput $isFullwidth={isFullwidth} className="Input">
+        <Select
+          name={name}
+          value={value}
+          options={options as TOptions}
+          onChange={onChange as TChange}
+        />
+      </StyledInput>
+    )
+  }
   return (
     <StyledInput $isFullwidth={isFullwidth} className="Input">
       <StyledInputLabel
         className={classNames(
           error && 'has-error',
-          type === EnumInputType.radio && 'is-radio',
+          type === 'radio' && 'is-radio',
           Boolean(units?.length) && 'has-units',
+          required && 'is-required'
         )}
       >
         <input
           name={name}
           value={value}
-          onChange={onChange}
+          required={required}
+          onChange={(e) => onChange(e.target.value)}
           autoComplete="off"
           type={type?.toString()}
           checked={checked}
         />
-        {type === EnumInputType.radio && <span className="radio-button" />}
+        {type === 'radio' && <span className="radio-button" />}
         <span className="label">
           {label}
         </span>
@@ -78,11 +94,14 @@ export function Input(props: IInput) {
   );
 }
 Input.defaultProps = {
-  type: EnumInputType.text,
+  type: 'text',
   units: '',
   checked: false,
   value: '',
-  isFullwidth: false
+  isFullwidth: false,
+  options: [],
+  error: '',
+  required: false,
 };
 
 export function InputControlled({
@@ -93,7 +112,9 @@ export function InputControlled({
   label,
   units,
   control,
-  isFullwidth
+  isFullwidth,
+  options,
+  onChangeTrigger
 }: IInputControlled) {
   const { t } = useTranslation();
   const { field, fieldState } = useController({
@@ -102,7 +123,7 @@ export function InputControlled({
     defaultValue: value,
     rules: {
       required: required === true ? `"${label}" ${t(`errors.${errorCodes.IS_REQUIRED}`)}` : false,
-      pattern: type === EnumInputType.number ? /\d/ : /./,
+      pattern: type === 'number' ? /\d/ : /./,
     },
   });
 
@@ -112,17 +133,27 @@ export function InputControlled({
       name={field.name}
       value={field.value}
       label={label}
+      required={required}
       type={type}
       error={fieldState?.error}
-      onChange={field.onChange}
+      onChange={(input: string | ISelectOption) => {
+        if (onChangeTrigger && typeof input !== 'string') {
+          onChangeTrigger(input.value);
+        }
+        field.onChange(input);
+      }}
       isFullwidth={isFullwidth}
+      options={options}
     />
   );
 }
 InputControlled.defaultProps = {
-  type: EnumInputType.text,
+  type: 'text',
   units: '',
   required: false,
   value: '',
-  isFullwidth: false
+  isFullwidth: false,
+  options: [],
+  control: null,
+  onChangeTrigger: () => null,
 };

@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { resetButton } from '../../../services/styled/mixins';
+import { resetButton } from '@services/styled/mixins';
 
 export const StyledDropdown = styled.div`
   position: relative;

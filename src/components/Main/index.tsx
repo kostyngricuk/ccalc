@@ -1,6 +1,5 @@
 import React, { ReactNode } from 'react';
 
-import Container from '../UI/Container/Container';
 import StyledMain from './StyledMain';
 
 export default function Main({
@@ -10,9 +9,7 @@ export default function Main({
 }) {
   return (
     <StyledMain>
-      <Container>
-        { children }
-      </Container>
+      { children }
     </StyledMain>
   );
 }

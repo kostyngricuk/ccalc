@@ -2,9 +2,9 @@ import React from 'react';
 import { isRouteErrorResponse, useRouteError } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import Main from '../components/Main/Main';
-import Section from '../components/UI/Section/Section';
-import Title from '../components/UI/Title/Title';
+import Main from '@components/Main'
+import Section from '@components/UI/Section'
+import Title from '@components/UI/Title'
 
 export default function ErrorScreen() {
   const error = useRouteError();

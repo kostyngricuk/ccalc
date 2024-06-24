@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { EnumHorizontalPosition } from '../../../services/types/global';
+import { EnumHorizontalPosition } from '@services/types/global';
 
 const StyledTitle = styled.p<{
   position: EnumHorizontalPosition | undefined

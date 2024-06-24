@@ -1,11 +1,11 @@
-import React, { ReactNode } from "react";
-import { Navigate } from "react-router-dom";
+import React, { ReactNode } from 'react';
+import { Navigate } from 'react-router-dom';
 
-import paths from "./paths";
-import hasAdditionalInfo from "../utils/auth";
+import paths from '@services/router/paths';
+import hasAdditionalInfo from '@services/utils/auth';
 
-import { useAppSelector } from "../hooks/store";
-import { selectCurrentUser } from "../hooks/selectors";
+import { useAppSelector } from '@services/hooks/store';
+import { selectCurrentUser } from '@services/hooks/selectors';
 
 
 export default function AuthRoute({
@@ -16,10 +16,10 @@ export default function AuthRoute({
   const currentUser = useAppSelector(selectCurrentUser);
 
   if (currentUser && !hasAdditionalInfo(currentUser)) {
-    return <Navigate to={paths.userInfo.url} replace />;
+    return <Navigate to={paths.userInfo.path} replace />;
   }
   if (currentUser && hasAdditionalInfo(currentUser)) {
-    return <Navigate to={paths.home.url} replace />;
+    return <Navigate to={paths.home.path} replace />;
   }
   return children;
 }

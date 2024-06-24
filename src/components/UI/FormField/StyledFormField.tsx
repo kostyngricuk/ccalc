@@ -15,7 +15,12 @@ export const StyledFormField = styled.div`
 export const StyledFieldRow = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 20px;
+  margin-bottom: 20px;
+  .Input {
+    margin-bottom: 0;
+  }
 `;
 
 export const StyledFormActions = styled.div`

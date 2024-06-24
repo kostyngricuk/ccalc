@@ -1,14 +1,15 @@
-import { createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
+import { SLICE_NOTIFICATION_NAME } from '@services/constants/store';
 
-import { INotification, INotificationState } from "../types/notification";
+import { INotification, INotificationState } from '@services/types/notification';
 
 const initialState: INotificationState = {
   items: []
 }
 
 export const notificationSlice = createSlice({
-  name: 'notification',
+  name: SLICE_NOTIFICATION_NAME,
   initialState,
   reducers: {
     addNotification: (

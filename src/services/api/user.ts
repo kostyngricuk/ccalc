@@ -1,5 +1,5 @@
-import { IUserState, TUser } from '../types/user';
-import http from '../http';
+import { IUserState, TUser } from '@services/types/user';
+import http from '@services/http';
 
 const update = async (body: TUser) => {
   const { data } = await http.post<IUserState>('/user/update', body);
@@ -14,7 +14,15 @@ const changePassword = async (body: {
   return data;
 };
 
+const eaten = async (body: {
+  count: number,
+}) => {
+  const { data } = await http.post<IUserState>('/user/eaten', body);
+  return data;
+};
+
 export default {
   update,
-  changePassword
+  changePassword,
+  eaten
 }

@@ -1,22 +1,22 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-import Container from '../UI/Container/Container';
-import Tooltip from '../UI/Tooltip/Tooltip';
-import Logo from '../Logo/Logo';
-import Nav from '../Nav/Nav';
-import { INavItem } from '../NavItem/NavItem';
-import ProfileMenu from '../ProfileMenu/ProfileMenu';
-import CalorieWidget from '../CalorieWidget/CalorieWidget';
-import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
+import paths from '@services/router/paths';
+import hasAdditionalInfo from '@services/utils/auth';
+import { useAppDispatch, useAppSelector } from '@services/hooks/store';
+import { logoutRequest } from '@services/reducers/userSlice';
+import { selectCurrentUser } from '@services/hooks/selectors';
+import Container from '@components/UI/Container'
+import Tooltip from '@components/UI/Tooltip'
+import Logo from '@components/Logo'
+import Nav from '@components/Nav'
+import { INavItem } from '@components/NavItem'
+import ProfileMenu from '@components/ProfileMenu'
+import CalorieWidget from '@components/CalorieWidget'
+import LanguageSwitcher from '@components/LanguageSwitcher'
 
 import { StyledHeader, StyledHeaderContent } from './StyleHeader';
 
-import paths from '../../services/router/paths';
-import hasAdditionalInfo from '../../services/utils/auth';
-import { useAppDispatch, useAppSelector } from '../../services/hooks/store';
-import { logoutRequest } from '../../services/reducers/userSlice';
-import { selectCurrentUser } from '../../services/hooks/selectors';
 
 export default function Header() {
   const { t } = useTranslation();
@@ -30,25 +30,25 @@ export default function Header() {
 
   const menuItems: Array<INavItem> = [
     {
-      id: paths.calculator.id,
-      link: paths.calculator.url,
+      id: 'calculator',
+      link: paths.calculator.path,
       title: t('nav.calculator'),
     },
     {
-      id: paths.help.id,
-      link: paths.help.url,
+      id: "help",
+      link: paths.help.path,
       title: t('nav.help'),
       submenu: [
         {
-          id: paths.faq.id,
-          link: paths.faq.url,
+          id: "faq",
+          link: paths.faq.path,
           title: t('nav.faq'),
         },
       ],
     },
     {
-      id: paths.contacts.id,
-      link: paths.contacts.url,
+      id: "contacts",
+      link: paths.contacts.path,
       title: t('nav.contacts'),
     },
   ];
@@ -56,19 +56,19 @@ export default function Header() {
   const menuProfileItems: Array<INavItem> = hasAdditionalInfo(currentUser) ?
     [
       {
-        id: paths.settings.id,
-        link: paths.settings.url,
+        id: "settings",
+        link: paths.settings.path,
         title: t('nav.settings'),
       },
       {
-        id: paths.exit.id,
+        id: "exit",
         title: t('nav.exit'),
         handleClick: handleLogout
       },
     ]
   : [
       {
-        id: paths.exit.id,
+        id: "exit",
         title: t('nav.exit'),
         handleClick: handleLogout
       },
