@@ -2,11 +2,11 @@ enum EnumColorsLight {
   white = '#fff',
   black = '#000',
   primary = '#57b945',
+  primaryLight = 'rgba(0, 156, 16, 0.24)',
   secondary = '#FFCF00',
-  gray = 'rgba(0, 0, 0, 0.25)',
-  lightgray = 'rgba(0, 0, 0, 0.1)',
-  lightgreen = 'rgba(0, 156, 16, 0.24)',
-  red = '#C00',
+  third = '#C00',
+  disabled = 'rgba(0, 0, 0, 0.25)',
+  disabledLight = 'rgba(0, 0, 0, 0.1)',
   error = 'rgb(231, 24, 24)',
 }
 

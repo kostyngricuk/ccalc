@@ -25,7 +25,7 @@ export const StyledInputLabel = styled.label`
   .label {
     display: block;
     font-size: 14px;
-    color: var(--color-gray);
+    color: var(--color-disabled);
     position: absolute;
     z-index: 2;
     left: 0;
@@ -38,10 +38,10 @@ export const StyledInputLabel = styled.label`
   }
   &.is-required .label::after {
     content: '*';
-    color: var(--color-red);
+    color: var(--color-third);
   }
   .units {
-    color: var(--color-gray);
+    color: var(--color-disabled);
     position: absolute;
     right: 0;
     top: 50%;
@@ -51,7 +51,7 @@ export const StyledInputLabel = styled.label`
   input {
     width: 100%;
     border: none;
-    border-bottom: 1px solid var(--color-gray);
+    border-bottom: 1px solid var(--color-disabled);
     font-size: 16px;
     outline: none;
     background-color: transparent;
@@ -71,7 +71,7 @@ export const StyledInputLabel = styled.label`
         height: 20px;
         min-width: 20px;
         border-radius: 50%;
-        border: 1px solid var(--color-gray);
+        border: 1px solid var(--color-disabled);
         padding: 2px;
         pointer-events: none;
         margin-left: .5em;
@@ -137,5 +137,5 @@ export const StyledInputLabel = styled.label`
 `;
 
 export const StyledInputError = styled.span`
-  color: var(--color-red);
+  color: var(--color-third);
 `;

@@ -3,7 +3,7 @@ import Button from '@components/UI/Button'
 
 export const StyledProductItem = styled.li`
   margin-bottom: 10px;
-  background-color: var(--color-lightgray);
+  background-color: var(--color-disabledLight);
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -12,7 +12,7 @@ export const StyledProductItem = styled.li`
 `;
 
 export const StyledRemoveProductButton = styled(Button)`
-  color: var(--color-red);
+  color: var(--color-third);
   background-color: transparent;
   text-decoration: underline;
   font-size: 16px;
@@ -25,7 +25,7 @@ export const StyledRemoveProductButton = styled(Button)`
   top: 10px;
   &:hover,
   &:focus {
-    color: var(--color-red);
+    color: var(--color-third);
   }
 `;
 

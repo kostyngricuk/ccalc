@@ -10,7 +10,7 @@ import CalculatorResult from '@components/CalculatorResult'
 import SearchProductForm from '@components/SearchProductForm'
 
 const GreenWrapper = styled.div`
-  background-color: var(--color-lightgreen);
+  background-color: var(--color-primaryLight);
 `;
 
 export default function CalculatorScreen() {
