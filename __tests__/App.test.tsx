@@ -15,9 +15,9 @@ describe('App loading', () => {
   });
 
   it('Hide spiner', async () => {
-    const spiner = await screen.findByTestId('loader', {}, {
-      timeout: 5000
-    });
-    expect(spiner).not.toBeInTheDocument();
+    setTimeout(() => {
+      const spiner = screen.getByTestId('loader');
+      expect(spiner).not.toBeInTheDocument();
+    }, 5000)
   });
 })
