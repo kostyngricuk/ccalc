@@ -75,13 +75,13 @@ export default function Header() {
     ];
 
   return (
-    <StyledHeader>
+    <StyledHeader data-testid="header">
       <Container>
         <Logo />
         <StyledHeaderContent>
           {
             hasAdditionalInfo(currentUser) && (
-              <Nav items={menuItems} itemsMobile={[...menuItems, ...menuProfileItems]} />
+              <Nav data-testid="header-nav" items={menuItems} itemsMobile={[...menuItems, ...menuProfileItems]} />
             )
           }
           <LanguageSwitcher />

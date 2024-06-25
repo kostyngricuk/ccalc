@@ -8,7 +8,7 @@ import { SLICE_USER_NAME } from '@services/constants/store';
 
 const accessToken = Cookies.get('e-access-token');
 
-const initialState: IUserState = {
+export const initialState: IUserState = {
   user: accessToken ? jwtDecode(accessToken) : null,
   isLoading: false,
 }

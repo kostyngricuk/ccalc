@@ -17,7 +17,7 @@ export default function App() {
         <RouterProvider router={router} />
         <Notifications />
         <StyledGlobal />
-    </Provider>
+      </Provider>
     </ThemeProvider>
   );
 }

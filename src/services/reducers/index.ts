@@ -6,7 +6,7 @@ import userReducer from './userSlice';
 import productReducer from './productSlice';
 import notificationReducer from './notificationSlice';
 
-const appReducer = combineReducers({
+export const appReducer = combineReducers({
   [SLICE_USER_NAME]: userReducer,
   [SLICE_PRODUCT_NAME]: productReducer,
   [SLICE_NOTIFICATION_NAME]: notificationReducer

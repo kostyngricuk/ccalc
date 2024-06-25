@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 import React, { ReactNode } from 'react';
 import StyledContainer from './StyledContainer';
 
@@ -14,6 +15,3 @@ export default function Container({
     </StyledContainer>
   );
 }
-Container.defaultProps = {
-  className: '',
-};

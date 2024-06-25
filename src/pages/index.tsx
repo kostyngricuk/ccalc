@@ -20,7 +20,7 @@ export default function Index() {
   return isLoaded ? (
       <>
         <Header />
-        <Main>
+        <Main data-testid="main-screen">
           <Outlet />
         </Main>
         <Footer />

@@ -6,7 +6,7 @@ import StyledFooter from './StyledFooter';
 
 export default function Footer() {
   return (
-    <StyledFooter>
+    <StyledFooter data-testid="footer">
       <Container>
         <Copyright />
       </Container>

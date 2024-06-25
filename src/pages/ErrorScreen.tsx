@@ -12,7 +12,7 @@ export default function ErrorScreen() {
   const { t } = useTranslation();
 
   return (
-    <Main>
+    <Main data-testid="error-screen">
       <Section>
         {
           isRouteErrorResponse(error)

@@ -11,7 +11,7 @@
       "@components/*": ["./src/components/*"],
 			"@services/*": ["./src/services/*"],
 			"@icons/*": ["./src/icons/*"],
-      "@pages/*": ["./src/pages/*"]
+      "@pages/*": ["./src/pages/*"],
 		},
     "types": [
       "jest",
