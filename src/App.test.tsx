@@ -1,14 +1,14 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
-import { render, screen } from '@services/utils/test-utils';
+import { shallow } from 'enzyme';
 
 import App from './App';
 
 describe('Loading pages', () => {
   it('Show loading spiner', () => {
-    render(<App />);
+    const wrapper = shallow(<App />);
 
-    const element = screen.getByTestId('spiner');
-    expect(element).toBeInTheDocument();
+    const element = wrapper.find('[data-testid="spiner"]');
+    expect(element).not.toBe(null);
   });
 })

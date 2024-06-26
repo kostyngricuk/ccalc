@@ -1,15 +1,14 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from "react";
-import '@testing-library/jest-dom'
-import { render, screen } from '@services/utils/test-utils';
+import { shallow } from "enzyme";
 
 import Copyright from '@components/Copyright';
 
 
-it('Copyright with currect year', async () => {
-  render(<Copyright />);
+it('Copyright with currect year', () => {
+  const wrapper = shallow(<Copyright />);
 
   const currentYear:string = new Date().getFullYear().toString();
-  const element = await screen.findByText((content) => content.includes(currentYear));
-  expect(element).toBeInTheDocument();
+  const element = wrapper.contains(currentYear);
+  expect(element).not.toBe(null);
 })
