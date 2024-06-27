@@ -1,12 +1,19 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
-import { shallow } from 'enzyme';
-
 import Footer from '@components/Footer';
+import { render } from '@services/utils/test-utils';
 
 it('Footer on the page', () => {
-  const wrapper = shallow(<Footer />);
+  const state = {
+    user: {
+      user: null,
+      isLoading: true
+    },
+  };
+  const wrapper = render(<Footer />, {
+    preloadedState: state
+  });
 
-  const element = wrapper.find('[data-testid="footer"]');
-  expect(element).not.toBe(null);
+  const element = wrapper.getByTestId('footer');
+  expect(element).toBeInTheDocument();
 });

@@ -71,12 +71,12 @@ export function DropdownTrigger({
       { children }
       {
         $showArrow && $isActive && (
-          <Icon Sprite={ArrowUpSVG} />
+          <Icon sprite={ArrowUpSVG} />
         )
       }
       {
         $showArrow && !$isActive && (
-          <Icon Sprite={ArrowDownSVG} />
+          <Icon sprite={ArrowDownSVG} />
         )
       }
     </StyledDropdownTrigger>

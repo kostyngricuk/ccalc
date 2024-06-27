@@ -21,7 +21,7 @@ export default function ProfileMenu({
           $isOutline
           ariaLabel="Profile menu"
         >
-          <Icon Sprite={ProfileSVG} />
+          <Icon sprite={ProfileSVG} />
         </Button>
       </DropdownTrigger>
       <DropdownContent>

@@ -1,8 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
-import { shallow } from 'enzyme';
 
-import { defaultMockUser, Providers } from '@services/utils/test-utils';
+import { defaultMockUser, render } from '@services/utils/test-utils';
 import Header from '@components/Header';
 
 describe('Header tests', () => {
@@ -13,9 +12,11 @@ describe('Header tests', () => {
         isLoading: true
       }
     };
-    const wrapper = shallow(<Providers state={state}><Header /></Providers>);
-    const element = wrapper.find('[data-testid="header"]');
-    expect(element).not.toBe(null);
+    const wrapper = render(<Header />, {
+      preloadedState: state
+    });
+    const element = wrapper.getByTestId('header');
+    expect(element).toBeInTheDocument();
   });
 
   it('Show menu for authorized users', () => {
@@ -25,8 +26,10 @@ describe('Header tests', () => {
         user: defaultMockUser,
       },
     };
-    const wrapper = shallow(<Providers state={state}><Header /></Providers>);
-    const element = wrapper.find('[data-testid="header-nav"]');
-    expect(element).not.toBe(null);
+    const wrapper = render(<Header />, {
+      preloadedState: state
+    });
+    const element = wrapper.getByTestId('nav');
+    expect(element).toBeInTheDocument();
   });
 })

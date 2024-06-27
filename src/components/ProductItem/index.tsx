@@ -70,7 +70,7 @@ export default function ProductItem({
         ariaLabel={t('calculator.item.remove')}
         onClick={() => removeProductFromList(id)}
       >
-        <Icon Sprite={CloseSVG} />
+        <Icon sprite={CloseSVG} />
       </StyledRemoveProductButton>
     </StyledProductItem>
   )

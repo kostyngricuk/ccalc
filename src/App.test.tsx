@@ -1,24 +1,24 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
-import { shallow, ShallowWrapper } from 'enzyme';
 
 import Root from '@pages/index';
+import { render, RenderResult } from '@services/utils/test-utils';
 
 describe('Loading', () => {
-  let wrapper: ShallowWrapper;
+  let wrapper: RenderResult;
   beforeEach(() => {
-     wrapper = shallow(<Root />);
+     wrapper = render(<Root />);
   })
 
   it('Show loading spiner', () => {
-    const element = wrapper.find('Loader');
-    expect(element.length).toBe(1);
+    const element = wrapper.getByTestId('loader');
+    expect(element).toBeInTheDocument();
   });
 
-  it('Show main content', () => {
-    setTimeout(() => {
-      const element = wrapper.find('Main');
-      expect(element.length).toBe(1);
-    }, 3000);
+  it('Show main content', async () => {
+    const element = await wrapper.findByTestId('main', {}, {
+      timeout: 3000,
+    });
+    expect(element).toBeInTheDocument();
   });
 })

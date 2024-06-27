@@ -15,7 +15,8 @@
 		},
     "types": [
       "jest",
-      "node"
+      "node",
+      "@testing-library/react"
     ],
   },
   "include": ["*.ts", "*.js", "**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "./setupTests.ts"]

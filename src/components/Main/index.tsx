@@ -8,7 +8,7 @@ export default function Main({
   children: ReactNode
 }) {
   return (
-    <StyledMain>
+    <StyledMain data-testid='main'>
       { children }
     </StyledMain>
   );

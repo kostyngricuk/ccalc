@@ -19,11 +19,11 @@ export default function Index() {
 
   return isLoaded ? (
       <>
-        <Header />
+        <Header/>
         <Main>
           <Outlet />
         </Main>
-        <Footer />
+        <Footer/>
       </>
     ) : <Loader />;
 }

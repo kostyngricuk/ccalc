@@ -1,20 +1,28 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import React, {ReactNode} from 'react'
+import React, {PropsWithChildren, ReactNode} from 'react'
 import lightTheme from '@services/styled/themes'
 import { ThemeProvider } from 'styled-components'
 import { Provider } from 'react-redux'
-import { RootState, setupStore } from '@services/store';
-import { Genders, TUser } from '@services/types/user';
+import { RootState } from '@services/store';
 import { BrowserRouter } from 'react-router-dom';
+import { render } from '@testing-library/react'
+import type { RenderOptions } from '@testing-library/react'
+import configureMockStore, { MockStore, MockStoreCreator } from 'redux-mock-store';
+import { Genders, TUser } from '@services/types/user';
+
+interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
+  preloadedState?: Partial<RootState>
+  mockStore?: MockStoreCreator,
+  store?: MockStore
+}
 
 export function Providers({
   children,
-  state,
+  store,
 }: {
   children: ReactNode,
-  state: Partial<RootState>,
+  store: MockStore,
 }) {
-  const store = setupStore(state);
   return (
     <ThemeProvider theme={lightTheme}>
       <Provider store={store}>
@@ -25,6 +33,38 @@ export function Providers({
     </ThemeProvider>
   )
 }
+
+export function renderWithProviders(
+  ui: React.ReactElement,
+  {
+    preloadedState = {},
+    // Automatically create a store instance if no store was passed in
+    mockStore = configureMockStore(),
+    store = mockStore(preloadedState),
+    ...renderOptions
+  }: ExtendedRenderOptions = {}
+) {
+  return {
+    store,
+    ...render(
+      ui,
+      {
+        wrapper: ({ children }: PropsWithChildren<{}>) => (
+          <Providers store={store}>
+            { children}
+          </Providers>
+        ),
+        ...renderOptions
+      }
+    )
+  }
+}
+
+// re-export everything
+export * from '@testing-library/react'
+
+// override render method
+export {renderWithProviders as render}
 
 export const defaultMockUser: TUser = {
   id: 'unicStringId',

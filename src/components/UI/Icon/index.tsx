@@ -1,18 +1,20 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
+import SVG from 'react-inlinesvg';
 import StyledIcon from './StyledIcon';
 
 interface IIcon {
   width?: string;
   height?: string;
   color?: string;
-  Sprite: React.FC<React.SVGProps<SVGSVGElement>>;
+  sprite: string;
 }
 
 export default function Icon({
   width,
   height,
   color,
-  Sprite,
+  sprite,
 }: IIcon) {
   return (
     <StyledIcon
@@ -21,7 +23,7 @@ export default function Icon({
       color={color}
       className="Icon"
     >
-      <Sprite />
+      <SVG src={sprite} />
     </StyledIcon>
   );
 }

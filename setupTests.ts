@@ -1,6 +1,3 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { configure } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
 import 'jest-location-mock';
-
-configure({ adapter: new Adapter() });
+import '@testing-library/jest-dom';

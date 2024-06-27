@@ -10,7 +10,7 @@ export default function Logo() {
   const { t } = useTranslation();
   return (
     <StyledLogo to={paths.home.path} aria-label={t('areas.goHome')} className="Logo">
-      <Icon Sprite={LogoSVG} width="180px" height="auto" />
+      <Icon sprite={LogoSVG} width="180px" height="auto" />
     </StyledLogo>
   );
 }

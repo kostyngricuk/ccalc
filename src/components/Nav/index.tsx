@@ -27,7 +27,7 @@ export default function Nav({ items, itemsMobile }: INav) {
   };
 
   return (
-    <StyledNav>
+    <StyledNav data-testid="nav">
       <StyledNavWrap className="is-desktop">
         {items.map((item) => (
           <NavItem
@@ -54,7 +54,7 @@ export default function Nav({ items, itemsMobile }: INav) {
         ariaLabel="Menu"
         onClick={handleOnClick}
       >
-        {$isActive ? <Icon Sprite={CloseSVG} /> : <Icon Sprite={BurgerSVG} />}
+        {$isActive ? <Icon sprite={CloseSVG} /> : <Icon sprite={BurgerSVG} />}
       </StyledNavBurger>
     </StyledNav>
   );

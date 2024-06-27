@@ -1,6 +1,5 @@
 import React from "react"
-import { defaultMockUser, Providers } from "@services/utils/test-utils"
-import { mount } from "enzyme"
+import { defaultMockUser, render } from "@services/utils/test-utils"
 import { TUser } from "@services/types/user"
 import AuthRoute from "./AuthRoute"
 import ProtectedRoute from "./ProtectedRoute"
@@ -19,14 +18,15 @@ describe('Test auth routes', () => {
         isLoading: true
       }
     }
-    const wrapper = mount(
-      <Providers state={state}>
-        <AuthRoute>
-          test
-        </AuthRoute>
-      </Providers>
+    const wrapper = render(
+      <AuthRoute>
+        test
+      </AuthRoute>,
+      {
+        preloadedState: state
+      }
     )
-    expect(wrapper.text()).not.toBe('test');
+    expect(wrapper.getByText('test')).not.toBeInTheDocument();
   })
 
   it('Redirect to User Info page', () => {
@@ -37,14 +37,15 @@ describe('Test auth routes', () => {
         isLoading: true
       }
     }
-    const wrapper = mount(
-      <Providers state={state}>
-        <AuthRoute>
-          test
-        </AuthRoute>
-      </Providers>
+    const wrapper = render(
+      <AuthRoute>
+        test
+      </AuthRoute>,
+      {
+        preloadedState: state
+      }
     )
-    expect(wrapper.text()).not.toBe('test');
+    expect(wrapper.getByText('test')).not.toBeInTheDocument();
   })
 
   it('Show children components', () => {
@@ -54,14 +55,15 @@ describe('Test auth routes', () => {
         isLoading: true
       }
     }
-    const wrapper = mount(
-      <Providers state={state}>
-        <AuthRoute>
-          test
-        </AuthRoute>
-      </Providers>
+    const wrapper = render(
+      <AuthRoute>
+        test
+      </AuthRoute>,
+      {
+        preloadedState: state
+      }
     )
-    expect(wrapper.text()).toBe('test');
+    expect(wrapper.getByText('test')).toBeInTheDocument();
   })
 })
 
@@ -78,14 +80,16 @@ describe('Test protected routes', () => {
         isLoading: true
       }
     }
-    const wrapper = mount(
-      <Providers state={state}>
-        <ProtectedRoute>
-          test
-        </ProtectedRoute>
-      </Providers>
+    const wrapper = render(
+      <ProtectedRoute>
+        test
+      </ProtectedRoute>,
+      {
+        preloadedState: state
+      }
     )
-    expect(wrapper.text()).not.toBe('test');
+    const element = wrapper.getByText('test');
+    expect(element).not.toBeInTheDocument();
   })
 
   it('Redirect to User Info page', () => {
@@ -99,14 +103,15 @@ describe('Test protected routes', () => {
 
     window.location.assign("/");
 
-    const wrapper = mount(
-      <Providers state={state}>
-        <ProtectedRoute>
-          test
-        </ProtectedRoute>
-      </Providers>
+    const wrapper = render(
+      <ProtectedRoute>
+        test
+      </ProtectedRoute>,
+      {
+        preloadedState: state
+      }
     )
-    expect(wrapper.text()).not.toBe('test');
+    expect(wrapper.getByText('test')).not.toBeInTheDocument();
   })
 
   it('Show children components', () => {
@@ -119,13 +124,14 @@ describe('Test protected routes', () => {
 
     window.location.assign(paths.userInfo.path);
 
-    const wrapper = mount(
-      <Providers state={state}>
-        <ProtectedRoute>
-          test
-        </ProtectedRoute>
-      </Providers>
+    const wrapper = render(
+      <ProtectedRoute>
+        test
+      </ProtectedRoute>,
+      {
+        preloadedState: state
+      }
     )
-    expect(wrapper.text()).toBe('test');
+    expect(wrapper.getByText('test')).toBeInTheDocument();
   })
 })
