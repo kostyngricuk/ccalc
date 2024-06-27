@@ -1,24 +1,13 @@
-import { Genders, TUser } from "@services/types/user"
+import { TUser } from "@services/types/user"
 import { ISelectedProduct, KEY_PRODUCT_ID } from "@services/types/products"
 import hasAdditionalInfo from "./auth"
 import { getKkal, getNutritionByWeight, getTottal, ITottalValues } from "./calculations"
+import { defaultMockUser } from "./test-utils"
 
 describe('Auth utils', () => {
   let mockUser: TUser;
   beforeEach(() => {
-    mockUser = {
-      id: 'unicStringId',
-      height: 180,
-      weight: 85,
-      weightGoal: 80,
-      age: 26,
-      gender: Genders.man,
-      email: 'mockUser@gmail.com',
-      calorieWidget: {
-        limit: 2300,
-        eaten: 1980,
-      },
-    }
+    mockUser = defaultMockUser
   })
 
   it('User has additional information', () => {
