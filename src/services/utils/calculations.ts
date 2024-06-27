@@ -32,10 +32,10 @@ export const getTottal = (items: ISelectedProduct[]): ITottalValues => (
 
 export const getNutritionByWeight = ({
   product,
-  newWeight
+  newWeight = 100
 }: {
   product: ISelectedProduct,
-  newWeight: number
+  newWeight?: number
 }) => {
   const {
     kkal,
@@ -45,13 +45,11 @@ export const getNutritionByWeight = ({
     weight
   } = product;
 
-  const validWeight = newWeight || 1;
-
   return {
-    kkal: kkal / weight * validWeight,
-    proto: proto / weight * validWeight,
-    fats: fats / weight * validWeight,
-    carbo: carbo / weight * validWeight,
-    weight: validWeight
-  };;
+    kkal: kkal / weight * newWeight,
+    proto: proto / weight * newWeight,
+    fats: fats / weight * newWeight,
+    carbo: carbo / weight * newWeight,
+    weight: newWeight
+  };
 }

@@ -1,14 +1,24 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, ShallowWrapper } from 'enzyme';
 
-import App from './App';
+import Root from '@pages/index';
 
-describe('Loading pages', () => {
+describe('Loading', () => {
+  let wrapper: ShallowWrapper;
+  beforeEach(() => {
+     wrapper = shallow(<Root />);
+  })
+
   it('Show loading spiner', () => {
-    const wrapper = shallow(<App />);
+    const element = wrapper.find('Loader');
+    expect(element.length).toBe(1);
+  });
 
-    const element = wrapper.find('[data-testid="spiner"]');
-    expect(element).not.toBe(null);
+  it('Show main content', () => {
+    setTimeout(() => {
+      const element = wrapper.find('Main');
+      expect(element.length).toBe(1);
+    }, 3000);
   });
 })

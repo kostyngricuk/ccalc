@@ -3,7 +3,7 @@ import StyledLoader from './StyledLoader';
 
 export default function Loader() {
   return (
-    <StyledLoader data-testid="spiner">
+    <StyledLoader>
       <span className="cup" />
       <span className="wave" />
     </StyledLoader>
