@@ -2,23 +2,32 @@
 import React from 'react';
 
 import Root from '@pages/index';
-import { render, RenderResult } from '@services/utils/test-utils';
+import { defaultMockUser, render, waitFor } from '@services/utils/test-utils';
 
 describe('Loading', () => {
-  let wrapper: RenderResult;
-  beforeEach(() => {
-     wrapper = render(<Root />);
-  })
-
   it('Show loading spiner', () => {
-    const element = wrapper.getByTestId('loader');
+    const wrapper = render(<Root />);
+
+    const element = wrapper.queryByTestId('loader');
     expect(element).toBeInTheDocument();
   });
 
   it('Show main content', async () => {
-    const element = await wrapper.findByTestId('main', {}, {
-      timeout: 3000,
+    const state = {
+      user: {
+        user: defaultMockUser,
+        isLoading: false
+      }
+    }
+    const wrapper = render(<Root />, {
+      preloadedState: state
     });
-    expect(element).toBeInTheDocument();
+
+    await waitFor(() => {
+      const element = wrapper.queryByTestId('main');
+      expect(element).toBeInTheDocument();
+    }, {
+      timeout: 5000
+    })
   });
 })

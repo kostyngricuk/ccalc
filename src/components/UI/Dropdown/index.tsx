@@ -12,7 +12,7 @@ import Icon from '@components/UI/Icon'
 import { StyledDropdown, StyledDropdownContent, StyledDropdownTrigger } from './StyledDropdown';
 
 export function Dropdown({
-  className,
+  className = '',
   children,
 }: {
   className?: string,
@@ -24,13 +24,10 @@ export function Dropdown({
     </StyledDropdown>
   );
 }
-Dropdown.defaultProps = {
-  className: '',
-};
 
 export function DropdownTrigger({
   children,
-  $showArrow,
+  $showArrow = true,
 }: {
   children: ReactNode,
   $showArrow?: boolean
@@ -82,9 +79,6 @@ export function DropdownTrigger({
     </StyledDropdownTrigger>
   );
 }
-DropdownTrigger.defaultProps = {
-  $showArrow: true,
-};
 
 export function DropdownContent({
   children,

@@ -9,7 +9,7 @@ export default function Form({
   children,
   onSubmit,
   response,
-  isLoading
+  isLoading = false
 }: {
   children: ReactNode,
   onSubmit: FormEventHandler,
@@ -58,8 +58,4 @@ export default function Form({
       </StyledForm>
     </StyledFormWrapper>
   );
-}
-
-Form.defaultProps = {
-  isLoading: false
 }

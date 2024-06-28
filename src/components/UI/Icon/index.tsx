@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
-import SVG from 'react-inlinesvg';
+import { ReactSVG } from 'react-svg';
 import StyledIcon from './StyledIcon';
 
 interface IIcon {
@@ -11,9 +11,9 @@ interface IIcon {
 }
 
 export default function Icon({
-  width,
-  height,
-  color,
+  width = '24px',
+  height = '24px',
+  color = 'inherit',
   sprite,
 }: IIcon) {
   return (
@@ -23,12 +23,7 @@ export default function Icon({
       color={color}
       className="Icon"
     >
-      <SVG src={sprite} />
+      <ReactSVG src={sprite} />
     </StyledIcon>
   );
 }
-Icon.defaultProps = {
-  width: '24px',
-  height: '24px',
-  color: 'inherit',
-};

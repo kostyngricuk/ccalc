@@ -4,8 +4,8 @@ import StyledText from './StyledText';
 
 export default function Text({
   children,
-  className,
-  position,
+  className = '',
+  position = EnumHorizontalPosition.left,
 }: {
   children: ReactNode;
   className?: string;
@@ -17,8 +17,3 @@ export default function Text({
     </StyledText>
   );
 }
-
-Text.defaultProps = {
-  className: '',
-  position: EnumHorizontalPosition.left,
-};

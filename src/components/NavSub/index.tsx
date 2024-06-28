@@ -5,7 +5,7 @@ import { DropdownContent, DropdownTrigger } from '@components/UI/Dropdown'
 import { StyledNavSub, StyledNavSubWrap } from './StyledNavSub';
 
 export default function NavSub({
-  link,
+  link = '',
   title,
   children,
 }: {
@@ -31,8 +31,4 @@ export default function NavSub({
       </DropdownContent>
     </StyledNavSub>
   );
-}
-
-NavSub.defaultProps = {
-  link: ''
 }

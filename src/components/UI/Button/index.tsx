@@ -51,13 +51,3 @@ export default function Button({
     </StyledButton>
   );
 }
-Button.defaultProps = {
-  type: EnumButtonType.button,
-  className: '',
-  $isIcon: false,
-  $isOutline: false,
-  color: EnumButtonColor.primary,
-  ariaLabel: '',
-  $isDisabled: false,
-  onClick: undefined,
-};

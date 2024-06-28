@@ -9,7 +9,7 @@ export enum EnumFormFieldType {
 
 export default function FormField({
   children,
-  type
+  type = EnumFormFieldType.wrapper
 }: {
   children: ReactNode,
   type?: EnumFormFieldType
@@ -23,7 +23,3 @@ export default function FormField({
       return <StyledFormField>{ children }</StyledFormField>;
   }
 }
-
-FormField.defaultProps = {
-  type: EnumFormFieldType.wrapper
-};

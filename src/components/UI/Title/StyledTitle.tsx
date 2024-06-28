@@ -18,9 +18,6 @@ function TitleTag({
     </TagElement>
   );
 }
-TitleTag.defaultProps = {
-  className: '',
-};
 
 const getFontSize = (variant: TypeTitleVariant) => {
   switch (variant) {

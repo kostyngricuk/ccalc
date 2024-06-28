@@ -41,16 +41,16 @@ interface IInputControlled extends IInputBase {
 export function Input(props: IInput) {
   const {
     name,
-    type,
-    value,
+    type = 'text',
+    value = '',
     label,
-    error,
-    units,
-    checked,
+    error = '',
+    units = '',
+    checked = false,
     onChange,
-    isFullwidth,
-    options,
-    required
+    isFullwidth = false,
+    options = [],
+    required = false,
   } = props;
 
   if (type === 'select') {
@@ -93,28 +93,18 @@ export function Input(props: IInput) {
     </StyledInput>
   );
 }
-Input.defaultProps = {
-  type: 'text',
-  units: '',
-  checked: false,
-  value: '',
-  isFullwidth: false,
-  options: [],
-  error: '',
-  required: false,
-};
 
 export function InputControlled({
   name,
-  type,
-  value,
-  required,
+  type = 'text',
+  value = '',
+  required = false,
   label,
-  units,
+  units = '',
   control,
-  isFullwidth,
-  options,
-  onChangeTrigger
+  isFullwidth = false,
+  options = [],
+  onChangeTrigger = () => null,
 }: IInputControlled) {
   const { t } = useTranslation();
   const { field, fieldState } = useController({
@@ -147,13 +137,3 @@ export function InputControlled({
     />
   );
 }
-InputControlled.defaultProps = {
-  type: 'text',
-  units: '',
-  required: false,
-  value: '',
-  isFullwidth: false,
-  options: [],
-  control: null,
-  onChangeTrigger: () => null,
-};

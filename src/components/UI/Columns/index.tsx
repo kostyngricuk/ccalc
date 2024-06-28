@@ -14,7 +14,3 @@ export default function Columns({
     </StyledColumns>
   );
 }
-
-Columns.defaultProps = {
-  className: '',
-}

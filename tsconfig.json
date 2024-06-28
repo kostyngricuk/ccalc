@@ -6,12 +6,14 @@
     "moduleResolution": "node",
     "outDir": "./dist",
     "strict": true,
+    "resolveJsonModule": true,
     "esModuleInterop": true,
     "paths": {
       "@components/*": ["./src/components/*"],
 			"@services/*": ["./src/services/*"],
 			"@icons/*": ["./src/icons/*"],
       "@pages/*": ["./src/pages/*"],
+      "@locales/*": ["./src/locales/*"],
 		},
     "types": [
       "jest",

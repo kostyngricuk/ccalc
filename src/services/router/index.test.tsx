@@ -26,7 +26,8 @@ describe('Test auth routes', () => {
         preloadedState: state
       }
     )
-    expect(wrapper.getByText('test')).not.toBeInTheDocument();
+    const element = wrapper.queryByText('test');
+    expect(element).toBeNull();
   })
 
   it('Redirect to User Info page', () => {
@@ -45,7 +46,8 @@ describe('Test auth routes', () => {
         preloadedState: state
       }
     )
-    expect(wrapper.getByText('test')).not.toBeInTheDocument();
+    const element = wrapper.queryByText('test');
+    expect(element).toBeNull();
   })
 
   it('Show children components', () => {
@@ -63,7 +65,8 @@ describe('Test auth routes', () => {
         preloadedState: state
       }
     )
-    expect(wrapper.getByText('test')).toBeInTheDocument();
+    const element = wrapper.queryByText('test');
+    expect(element).toBeInTheDocument();
   })
 })
 
@@ -88,8 +91,8 @@ describe('Test protected routes', () => {
         preloadedState: state
       }
     )
-    const element = wrapper.getByText('test');
-    expect(element).not.toBeInTheDocument();
+    const element = wrapper.queryByText('test');
+    expect(element).toBeNull();
   })
 
   it('Redirect to User Info page', () => {
@@ -111,7 +114,8 @@ describe('Test protected routes', () => {
         preloadedState: state
       }
     )
-    expect(wrapper.getByText('test')).not.toBeInTheDocument();
+    const element = wrapper.queryByText('test');
+    expect(element).toBeNull();
   })
 
   it('Show children components', () => {
@@ -132,6 +136,7 @@ describe('Test protected routes', () => {
         preloadedState: state
       }
     )
-    expect(wrapper.getByText('test')).toBeInTheDocument();
+    const element = wrapper.queryByText('test');
+    expect(element).toBeInTheDocument();
   })
 })

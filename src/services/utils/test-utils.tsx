@@ -9,11 +9,11 @@ import { render } from '@testing-library/react'
 import type { RenderOptions } from '@testing-library/react'
 import configureMockStore, { MockStore, MockStoreCreator } from 'redux-mock-store';
 import { Genders, TUser } from '@services/types/user';
+import { I18nextProvider } from 'react-i18next';
+import i18n from '@services/i18nForTests';
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
   preloadedState?: Partial<RootState>
-  mockStore?: MockStoreCreator,
-  store?: MockStore
 }
 
 export function Providers({
@@ -26,9 +26,11 @@ export function Providers({
   return (
     <ThemeProvider theme={lightTheme}>
       <Provider store={store}>
-        <BrowserRouter>
-          {children}
-        </BrowserRouter>
+        <I18nextProvider i18n={i18n} defaultNS="translation">
+          <BrowserRouter>
+            {children}
+          </BrowserRouter>
+        </I18nextProvider>
       </Provider>
     </ThemeProvider>
   )
@@ -38,12 +40,11 @@ export function renderWithProviders(
   ui: React.ReactElement,
   {
     preloadedState = {},
-    // Automatically create a store instance if no store was passed in
-    mockStore = configureMockStore(),
-    store = mockStore(preloadedState),
     ...renderOptions
   }: ExtendedRenderOptions = {}
 ) {
+  const mockStore: MockStoreCreator = configureMockStore();
+  const store: MockStore = mockStore(preloadedState);
   return {
     store,
     ...render(
