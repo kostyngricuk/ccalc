@@ -1,4 +1,4 @@
-import { IProductState, ISelectedProduct, KEY_PRODUCT_ID, TProducts } from '@services/types/products';
+import { IProduct, IProductState, ISelectedProduct, KEY_PRODUCT_ID, TProducts } from '@services/types/products';
 import productReducer, {
   initialState,
   getProducts,
@@ -105,7 +105,7 @@ describe('productSlice testing', () => {
       ...nutrition
     }
 
-    expect(productReducer(state, updateProductWeight({ id, newWeight: 200 }))).toEqual({
+    expect(productReducer(state, updateProductWeight({ id, newWeight }))).toEqual({
       items: state.items,
       selectedItems: [
         updatedItem
@@ -113,7 +113,66 @@ describe('productSlice testing', () => {
     })
   })
 
-  // TODO: addProduct
+  it('Update product weight - Error', () => {
+    const state = {
+      items: mockProducts,
+      selectedItems: [
+        mockSelectedProducts[0]
+      ]
+    }
+    const id = 999;
+    const newWeight = 200;
 
-  // TODO: addCustomProduct
+    expect(productReducer(state, updateProductWeight({ id, newWeight }))).toEqual(state)
+  })
+
+  it('Add product to selected products', () => {
+    const product:IProduct = {
+      [KEY_PRODUCT_ID]: mockProducts.length + mockSelectedProducts.length,
+      name: 'Milk',
+      kkal: 34,
+      proto: 1,
+      carbo: 3,
+      fats: 2,
+    };
+
+    const addedItem = {
+      ...product,
+      weight: 100,
+    }
+
+    const state = {
+      items: mockProducts,
+      selectedItems: mockSelectedProducts
+    }
+    expect(productReducer(state, addCustomProduct(product))).toEqual({
+      items: state.items,
+      selectedItems: [
+        addedItem,
+        ...state.selectedItems,
+      ]
+    })
+  })
+
+  it('Add custom product', () => {
+    const product = mockProducts[0];
+    const productId = product[KEY_PRODUCT_ID];
+
+    const weight = 100;
+    const addedItem = {
+      ...product,
+      weight
+    }
+
+    const state = {
+      items: mockProducts,
+      selectedItems: []
+    }
+    expect(productReducer(state, addProduct(productId))).toEqual({
+      items: state.items,
+      selectedItems: [
+        addedItem
+      ]
+    })
+  })
 })
