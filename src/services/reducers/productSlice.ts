@@ -5,7 +5,7 @@ import { SLICE_PRODUCT_NAME } from '@services/constants/store';
 import { IProduct, IProductState, TProducts } from '@services/types/products';
 import { getNutritionByWeight } from '@services/utils/calculations';
 
-const initialState: IProductState = {
+export const initialState: IProductState = {
   items: [],
   selectedItems: []
 }

@@ -4,7 +4,7 @@ import { SLICE_NOTIFICATION_NAME } from '@services/constants/store';
 
 import { INotification, INotificationState } from '@services/types/notification';
 
-const initialState: INotificationState = {
+export const initialState: INotificationState = {
   items: []
 }
 
