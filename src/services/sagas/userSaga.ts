@@ -11,11 +11,11 @@ import {
   sendCodeRequest,
   changePasswordRequest,
   requsetUserError
-} from '@services/reducers/userSlice';
+} from '@services/slices/userSlice';
 import paths from '@services/router/paths';
-import { errorAction, errorCodes } from '@services/constants/errors';
-import { reqSaveCalcAction } from '@services/constants/global';
-import { saveProductsSuccess } from '@services/reducers/productSlice';
+import { saveProductsSuccess } from '@services/slices/productSlice';
+import { errorAction, errorCodes } from '@constants/errors';
+import { reqSaveCalcAction } from '@constants/global';
 
 function* userLogin(action: any): Generator {
   try {

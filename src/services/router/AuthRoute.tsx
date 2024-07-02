@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import { Navigate } from 'react-router-dom';
 
 import paths from '@services/router/paths';
-import hasAdditionalInfo from '@services/utils/auth';
+import hasAdditionalInfo from '@utils/auth';
 
 import { useAppSelector } from '@services/hooks/store';
 import { selectCurrentUser } from '@services/hooks/selectors';

@@ -10,10 +10,14 @@
     "esModuleInterop": true,
     "paths": {
       "@components/*": ["./src/components/*"],
+      "@features/*": ["./src/features/*"],
 			"@services/*": ["./src/services/*"],
 			"@icons/*": ["./src/icons/*"],
       "@pages/*": ["./src/pages/*"],
       "@locales/*": ["./src/locales/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@styled/*": ["./src/styled/*"],
+      "@constants/*": ["./src/constants/*"],
 		},
     "types": [
       "jest",

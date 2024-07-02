@@ -17,6 +17,10 @@ module.exports = {
       "@pages": path.resolve(__dirname, "src/pages"),
       "@services": path.resolve(__dirname, "src/services"),
       "@locales": path.resolve(__dirname, "src/locales"),
+      "@features": path.resolve(__dirname, "src/features"),
+      "@utils": path.resolve(__dirname, "src/utils"),
+      "@styled": path.resolve(__dirname, "src/styled"),
+      "@constants": path.resolve(__dirname, "src/constants"),
     }
   },
   performance: {
