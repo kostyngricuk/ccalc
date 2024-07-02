@@ -3,19 +3,19 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { FieldValues, useForm } from 'react-hook-form';
 
-import paths from '@services/router/paths';
-import { EnumHorizontalPosition } from '@services/types/global';
+import paths from 'router/paths';
+import { EnumHorizontalPosition } from 'types/global';
 
-import Section from '@components/Section'
-import Title from '@components/Title'
-import Form from '@components/Form'
-import { TResponse, EResponseStatuses } from '@components/Form/types'
-import FormField, { EnumFormFieldType } from '@components/FormField'
-import { InputControlled } from '@components/Input'
-import Button, { EnumButtonColor, EnumButtonType } from '@components/Button'
-import { useAppDispatch, useAppSelector } from '@services/hooks/store';
-import { registerRequest } from '@services/slices/userSlice';
-import { selectIsLoading } from '@services/hooks/selectors';
+import Section from 'components/Section'
+import Title from 'components/Title'
+import Form from 'components/Form'
+import { TResponse, EResponseStatuses } from 'components/Form/types'
+import FormField, { EnumFormFieldType } from 'components/FormField'
+import { InputControlled } from 'components/Input'
+import Button, { EnumButtonColor, EnumButtonType } from 'components/Button'
+import { useAppDispatch, useAppSelector } from 'hooks/store';
+import { registerRequest } from 'store/slices/userSlice';
+import { selectIsLoading } from 'hooks/selectors';
 
 export default function SignupScreen() {
   const [response, setResponse] = useState<TResponse>(null);

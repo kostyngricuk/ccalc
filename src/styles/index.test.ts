@@ -1,4 +1,4 @@
-import { scrollbar } from "./mixins"
+import { scrollbar } from './mixins'
 
 describe('Mixins test cases', () => {
   it('Show custom scroll bar', () => {

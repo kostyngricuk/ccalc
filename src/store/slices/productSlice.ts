@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { SLICE_PRODUCT_NAME } from '@constants/store';
+import { SLICE_PRODUCT_NAME } from 'constants/store';
 
-import { IProduct, IProductState, TProducts } from '@services/types/products';
-import { getNutritionByWeight } from '@utils/calculations';
+import { IProduct, IProductState, TProducts } from 'types/products';
+import { getNutritionByWeight } from 'utils/calculations';
 
 export const initialState: IProductState = {
   items: [],

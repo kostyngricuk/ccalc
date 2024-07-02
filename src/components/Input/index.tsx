@@ -9,9 +9,9 @@ import {
 } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { errorCodes } from '@constants/errors';
-import { ISelectOption, TChange, TOptions } from '@components/Select/types'
-import Select from '@components/Select'
+import { errorCodes } from 'constants/errors';
+import { ISelectOption, TChange, TOptions } from 'components/Select/types'
+import Select from 'components/Select'
 import { StyledInput, StyledInputLabel } from './StyledInput';
 
 export type TypeInput = 'text' | 'email' | 'password' | 'number' | 'tel' | 'radio' | 'select';

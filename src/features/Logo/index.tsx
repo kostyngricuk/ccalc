@@ -1,8 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { LogoSVG } from '@icons/index';
-import paths from '@services/router/paths';
-import Icon from '@components/Icon'
+import { LogoSVG } from 'icons/index';
+import paths from 'router/paths';
+import Icon from 'components/Icon'
 import StyledLogo from './StyledLogo';
 
 

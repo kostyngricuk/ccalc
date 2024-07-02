@@ -1,11 +1,11 @@
 import React, { ReactNode } from 'react';
 import { Navigate } from 'react-router-dom';
 
-import paths from '@services/router/paths';
-import hasAdditionalInfo from '@utils/auth';
+import paths from 'router/paths';
+import hasAdditionalInfo from 'utils/auth';
 
-import { useAppSelector } from '@services/hooks/store';
-import { selectCurrentUser } from '@services/hooks/selectors';
+import { useAppSelector } from 'hooks/store';
+import { selectCurrentUser } from 'hooks/selectors';
 
 
 export default function AuthRoute({

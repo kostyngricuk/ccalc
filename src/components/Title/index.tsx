@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { EnumHorizontalPosition, TypeTitleVariant } from '@services/types/global';
+import { EnumHorizontalPosition, TypeTitleVariant } from 'types/global';
 import StyledTitle from './StyledTitle';
 
 export default function Title({

@@ -2,12 +2,12 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
-import Title from '@components/Title'
-import Columns from '@components/Columns'
-import { EnumHorizontalPosition } from '@services/types/global';
-import ProductList from '@features/ProductList'
-import CalculatorResult from '@features/CalculatorResult'
-import SearchProductForm from '@features/SearchProductForm'
+import Title from 'components/Title'
+import Columns from 'components/Columns'
+import { EnumHorizontalPosition } from 'types/global';
+import ProductList from 'features/ProductList'
+import CalculatorResult from 'features/CalculatorResult'
+import SearchProductForm from 'features/SearchProductForm'
 
 const GreenWrapper = styled.div`
   background-color: var(--color-primaryLight);

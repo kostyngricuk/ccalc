@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { EnumHorizontalPosition } from '@services/types/global';
+import { EnumHorizontalPosition } from 'types/global';
 import StyledText from './StyledText';
 
 export default function Text({

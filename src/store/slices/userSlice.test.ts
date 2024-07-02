@@ -1,5 +1,5 @@
-import { IUserState } from '@services/types/user';
-import { defaultMockUser } from '@services/utils/test-utils';
+import { IUserState } from 'types/user';
+import { defaultMockUser } from 'utils/test-utils';
 
 import userReducer, {
   initialState,

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { scrollbar } from '@styled/mixins';
+import { scrollbar } from 'styles/mixins';
 
 const StyledMain = styled.main`
   height: calc(100vh - 60px);

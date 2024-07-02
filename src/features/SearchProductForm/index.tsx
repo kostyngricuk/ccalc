@@ -3,22 +3,22 @@ import { useTranslation } from 'react-i18next';
 import { FieldValues, useForm } from 'react-hook-form';
 import { differenceBy } from 'lodash';
 
-import { EnumHorizontalPosition } from '@services/types/global';
-import { useAppDispatch, useAppSelector } from '@services/hooks/store';
-import { selectProductItems, selectProductSelectedItems } from '@services/hooks/selectors';
-import { addCustomProduct, addProduct, getProducts } from '@services/slices/productSlice';
-import { IProduct, KEY_PRODUCT_ID } from '@services/types/products';
-import { getKkal } from '@utils/calculations';
-import Title from '@components/Title'
-import Button, { EnumButtonColor, EnumButtonType } from '@components/Button'
-import Form from '@components/Form'
+import { EnumHorizontalPosition } from 'types/global';
+import { useAppDispatch, useAppSelector } from 'hooks/store';
+import { selectProductItems, selectProductSelectedItems } from 'hooks/selectors';
+import { addCustomProduct, addProduct, getProducts } from 'store/slices/productSlice';
+import { IProduct, KEY_PRODUCT_ID } from 'types/products';
+import { getKkal } from 'utils/calculations';
+import Title from 'components/Title'
+import Button, { EnumButtonColor, EnumButtonType } from 'components/Button'
+import Form from 'components/Form'
 import FormField, {
   EnumFormFieldType,
-} from '@components/FormField'
-import { InputControlled } from '@components/Input'
-import { TResponse, EResponseStatuses } from '@components/Form/types'
-import Modal from '@components/Modal'
-import { ISelectOption } from '@components/Select/types'
+} from 'components/FormField'
+import { InputControlled } from 'components/Input'
+import { TResponse, EResponseStatuses } from 'components/Form/types'
+import Modal from 'components/Modal'
+import { ISelectOption } from 'components/Select/types'
 
 export default function SearchProductForm() {
   const [response, setResponse] = useState<TResponse>(null);

@@ -1,5 +1,5 @@
-import { IUserState, TUser } from '@services/types/user';
-import http from '@services/http';
+import { IUserState, TUser } from 'types/user';
+import http from 'services/http';
 
 export interface IAuthResponse {
   user: TUser,

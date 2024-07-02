@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import styled from 'styled-components';
-import { EnumHorizontalPosition, TypeTitleVariant } from '@services/types/global';
+import { EnumHorizontalPosition, TypeTitleVariant } from 'types/global';
 
 function TitleTag({
   children,

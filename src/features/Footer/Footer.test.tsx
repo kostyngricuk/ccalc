@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import Footer from '.';
-import { render } from '@services/utils/test-utils';
+import { render } from 'utils/test-utils';
 
 it('Footer on the page', () => {
   const state = {

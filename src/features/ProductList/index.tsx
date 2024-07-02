@@ -1,9 +1,9 @@
 import React from 'react';
-import { ISelectedProduct } from '@services/types/products';
+import { ISelectedProduct } from 'types/products';
 
-import { useAppSelector } from '@services/hooks/store';
-import { selectProductSelectedItems } from '@services/hooks/selectors';
-import ProductItem from '@features/ProductItem'
+import { useAppSelector } from 'hooks/store';
+import { selectProductSelectedItems } from 'hooks/selectors';
+import ProductItem from 'features/ProductItem'
 import StyledProductList from './StyledProductList';
 
 export default function ProductList() {

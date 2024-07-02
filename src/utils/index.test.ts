@@ -1,8 +1,8 @@
-import { TUser } from "@services/types/user"
-import { ISelectedProduct, KEY_PRODUCT_ID } from "@services/types/products"
-import hasAdditionalInfo from "./auth"
-import { getKkal, getNutritionByWeight, getTottal, ITottalValues } from "./calculations"
-import { defaultMockUser } from "./test-utils"
+import { TUser } from 'types/user'
+import { ISelectedProduct, KEY_PRODUCT_ID } from 'types/products'
+import hasAdditionalInfo from './auth'
+import { getKkal, getNutritionByWeight, getTottal, ITottalValues } from './calculations'
+import { defaultMockUser } from './test-utils'
 
 describe('Auth utils', () => {
   let mockUser: TUser;

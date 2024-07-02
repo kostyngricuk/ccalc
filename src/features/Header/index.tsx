@@ -1,19 +1,19 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-import paths from '@services/router/paths';
-import hasAdditionalInfo from '@utils/auth';
-import { useAppDispatch, useAppSelector } from '@services/hooks/store';
-import { logoutRequest } from '@services/slices/userSlice';
-import { selectCurrentUser } from '@services/hooks/selectors';
-import Container from '@components/Container'
-import Tooltip from '@components/Tooltip'
-import Logo from '@features/Logo'
-import Nav from '@features/Nav'
-import { INavItem } from '@features/NavItem'
-import ProfileMenu from '@features/ProfileMenu'
-import CalorieWidget from '@features/CalorieWidget'
-import LanguageSwitcher from '@features/LanguageSwitcher'
+import paths from 'router/paths';
+import hasAdditionalInfo from 'utils/auth';
+import { useAppDispatch, useAppSelector } from 'hooks/store';
+import { logoutRequest } from 'store/slices/userSlice';
+import { selectCurrentUser } from 'hooks/selectors';
+import Container from 'components/Container'
+import Tooltip from 'components/Tooltip'
+import Logo from 'features/Logo'
+import Nav from 'features/Nav'
+import { INavItem } from 'features/NavItem'
+import ProfileMenu from 'features/ProfileMenu'
+import CalorieWidget from 'features/CalorieWidget'
+import LanguageSwitcher from 'features/LanguageSwitcher'
 
 import { StyledHeader, StyledHeaderContent } from './StyleHeader';
 

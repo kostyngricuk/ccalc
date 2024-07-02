@@ -1,6 +1,6 @@
-import { RootState } from "@services/store";
-import { ISelectedProduct, KEY_PRODUCT_ID } from "@services/types/products";
-import { selectCurrentUser, selectIsLoading, selectNotificationItems, selectProductItems, selectProductSelectedItems } from "./selectors"
+import { RootState } from 'store/store';
+import { ISelectedProduct, KEY_PRODUCT_ID } from 'types/products';
+import { selectCurrentUser, selectIsLoading, selectNotificationItems, selectProductItems, selectProductSelectedItems } from './selectors'
 
 describe('Test cases for hooks', () => {
   const mockProduct: ISelectedProduct = {

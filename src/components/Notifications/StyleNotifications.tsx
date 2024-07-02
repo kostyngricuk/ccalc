@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ENotificationType } from '@services/types/notification';
+import { ENotificationType } from 'types/notification';
 
 const getColorByType = (type?: ENotificationType) => {
   switch (type) {

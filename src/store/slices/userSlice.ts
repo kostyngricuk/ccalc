@@ -3,8 +3,8 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import Cookies from 'js-cookie';
 import { jwtDecode } from 'jwt-decode';
 
-import { IUserState, TUser } from '@services/types/user';
-import { SLICE_USER_NAME } from '@constants/store';
+import { IUserState, TUser } from 'types/user';
+import { SLICE_USER_NAME } from 'constants/store';
 
 const accessToken = Cookies.get('e-access-token');
 

@@ -1,14 +1,14 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { ISelectedProduct } from '@services/types/products';
-import { UNITS } from '@constants/global';
-import { useAppDispatch } from '@services/hooks/store';
-import { removeProduct, updateProductWeight } from '@services/slices/productSlice';
-import { CloseSVG } from '@icons/index';
-import { Input } from '@components/Input'
-import Title from '@components/Title'
-import Icon from '@components/Icon'
+import { ISelectedProduct } from 'types/products';
+import { UNITS } from 'constants/global';
+import { useAppDispatch } from 'hooks/store';
+import { removeProduct, updateProductWeight } from 'store/slices/productSlice';
+import { CloseSVG } from 'icons/index';
+import { Input } from 'components/Input'
+import Title from 'components/Title'
+import Icon from 'components/Icon'
 import { StyledProductItem, StyledRemoveProductButton } from './StyledProductItem';
 
 export default function ProductItem({

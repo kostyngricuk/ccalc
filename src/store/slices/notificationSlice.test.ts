@@ -1,4 +1,4 @@
-import { ENotificationType, INotification } from '@services/types/notification';
+import { ENotificationType, INotification } from 'types/notification';
 import notificationReducer, {
   initialState,
   addNotification,

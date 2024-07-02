@@ -1,8 +1,8 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 
-import Root from '@pages/index';
-import { defaultMockUser, render, waitFor } from '@services/utils/test-utils';
+import Root from 'pages/index';
+import { defaultMockUser, render, waitFor } from 'utils/test-utils';
 
 describe('Loading', () => {
   it('Show loading spiner', () => {

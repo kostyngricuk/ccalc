@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import { BurgerSVG, CloseSVG } from '@icons/index';
-import Icon from '@components/Icon'
-import { EnumButtonColor } from '@components/Button'
-import NavItem, { INavItem } from '@features/NavItem'
+import { BurgerSVG, CloseSVG } from 'icons/index';
+import Icon from 'components/Icon'
+import { EnumButtonColor } from 'components/Button'
+import NavItem, { INavItem } from 'features/NavItem'
 
 import { StyledNav, StyledNavBurger, StyledNavWrap } from './StyledNav';
 

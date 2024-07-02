@@ -1,7 +1,7 @@
 import React, { FormEventHandler, ReactNode, useEffect } from 'react';
-import { addNotification } from '@services/slices/notificationSlice';
-import { useAppDispatch } from '@services/hooks/store';
-import { ENotificationType } from '@services/types/notification';
+import { addNotification } from 'store/slices/notificationSlice';
+import { useAppDispatch } from 'hooks/store';
+import { ENotificationType } from 'types/notification';
 import { TResponse, EResponseStatuses } from './types';
 import { StyledFormWrapper, StyledForm } from './StyledForm';
 

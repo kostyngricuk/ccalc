@@ -1,10 +1,10 @@
 import React, { ReactNode } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 
-import paths from '@services/router/paths';
-import hasAdditionalInfo from '@utils/auth';
-import { selectCurrentUser } from '@services/hooks/selectors';
-import { useAppSelector } from '@services/hooks/store';
+import hasAdditionalInfo from 'utils/auth';
+import paths from 'router/paths';
+import { selectCurrentUser } from 'hooks/selectors';
+import { useAppSelector } from 'hooks/store';
 
 export default function ProtectedRoute({
   children,

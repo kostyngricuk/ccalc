@@ -1,17 +1,17 @@
 import React, { ReactNode } from 'react';
 
-import SigninScreen from '@pages/SigninScreen';
-import SignupScreen from '@pages/SignupScreen';
-import ResetScreen from '@pages/ResetScreen';
-import UserInfoScreen from '@pages/UserInfoScreen';
-import CalculatorScreen from '@pages/CalculatorScreen';
-import HelpScreen from '@pages/HelpScreen';
-import ContactsScreen from '@pages/ContactsScreen';
-import SettingsScreen from '@pages/SettingsScreen';
-import FaqScreen from '@pages/FaqScreen';
+import SigninScreen from 'pages/SigninScreen';
+import SignupScreen from 'pages/SignupScreen';
+import ResetScreen from 'pages/ResetScreen';
+import UserInfoScreen from 'pages/UserInfoScreen';
+import CalculatorScreen from 'pages/CalculatorScreen';
+import HelpScreen from 'pages/HelpScreen';
+import ContactsScreen from 'pages/ContactsScreen';
+import SettingsScreen from 'pages/SettingsScreen';
+import FaqScreen from 'pages/FaqScreen';
 
-import ProtectedRoute from './ProtectedRoute';
-import AuthRoute from './AuthRoute';
+import ProtectedRoute from 'router/ProtectedRoute';
+import AuthRoute from 'router/AuthRoute';
 
 export interface IPath {
   path: string,

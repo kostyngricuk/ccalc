@@ -1,9 +1,9 @@
-import React from "react"
-import { defaultMockUser, render } from "@services/utils/test-utils"
-import { TUser } from "@services/types/user"
-import AuthRoute from "./AuthRoute"
-import ProtectedRoute from "./ProtectedRoute"
-import paths from "./paths"
+import React from 'react'
+import { defaultMockUser, render } from 'utils/test-utils'
+import { TUser } from 'types/user'
+import AuthRoute from 'router/AuthRoute'
+import ProtectedRoute from 'router/ProtectedRoute'
+import paths from 'router/paths'
 
 describe('Test auth routes', () => {
   let mockUser: TUser;

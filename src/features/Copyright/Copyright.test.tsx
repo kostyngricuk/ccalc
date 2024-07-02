@@ -1,8 +1,8 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import React from "react";
+import React from 'react';
 
+import { render } from 'utils/test-utils';
 import Copyright from '.';
-import { render } from "@services/utils/test-utils";
 
 
 it('Copyright with currect year', () => {

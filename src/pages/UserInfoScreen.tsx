@@ -3,22 +3,22 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { Controller, FieldValues, useForm } from 'react-hook-form';
 
-import { EnumHorizontalPosition } from '@services/types/global';
-import { UNITS } from '@constants/global';
-import { Genders } from '@services/types/user';
+import { EnumHorizontalPosition } from 'types/global';
+import { UNITS } from 'constants/global';
+import { Genders } from 'types/user';
 
-import Section from '@components/Section'
-import Title from '@components/Title'
-import Form from '@components/Form'
-import { TResponse, EResponseStatuses } from '@components/Form/types'
-import FormField, { EnumFormFieldType } from '@components/FormField'
-import { Input, InputControlled } from '@components/Input'
-import Button, { EnumButtonType } from '@components/Button'
-import { selectCurrentUser, selectIsLoading } from '@services/hooks/selectors';
-import { useAppDispatch, useAppSelector } from '@services/hooks/store';
-import { updateRequest } from '@services/slices/userSlice';
-import hasAdditionalInfo from '@utils/auth';
-import paths from '@services/router/paths';
+import Section from 'components/Section'
+import Title from 'components/Title'
+import Form from 'components/Form'
+import { TResponse, EResponseStatuses } from 'components/Form/types'
+import FormField, { EnumFormFieldType } from 'components/FormField'
+import { Input, InputControlled } from 'components/Input'
+import Button, { EnumButtonType } from 'components/Button'
+import { selectCurrentUser, selectIsLoading } from 'hooks/selectors';
+import { useAppDispatch, useAppSelector } from 'hooks/store';
+import { updateRequest } from 'store/slices/userSlice';
+import hasAdditionalInfo from 'utils/auth';
+import paths from 'router/paths';
 
 export default function UserInfoScreen() {
   const [response, setResponse] = useState<TResponse>(null);

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { resetButton } from '@styled/mixins';
+import { resetButton } from 'styles/mixins';
 
 const StyledLanguageSwitcher = styled.div`
   display: flex;

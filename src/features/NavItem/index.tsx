@@ -1,7 +1,7 @@
 import React, { MouseEventHandler } from 'react';
 import { NavLink } from 'react-router-dom';
 
-import NavSub from '@features/NavSub'
+import NavSub from 'features/NavSub'
 import StyledNavItem from './StylesNavItem';
 
 export interface INavItem {

@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { NavLink } from 'react-router-dom';
-import { DropdownContent, DropdownTrigger } from '@components/Dropdown'
+import { DropdownContent, DropdownTrigger } from 'components/Dropdown'
 
 import { StyledNavSub, StyledNavSubWrap } from './StyledNavSub';
 

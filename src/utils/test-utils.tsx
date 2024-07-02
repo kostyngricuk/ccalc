@@ -1,16 +1,16 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React, {PropsWithChildren, ReactNode} from 'react'
-import lightTheme from '@styled/themes'
+import lightTheme from 'styles/themes'
 import { ThemeProvider } from 'styled-components'
 import { Provider } from 'react-redux'
-import { RootState } from '@services/store';
+import { RootState } from 'store/store';
 import { BrowserRouter } from 'react-router-dom';
 import { render } from '@testing-library/react'
 import type { RenderOptions } from '@testing-library/react'
 import configureMockStore, { MockStore, MockStoreCreator } from 'redux-mock-store';
-import { Genders, TUser } from '@services/types/user';
 import { I18nextProvider } from 'react-i18next';
-import i18n from '@services/i18nForTests';
+import i18n from 'locales/i18nForTests';
+import { Genders, TUser } from 'types/user';
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
   preloadedState?: Partial<RootState>

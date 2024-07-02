@@ -1,4 +1,4 @@
-import { RootState } from '@services/store';
+import { RootState } from 'store/store';
 
 export const selectCurrentUser = (state: RootState) => state.user.user;
 export const selectProductItems = (state: RootState) => state.product.items;
