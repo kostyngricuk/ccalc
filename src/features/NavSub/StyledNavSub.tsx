@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { Dropdown } from 'components/Dropdown'
+import { StyledDropdown } from 'components/Dropdown/StyledDropdown';
 
-export const StyledNavSub = styled(Dropdown)`
+export const StyledNavSub = styled(StyledDropdown)`
   @media ${(props) => props.theme.device.mobile} {
     position: relative;
     top: 0;

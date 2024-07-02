@@ -9,21 +9,7 @@ import { useLocation } from 'react-router-dom';
 import { ArrowUpSVG, ArrowDownSVG } from 'icons/index';
 import Icon from 'components/Icon'
 
-import { StyledDropdown, StyledDropdownContent, StyledDropdownTrigger } from './StyledDropdown';
-
-export function Dropdown({
-  className = '',
-  children,
-}: {
-  className?: string,
-  children: ReactNode
-}) {
-  return (
-    <StyledDropdown className={className}>
-      { children }
-    </StyledDropdown>
-  );
-}
+import { StyledDropdownContent, StyledDropdownTrigger } from './StyledDropdown';
 
 export function DropdownTrigger({
   children,
@@ -61,6 +47,7 @@ export function DropdownTrigger({
   return (
     <StyledDropdownTrigger
       $isActive={$isActive}
+      data-active={$isActive}
       $showArrow={$showArrow}
       ref={refTrigger}
       onClick={handleOnClick}
@@ -68,7 +55,7 @@ export function DropdownTrigger({
       { children }
       {
         $showArrow && $isActive && (
-          <Icon sprite={ArrowUpSVG} />
+          <Icon sprite={ArrowUpSVG}/>
         )
       }
       {

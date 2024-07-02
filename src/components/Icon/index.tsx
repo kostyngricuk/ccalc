@@ -22,6 +22,7 @@ export default function Icon({
       height={height}
       color={color}
       className="Icon"
+      role='img'
     >
       <ReactSVG src={sprite} />
     </StyledIcon>

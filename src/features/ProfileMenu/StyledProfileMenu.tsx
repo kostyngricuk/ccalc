@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { Dropdown } from 'components/Dropdown'
+import { StyledDropdown } from 'components/Dropdown/StyledDropdown';
 
-export const StyledProfileMenu = styled(Dropdown)`
+export const StyledProfileMenu = styled(StyledDropdown)`
   & .DropdownContent {
     left: initial;
     right: -20px;

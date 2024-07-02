@@ -26,17 +26,17 @@ describe('Test render component - Button', () => {
   })
 
   it('click on the button', () => {
-    const mockCallBack = jest.fn();
+    const mockClickButtonEvent = jest.fn();
 
     const wrapper = render(
       <Button
         type={EnumButtonType.button}
-        onClick={mockCallBack}
+        onClick={mockClickButtonEvent}
       >Some text</Button>
     );
     const element = wrapper.getByRole('button');
 
     fireEvent.click(element);
-    expect(mockCallBack).toHaveBeenCalled();
+    expect(mockClickButtonEvent).toHaveBeenCalled();
   })
 })
