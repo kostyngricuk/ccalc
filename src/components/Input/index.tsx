@@ -10,7 +10,7 @@ import {
 import { useTranslation } from 'react-i18next';
 
 import { errorCodes } from 'constants/errors';
-import { ISelectOption, TChange, TOptions } from 'components/Select/types'
+import { ISelectOption, TChange } from 'components/Select/types'
 import Select from 'components/Select'
 import { StyledInput, StyledInputLabel } from './StyledInput';
 
@@ -59,7 +59,7 @@ export function Input(props: IInput) {
         <Select
           name={name}
           value={value}
-          options={options as TOptions}
+          options={options}
           onChange={onChange as TChange}
         />
       </StyledInput>

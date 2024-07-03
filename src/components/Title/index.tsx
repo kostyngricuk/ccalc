@@ -4,17 +4,15 @@ import StyledTitle from './StyledTitle';
 
 export default function Title({
   children,
-  className = '',
   variant = 'h1',
   position = EnumHorizontalPosition.left,
 }: {
   children: ReactNode;
-  className?: string;
   variant?: TypeTitleVariant;
   position?: EnumHorizontalPosition;
 }) {
   return (
-    <StyledTitle className={className} variant={variant} position={position}>
+    <StyledTitle variant={variant} position={position}>
       {children}
     </StyledTitle>
   );

@@ -4,16 +4,14 @@ import { EnumHorizontalPosition, TypeTitleVariant } from 'types/global';
 
 function TitleTag({
   children,
-  className = '',
   variant,
 }: {
   children: ReactNode;
-  className?: string;
   variant: TypeTitleVariant;
 }) {
   const TagElement = `${variant}` as keyof JSX.IntrinsicElements;
   return (
-    <TagElement className={className}>
+    <TagElement>
       {children}
     </TagElement>
   );

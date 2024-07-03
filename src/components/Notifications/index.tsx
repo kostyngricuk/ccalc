@@ -33,7 +33,7 @@ export function Notification({
   }, [])
   return (
     <StyleNotification $type={type}>
-      <Icon width='30px' height='30px' Sprite={getSpriteByType(type)} />
+      <Icon width='30px' height='30px' sprite={getSpriteByType(type)} />
       { message }
     </StyleNotification>
   )
