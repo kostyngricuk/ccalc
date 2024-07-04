@@ -7,13 +7,14 @@ export default function CalorieWidget({
   eaten = 0,
   limit = 0,
 }: {
-  eaten: number | undefined,
-  limit: number | undefined
+  eaten?: number,
+  limit?: number
 }) {
   const { t } = useTranslation();
 
+  const remain:number = limit - eaten;
+
   const color = useMemo(() => {
-    const remain:number = limit - eaten;
     if (remain < 0) {
       return Color.red;
     }
@@ -27,8 +28,8 @@ export default function CalorieWidget({
   }, [eaten, limit]);
 
   return (
-    <StyleCalorieWidget $color={color} className="CalorieWidget">
-      { limit - eaten }
+    <StyleCalorieWidget color={color} className="CalorieWidget" data-testid="calorieWidget">
+      { remain }
       <span>{t('calorieWidget.cal')}</span>
     </StyleCalorieWidget>
   );

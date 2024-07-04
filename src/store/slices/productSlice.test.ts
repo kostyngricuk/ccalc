@@ -1,4 +1,5 @@
-import { IProduct, IProductState, ISelectedProduct, KEY_PRODUCT_ID, TProducts } from 'types/products';
+import { IProduct, ISelectedProduct, KEY_PRODUCT_ID, TProducts } from 'types/products';
+import { getNutritionByWeight } from 'utils/calculations';
 import productReducer, {
   initialState,
   getProducts,
@@ -10,7 +11,6 @@ import productReducer, {
   updateProductWeight,
   saveProductsSuccess
 } from './productSlice';
-import { getNutritionByWeight } from 'utils/calculations';
 
 describe('productSlice testing', () => {
   let mockProducts: TProducts;

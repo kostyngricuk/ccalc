@@ -9,7 +9,7 @@ export enum Color {
 }
 
 interface ICalorieWidget {
-  $color: keyof typeof Color
+  color: keyof typeof Color
 }
 
 export const StyleCalorieWidget = styled.div<ICalorieWidget>`
@@ -17,8 +17,8 @@ export const StyleCalorieWidget = styled.div<ICalorieWidget>`
   height: 40px;
   border-width: 2px;
   border-style: solid;
-  border-color: ${(props) => props.theme.color[props.$color]};
-  color: ${(props) => props.theme.color[props.$color]};
+  border-color: ${(props) => props.theme.color[props.color]};
+  color: ${(props) => props.theme.color[props.color]};
   font-size: 18px;
   font-weight: 700;
   line-height: 1em;
