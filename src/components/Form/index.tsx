@@ -29,31 +29,31 @@ export default function Form({
   };
 
   useEffect(() => {
-    if (response?.message) {
-      const textMessage = response?.message as string;
-      switch (response?.status) {
-        case EResponseStatuses.success:
-          diptachNotification(ENotificationType.success, textMessage);
-          break;
-        case EResponseStatuses.error:
-          diptachNotification(ENotificationType.error, textMessage);
-          break;
-        default:
-          diptachNotification(ENotificationType.info, textMessage);
-          break;
-      }
+    if (!response) {
+      return;
     }
-    if (response?.status === EResponseStatuses.error && response?.errors) {
+
+    const {
+      status,
+      message
+    } = response;
+    const textMessage = message as string;
+    if (status === EResponseStatuses.success) {
+      diptachNotification(ENotificationType.success, textMessage);
+      return;
+    }
+    if (status === EResponseStatuses.error && response.errors) {
       Object.values(response.errors).forEach((error) => {
-        const textMessage = error?.message as string;
-        diptachNotification(ENotificationType.error, textMessage);
+        diptachNotification(ENotificationType.error, error.message as string);
       })
+      return;
     }
+    diptachNotification(ENotificationType.error, textMessage);
   }, [response?.status, response?.message]);
 
   return (
     <StyledFormWrapper>
-      <StyledForm onSubmit={onSubmit} $isLoading={isLoading}>
+      <StyledForm data-testid='form' onSubmit={onSubmit} $isLoading={isLoading}>
         { children }
       </StyledForm>
     </StyledFormWrapper>

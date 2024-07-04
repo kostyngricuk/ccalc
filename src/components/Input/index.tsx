@@ -126,7 +126,7 @@ export function InputControlled({
       label={label}
       required={required}
       type={type}
-      error={fieldState?.error}
+      error={fieldState.error}
       onChange={(input: string | ISelectOption) => {
         if (onChangeTrigger && typeof input !== 'string') {
           onChangeTrigger(input.value);

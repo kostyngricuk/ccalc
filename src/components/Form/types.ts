@@ -1,4 +1,4 @@
-import { FieldErrors, FieldValues } from 'react-hook-form';
+import { FieldErrors, FieldValues, GlobalError } from 'react-hook-form';
 
 export enum EResponseStatuses {
   success,
@@ -13,7 +13,7 @@ export interface IResponseSuccess {
 export interface IResponseError {
   status: EResponseStatuses.error,
   message?: string,
-  errors?: FieldErrors<FieldValues>
+  errors?: FieldErrors<FieldValues> | GlobalError[]
 }
 
 export type TResponse = IResponseSuccess | IResponseError | null;
