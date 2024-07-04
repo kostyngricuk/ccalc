@@ -71,7 +71,7 @@ export function Input(props: IInput) {
         className={classNames(
           error && 'has-error',
           type === 'radio' && 'is-radio',
-          Boolean(units?.length) && 'has-units',
+          Boolean(units.length) && 'has-units',
           required && 'is-required'
         )}
       >
@@ -81,14 +81,15 @@ export function Input(props: IInput) {
           required={required}
           onChange={(e) => onChange(e.target.value)}
           autoComplete="off"
-          type={type?.toString()}
+          type={type.toString()}
           checked={checked}
+          data-testid="input"
         />
         {type === 'radio' && <span className="radio-button" />}
         <span className="label">
           {label}
         </span>
-        {Boolean(units?.length) && <span className="units">{units}</span>}
+        {Boolean(units.length) && <span className="units">{units}</span>}
       </StyledInputLabel>
     </StyledInput>
   );
