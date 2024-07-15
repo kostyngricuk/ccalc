@@ -4,8 +4,8 @@ export enum Color {
   black = 'black',
   primary = 'primary',
   secondary = 'secondary',
-  gray = 'gray',
-  red = 'red',
+  third = 'third',
+  fourth = 'fourth',
 }
 
 interface ICalorieWidget {

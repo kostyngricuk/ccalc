@@ -7,10 +7,11 @@ export enum EnumButtonType {
   submit = 'submit'
 };
 export enum EnumButtonColor {
+  black = 'black',
   primary = 'primary',
   secondry = 'secondry',
-  red = 'red',
-  black = 'black'
+  third = 'third',
+  fourth = 'fourth'
 };
 
 interface IButton {

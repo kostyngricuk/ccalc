@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 
-import { defaultMockUser, render } from 'utils/test-utils';
+import { defaultMockUser, fireEvent, render, waitFor } from 'utils/test-utils';
 import Header from '.';
 
 describe('Header tests', () => {
@@ -19,7 +19,7 @@ describe('Header tests', () => {
     expect(element).toBeInTheDocument();
   });
 
-  it('Show menu for authorized users', () => {
+  it('Show menu for authorized users and logout', async () => {
     const state = {
       user: {
         isLoading: false,
@@ -31,5 +31,13 @@ describe('Header tests', () => {
     });
     const element = wrapper.getByTestId('nav');
     expect(element).toBeInTheDocument();
+
+    const exitBtn = wrapper.getByText('Exit');
+    const mockOnClickExit = jest.fn();
+    exitBtn.addEventListener('click', mockOnClickExit);
+    fireEvent.click(exitBtn);
+    await waitFor(() => {
+      expect(mockOnClickExit).toHaveBeenCalledTimes(1);
+    })
   });
 })

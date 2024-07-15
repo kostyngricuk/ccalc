@@ -11,6 +11,7 @@ import configureMockStore, { MockStore, MockStoreCreator } from 'redux-mock-stor
 import { I18nextProvider } from 'react-i18next';
 import i18n from 'locales/i18nForTests';
 import { Genders, TUser } from 'types/user';
+import { IProduct, ISelectedProduct, KEY_PRODUCT_ID } from 'types/products';
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
   preloadedState?: Partial<RootState>
@@ -79,4 +80,23 @@ export const defaultMockUser: TUser = {
     limit: 2300,
     eaten: 1980,
   },
+}
+
+export const defaultMockProduct: IProduct = {
+  [KEY_PRODUCT_ID]: 0,
+  name: 'Milk',
+  kkal: 34,
+  proto: 1,
+  carbo: 3,
+  fats: 2,
+}
+
+export const defaultMockSelectedProduct: ISelectedProduct = {
+  [KEY_PRODUCT_ID]: 0,
+  name: 'Milk',
+  kkal: 34,
+  proto: 1,
+  carbo: 3,
+  fats: 2,
+  weight: 100,
 }

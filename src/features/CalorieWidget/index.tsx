@@ -16,10 +16,10 @@ export default function CalorieWidget({
 
   const color = useMemo(() => {
     if (remain < 0) {
-      return Color.red;
+      return Color.third;
     }
     if (remain <= limit * 0.25) {
-      return Color.gray;
+      return Color.fourth;
     }
     if (remain <= limit * 0.5) {
       return Color.secondary;

@@ -8,21 +8,21 @@ describe('Render CalorieWidget Component', () => {
     const wrapper = render(<CalorieWidget />);
     const element = wrapper.getByTestId('calorieWidget');
     expect(element).toBeInTheDocument();
-    expect(element.getAttribute('color')).toBe(Color.gray);
+    expect(element.getAttribute('color')).toBe(Color.fourth);
   })
 
   it('results in red color', () => {
     const wrapper = render(<CalorieWidget limit={2000} eaten={2200} />);
     const element = wrapper.getByTestId('calorieWidget');
     expect(element).toBeInTheDocument();
-    expect(element.getAttribute('color')).toBe(Color.red);
+    expect(element.getAttribute('color')).toBe(Color.third);
   })
 
   it('results in gray color', () => {
     const wrapper = render(<CalorieWidget limit={2000} eaten={1900} />);
     const element = wrapper.getByTestId('calorieWidget');
     expect(element).toBeInTheDocument();
-    expect(element.getAttribute('color')).toBe(Color.gray);
+    expect(element.getAttribute('color')).toBe(Color.fourth);
   })
 
   it('results in secondary color', () => {

@@ -201,7 +201,7 @@ export default function SettingsScreen() {
             {t('settings.form.btn.save')}
           </Button>
           <Button
-            color={EnumButtonColor.red}
+            color={EnumButtonColor.third}
             $isOutline
           >
             {t('settings.form.btn.resetWidget')}

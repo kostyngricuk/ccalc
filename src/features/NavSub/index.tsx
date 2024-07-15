@@ -17,7 +17,7 @@ export default function NavSub({
     <StyledNavSub>
       <DropdownTrigger>
         {
-          link ? (
+          link.length ? (
             <NavLink to={link}>{ title }</NavLink>
           ) : (
             <span>{ title }</span>

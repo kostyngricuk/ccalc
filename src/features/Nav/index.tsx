@@ -16,14 +16,14 @@ interface INav {
 export default function Nav({ items, itemsMobile }: INav) {
   const location = useLocation();
 
-  const [$isActive, setIsActive] = useState(false);
+  const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
     setIsActive(false);
   }, [location]);
 
   const handleOnClick = () => {
-    setIsActive(!$isActive);
+    setIsActive(!isActive);
   };
 
   return (
@@ -36,7 +36,7 @@ export default function Nav({ items, itemsMobile }: INav) {
           />
         ))}
       </StyledNavWrap>
-      {$isActive && (
+      {isActive && (
         <StyledNavWrap className="is-mobile">
           {itemsMobile.map((item) => (
             <NavItem
@@ -51,10 +51,10 @@ export default function Nav({ items, itemsMobile }: INav) {
         color={EnumButtonColor.black}
         $isIcon
         $isOutline
-        ariaLabel="Menu"
+        ariaLabel="Show mobile menu"
         onClick={handleOnClick}
       >
-        {$isActive ? <Icon sprite={CloseSVG} /> : <Icon sprite={BurgerSVG} />}
+        {isActive ? <Icon sprite={CloseSVG} /> : <Icon sprite={BurgerSVG} />}
       </StyledNavBurger>
     </StyledNav>
   );
