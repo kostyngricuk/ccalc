@@ -13,7 +13,7 @@ import FormField, {
 import { InputControlled } from 'components/Input'
 import { ISelectOption } from 'components/Select/types'
 import { FieldValues, useForm } from 'react-hook-form';
-import ModalAddCustomProduct from './ModalCustomProduct';
+import ModalAddCustomProduct from 'features/ModalCustomProduct';
 
 export default function SearchProductForm() {
   const [isActiveModal, setIsActiveModal] = useState<Boolean>(false);
@@ -72,7 +72,7 @@ export default function SearchProductForm() {
           { t('calculator.form.btn.add') }
         </Button>
       </FormField>
-      {isActiveModal && <ModalAddCustomProduct diffProducts={diffProducts} toggleModal={toggleModal}/>}
+      {isActiveModal && <ModalAddCustomProduct toggleModal={toggleModal}/>}
     </>
   )
 }

@@ -79,12 +79,11 @@ describe('Search Product Form', () => {
     await waitFor(() => {
       const modalForm = wrapper.getByTestId('form');
       expect(modalForm).toBeInTheDocument();
-      fireEvent.submit(modalForm);
-    })
 
-    // TO DO:
-    // await waitFor(() => {
-    //   expect(wrapper.getByTestId('form')).not.toBeInTheDocument();
-    // })
+      const mockOnSubmit = jest.fn();
+      modalForm.addEventListener('submit', mockOnSubmit);
+      fireEvent.submit(wrapper.getByText('Cancel'));
+      expect(mockOnSubmit).toHaveBeenCalledTimes(1);
+    })
   })
 })

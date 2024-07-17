@@ -4,9 +4,9 @@ import { FieldValues, useForm } from 'react-hook-form';
 
 import { EnumHorizontalPosition } from 'types/global';
 import { useAppDispatch, useAppSelector } from 'hooks/store';
-import { selectProductSelectedItems } from 'hooks/selectors';
+import { selectProductItems, selectProductSelectedItems } from 'hooks/selectors';
 import { addCustomProduct } from 'store/slices/productSlice';
-import { IProduct, TProducts } from 'types/products';
+import { IProduct } from 'types/products';
 import { getKkal } from 'utils/calculations';
 import Title from 'components/Title'
 import Button, { EnumButtonColor, EnumButtonType } from 'components/Button'
@@ -18,8 +18,7 @@ import { InputControlled } from 'components/Input'
 import { TResponse, EResponseStatuses } from 'components/Form/types'
 import Modal from 'components/Modal'
 
-export default function ModalAddCustomProduct({ diffProducts, toggleModal }: {
-  diffProducts: TProducts,
+export default function ModalAddCustomProduct({ toggleModal }: {
   toggleModal: any
 }) {
   const [response, setResponse] = useState<TResponse>(null);
@@ -27,6 +26,7 @@ export default function ModalAddCustomProduct({ diffProducts, toggleModal }: {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
 
+  const allProducts = useAppSelector(selectProductItems);
   const selectedProducts = useAppSelector(selectProductSelectedItems);
 
   const {
@@ -49,7 +49,7 @@ export default function ModalAddCustomProduct({ diffProducts, toggleModal }: {
     } = submitData;
 
     const product = {
-      id: diffProducts.length + selectedProducts.length,
+      id: allProducts.length + selectedProducts.length,
       name,
       proto: parseInt(proto, 10),
       carbo: parseInt(carbo, 10),
