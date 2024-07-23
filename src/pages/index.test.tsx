@@ -1,5 +1,6 @@
 import React from "react"
-import { defaultMockProduct, defaultMockSelectedProduct, defaultMockUser, render } from "utils/test-utils"
+import { render } from "utils/test-utils"
+import { defaultMockProduct, defaultMockSelectedProduct, defaultMockUser } from "constants/mocks"
 import CalculatorScreen from "./CalculatorScreen"
 import ContactsScreen from "./ContactsScreen"
 import FaqScreen from "./FaqScreen"

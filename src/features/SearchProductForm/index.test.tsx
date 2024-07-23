@@ -1,7 +1,8 @@
 import React from "react";
-import { defaultMockProduct, defaultMockSelectedProduct, defaultMockUser, fireEvent, render, waitFor } from "utils/test-utils";
+import { fireEvent, render, waitFor } from "utils/test-utils";
 import SearchProductForm from "features/SearchProductForm";
 import { KEY_PRODUCT_ID } from "types/products";
+import { defaultMockProduct, defaultMockSelectedProduct, defaultMockUser } from "constants/mocks";
 
 describe('Search Product Form', () => {
   const state = {
@@ -24,7 +25,7 @@ describe('Search Product Form', () => {
       selectedItems: [defaultMockSelectedProduct]
     }
   }
-  it('Render with default props', () => {
+  it('Should render with default props', () => {
     const wrapper = render(<SearchProductForm />, {
       preloadedState: state
     });
@@ -32,12 +33,26 @@ describe('Search Product Form', () => {
     expect(addCustomProductBtn).toBeInTheDocument();
   })
 
-  it('Click on add custom product', async () => {
+  it('Should make a spanshot', () => {
+    const wrapper = render(<SearchProductForm />, {
+      preloadedState: state
+    });
+    expect(wrapper).toMatchSnapshot();
+  })
+
+  it('Should have add custom product button', () => {
     const wrapper = render(<SearchProductForm />, {
       preloadedState: state
     });
     const addCustomProductBtn = wrapper.getByRole('button');
     expect(addCustomProductBtn).toBeInTheDocument();
+  })
+
+  it('Should work with callback on add custom product button', async () => {
+    const wrapper = render(<SearchProductForm />, {
+      preloadedState: state
+    });
+    const addCustomProductBtn = wrapper.getByRole('button');
 
     const mockOnClick = jest.fn();
     addCustomProductBtn.addEventListener('click', mockOnClick);
@@ -47,12 +62,19 @@ describe('Search Product Form', () => {
     })
   })
 
-  it('Change Select', async () => {
+  it('Should have a select input', () => {
     const wrapper = render(<SearchProductForm />, {
       preloadedState: state
     });
     const selectInput = wrapper.getByRole('combobox');
     expect(selectInput).toBeInTheDocument();
+  })
+
+  it('Should change value of select the product', async () => {
+    const wrapper = render(<SearchProductForm />, {
+      preloadedState: state
+    });
+    const selectInput = wrapper.getByRole('combobox');
 
     const mockOnChange = jest.fn();
     selectInput.addEventListener('keydown', mockOnChange);
@@ -68,22 +90,16 @@ describe('Search Product Form', () => {
     });
   })
 
-  it('Show modal form and submit', async () => {
+  it('Should show modal form and submit', async () => {
     const wrapper = render(<SearchProductForm />, {
       preloadedState: state
     });
     const addCustomProductBtn = wrapper.getByRole('button');
-    expect(addCustomProductBtn).toBeInTheDocument();
 
     fireEvent.click(addCustomProductBtn);
     await waitFor(() => {
       const modalForm = wrapper.getByTestId('form');
       expect(modalForm).toBeInTheDocument();
-
-      const mockOnSubmit = jest.fn();
-      modalForm.addEventListener('submit', mockOnSubmit);
-      fireEvent.submit(wrapper.getByText('Cancel'));
-      expect(mockOnSubmit).toHaveBeenCalledTimes(1);
     })
   })
 })

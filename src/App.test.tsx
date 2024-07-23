@@ -2,7 +2,8 @@
 import React from 'react';
 
 import Root from 'pages/index';
-import { defaultMockUser, render, waitFor } from 'utils/test-utils';
+import { render, waitFor } from 'utils/test-utils';
+import { defaultMockUser } from 'constants/mocks';
 
 describe('Loading', () => {
   it('Show loading spiner', () => {

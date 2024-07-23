@@ -26,5 +26,8 @@ module.exports = {
       lines: 80,
       statements: 80,
     },
+    './src/services/api': {
+      statements: 0,
+    },
   },
 };

@@ -1,6 +1,7 @@
 import React from "react";
-import { defaultMockProduct, defaultMockSelectedProduct, fireEvent, render, waitFor } from "utils/test-utils";
+import { fireEvent, render, waitFor } from "utils/test-utils";
 import ModalAddCustomProduct from "features/ModalCustomProduct";
+import { defaultMockProduct, defaultMockSelectedProduct } from "constants/mocks";
 
 describe('Test ModalCustomProduct component', () => {
   const mockToggleModal = jest.fn();
@@ -11,7 +12,7 @@ describe('Test ModalCustomProduct component', () => {
     }
   }
 
-  it('Render component', () => {
+  it('Should render component with default props', () => {
     const wrapper = render(<ModalAddCustomProduct toggleModal={mockToggleModal}/>, {
       preloadedState: state
     });
@@ -19,12 +20,35 @@ describe('Test ModalCustomProduct component', () => {
     expect(form).toBeInTheDocument();
   })
 
-  it('Change value for input', async () => {
+  it('Should make snapshot', () => {
     const wrapper = render(<ModalAddCustomProduct toggleModal={mockToggleModal}/>, {
       preloadedState: state
     });
     const form = wrapper.getByTestId('form');
-    expect(form).toBeInTheDocument();
+    expect(form).toMatchSnapshot();
+  })
+
+  it('Should submit form with submit callback', async () => {
+    const wrapper = render(<ModalAddCustomProduct toggleModal={mockToggleModal}/>, {
+      preloadedState: state
+    });
+    const form = wrapper.getByTestId('form');
+
+    const mockSubmitCallback = jest.fn();
+
+    form.addEventListener('submit', mockSubmitCallback);
+
+    fireEvent.submit(form);
+
+    await waitFor(() => {
+      expect(mockSubmitCallback).toHaveBeenCalled();
+    })
+  })
+
+  it('Should change value for input', async () => {
+    const wrapper = render(<ModalAddCustomProduct toggleModal={mockToggleModal}/>, {
+      preloadedState: state
+    });
 
     const protoInput = wrapper.getByLabelText("Proteins");
 
@@ -34,6 +58,8 @@ describe('Test ModalCustomProduct component', () => {
       }
     });
 
-    expect(protoInput).toHaveValue(200);
+    await waitFor(() => {
+      expect(protoInput).toHaveValue(200);
+    })
   })
 })

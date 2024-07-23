@@ -4,15 +4,15 @@ import { ENotificationType } from 'types/notification';
 import i18n from 'i18next';
 import { errorAction } from 'constants/errors';
 
-function* showError(action: any): Generator {
-    const errorCode = action.error?.code ? action.error?.message : action.error?.message
-    yield put(addNotification({
+export function* showError(action: any): Generator {
+  const errorCode = action.error?.code || action.error?.message
+  yield put(addNotification({
       type: ENotificationType.error,
       message: i18n.t(`errors.${errorCode}`)
     }));
 }
 
-function* globalSaga() {
+export function* globalSaga() {
     yield takeEvery(errorAction, showError)
 }
 

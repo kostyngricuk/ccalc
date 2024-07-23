@@ -1,7 +1,8 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 
-import { defaultMockUser, fireEvent, render, waitFor } from 'utils/test-utils';
+import { fireEvent, render, waitFor } from 'utils/test-utils';
+import { defaultMockUser } from 'constants/mocks';
 import Header from '.';
 
 describe('Header tests', () => {

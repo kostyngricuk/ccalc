@@ -3,7 +3,7 @@ import { IProductState, TProducts } from 'types/products';
 
 export interface IProductResponse {
   items: TProducts,
-  errorCode: string,
+  errorCode?: string,
   success: boolean
 }
 

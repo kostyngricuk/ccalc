@@ -1,6 +1,7 @@
 import React from "react";
-import { defaultMockSelectedProduct, fireEvent, render, waitFor } from "utils/test-utils";
+import { fireEvent, render, waitFor } from "utils/test-utils";
 import ProductItem from "features/ProductItem";
+import { defaultMockSelectedProduct } from "constants/mocks";
 
 describe('Product Item', () => {
   it('Render with default props', () => {

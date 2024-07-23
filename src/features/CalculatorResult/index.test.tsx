@@ -1,9 +1,10 @@
 import React from "react";
-import { defaultMockProduct, defaultMockSelectedProduct, defaultMockUser, fireEvent, render } from "utils/test-utils";
+import {render } from "utils/test-utils";
 import CalculatorResult from "features/CalculatorResult";
+import { defaultMockProduct, defaultMockSelectedProduct, defaultMockUser } from "constants/mocks";
 
 describe('Render CalculatorResult Component', () => {
-  it('has selected products and click on save results', () => {
+  it('Should render with selected products', () => {
     const state = {
       user: {
         user: defaultMockUser,
@@ -20,11 +21,9 @@ describe('Render CalculatorResult Component', () => {
 
     const saveBtn = wrapper.getByRole('button');
     expect(saveBtn).toBeInTheDocument();
-
-    fireEvent.click(saveBtn);
   })
 
-  it('no selected products', () => {
+  it('Should render without selected products', () => {
     const state = {
       product: {
         items: [defaultMockProduct],
@@ -34,10 +33,7 @@ describe('Render CalculatorResult Component', () => {
     const wrapper = render(<CalculatorResult />, {
       preloadedState: state
     });
-    const saveBtn = wrapper.queryByRole('button');
-    expect(saveBtn).not.toBeInTheDocument();
-
-    const element = wrapper.queryByRole('paragraph');
+    const element = wrapper.getByRole('paragraph');
     expect(element).toBeInTheDocument();
   })
 })

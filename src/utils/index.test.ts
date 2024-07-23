@@ -1,8 +1,8 @@
 import { TUser } from 'types/user'
 import { ISelectedProduct, KEY_PRODUCT_ID } from 'types/products'
+import { defaultMockUser } from 'constants/mocks'
 import hasAdditionalInfo from './auth'
 import { getKkal, getNutritionByWeight, getTottal, ITottalValues } from './calculations'
-import { defaultMockUser } from './test-utils'
 
 describe('Auth utils', () => {
   let mockUser: TUser;

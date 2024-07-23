@@ -1,9 +1,10 @@
 import React from 'react'
-import { defaultMockUser, render } from 'utils/test-utils'
+import { render } from 'utils/test-utils'
 import { TUser } from 'types/user'
 import AuthRoute from 'router/AuthRoute'
 import ProtectedRoute from 'router/ProtectedRoute'
 import paths from 'router/paths'
+import { defaultMockUser } from 'constants/mocks'
 
 describe('Test auth routes', () => {
   let mockUser: TUser;

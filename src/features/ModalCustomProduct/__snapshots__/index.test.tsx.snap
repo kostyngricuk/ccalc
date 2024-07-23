@@ -1,0 +1,349 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test ModalCustomProduct component Should make form snapshot 1`] = `
+<form
+  class="sc-eqUzNf iaUwNn"
+  data-testid="form"
+>
+  <div
+    class="sc-kAycRU ihKhcg Input"
+  >
+    <label
+      class="sc-imWZod fNnZtJ is-required"
+    >
+      <input
+        autocomplete="off"
+        data-testid="input"
+        name="name"
+        required=""
+        type="text"
+        value=""
+      />
+      <span
+        class="label"
+      >
+        Product name
+      </span>
+    </label>
+  </div>
+  <div
+    class="sc-iGgVNO RWVnE"
+  >
+    <div
+      class="sc-kAycRU ihKhcg Input"
+    >
+      <label
+        class="sc-imWZod fNnZtJ is-required"
+      >
+        <input
+          autocomplete="off"
+          data-testid="input"
+          name="proto"
+          required=""
+          type="number"
+          value=""
+        />
+        <span
+          class="label"
+        >
+          Proteins
+        </span>
+      </label>
+    </div>
+    <div
+      class="sc-kAycRU ihKhcg Input"
+    >
+      <label
+        class="sc-imWZod fNnZtJ is-required"
+      >
+        <input
+          autocomplete="off"
+          data-testid="input"
+          name="fats"
+          required=""
+          type="number"
+          value=""
+        />
+        <span
+          class="label"
+        >
+          Fats
+        </span>
+      </label>
+    </div>
+    <div
+      class="sc-kAycRU ihKhcg Input"
+    >
+      <label
+        class="sc-imWZod fNnZtJ is-required"
+      >
+        <input
+          autocomplete="off"
+          data-testid="input"
+          name="carbo"
+          required=""
+          type="number"
+          value=""
+        />
+        <span
+          class="label"
+        >
+          Carbohydrates
+        </span>
+      </label>
+    </div>
+  </div>
+  <div
+    class="sc-gsFSjX dZxRnx"
+  >
+    <button
+      aria-label=""
+      class="sc-gEvDqW ddrchV"
+      color="third"
+      type="button"
+    >
+      Cancel
+    </button>
+    <button
+      aria-label=""
+      class="sc-gEvDqW bjpgsz"
+      color="primary"
+      type="submit"
+    >
+      Add
+    </button>
+  </div>
+</form>
+`;
+
+exports[`Test ModalCustomProduct component Should make snapshot 1`] = `
+<form
+  class="sc-eqUzNf iaUwNn"
+  data-testid="form"
+>
+  <div
+    class="sc-kAycRU ihKhcg Input"
+  >
+    <label
+      class="sc-imWZod fNnZtJ is-required"
+    >
+      <input
+        autocomplete="off"
+        data-testid="input"
+        name="name"
+        required=""
+        type="text"
+        value=""
+      />
+      <span
+        class="label"
+      >
+        Product name
+      </span>
+    </label>
+  </div>
+  <div
+    class="sc-iGgVNO RWVnE"
+  >
+    <div
+      class="sc-kAycRU ihKhcg Input"
+    >
+      <label
+        class="sc-imWZod fNnZtJ is-required"
+      >
+        <input
+          autocomplete="off"
+          data-testid="input"
+          name="proto"
+          required=""
+          type="number"
+          value=""
+        />
+        <span
+          class="label"
+        >
+          Proteins
+        </span>
+      </label>
+    </div>
+    <div
+      class="sc-kAycRU ihKhcg Input"
+    >
+      <label
+        class="sc-imWZod fNnZtJ is-required"
+      >
+        <input
+          autocomplete="off"
+          data-testid="input"
+          name="fats"
+          required=""
+          type="number"
+          value=""
+        />
+        <span
+          class="label"
+        >
+          Fats
+        </span>
+      </label>
+    </div>
+    <div
+      class="sc-kAycRU ihKhcg Input"
+    >
+      <label
+        class="sc-imWZod fNnZtJ is-required"
+      >
+        <input
+          autocomplete="off"
+          data-testid="input"
+          name="carbo"
+          required=""
+          type="number"
+          value=""
+        />
+        <span
+          class="label"
+        >
+          Carbohydrates
+        </span>
+      </label>
+    </div>
+  </div>
+  <div
+    class="sc-gsFSjX dZxRnx"
+  >
+    <button
+      aria-label=""
+      class="sc-gEvDqW ddrchV"
+      color="third"
+      type="button"
+    >
+      Cancel
+    </button>
+    <button
+      aria-label=""
+      class="sc-gEvDqW bjpgsz"
+      color="primary"
+      type="submit"
+    >
+      Add
+    </button>
+  </div>
+</form>
+`;
+
+exports[`Test ModalCustomProduct component Should render component with default props 1`] = `
+<form
+  class="sc-eqUzNf iaUwNn"
+  data-testid="form"
+>
+  <div
+    class="sc-kAycRU ihKhcg Input"
+  >
+    <label
+      class="sc-imWZod fNnZtJ is-required"
+    >
+      <input
+        autocomplete="off"
+        data-testid="input"
+        name="name"
+        required=""
+        type="text"
+        value=""
+      />
+      <span
+        class="label"
+      >
+        Product name
+      </span>
+    </label>
+  </div>
+  <div
+    class="sc-iGgVNO RWVnE"
+  >
+    <div
+      class="sc-kAycRU ihKhcg Input"
+    >
+      <label
+        class="sc-imWZod fNnZtJ is-required"
+      >
+        <input
+          autocomplete="off"
+          data-testid="input"
+          name="proto"
+          required=""
+          type="number"
+          value=""
+        />
+        <span
+          class="label"
+        >
+          Proteins
+        </span>
+      </label>
+    </div>
+    <div
+      class="sc-kAycRU ihKhcg Input"
+    >
+      <label
+        class="sc-imWZod fNnZtJ is-required"
+      >
+        <input
+          autocomplete="off"
+          data-testid="input"
+          name="fats"
+          required=""
+          type="number"
+          value=""
+        />
+        <span
+          class="label"
+        >
+          Fats
+        </span>
+      </label>
+    </div>
+    <div
+      class="sc-kAycRU ihKhcg Input"
+    >
+      <label
+        class="sc-imWZod fNnZtJ is-required"
+      >
+        <input
+          autocomplete="off"
+          data-testid="input"
+          name="carbo"
+          required=""
+          type="number"
+          value=""
+        />
+        <span
+          class="label"
+        >
+          Carbohydrates
+        </span>
+      </label>
+    </div>
+  </div>
+  <div
+    class="sc-gsFSjX dZxRnx"
+  >
+    <button
+      aria-label=""
+      class="sc-gEvDqW ddrchV"
+      color="third"
+      type="button"
+    >
+      Cancel
+    </button>
+    <button
+      aria-label=""
+      class="sc-gEvDqW bjpgsz"
+      color="primary"
+      type="submit"
+    >
+      Add
+    </button>
+  </div>
+</form>
+`;

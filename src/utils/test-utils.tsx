@@ -10,8 +10,12 @@ import type { RenderOptions } from '@testing-library/react'
 import configureMockStore, { MockStore, MockStoreCreator } from 'redux-mock-store';
 import { I18nextProvider } from 'react-i18next';
 import i18n from 'locales/i18nForTests';
-import { Genders, TUser } from 'types/user';
-import { IProduct, ISelectedProduct, KEY_PRODUCT_ID } from 'types/products';
+import { Action, runSaga } from 'redux-saga';
+
+export interface IDispatchRes {
+  type: Action,
+  error?: Error
+}
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
   preloadedState?: Partial<RootState>
@@ -62,41 +66,19 @@ export function renderWithProviders(
   }
 }
 
+export const runMockSaga = async (sagaFunc: any, sagaData: object, dispatchRes?: IDispatchRes[]) => {
+  await runSaga(
+    dispatchRes ? {
+      dispatch: (res: IDispatchRes) => dispatchRes.push(res)
+    } : {},
+    () => sagaFunc(sagaData));
+}
+
+export const createMockApiRequest = (api: any, apiMethod: any, mockResponse: object) => jest.spyOn(api, apiMethod)
+  .mockImplementation(() => Promise.resolve(mockResponse))
+
 // re-export everything
 export * from '@testing-library/react'
 
 // override render method
 export {renderWithProviders as render}
-
-export const defaultMockUser: TUser = {
-  id: 'unicStringId',
-  height: 180,
-  weight: 85,
-  weightGoal: 80,
-  age: 26,
-  gender: Genders.man,
-  email: 'mockUser@gmail.com',
-  calorieWidget: {
-    limit: 2300,
-    eaten: 1980,
-  },
-}
-
-export const defaultMockProduct: IProduct = {
-  [KEY_PRODUCT_ID]: 0,
-  name: 'Milk',
-  kkal: 34,
-  proto: 1,
-  carbo: 3,
-  fats: 2,
-}
-
-export const defaultMockSelectedProduct: ISelectedProduct = {
-  [KEY_PRODUCT_ID]: 0,
-  name: 'Milk',
-  kkal: 34,
-  proto: 1,
-  carbo: 3,
-  fats: 2,
-  weight: 100,
-}

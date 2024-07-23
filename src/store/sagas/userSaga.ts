@@ -17,7 +17,7 @@ import { saveProductsSuccess } from 'store/slices/productSlice';
 import { errorAction, errorCodes } from 'constants/errors';
 import { reqSaveCalcAction } from 'constants/global';
 
-function* userLogin(action: any): Generator {
+export function* userLogin(action: any): Generator {
   try {
     const {
       email,
@@ -28,18 +28,18 @@ function* userLogin(action: any): Generator {
       email,
       password
     })) as IAuthResponse;
-    if (res?.success) {
+    if (res.success) {
       yield put(requestSuccess(res.user));
       return;
     }
-    throw new Error(res?.errorCode);
+    throw new Error(res.errorCode);
   } catch (error) {
     yield put(requsetUserError());
     yield put({ type: errorAction, error });
   }
 }
 
-function* userRegister(action: any): Generator {
+export function* userRegister(action: any): Generator {
   try {
     const {
       email,
@@ -56,18 +56,18 @@ function* userRegister(action: any): Generator {
       password
     })) as IAuthResponse;
 
-    if (res?.success) {
+    if (res.success) {
       yield put(requestSuccess(res.user));
       return;
     }
-    throw new Error(res?.errorCode);
+    throw new Error(res.errorCode);
   } catch (error) {
     yield put(requsetUserError());
     yield put({ type: errorAction, error });
   }
 }
 
-function* userUpdate(action: any): Generator {
+export function* userUpdate(action: any): Generator {
   try {
     const {
       password,
@@ -81,11 +81,11 @@ function* userUpdate(action: any): Generator {
 
     const res = (yield call(userApi.update, action.payload)) as IAuthResponse;
 
-    if (res?.success) {
+    if (res.success) {
       yield put(requestSuccess(res.user));
       return;
     }
-    throw new Error(res?.errorCode);
+    throw new Error(res.errorCode);
 
     if (typeof successCallback !== 'undefined') {
       successCallback(res.user);
@@ -96,7 +96,7 @@ function* userUpdate(action: any): Generator {
   }
 }
 
-function* resetPassword(action: any): Generator {
+export function* resetPassword(action: any): Generator {
   try {
     const {
       email
@@ -105,33 +105,33 @@ function* resetPassword(action: any): Generator {
       email
     })) as IAuthResponse;
 
-    if (res?.success) {
+    if (res.success) {
       yield put(requestSuccess(res.user));
       return;
     }
-    throw new Error(res?.errorCode);
+    throw new Error(res.errorCode);
   } catch (error) {
     yield put(requsetUserError());
     yield put({ type: errorAction, error });
   }
 }
 
-function* sendCode(action: any): Generator {
+export function* sendCode(action: any): Generator {
   try {
     const res = (yield call(authApi.sendCode, action.payload)) as IAuthResponse;
 
-    if (res?.success) {
+    if (res.success) {
       yield put(requestSuccess(res.user));
       return;
     }
-    throw new Error(res?.errorCode);
+    throw new Error(res.errorCode);
   } catch (error) {
     yield put(requsetUserError());
     yield put({ type: errorAction, error });
   }
 }
 
-function* changePassword(action: any): Generator {
+export function* changePassword(action: any): Generator {
   try {
     const {
       email,
@@ -149,34 +149,34 @@ function* changePassword(action: any): Generator {
       password
     })) as IAuthResponse;
 
-    if (res?.success) {
+    if (res.success) {
       yield put(requestSuccess(res.user));
       navigate(paths.home.path);
       return;
     }
-    throw new Error(res?.errorCode);
+    throw new Error(res.errorCode);
   } catch (error) {
     yield put(requsetUserError());
     yield put({ type: errorAction, error });
   }
 }
 
-function* saveCalcRequset(action: any): Generator {
+export function* saveCalcRequset(action: any): Generator {
   try {
     const res = (yield call(userApi.eaten, action.payload)) as IAuthResponse;
 
-    if (res?.success) {
+    if (res.success) {
       yield put(saveProductsSuccess());
       yield put(requestSuccess(res.user));
       return;
     }
-    throw new Error(res?.errorCode);
+    throw new Error(res.errorCode);
   } catch (error) {
     yield put({ type: errorAction, error });
   }
 }
 
-function* userSaga() {
+export function* userSaga() {
   yield takeLatest(loginRequest.type, userLogin);
   yield takeLatest(registerRequest.type, userRegister);
   yield takeLatest(updateRequest.type, userUpdate);

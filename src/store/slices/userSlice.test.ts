@@ -1,6 +1,6 @@
 import { IUserState } from 'types/user';
-import { defaultMockUser } from 'utils/test-utils';
 
+import { defaultMockUser } from 'constants/mocks';
 import userReducer, {
   initialState,
   loginRequest,
