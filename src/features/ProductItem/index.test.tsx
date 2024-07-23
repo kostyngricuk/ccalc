@@ -1,6 +1,5 @@
-import React, { act } from "react";
-import userEvent from "@testing-library/user-event";
-import { fireEvent, render, waitFor } from "utils/test-utils";
+import React from "react";
+import { render } from "utils/test-utils";
 import ProductItem from "features/ProductItem";
 import { defaultMockSelectedProduct } from "constants/mocks";
 
