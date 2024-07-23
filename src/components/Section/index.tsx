@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
 
+import Container from 'components/Container';
 import StyledSection from './StyledSection';
 
 export default function Section({
@@ -9,7 +10,9 @@ export default function Section({
 }) {
   return (
     <StyledSection>
-      { children }
+      <Container>
+        { children }
+      </Container>
     </StyledSection>
   );
 }

@@ -100,8 +100,7 @@
         "successReset": "Limit reset successfully!"
       },
       "btn": {
-        "save": "Save changes",
-        "resetWidget": "Reset today limit"
+        "save": "Save changes"
       }
     }
   },

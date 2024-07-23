@@ -83,13 +83,12 @@ export function* userUpdate(action: any): Generator {
 
     if (res.success) {
       yield put(requestSuccess(res.user));
+      if (typeof successCallback !== 'undefined') {
+        successCallback(res.user);
+      }
       return;
     }
     throw new Error(res.errorCode);
-
-    if (typeof successCallback !== 'undefined') {
-      successCallback(res.user);
-    }
   } catch (error) {
     yield put(requsetUserError());
     yield put({ type: errorAction, error });

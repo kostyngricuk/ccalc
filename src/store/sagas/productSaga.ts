@@ -24,6 +24,9 @@ export function* getProductsRequest(): Generator {
 }
 
 export function* addProductToItems(action: any): Generator {
+  if (!action?.payload) {
+    return;
+  }
   const {
     id
   } = action.payload;
@@ -31,6 +34,9 @@ export function* addProductToItems(action: any): Generator {
 }
 
 export function* removeProductFromItems(action: any): Generator {
+  if (!action?.payload) {
+    return;
+  }
   const {
     id
   } = action.payload;

@@ -12,7 +12,7 @@ export default function Title({
   position?: EnumHorizontalPosition;
 }) {
   return (
-    <StyledTitle variant={variant} position={position}>
+    <StyledTitle as={variant} position={position}>
       {children}
     </StyledTitle>
   );

@@ -8,7 +8,7 @@ export const getKkal = ({
   proto: number,
   carbo: number,
   fats: number
-}) => proto * 4 + carbo * 4 + fats * 9;
+}) => Math.round(proto * 4 + carbo * 4 + fats * 9);
 
 export interface ITottalValues {
   weight: number,

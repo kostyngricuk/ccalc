@@ -1,21 +1,5 @@
-import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 import { EnumHorizontalPosition, TypeTitleVariant } from 'types/global';
-
-function TitleTag({
-  children,
-  variant,
-}: {
-  children: ReactNode;
-  variant: TypeTitleVariant;
-}) {
-  const TagElement = `${variant}` as keyof JSX.IntrinsicElements;
-  return (
-    <TagElement>
-      {children}
-    </TagElement>
-  );
-}
 
 const getFontSize = (variant: TypeTitleVariant) => {
   switch (variant) {
@@ -51,15 +35,16 @@ const getFontSizeMobile = (variant: TypeTitleVariant) => {
   }
 };
 
-const StyledTitle = styled(TitleTag)<{
-  variant: TypeTitleVariant,
+const StyledTitle = styled.p<{
+  as: TypeTitleVariant,
   position: EnumHorizontalPosition
 }>`
-  font-size: ${(props) => getFontSize(props.variant)};
+  font-size: ${(props) => getFontSize(props.as)};
   text-align: ${(props) => props.position};
   margin-bottom: 0.5em;
   @media ${(props) => props.theme.device.mobile} {
-      font-size: ${(props) => getFontSizeMobile(props.variant)};
+      font-size: ${(props) => getFontSizeMobile(props.as)};
   }
 `;
+
 export default StyledTitle;
