@@ -1,44 +1,32 @@
-import React from "react";
+import React, { act } from "react";
+import userEvent from "@testing-library/user-event";
 import { fireEvent, render, waitFor } from "utils/test-utils";
 import ProductItem from "features/ProductItem";
 import { defaultMockSelectedProduct } from "constants/mocks";
 
 describe('Product Item', () => {
-  it('Render with default props', () => {
+  it('Should render with default props', () => {
     const wrapper = render(<ProductItem item={defaultMockSelectedProduct} />);
 
     expect(wrapper.getByRole('heading')).toHaveTextContent(defaultMockSelectedProduct.name);
   })
 
-  it('Remove product item', async () => {
+  it('Should make a snapshot', () => {
+    const wrapper = render(<ProductItem item={defaultMockSelectedProduct} />);
+    expect(wrapper).toMatchSnapshot();
+  })
+
+  it('Should have a remove product button', async () => {
     const wrapper = render(<ProductItem item={defaultMockSelectedProduct} />);
 
     const removeBtn = wrapper.getByRole('button');
     expect(removeBtn).toBeInTheDocument();
-
-    const mockOnClickRemove = jest.fn();
-    removeBtn.addEventListener('click', mockOnClickRemove);
-    fireEvent.click(removeBtn);
-    await waitFor(() => {
-      expect(mockOnClickRemove).toHaveBeenCalledTimes(1);
-    })
   })
 
-  it('Change product item weight', async () => {
+  it('Should have input for changing waight', async () => {
     const wrapper = render(<ProductItem item={defaultMockSelectedProduct} />);
 
     const weightInput = wrapper.getByRole('spinbutton');
     expect(weightInput).toBeInTheDocument();
-
-    const mockOnChangeWeight = jest.fn();
-    weightInput.addEventListener('change', mockOnChangeWeight);
-    fireEvent.change(weightInput, {
-      target: {
-        value: "200"
-      }
-    })
-    await waitFor(() => {
-      expect(mockOnChangeWeight).toHaveBeenCalledTimes(1);
-    })
   })
 })

@@ -10,7 +10,7 @@ import type { RenderOptions } from '@testing-library/react'
 import configureMockStore, { MockStore, MockStoreCreator } from 'redux-mock-store';
 import { I18nextProvider } from 'react-i18next';
 import i18n from 'locales/i18nForTests';
-import { Action, runSaga } from 'redux-saga';
+import { Action, runSaga, stdChannel } from 'redux-saga';
 
 export interface IDispatchRes {
   type: Action,
@@ -66,11 +66,17 @@ export function renderWithProviders(
   }
 }
 
-export const runMockSaga = async (sagaFunc: any, sagaData: object, dispatchRes?: IDispatchRes[]) => {
+export const runMockSaga = async (sagaFunc: any, sagaData: object, dispatchRes?: any) => {
+  const channel = stdChannel()
   await runSaga(
-    dispatchRes ? {
-      dispatch: (res: IDispatchRes) => dispatchRes.push(res)
-    } : {},
+    {
+      channel,
+      dispatch: (res) => {
+        if (dispatchRes) {
+          dispatchRes.push(res)
+        }
+      },
+    },
     () => sagaFunc(sagaData));
 }
 
