@@ -2,9 +2,9 @@ import React from 'react';
 import { isRouteErrorResponse, useRouteError } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import Main from '@components/Main'
-import Section from '@components/UI/Section'
-import Title from '@components/UI/Title'
+import Section from 'components/Section'
+import Title from 'components/Title'
+import Main from 'features/Main'
 
 export default function ErrorScreen() {
   const error = useRouteError();
@@ -12,7 +12,7 @@ export default function ErrorScreen() {
   const { t } = useTranslation();
 
   return (
-    <Main>
+    <Main data-testid="error-screen">
       <Section>
         {
           isRouteErrorResponse(error)

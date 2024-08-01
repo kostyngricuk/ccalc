@@ -2,21 +2,21 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FieldValues, useForm, Controller } from 'react-hook-form';
 
-import Section from '@components/UI/Section'
-import Title from '@components/UI/Title'
-import Button, { EnumButtonColor, EnumButtonType } from '@components/UI/Button'
-import Form from '@components/UI/Form'
+import Section from 'components/Section'
+import Title from 'components/Title'
+import Button, { EnumButtonType } from 'components/Button'
+import Form from 'components/Form'
 import FormField, {
   EnumFormFieldType,
-} from '@components/UI/FormField'
-import { Input, InputControlled } from '@components/UI/Input'
-import { Genders, TUser } from '@services/types/user';
-import { UNITS } from '@services/constants/global';
-import { EnumHorizontalPosition } from '@services/types/global';
-import { TResponse, EResponseStatuses } from '@components/UI/Form/types'
-import { selectCurrentUser, selectIsLoading } from '@services/hooks/selectors';
-import { useAppDispatch, useAppSelector } from '@services/hooks/store';
-import { updateRequest } from '@services/reducers/userSlice';
+} from 'components/FormField'
+import { Input, InputControlled } from 'components/Input'
+import { Genders, TUser } from 'types/user';
+import { UNITS } from 'constants/global';
+import { EnumHorizontalPosition } from 'types/global';
+import { TResponse, EResponseStatuses } from 'components/Form/types'
+import { selectCurrentUser, selectIsLoading } from 'hooks/selectors';
+import { useAppDispatch, useAppSelector } from 'hooks/store';
+import { updateRequest } from 'store/slices/userSlice';
 
 export default function SettingsScreen() {
   const [response, setResponse] = useState<TResponse>(null);
@@ -199,12 +199,6 @@ export default function SettingsScreen() {
         <FormField type={EnumFormFieldType.actions}>
           <Button type={EnumButtonType.submit}>
             {t('settings.form.btn.save')}
-          </Button>
-          <Button
-            color={EnumButtonColor.red}
-            $isOutline
-          >
-            {t('settings.form.btn.resetWidget')}
           </Button>
         </FormField>
       </Form>

@@ -6,13 +6,28 @@
     "moduleResolution": "node",
     "outDir": "./dist",
     "strict": true,
+    "resolveJsonModule": true,
     "esModuleInterop": true,
-    "paths": { 
-      "@components/*": ["./src/components/*"],
-			"@services/*": ["./src/services/*"],
-			"@icons/*": ["./src/icons/*"],
-      "@pages/*": ["./src/pages/*"]
-		}
+    "paths": {
+      "components/*": ["./src/components/*"],
+      "features/*": ["./src/features/*"],
+			"services/*": ["./src/services/*"],
+			"icons/*": ["./src/icons/*"],
+      "pages/*": ["./src/pages/*"],
+      "utils/*": ["./src/utils/*"],
+      "styles/*": ["./src/styles/*"],
+      "constants/*": ["./src/constants/*"],
+      "store/*": ["./src/store/*"],
+      "locales/*": ["./src/locales/*"],
+      "hooks/*": ["./src/hooks/*"],
+      "types/*": ["./src/types/*"],
+      "router/*": ["./src/router/*"],
+		},
+    "types": [
+      "jest",
+      "node",
+      "@testing-library/react"
+    ],
   },
-  "include": ["*.ts", "*.js", "**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"]
+  "include": ["*.ts", "*.tsx", "*.js", "*.jsx", "**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "./setupTests.ts"]
 }

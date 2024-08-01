@@ -1,9 +1,9 @@
-import http from '@services/http';
-import { IProductState, TProducts } from '@services/types/products';
+import http from 'services/http';
+import { IProductState, TProducts } from 'types/products';
 
 export interface IProductResponse {
   items: TProducts,
-  errorCode: string,
+  errorCode?: string,
   success: boolean
 }
 

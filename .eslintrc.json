@@ -9,6 +9,7 @@
     "project": "./tsconfig.json"
   },
   "rules": {
+    "react/require-default-props": "off",
     "no-param-reassign": ["error", {
       "props": true,
       "ignorePropertyModificationsFor": ["state"]

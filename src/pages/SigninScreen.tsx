@@ -3,20 +3,20 @@ import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 import { FieldValues, useForm } from 'react-hook-form';
 
-import paths from '@services/router/paths';
-import { useAppDispatch, useAppSelector } from '@services/hooks/store';
-import { EnumHorizontalPosition } from '@services/types/global';
+import paths from 'router/paths';
+import { useAppDispatch, useAppSelector } from 'hooks/store';
+import { EnumHorizontalPosition } from 'types/global';
 
-import Section from '@components/UI/Section'
-import Title from '@components/UI/Title'
-import Form from '@components/UI/Form'
-import { TResponse, EResponseStatuses } from '@components/UI/Form/types'
-import FormField, { EnumFormFieldType } from '@components/UI/FormField'
-import { InputControlled } from '@components/UI/Input'
-import Button, { EnumButtonColor, EnumButtonType } from '@components/UI/Button'
-import Text from '@components/UI/Text'
-import { loginRequest } from '@services/reducers/userSlice';
-import { selectIsLoading } from '@services/hooks/selectors';
+import Section from 'components/Section'
+import Title from 'components/Title'
+import Form from 'components/Form'
+import { TResponse, EResponseStatuses } from 'components/Form/types'
+import FormField, { EnumFormFieldType } from 'components/FormField'
+import { InputControlled } from 'components/Input'
+import Button, { EnumButtonColor, EnumButtonType } from 'components/Button'
+import Text from 'components/Text'
+import { loginRequest } from 'store/slices/userSlice';
+import { selectIsLoading } from 'hooks/selectors';
 
 export default function   SigninScreen() {
   const [response, setResponse] = useState<TResponse>(null);
