@@ -1,26 +1,33 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
     "allowJs": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
+    "jsx": "react",
     "moduleResolution": "node",
+    "outDir": "./dist",
+    "strict": true,
     "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx"
+    "esModuleInterop": true,
+    "paths": {
+      "components/*": ["./src/components/*"],
+      "features/*": ["./src/features/*"],
+			"services/*": ["./src/services/*"],
+			"icons/*": ["./src/icons/*"],
+      "pages/*": ["./src/pages/*"],
+      "utils/*": ["./src/utils/*"],
+      "styles/*": ["./src/styles/*"],
+      "constants/*": ["./src/constants/*"],
+      "store/*": ["./src/store/*"],
+      "locales/*": ["./src/locales/*"],
+      "hooks/*": ["./src/hooks/*"],
+      "types/*": ["./src/types/*"],
+      "router/*": ["./src/router/*"],
+		},
+    "types": [
+      "jest",
+      "node",
+      "@testing-library/react"
+    ],
   },
-  "include": [
-    "src"
-  ]
+  "include": ["*.ts", "*.tsx", "*.js", "*.jsx", "**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "./setupTests.ts"]
 }
